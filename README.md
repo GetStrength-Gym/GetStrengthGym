@@ -1,17 +1,25 @@
 # GetStrength Website
 
+## Project structure
+- `frontend/`: Next.js (React), built as a static site for S3 + CloudFront
+- `backend/`: Java Spring Boot (role still being confirmed; currently a health check)
+- `docker-compose.yml`: runs everything locally
+
+Docker is for local development only. Production is static files on AWS, with no containers.
+
 ## Getting started
-1. Install Docker Desktop (Windows: enable WSL2, turn on WSL Integration for Ubuntu, and keep this repo inside Ubuntu, not on C:)
+1. Install Docker Desktop. On Windows, enable WSL2, keep this repo inside Ubuntu (not on C:), and turn on
+   Docker Desktop → Settings → Resources → WSL Integration → Ubuntu.
 2. `cp .env.example .env`
 3. `docker compose up --build`
-4. Open http://localhost:5173
+4. Open http://localhost:3000
 
 The first run takes a few minutes while everything downloads.
 
 ## Useful addresses
-- Website: http://localhost:5173
-- Backend health check: http://localhost:5173/api/health (should say "ok")
-- Test email inbox: http://localhost:8025
+- Website: http://localhost:3000
+- Backend health check: http://localhost:3000/api/health (should say "ok")
+- Test email inbox (Mailpit): http://localhost:8025
 
 ## Everyday commands
 - Stop everything: `docker compose down`
@@ -19,10 +27,11 @@ The first run takes a few minutes while everything downloads.
 - Install a frontend package: `docker compose exec frontend npm install <name>`
 - After pulling changes that add packages: `docker compose up --build -V`
 
-## Checking the production builds
-- Frontend: `docker compose run --rm frontend npm run build`
+## Production builds
+- Frontend: `docker compose run --rm frontend npm run build` (static site goes to `frontend/out/`, which is what gets uploaded to S3)
 - Backend: `docker compose run --rm backend mvn package`
 
 ## Troubleshooting
-- Files like `frontend/dist` and `backend/target` are created by Docker, so delete them with `sudo rm -rf ...`
-- Page not updating after a frontend change? Check the terminal running `docker compose up` for errors.
+- `frontend/out` and `backend/target` are created by Docker, so delete them with `sudo rm -rf ...`
+- "next: not found" or missing packages: run `docker compose up --build -V`
+- Page not updating after an edit: check the terminal running `docker compose up` for errors
