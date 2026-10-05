@@ -65,10 +65,16 @@ Named here so nobody infers it later:
 - Static output on S3-class storage for a five-page site is cheap in absolute terms.
 
 **Owed, and currently unreconciled**
-- **The running-cost promise.** "Hosting: free" is in a document the client has read. AWS is
-  not free, needs a billing account with a card, and the account must sit in GetStrength's
-  name or we carry the bill ourselves. **Tell the client, change the wording, get it agreed
-  before launch** — tracked in GS-13.
+- **Account ownership — decided 2026-10-05: the AWS account is created in GetStrength's
+  name, on the client's own billing.** We are given access; we do not host their site in a
+  team member's personal account. Cost was never the real question — a site the client
+  cannot log into is exactly how the previous one was lost, and the requirements promise
+  "everything is in your name".
+- **The running-cost promise — corrected 2026-10-05.** `docs/requirements.md` no longer says
+  hosting is free; it states a small monthly AWS cost on the client's account, flags the
+  change from the earlier draft explicitly, and commits to showing them the real figure
+  before launch. **Still owed: the client's agreement to it, and the Google Doc re-upload**
+  (GS-13). Silence is not agreement.
 - **"Nothing to update or patch"** holds only while nothing server-side ships. It survives a
   static bucket; it does not survive a Spring Boot service.
 - **The contact form is unsolved** until the replacement mechanism is decided.

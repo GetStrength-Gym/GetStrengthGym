@@ -51,11 +51,16 @@ Memberships and product sales stay in the client's existing systems; we only lin
 Forms, the week-1 preview mechanism on AWS, who holds the AWS account and pays the bill,
 and the ongoing content-update terms.
 
-⚠️ **Two client-facing promises are now wrong and the client hasn't been told:**
-`docs/requirements.md` says **"hosting free… only the domain is paid"** (AWS is not free) and
-promises **a staff how-to guide and training** for posting blog articles (ADR-003 removed staff
-editing). Fix both, re-upload the Google Doc, and get it agreed — **the price does not change.**
-Do not treat client silence as agreement.
+✅ **Both wrong promises are now fixed in `docs/requirements.md` (2026-10-05):**
+- Running costs now say a **small monthly AWS bill on GetStrength's own account**, and say
+  plainly that this changed from the earlier "free hosting" draft. Account is in the client's
+  name, their billing — decided, not optional (ADR-004).
+- The **$110 staff how-to guide** became a **change-request guide plus a written handover for
+  future developers**. **Total stays $1,500.** Decision 3 is marked resolved: we handle updates.
+
+⚠️ **Still owed: the client has not agreed to either change.** Re-upload the Google Doc, walk
+John through both, and get a yes. **Silence is not agreement.** Also still undefined: what
+counts as an included "just ask" change versus a quoted job — the one commercial hole left.
 
 Constraints the build still has to satisfy:
 - Content changes are made by **our maintenance team** — prices in a data file, not in templates

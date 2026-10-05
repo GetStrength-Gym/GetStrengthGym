@@ -44,7 +44,10 @@ replacing the merch store, migrating the old blog articles or forum.
 - **Maintained afterwards by non-technical gym staff.** This decides the stack: the blog
   must be editable without a developer, and any web developer must be able to pick the
   site up later.
-- **Hosting must be free** — the client's running costs are part of the pitch.
+- **Hosting is AWS (S3 + CloudFront) in the client's own account, with their billing**
+  (ADR-004, 2026-10-05). The original "hosting must be free" constraint is superseded;
+  the client-facing running-cost wording was corrected to match. Keep the bill small and
+  visible — low running cost is still part of the pitch, zero is no longer promised.
 - **The site must store no member, customer or payment data.**
 
 ## Third-party systems
