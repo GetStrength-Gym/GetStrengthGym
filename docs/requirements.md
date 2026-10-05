@@ -99,7 +99,7 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 
 **Before we can start**
 
-- [x] The web address people go to in order to **sign up for a membership** — *supplied 2026-09-25, paste it here*
+- [x] The web address people go to in order to **sign up for a membership** — supplied 2026-09-25, recorded 2026-10-05: <https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde>
 - [ ] The web address for **members to log in**, if you have one
 
 **Before it can go live**

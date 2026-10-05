@@ -50,7 +50,7 @@ replacing the merch store, migrating the old blog articles or forum.
 ## Third-party systems
 | System | Used for | Owner | Keep? |
 |---|---|---|---|
-| Membership sign-up (URL supplied by client 2026-09-25, **not yet recorded — see HANDOVER.md**) | Joining the gym | GetStrength | Link out |
+| [Membership sign-up](https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde) — Debitsuccess direct-debit form, recorded 2026-10-05 | Joining the gym | GetStrength | Link out |
 | Teespring | Merch store | GetStrength | Link out |
 | Amazon | Front Squat Harness sales | affiliate | Link out |
 | YouTube / Facebook | Videos, photos | GetStrength | Link out |
@@ -68,3 +68,4 @@ replacing the merch store, migrating the old blog articles or forum.
 - 2026-09-22 — price agreed at $1,500; scope reduced to five pages plus outbound links
 - 2026-09-23 — client accepted; agile cycles, 1-year monitoring, payment on completion
 - 2026-09-25 — client supplied membership sign-up URL; brief finalised for handover
+- 2026-10-05 — sign-up URL recorded and verified live

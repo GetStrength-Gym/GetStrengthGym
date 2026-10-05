@@ -27,10 +27,12 @@ Contact form. Domain switch-over preserving email. How-to guide plus a training 
 Memberships and product sales stay in the client's existing systems; we only link out.
 
 ## ⚠️ Blocked — do this first
-1. **The membership sign-up URL.** The client supplied it on 2026-09-25 but it was never
-   recorded in this session. Paste it into `docs/requirements.md` ("Before we can start")
-   and into the Third-party systems table in `docs/context/project-brief.md`, then
-   re-upload the client doc to Drive. **Nothing links to sign-up until this lands.**
+1. ~~**The membership sign-up URL.**~~ **Done 2026-10-05.** Recorded in
+   `docs/requirements.md` and `docs/context/project-brief.md`:
+   <https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde>
+   Verified live the same day — GetStrength's own Debitsuccess form. **Its banner image is
+   broken ("Banner Image Missing") — tell the client**, this is the page every join button
+   will point at. Google Doc still needs the re-upload.
 2. **Members' login URL** — still unknown, or confirm there isn't one.
 3. **Logo (original file) and recent photos.** Historically the thing that delays these
    projects. A gym site is mostly photography.
