@@ -42,12 +42,14 @@ Memberships and product sales stay in the client's existing systems; we only lin
 - **ADR-002 (accepted):** Eleventy + Markdown in Git, Nunjucks, plain CSS.
 - **ADR-003 (accepted):** no CMS — content changes go through **our maintenance team**,
   because gym staff do not code. Resolves decision 3 in `docs/requirements.md`.
-- **ADR-004 (accepted):** **hosting on AWS.** Docker is local dev/test only. Replaces
-  ADR-002's Netlify hosting and Netlify Forms.
+- **ADR-004 (accepted):** **hosting on AWS — S3 + CloudFront.** Docker is local dev/test
+  only. Replaces ADR-002's Netlify hosting and Netlify Forms.
+- **ADR-005 (accepted):** **Next.js with static export.** Lead's decision, taken against an
+  Eleventy recommendation — the dissent is recorded in the ADR, not hidden.
 
-**Still open — GS-13, don't guess:** generator (Eleventy vs the Next.js in PR #1), whether a
-backend exists at all, what replaces Netlify Forms, the week-1 preview mechanism on AWS,
-who holds the AWS account and pays the bill, and the ongoing content-update terms.
+**Still open — GS-13, don't guess:** whether a backend exists at all, what replaces Netlify
+Forms, the week-1 preview mechanism on AWS, who holds the AWS account and pays the bill,
+and the ongoing content-update terms.
 
 ⚠️ **Two client-facing promises are now wrong and the client hasn't been told:**
 `docs/requirements.md` says **"hosting free… only the domain is paid"** (AWS is not free) and

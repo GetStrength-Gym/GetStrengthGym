@@ -1,6 +1,6 @@
 # ADR-004: Host on AWS; Docker is local development only
 
-- **Status:** accepted — 2026-10-05. **Scope: hosting and the contact-form mechanism only.**
+- **Status:** accepted — 2026-10-05, services confirmed 2026-10-05. **Scope: hosting and the contact-form mechanism only.**
 - **Deciders:** Johnson Zhang (lead), with the development team
 - **Source:** lead clarification 2026-10-05, recorded in GS-13. Supersedes the **hosting**
   and **forms** rows of `ADR-002-stack-eleventy-decap-netlify.md`.
@@ -20,9 +20,23 @@ not be inferred from silence. That reconciliation is owed to the client before l
 ## Decision
 **The site is hosted on AWS.** Static output, deployed from the repo.
 
-- **Specific AWS services are not fixed by this ADR.** Pull request #1 proposes S3 +
-  CloudFront, which fits a static site; confirm against the actual implementation decision
-  rather than treating it as settled here.
+- **Services confirmed by the lead 2026-10-05: S3 as the origin, CloudFront as the CDN.**
+  This fills the blank this ADR originally left open and matches PR #1's stated plan. No
+  other AWS services are in scope; adding one is a new decision.
+
+  What that combination requires, so none of it is discovered at launch:
+  - **Keep the bucket private** and serve it through CloudFront with Origin Access Control.
+    A public website bucket is the common shortcut and it is not needed here.
+  - **`trailingSlash: true` in Next.js** (ADR-005) so pages emit `about/index.html`;
+    CloudFront will not serve `/about` otherwise. Set a default root object and a 404 page.
+  - **The TLS certificate must live in `us-east-1`** to be usable by CloudFront, whatever
+    region the bucket is in.
+  - **Invalidate CloudFront on deploy**, or the client sees a stale site and reports a bug
+    that is really a cache.
+  - **Pointing getstrength.com at CloudFront is a DNS change**, which is the project's one
+    irreversible hazard: the gym's Google Workspace MX records live in WPX's panel, which we
+    cannot read. Reconstruct the entire zone — MX included — before any nameserver change
+    (GS-27, GS-35). Getting this wrong kills the client's email.
 - **Docker is local development and testing only.** No production containers.
 - **Netlify and Netlify Forms are out**, which removes the contact-form mechanism ADR-002
   relied on. A replacement is required and is **not chosen here** (candidates: API Gateway +

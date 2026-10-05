@@ -42,17 +42,20 @@ site was lost (no admin or hosting access) and is being abandoned, not migrated.
 
 ## Stack
 Read the ADRs; this is a summary, not the decision.
-- **ADR-002 (accepted):** Eleventy (11ty) + Markdown in Git, Nunjucks, plain CSS.
-  Its CMS was removed by ADR-003; its hosting and forms were replaced by ADR-004.
+- **ADR-002:** superseded in every part — CMS by ADR-003, hosting and forms by ADR-004,
+  generator by ADR-005. Read it for the reasoning, not for the stack.
 - **ADR-003 (accepted):** **no CMS, no `/admin`** — content changes go through our
   maintenance team, so prices live in one data file, never inline in templates.
-- **ADR-004 (accepted):** **hosting on AWS**; Docker is local development and testing only,
-  no production containers. Specific AWS services not yet fixed.
+- **ADR-004 (accepted):** **hosting on AWS — S3 origin, CloudFront CDN.** Docker is local
+  development and testing only, no production containers. Bucket stays private behind OAC;
+  TLS cert in `us-east-1`; invalidate CloudFront on deploy.
+- **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.
+  No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
+  `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.
 
-**Open, tracked in GS-13 — do not assume either way:** the generator question (Eleventy per
-ADR-002, vs the Next.js in PR #1), whether any backend exists, the contact-form mechanism
-now that Netlify Forms is gone, the week-1 preview mechanism on AWS, who holds the AWS
-account and its bill, and the ongoing content-update terms.
+**Open, tracked in GS-13 — do not assume either way:** whether any backend exists at all,
+the contact-form mechanism now that Netlify Forms is gone, the week-1 preview mechanism on
+AWS, who holds the AWS account and its bill, and the ongoing content-update terms.
 
 **The client has not agreed to AWS running costs.** The signed document still says hosting
 is free. Never write or imply otherwise until that is renegotiated.
