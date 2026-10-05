@@ -41,10 +41,22 @@ site was lost (no admin or hosting access) and is being abandoned, not migrated.
 - ADR ids: `ADR-001-short-slug.md`, sequential, never reused.
 
 ## Stack
-**Accepted — `ADR-002` (2026-10-05), editing layer amended by `ADR-003` (2026-10-05):**
-Eleventy (11ty) + Markdown in Git, Nunjucks, plain CSS, Netlify free hosting, Netlify Forms.
-**No CMS, no `/admin`** — content changes go through our maintenance team (ADR-003), so
-prices live in one data file (`src/_data/prices.json`), never inline in templates.
+Read the ADRs; this is a summary, not the decision.
+- **ADR-002 (accepted):** Eleventy (11ty) + Markdown in Git, Nunjucks, plain CSS.
+  Its CMS was removed by ADR-003; its hosting and forms were replaced by ADR-004.
+- **ADR-003 (accepted):** **no CMS, no `/admin`** — content changes go through our
+  maintenance team, so prices live in one data file, never inline in templates.
+- **ADR-004 (accepted):** **hosting on AWS**; Docker is local development and testing only,
+  no production containers. Specific AWS services not yet fixed.
+
+**Open, tracked in GS-13 — do not assume either way:** the generator question (Eleventy per
+ADR-002, vs the Next.js in PR #1), whether any backend exists, the contact-form mechanism
+now that Netlify Forms is gone, the week-1 preview mechanism on AWS, who holds the AWS
+account and its bill, and the ongoing content-update terms.
+
+**The client has not agreed to AWS running costs.** The signed document still says hosting
+is free. Never write or imply otherwise until that is renegotiated.
+
 Binding constraints the build has to keep satisfying:
 
 - Content changes are made by **our maintenance team**, not gym staff (ADR-003). Keep every

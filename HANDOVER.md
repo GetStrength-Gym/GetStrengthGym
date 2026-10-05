@@ -38,12 +38,22 @@ Memberships and product sales stay in the client's existing systems; we only lin
    projects. A gym site is mostly photography.
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
-## The stack — settled
-**ADR-002 (accepted 2026-10-05):** Eleventy + Markdown in Git, Netlify free hosting, Netlify Forms.
-**ADR-003 (accepted 2026-10-05):** no CMS, no `/admin` — the client asked for content changes to
-go through **our maintenance team**, because gym staff do not code. This resolves decision 3 in
-`docs/requirements.md`, and that document still promises a staff how-to guide — **fix it and
-re-upload the Google Doc.**
+## The stack — partly settled, reconciliation owed (GS-13)
+- **ADR-002 (accepted):** Eleventy + Markdown in Git, Nunjucks, plain CSS.
+- **ADR-003 (accepted):** no CMS — content changes go through **our maintenance team**,
+  because gym staff do not code. Resolves decision 3 in `docs/requirements.md`.
+- **ADR-004 (accepted):** **hosting on AWS.** Docker is local dev/test only. Replaces
+  ADR-002's Netlify hosting and Netlify Forms.
+
+**Still open — GS-13, don't guess:** generator (Eleventy vs the Next.js in PR #1), whether a
+backend exists at all, what replaces Netlify Forms, the week-1 preview mechanism on AWS,
+who holds the AWS account and pays the bill, and the ongoing content-update terms.
+
+⚠️ **Two client-facing promises are now wrong and the client hasn't been told:**
+`docs/requirements.md` says **"hosting free… only the domain is paid"** (AWS is not free) and
+promises **a staff how-to guide and training** for posting blog articles (ADR-003 removed staff
+editing). Fix both, re-upload the Google Doc, and get it agreed — **the price does not change.**
+Do not treat client silence as agreement.
 
 Constraints the build still has to satisfy:
 - Content changes are made by **our maintenance team** — prices in a data file, not in templates

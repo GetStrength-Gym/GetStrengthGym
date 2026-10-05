@@ -36,7 +36,8 @@ Only ever a workaround for the GitHub-login problem. Moot — nobody at the gym 
 **Option B.** Decap CMS, `/admin` and the GitHub OAuth app are **out of scope**.
 
 Unchanged from ADR-002: Eleventy, Markdown + front matter in Git, Nunjucks, plain CSS,
-Netlify free hosting with deploy previews, Netlify Forms, every account in GetStrength's name.
+every account in GetStrength's name. **Hosting and forms reference superseded by ADR-004
+(AWS) — 2026-10-05;** the editing decision below is unaffected.
 
 Two things this decision requires us to build anyway:
 - **Prices live in one data file** (e.g. `src/_data/prices.json`), never inline in templates,
@@ -51,7 +52,8 @@ Two things this decision requires us to build anyway:
   accounts for gym staff. The weakest point of ADR-002 is gone.
 - The handover deliverable gets simpler: "how to ask for a change" instead of "how to drive
   an editor".
-- ~6 hours freed from CMS integration (GS-17), going to launch readiness, not new scope.
+- CMS integration drops out of GS-17. Re-estimate rather than assuming a figure; the freed
+  capacity goes to launch readiness, not to new scope.
 
 **Makes hard / accepted costs**
 - **Every content change now needs us.** That is an ongoing obligation, and it is wider than
