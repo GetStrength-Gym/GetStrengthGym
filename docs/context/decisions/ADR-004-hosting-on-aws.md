@@ -46,11 +46,9 @@ not be inferred from silence. That reconciliation is owed to the client before l
 ## What this ADR does *not* decide
 Named here so nobody infers it later:
 
-- **The generator.** ADR-002's choice of **Eleventy stands** — nothing in the AWS direction
-  changes it, and it was not part of this clarification. Pull request #1 uses Next.js with
-  static export; that is an open question in GS-13, not a decision.
-- **Whether a backend service exists at all.** PR #1 carries a Spring Boot placeholder with
-  one health endpoint and an undecided role. The agreed scope has no payments, no logins and
+- **The generator.** *Since decided by ADR-005 (2026-10-05): Next.js with static export.*
+- **Whether a backend service exists at all.** *PR #1's Spring Boot placeholder was removed
+  2026-10-06; no backend is planned.* The agreed scope has no payments, no logins and
   no stored customer data, and the client was promised "nothing to update or patch" — so a
   long-lived server needs its own ADR and its own answer on who patches it.
 - **The week-1 preview mechanism.** Netlify deploy previews were ADR-002's answer. AWS needs

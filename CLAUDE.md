@@ -3,7 +3,8 @@
 ## Project
 Building a new static website for GetStrength Gym, Onehunga, Auckland. The old WordPress
 site was lost (no admin or hosting access) and is being abandoned, not migrated.
-**Scope and price are agreed; no code written yet.** Stack not yet chosen.
+**Scope, price and stack are agreed** (ADR-003/004/005). The Next.js scaffold is in review
+(PR #1); no site pages are built yet.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
@@ -53,19 +54,22 @@ Read the ADRs; this is a summary, not the decision.
   No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
   `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.
 
-**Open, tracked in GS-13 — do not assume either way:** whether any backend exists at all,
-the contact-form mechanism now that Netlify Forms is gone, the week-1 preview mechanism on
-AWS, who holds the AWS account and its bill, and the ongoing content-update terms.
+**Open, tracked in GS-13 — do not assume either way:** whether any backend exists at all
+(none planned), the contact-form mechanism now that Netlify Forms is gone (the client doc
+still promises the form is free), the week-1 preview mechanism on AWS, and the ongoing
+content-update terms.
 
-**The client has not agreed to AWS running costs.** The signed document still says hosting
-is free. Never write or imply otherwise until that is renegotiated.
+**The client has not yet agreed to AWS running costs.** `docs/requirements.md` now states a
+small monthly cost on GetStrength's own AWS account, but the Google Doc the client reads still
+says hosting is free until it is re-uploaded. Never imply the client has agreed until they have.
 
 Binding constraints the build has to keep satisfying:
 
 - Content changes are made by **our maintenance team**, not gym staff (ADR-003). Keep every
-  editable fact in Markdown or a data file so a developer who has never seen Eleventy can
-  change it.
-- Hosting must be **free**
+  editable fact in Markdown or a data file so a developer who has never seen this codebase
+  can change it.
+- Hosting on **AWS in GetStrength's own account, on their billing** (ADR-004). Keep the bill
+  small and visible.
 - **Standard, common tools** — any web developer must be able to take it over
 - The site stores **no member, customer or payment data**
 - Mobile-first at 375px, WCAG 2.2 AA basics, unique page title and one H1 per page

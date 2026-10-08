@@ -19,7 +19,7 @@ GetStrength Gym
 
 | Description | Amount |
 |---|---|
-| GetStrength website — design and build, five pages with an editable blog, contact form, moving getstrength.com across, how-to guide and training session | $1,500.00 |
+| GetStrength website — design and build, five pages and a blog, contact form, moving getstrength.com across, change-request guide and written developer handover | $1,500.00 |
 | **Total** | **$1,500.00** |
 
 **No GST is charged.**

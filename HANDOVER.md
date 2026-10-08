@@ -1,6 +1,7 @@
 # Handover — GetStrength Gym website
 
-**As at 2026-09-25.** Client has agreed the quote. Nothing has been built yet.
+**As at 2026-10-09.** Quote accepted. Stack decided (ADR-003/004/005). Next.js scaffold in
+review (PR #1, changes requested 2026-10-09). No site pages built yet.
 New session: read this, then `CLAUDE.md`.
 
 ## Where the project stands
@@ -20,8 +21,9 @@ New session: read this, then `CLAUDE.md`.
 
 ## What we're building
 Five pages — Home, Blog, The Gym, About Us, Contact — plus outbound links to Teespring,
-the Amazon harness listing, YouTube and Facebook. Blog editable by non-technical staff.
-Contact form. Domain switch-over preserving email. How-to guide plus a training session.
+the Amazon harness listing, YouTube, Facebook and the membership sign-up. A blog that **our
+team** updates on request — no CMS (ADR-003). Contact form. Domain switch-over preserving
+email. A change-request guide for the client plus a written handover for future developers.
 
 **Not** building: shop, cart, checkout, member login, payments, booking, timetable.
 Memberships and product sales stay in the client's existing systems; we only link out.
@@ -34,12 +36,15 @@ Memberships and product sales stay in the client's existing systems; we only lin
    broken ("Banner Image Missing") — tell the client**, this is the page every join button
    will point at. Google Doc still needs the re-upload.
 2. **Members' login URL** — still unknown, or confirm there isn't one.
-3. **Logo (original file) and recent photos.** Historically the thing that delays these
-   projects. A gym site is mostly photography.
+3. ~~**Logo**~~ **received 2026-10-09** — a full logo suite (primary, secondary, icon, word
+   mark) plus a brand PDF, in a Drive folder shared by the client: (link held by Johnson — not in the public repo)
+   (owned by a third party, "anyone with the link" — keep the link out of the public repo).
+   **Recent photos are still outstanding** — historically the thing that delays these
+   projects, and a gym site is mostly photography.
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
-## The stack — partly settled, reconciliation owed (GS-13)
-- **ADR-002 (accepted):** Eleventy + Markdown in Git, Nunjucks, plain CSS.
+## The stack — decided
+- **ADR-002:** superseded in every part by 003–005. Kept for its reasoning only.
 - **ADR-003 (accepted):** no CMS — content changes go through **our maintenance team**,
   because gym staff do not code. Resolves decision 3 in `docs/requirements.md`.
 - **ADR-004 (accepted):** **hosting on AWS — S3 + CloudFront.** Docker is local dev/test
@@ -47,9 +52,9 @@ Memberships and product sales stay in the client's existing systems; we only lin
 - **ADR-005 (accepted):** **Next.js with static export.** Lead's decision, taken against an
   Eleventy recommendation — the dissent is recorded in the ADR, not hidden.
 
-**Still open — GS-13, don't guess:** whether a backend exists at all, what replaces Netlify
-Forms, the week-1 preview mechanism on AWS, who holds the AWS account and pays the bill,
-and the ongoing content-update terms.
+**Still open — GS-13, don't guess:** whether a backend exists at all (none planned), what
+replaces Netlify Forms (must stay free — the client doc promises it), the week-1 preview
+mechanism on AWS, and the ongoing content-update terms.
 
 ✅ **Both wrong promises are now fixed in `docs/requirements.md` (2026-10-05):**
 - Running costs now say a **small monthly AWS bill on GetStrength's own account**, and say
@@ -64,7 +69,7 @@ counts as an included "just ask" change versus a quoted job — the one commerci
 
 Constraints the build still has to satisfy:
 - Content changes are made by **our maintenance team** — prices in a data file, not in templates
-- Hosting must be **free**
+- Hosting on **AWS in GetStrength's own account**, cost kept small and visible (ADR-004)
 - **Standard, common tools** — any web developer must be able to pick it up
 - **No member, customer or payment data** stored by the site
 - Mobile-first, accessible, unique page titles and one H1 per page
@@ -88,17 +93,24 @@ Constraints the build still has to satisfy:
 | `docs/requirements.md` | **Client-facing requirements + quote.** Single source of truth. |
 | `docs/context/project-brief.md` | Scope, constraints, third-party systems, open questions |
 | `docs/context/current-site-audit.md` | Technical audit of the old site — evidence behind the decisions |
-| `docs/context/decisions/ADR-001-*.md` | Static-site decision (accepted) |
+| `docs/context/decisions/` | ADR-001 to ADR-005 — read the index `README.md` there |
 | `docs/context/stakeholders.md` | Team and client roles |
 | `docs/pricing.md` | **Internal.** Market research, per-person split, effective rate. Do not share. |
 | `docs/quote-GS-001.md` | Quote for the client's records — still needs address/contact details |
 | `docs/content/site-inventory.md` | Old-site page inventory and asset checklist |
 | `docs/meetings/` | Minutes, template, and the discovery-meeting script |
 
-**Google Drive** — folder [GetStrength Gym — Website Project](https://drive.google.com/drive/folders/1TAPJFB_tZklXGSiQGMkAXj5u-I5E-rdL)
-holds the client-facing doc: [What We're Building, and the Quote](https://docs.google.com/document/d/1egfqdMKciEZfsbrsyuy3PE3WXO3GNL8sQtoQbqZIhSA/edit).
+**Google Drive** — folder GetStrength Gym — Website Project (link held by Johnson — not in the public repo)
+holds the client-facing doc: What We're Building, and the Quote (link held by Johnson — not in the public repo).
 The repo copy and the Drive copy are edited separately — **update both**, or the client
 reads a stale version. Drive updates are done by re-uploading the full markdown.
+**Both Drive links stay out of the public GitHub repo** — the client doc was found shared as
+"anyone with the link can edit" on 2026-10-09.
+
+**GitHub** — `GetStrength-Gym/GetStrengthGym` (**public**). `main` is protected. Pushed copies
+exclude `docs/pricing.md` and redact the client's email and every Drive link.
+
+**Jira** — project `GS` on axioms.atlassian.net. Reconciliation is tracked in GS-13.
 
 ## Unresolved client decisions
 - **D1** Is the old WooCommerce store still taking orders? (retires ~10 pages if dead)

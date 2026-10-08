@@ -68,6 +68,7 @@ Two things this decision requires us to build anyway:
 - Staff cannot fix a typo at 9pm. Accepted by the client in exchange for never touching code.
 
 **Client-facing documents still to update** (requirements + ADRs win, so these are wrong until fixed)
+*Repo copy fixed 2026-10-05; the Google Doc re-upload and the client's agreement are still owed.*
 - `docs/requirements.md` — "Built so it's easy to look after" promises *"a simple how-to guide
   with screenshots, for posting a blog article or changing prices"*, and the quote line
   *"Your how-to guide and a training session — $110"*. Both now describe a different
