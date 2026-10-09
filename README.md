@@ -30,5 +30,4 @@ The first run takes a few minutes.
 - `trailingSlash: true` is required for clean URLs on S3/CloudFront. Don't remove it.
 
 ## Troubleshooting
-- `frontend/out` is created by Docker; delete it with `sudo rm -rf frontend/out`.
 - "next: not found" or missing packages: `docker compose up --build -V`
