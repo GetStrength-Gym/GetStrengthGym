@@ -45,6 +45,7 @@ or the sample prices and draft posts go live with it.
    date: "2026-10-11"
    description: "One sentence for the blog list and search results."
    image: "/images/blog/deadlift-basics.jpg"
+   imageAlt: "What the photo shows, in a short sentence"
    draft: true
    ---
 
@@ -57,15 +58,16 @@ or the sample prices and draft posts go live with it.
    | `date` | Required, `YYYY-MM-DD`, **in quotes**. YAML silently rolls an unquoted `2026-02-30` over to 2 March, so the build rejects unquoted dates. |
    | `description` | Required, non-empty |
    | `image` | Optional. A path starting with `/`, pointing into `frontend/public/` |
+   | `imageAlt` | **Required when `image` is set**, and not allowed without it. A short description of what the image shows, used as its alt text for screen readers |
    | `draft` | Optional, `true` or `false` (default `false`) |
 
    Any other field fails the build, so a typo such as `drafts: true` can't publish a draft
    by accident. Body headings start at `##`, because the title is the page's only `<h1>`.
 3. Images: **resize and compress before adding** (no image optimizer in a static export,
    ADR-005), then put them in `frontend/public/images/blog/`. Target dimensions and file size:
-   TODO(confirm) with GS-25. The `image` field renders as a decorative image (`alt=""`);
-   for an image that carries meaning, put it in the body with alt text:
-   `![What the photo shows](/images/blog/photo.jpg)`.
+   TODO(confirm) with GS-25. Write `imageAlt` from what the photo actually shows; if you
+   can't tell who or what is in it, ask the client rather than guessing. Images in the body
+   need alt text too: `![What the photo shows](/images/blog/photo.jpg)`.
 4. Keep `draft: true` while the client reviews it on the preview. Remove it, or set it to
    `false`, to publish.
 
@@ -109,9 +111,10 @@ Invalid content fails the build with the file and field, for example:
 content/blog/deadlift-basics.md: "date" must be YYYY-MM-DD
 ```
 
-**If every post is a draft, a production build fails** with `Page "/blog/[slug]" returned an
-empty array from "generateStaticParams()"`. Next.js static export can't build a dynamic
-route with no pages, so production needs at least one published post.
+**A production build with no published posts is fine.** `/blog/` says "No posts yet." Next.js
+static export can't build a route with no pages, so the build emits one placeholder,
+`blog/_no-posts/`. It shows the 404 page, is marked `noindex` and is never linked
+(ADR-006). It disappears once a post is published.
 
 Clean up afterwards with `docker compose run --rm frontend rm -rf out`.
 

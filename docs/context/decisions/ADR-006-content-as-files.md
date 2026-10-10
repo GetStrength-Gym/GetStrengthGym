@@ -35,8 +35,11 @@ ADR-003 is ever revisited. **Chosen.**
 
 ## Decision
 1. **Content is files, read at build time** by `frontend/lib/content.ts`. No client-side
-   fetching. Dependencies: `gray-matter`, `remark` and `remark-html` (sanitisation on),
-   pinned to exact versions.
+   fetching. Dependencies: `yaml` (2.x), `remark` and `remark-html` (sanitisation on),
+   pinned to exact versions. A few lines in the loader split a post into its front matter
+   and body. A front-matter library would add little: the only one considered,
+   `gray-matter` 4.0.3, pulls in js-yaml 3 → argparse → sprintf-js,
+   which carries a DoS advisory (GHSA-hp3w-g68c-fv3c).
 2. **`prices.json` is the single source of prices.** Plan names are the four from the
    client's live sign-up form (GS-8). Unknown prices are `null`.
 3. **A `null` price renders "Contact us for pricing"**, never blank, `0` or "TODO".
@@ -44,8 +47,14 @@ ADR-003 is ever revisited. **Chosen.**
    checks read like the rules they enforce, any developer can follow them, and they add no
    dependency to the upgrade treadmill ADR-005 already accepts. Errors name the file and
    field (`content/blog/foo.md: "date" must be YYYY-MM-DD`) and fail the build. Unknown
-   fields are rejected, so a typo like `drafts: true` can't publish a draft. Dates must be
-   quoted, because YAML silently rolls over invalid unquoted dates.
+   fields are rejected, so a typo like `drafts: true` can't publish a draft. Duplicate fields
+   are rejected too (the `yaml` default). Dates must be quoted. `yaml`'s YAML 1.2 core
+   schema keeps an unquoted date as text, but YAML 1.1 tools (most front-matter libraries,
+   and any future CMS) silently roll an unquoted `2026-02-30` over to 2 March. Quoting keeps
+   the files safe under every parser. The loader checks how the value was written, not just
+   its type.
+   A post's `image` needs an `imageAlt` (WCAG 2.2 AA), rendered as the image's alt text. The
+   build fails if either is set without the other.
 5. **Build mode comes from `SITE_ENV`.** No existing variable was defined (ADR-007's deploy
    path is a plain `npm run build`). `production` means production; **anything else is
    preview**, so everyday builds and `docker compose up` need no setup.
@@ -59,6 +68,14 @@ ADR-003 is ever revisited. **Chosen.**
    AWS only through the GS-16 CloudFront Function (`/x/` → `/x/index.html`, ADR-007).
    `dynamicParams = false`, so only real posts are emitted. Unknown slugs have no S3 object
    and reach `/404.html` through ADR-007's 403 mapping.
+8. **Zero published posts is a valid production build.** The quote assumes the blog starts
+   fresh (`HANDOVER.md`, D3), so launch may have none. `/blog/` then says "No posts yet." Next.js 16 static export
+   refuses a dynamic route whose `generateStaticParams()` returns nothing ("at least one
+   route must be generated"), so the route returns one placeholder, `_no-posts`, instead.
+   It can't collide with a post, because file names can't contain `_`. It is never linked,
+   and it renders the same 404 page as `/404.html` (`app/not-found.tsx`), marked `noindex`.
+   It renders that component directly, because calling `notFound()` during export gives
+   the page an empty body until JavaScript runs.
 
 ## Consequences
 
@@ -72,14 +89,12 @@ ADR-003 is ever revisited. **Chosen.**
 - **`SITE_ENV=production` is load-bearing.** A plain `npm run build` is a preview build, with
   sample prices and drafts. Whoever writes the GS-16 deploy steps must set it for production,
   and ADR-007's deploy path doesn't mention it yet.
-- **A production build needs at least one published post.** Next.js static export refuses a
-  dynamic route whose `generateStaticParams()` returns nothing. If the client launches with
-  no posts (D3 assumes starting fresh), that has to be resolved before launch.
-- `gray-matter` 4.0.3 pulls in js-yaml 3 → argparse → sprintf-js, which carries a
-  moderate DoS advisory (GHSA-hp3w-g68c-fv3c). It is reached only through js-yaml's
-  command-line argument parser, which the build never runs, and nothing ships to the browser.
-  `npm audit`'s suggested "fix" is a downgrade to gray-matter 2.0.1. Accepted. Expect a
-  Dependabot alert.
+- **With no published posts, `/blog/_no-posts/` exists as a file.** CloudFront serves it
+  with HTTP 200, not 404, because the S3 object exists (a soft 404). It shows the 404 page,
+  is `noindex` and is never linked, so this is accepted. It disappears with the first
+  published post.
+- The front-matter splitter is our own code (one regular expression). It accepts only a
+  leading `---` block: no TOML, no `...` end marker.
 - `next.config.ts` imports the loader. Keep `lib/content.ts` free of anything that can't
   load at config time.
 - Renaming a post's file changes its URL. There are no redirects.
