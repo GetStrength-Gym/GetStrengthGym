@@ -1,6 +1,6 @@
 # ADR-004: Host on AWS; Docker is local development only
 
-- **Status:** accepted — 2026-10-05, services confirmed 2026-10-05. **Scope: hosting and the contact-form mechanism only.**
+- **Status:** accepted — 2026-10-05, services confirmed 2026-10-05. **Scope: hosting and the contact-form mechanism only.** **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
 - **Deciders:** Johnson Zhang (lead), with the development team
 - **Source:** lead clarification 2026-10-05, recorded in GS-13. Supersedes the **hosting**
   and **forms** rows of `ADR-002-stack-eleventy-decap-netlify.md`.

@@ -83,4 +83,5 @@ replacing the merch store, migrating the old blog articles or forum.
   AWS account in GetStrength's name on their billing; $1,500 unchanged
 - 2026-10-09 — logo suite received; open questions Q5–Q9 added
 - 2026-10-10 — scaffold merged (PR #1); AWS delivery recorded (ADR-007: Route 53, OAC, CloudFront
-  Function, ~US$1/month); architecture agreed by the whole team; Dependabot security updates on
+  Function, ~US$1/month); architecture agreed by the whole team on 2026-10-08 (minutes);
+  Dependabot security updates on

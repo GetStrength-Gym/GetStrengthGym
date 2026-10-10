@@ -1,7 +1,7 @@
 # Handover — GetStrength Gym website
 
 **As at 2026-10-10.** Quote accepted. Stack decided (ADR-003/004/005/007) and agreed by the whole
-team in a meeting (minutes TODO). Next.js scaffold **merged** (PR #1, 2026-10-10). Dependency
+team on 2026-10-08 (`docs/meetings/2026-10-08-architecture-agreement.md`). Next.js scaffold **merged** (PR #1, 2026-10-10). Dependency
 patch open (PR #2, Next.js 16.3.8, needs one approval). No site pages built yet.
 
 **Critical path right now:** the week-1 preview (GS-16) is **blocked on one thing — no AWS

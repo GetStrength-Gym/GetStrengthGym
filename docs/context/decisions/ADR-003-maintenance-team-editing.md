@@ -1,6 +1,6 @@
 # ADR-003: Content changes go through our maintenance team; no in-site CMS
 
-- **Status:** accepted — 2026-10-05
+- **Status:** accepted — 2026-10-05 **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
 - **Deciders:** Johnson Zhang (lead), with GetStrength — mutual agreement, **verbal**
 - **Source:** supersedes the editing layer of `ADR-002-stack-eleventy-decap-netlify.md`.
   Minutes outstanding: TODO(confirm) date and attendees of the conversation.
