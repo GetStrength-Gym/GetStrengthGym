@@ -9,15 +9,17 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { isScalar, parseDocument, Scalar } from "yaml";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const BLOG_DIR = path.join(CONTENT_DIR, "blog");
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+// A "---" line, the YAML fields (possibly none), then a closing "---" line.
+const FRONT_MATTER = /^---[ \t]*\r?\n(?:([\s\S]*?)\r?\n)?---[ \t]*(?:\r?\n|$)/;
 
 // ---------------------------------------------------------------------------
 // Build mode
@@ -76,13 +78,35 @@ export type PostSummary = {
   title: string;
   date: string; // YYYY-MM-DD
   description: string;
-  image: string | null;
+  image: { src: string; alt: string } | null; // from the "image" and "imageAlt" fields
   draft: boolean;
 };
 
 export type Post = PostSummary & { html: string };
 
-const POST_FIELDS = ["title", "date", "description", "image", "draft"];
+const POST_FIELDS = ["title", "date", "description", "image", "imageAlt", "draft"];
+
+/**
+ * Splits a post into its YAML front matter and Markdown body, and parses the YAML.
+ * The parsed document is returned too, so callers can see how a value was written.
+ */
+function readFrontMatter(file: string, source: string) {
+  const text = source.replace(/^﻿/, ""); // editors on Windows may add a byte-order mark
+  const match = FRONT_MATTER.exec(text);
+  if (!match) {
+    fail(file, `must start with front matter: a "---" line, the fields, then another "---" line`);
+  }
+
+  // yaml's default schema is YAML 1.2 core. It rejects duplicate keys.
+  const doc = parseDocument(match[1] ?? "");
+  if (doc.errors.length > 0) {
+    fail(file, `front matter is not valid YAML (${doc.errors[0].message})`);
+  }
+  const data: unknown = doc.toJS();
+  if (!isObject(data)) fail(file, "front matter must be a list of fields such as title: \"...\"");
+
+  return { doc, data, body: text.slice(match[0].length) };
+}
 
 function readPostFile(filename: string): { summary: PostSummary; body: string } {
   const file = `content/blog/${filename}`;
@@ -91,27 +115,36 @@ function readPostFile(filename: string): { summary: PostSummary; body: string } 
     fail(file, "file name must be lower-case words separated by hyphens, e.g. my-first-post.md");
   }
 
-  const { data, content } = matter(fs.readFileSync(path.join(BLOG_DIR, filename), "utf8"));
+  const { doc, data, body } = readFrontMatter(file, fs.readFileSync(path.join(BLOG_DIR, filename), "utf8"));
   rejectUnknownFields(file, data, POST_FIELDS); // catches typos like "drafts: true"
 
   const title = requireString(file, data, "title");
   const description = requireString(file, data, "description");
 
-  // YAML turns an unquoted 2026-02-30 into a Date and silently rolls it over to
-  // 2 March, so dates must be quoted strings we can check ourselves.
-  if (data.date instanceof Date) {
+  // Dates must be quoted. The YAML 1.2 parser used here keeps an unquoted date as text,
+  // but YAML 1.1 tools (most front-matter libraries, and any future CMS) turn an unquoted
+  // 2026-02-30 into a Date and silently roll it over to 2 March. Quoting keeps the files
+  // safe for every parser.
+  const dateNode = doc.get("date", true);
+  if (isScalar(dateNode) && dateNode.type === Scalar.PLAIN) {
     fail(file, `"date" must be in quotes, e.g. date: "2026-10-10"`);
   }
   if (typeof data.date !== "string" || !isRealDate(data.date)) {
     fail(file, `"date" must be YYYY-MM-DD`);
   }
 
-  let image: string | null = null;
+  let image: PostSummary["image"] = null;
   if (data.image !== undefined) {
     if (typeof data.image !== "string" || !data.image.startsWith("/")) {
       fail(file, `"image" must be a path starting with /, e.g. /images/blog/photo.jpg`);
     }
-    image = data.image;
+    // Rendered as the image's alt text (WCAG 2.2 AA), so every image needs one.
+    if (typeof data.imageAlt !== "string" || data.imageAlt.trim() === "") {
+      fail(file, `"imageAlt" is required when "image" is set: a short description of what the image shows`);
+    }
+    image = { src: data.image, alt: data.imageAlt };
+  } else if (data.imageAlt !== undefined) {
+    fail(file, `"imageAlt" is set but "image" is not; remove "imageAlt" or add the image`);
   }
 
   if (data.draft !== undefined && typeof data.draft !== "boolean") {
@@ -119,7 +152,7 @@ function readPostFile(filename: string): { summary: PostSummary; body: string } 
   }
   const draft = data.draft === true;
 
-  return { summary: { slug, title, date: data.date, description, image, draft }, body: content };
+  return { summary: { slug, title, date: data.date, description, image, draft }, body };
 }
 
 function readAllPostFiles() {
