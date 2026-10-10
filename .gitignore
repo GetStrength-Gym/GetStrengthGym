@@ -1,4 +1,21 @@
+# Secrets
+.env
+
+# Dependencies and build output
+node_modules/
+dist/
+target/
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.log
+*:Zone.Identifier
+.next/
+out/
 # Internal — never published: per-person money split and market research
 docs/pricing.md
 # Generated context pack for the admin assistant
 gpt-context.md
+
