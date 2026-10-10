@@ -1,7 +1,12 @@
 # Handover — GetStrength Gym website
 
-**As at 2026-10-09.** Quote accepted. Stack decided (ADR-003/004/005). Next.js scaffold in
-review (PR #1, changes requested 2026-10-09). No site pages built yet.
+**As at 2026-10-10.** Quote accepted. Stack decided (ADR-003/004/005/007) and agreed by the whole
+team in a meeting (minutes TODO). Next.js scaffold **merged** (PR #1, 2026-10-10). Dependency
+patch open (PR #2, Next.js 16.3.8, needs one approval). No site pages built yet.
+
+**Critical path right now:** the week-1 preview (GS-16) is **blocked on one thing — no AWS
+account exists in GetStrength's name.** Nothing else on it waits on the client; it needs no
+DNS work (ADR-007). Ask John to create the account, or to approve us creating it in his name.
 New session: read this, then `CLAUDE.md`.
 
 ## Where the project stands
@@ -110,8 +115,10 @@ reads a stale version. Drive updates are done by re-uploading the full markdown.
 **Both Drive links stay out of the public GitHub repo** — the client doc was found shared as
 "anyone with the link can edit" on 2026-10-09.
 
-**GitHub** — `GetStrength-Gym/GetStrengthGym` (**public**). `main` is protected. Pushed copies
-exclude `docs/pricing.md` and redact the client's email and every Drive link.
+**GitHub** — `GetStrength-Gym/GetStrengthGym` (**public**). `main` is protected (PR + 1 approval).
+Dependabot alerts and **security-update PRs are on**. Publish docs with
+`./scripts/publish-docs.sh "message"` — never by hand; it strips `docs/pricing.md`, personal
+emails and every Drive link, and refuses to push if any leak through.
 
 **Jira** — project `GS` on axioms.atlassian.net. Reconciliation is tracked in GS-13.
 

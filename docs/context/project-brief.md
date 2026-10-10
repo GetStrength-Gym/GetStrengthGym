@@ -82,3 +82,5 @@ replacing the merch store, migrating the old blog articles or forum.
 - 2026-10-05 — no CMS (ADR-003), AWS S3 + CloudFront (ADR-004), Next.js static export (ADR-005);
   AWS account in GetStrength's name on their billing; $1,500 unchanged
 - 2026-10-09 — logo suite received; open questions Q5–Q9 added
+- 2026-10-10 — scaffold merged (PR #1); AWS delivery recorded (ADR-007: Route 53, OAC, CloudFront
+  Function, ~US$1/month); architecture agreed by the whole team; Dependabot security updates on

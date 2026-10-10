@@ -3,8 +3,8 @@
 ## Project
 Building a new static website for GetStrength Gym, Onehunga, Auckland. The old WordPress
 site was lost (no admin or hosting access) and is being abandoned, not migrated.
-**Scope, price and stack are agreed** (ADR-003/004/005). The Next.js scaffold is in review
-(PR #1); no site pages are built yet.
+**Scope, price and stack are agreed** (ADR-003/004/005/007). The Next.js scaffold is merged
+(PR #1, 2026-10-10); no site pages are built yet. Dependabot security updates are on.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
