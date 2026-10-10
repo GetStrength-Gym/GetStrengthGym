@@ -49,6 +49,9 @@ Memberships and product sales stay in the client's existing systems; we only lin
   because gym staff do not code. Resolves decision 3 in `docs/requirements.md`.
 - **ADR-004 (accepted):** **hosting on AWS — S3 + CloudFront.** Docker is local dev/test
   only. Replaces ADR-002's Netlify hosting and Netlify Forms.
+- **ADR-007 (accepted 2026-10-10):** Route 53 DNS, ACM cert, private S3 + OAC + a CloudFront
+  Function for `/x/` → `/x/index.html`. ~US$1/month. The preview only needs the AWS account;
+  Route 53 and the email records matter at launch.
 - **ADR-005 (accepted):** **Next.js with static export.** Lead's decision, taken against an
   Eleventy recommendation — the dissent is recorded in the ADR, not hidden.
 

@@ -50,6 +50,10 @@ Read the ADRs; this is a summary, not the decision.
 - **ADR-004 (accepted):** **hosting on AWS — S3 origin, CloudFront CDN.** Docker is local
   development and testing only, no production containers. Bucket stays private behind OAC;
   TLS cert in `us-east-1`; invalidate CloudFront on deploy.
+- **ADR-007 (accepted):** **Route 53** for DNS, **ACM** cert in `us-east-1`, private S3 behind
+  OAC plus a **CloudFront Function** that maps `/x/` to `/x/index.html` (a default root object
+  only covers `/`), and 403 → `/404.html`. Switching DNS to Route 53 is the email hazard —
+  rebuild MX, SPF, DKIM and DMARC first. The preview needs none of the DNS work.
 - **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.
   No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
   `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.
