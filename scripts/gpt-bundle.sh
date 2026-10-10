@@ -17,6 +17,7 @@ FILES=(
   docs/context/decisions/ADR-003-maintenance-team-editing.md
   docs/context/decisions/ADR-004-hosting-on-aws.md
   docs/context/decisions/ADR-005-nextjs-static-export.md
+  docs/context/decisions/ADR-007-aws-delivery-route53-oac.md
   docs/content/site-inventory.md
   docs/meetings/README.md
   docs/meetings/_prep-stakeholder-discovery.md
