@@ -57,7 +57,9 @@ replacing the merch store, migrating the old blog articles or forum.
 | [Membership sign-up](https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde) — Debitsuccess direct-debit form, recorded 2026-10-05 | Joining the gym | GetStrength | Link out |
 | Teespring | Merch store | GetStrength | Link out |
 | Amazon | Front Squat Harness sales | affiliate | Link out |
-| YouTube / Facebook | Videos, photos | GetStrength | Link out |
+| YouTube | Videos, incl. testimonial footage (embed, don't self-host) | GetStrength | Link out / embed |
+| Instagram | Photos (replaces the dead Facebook pages, 2026-10-11) | GetStrength | Link out |
+| WPX hosting | Old site + **the DNS zone holding the email records** (~$40/month) | GetStrength | **Cancel only after DNS has moved to Route 53** |
 | Google Workspace | Gym email — MX records live in WPX DNS | GetStrength | **Must not break** |
 | WooCommerce store on old site | Unknown if still taking orders | — | Unresolved (D1) |
 
@@ -72,6 +74,12 @@ replacing the merch store, migrating the old blog articles or forum.
 - **Q7** Contact-form mechanism. Must stay free; the client doc promises it.
 - **Q8** Week-1 preview on AWS — mechanism, and is 2026-10-11 still realistic?
 - **Q9** Members' login URL — GS-9 is marked Done but nothing was recorded.
+- **Q10** Domain: keep getstrength.com (recommended; it's in the signed document, it carries the gym's
+  email, and it costs ~US$0.50/month in Route 53) or move to a new domain such as getstrengthstream.com
+  (a scope change)? Raised 2026-10-11; not decided.
+- **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
+- **Q12** Who is "Joe", and is he the decision-maker? What is the exact name of the coach replacing
+  "John" on the homepage ("Rain" in the meeting summary)?
 
 ## Changelog
 - 2026-08-30 — created; site audited, "static site" assumption disproved
@@ -82,6 +90,8 @@ replacing the merch store, migrating the old blog articles or forum.
 - 2026-10-05 — no CMS (ADR-003), AWS S3 + CloudFront (ADR-004), Next.js static export (ADR-005);
   AWS account in GetStrength's name on their billing; $1,500 unchanged
 - 2026-10-09 — logo suite received; open questions Q5–Q9 added
+- 2026-10-11 — client sprint review: designs approved; video testimonials, Instagram, prices on the
+  site; domain strategy and privacy policy open; WPX cancellation risk flagged
 - 2026-10-10 — scaffold merged (PR #1); AWS delivery recorded (ADR-007: Route 53, OAC, CloudFront
   Function, ~US$1/month); architecture agreed by the whole team on 2026-10-08 (minutes);
   Dependabot security updates on

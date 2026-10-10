@@ -83,6 +83,12 @@ Constraints the build still has to satisfy:
 - Mobile-first, accessible, unique page titles and one H1 per page
 
 ## Watch-outs
+- 🔴 **Do not let the client cancel WPX, or "deregister" anything, before the DNS move.** Raised
+  2026-10-11: the client wants rid of the ~$40/month WPX bill and an action says "deregister current
+  site". WPX holds the DNS zone with the gym's email records. Cancel WPX only **after** Route 53 is
+  live with MX/SPF/DKIM/DMARC rebuilt (ADR-007). Never deregister the domain itself.
+- **Keep getstrength.com.** A new domain was floated on 2026-10-11. It contradicts the signed
+  document, splits web from email, and saves nothing: Route 53 is ~US$0.50/month. Q10 in the brief.
 - **Email is the biggest hazard.** MX points at Google Workspace, but the DNS zone lives in
   **WPX's** panel, which we cannot open. Reconstruct every record before touching
   nameservers, or the gym's email dies. This is the one irreversible mistake available.
