@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NotFound, { metadata as notFoundMetadata } from "@/app/not-found";
 import { getAllPosts, getPost } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 
@@ -6,18 +7,30 @@ import { formatDate } from "@/lib/format";
 // CloudFront it falls through to /404.html via the 403 mapping (ADR-007).
 export const dynamicParams = false;
 
+// Static export fails the build when generateStaticParams() returns nothing, which happens
+// when every post is a draft (ADR-006). Then this one placeholder is emitted instead, and it
+// renders the 404 page, marked noindex. The underscore can never match a real post's file
+// name. It renders <NotFound /> directly: notFound() here would export an empty page body
+// and draw the 404 only once JavaScript runs.
+const NO_POSTS = "_no-posts";
+
 export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  const params = getAllPosts().map((post) => ({ slug: post.slug }));
+  return params.length > 0 ? params : [{ slug: NO_POSTS }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
-  const post = await getPost((await params).slug);
+  const { slug } = await params;
+  if (slug === NO_POSTS) return { ...notFoundMetadata, robots: { index: false } };
+  const post = await getPost(slug);
   return { title: post.title, description: post.description };
 }
 
 // Unstyled on purpose; styling is GS-25.
 export default async function BlogPost({ params }: PageProps<"/blog/[slug]">) {
-  const post = await getPost((await params).slug);
+  const { slug } = await params;
+  if (slug === NO_POSTS) return <NotFound />;
+  const post = await getPost(slug);
 
   return (
     <main>
@@ -31,7 +44,7 @@ export default async function BlogPost({ params }: PageProps<"/blog/[slug]">) {
           // Plain <img>: there is no image optimizer in a static export (ADR-005), so
           // photos are resized by hand before they are added.
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={post.image} alt="" />
+          <img src={post.image.src} alt={post.image.alt} />
         )}
         {/* HTML comes from our own Markdown, sanitised by remark-html in lib/content.ts. */}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
