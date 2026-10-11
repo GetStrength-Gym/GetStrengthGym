@@ -3,7 +3,7 @@
 - **Status:** accepted
 - **Date:** 2026-10-11
 - **Deciders:** Desmond Li, with Johnson Zhang (lead)
-- **Source:** GS-17 (and GS-41), scope agreed with the lead. No meeting minutes.
+- **Source:** GS-17, scope agreed with the lead. No meeting minutes.
 
 ## Context
 ADR-003 removed the CMS: gym staff never edit the site, and the maintenance team makes every
