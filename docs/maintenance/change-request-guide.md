@@ -25,6 +25,9 @@ Please put what you want in the subject line, for example "New blog post" or "Pr
 - The **date** you want it to go up. If you don't mind, we'll use the day we publish it.
 - Any **photos** you want with it, as attachments. Please make sure you're allowed to use
   them, and that the people in them are happy to appear on the website.
+- A **short description of each photo**: who or what is in it and what's happening. For
+  example, "Two members deadlifting in the main training area". This lets people who use
+  screen readers, and Google, understand the photo.
 
 ### A price change
 - **Which membership** the price is for, using the name it has on the website.
@@ -37,6 +40,9 @@ We won't put any prices on the website until you've confirmed them with us in wr
 - **Which photo** you want replaced. A screenshot, or a description of where it is on the
   page, is fine.
 - The **new photo**, as an attachment, in the best quality you have.
+- A **short description of the new photo**: who or what is in it and what's happening. For
+  example, "Two members deadlifting in the main training area". This lets people who use
+  screen readers, and Google, understand the photo.
 - Confirmation that you're allowed to use it, and that the people in it are happy to appear.
 
 ## What happens next
