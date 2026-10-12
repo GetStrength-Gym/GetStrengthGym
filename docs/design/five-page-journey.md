@@ -231,6 +231,11 @@ The one job: *this is a gym in Onehunga, and here is how you join.*
 | ### Ask about visiting ###        |
 | [ map placeholder ]               |
 +----------------------------------+
+| MEMBERSHIPS                       |  teaser, same data file
+| Month memberships from $TODO/week |
+| Casual day pass $TODO             |
+| [ See all memberships ]           |  -> /gym/#memberships
++----------------------------------+
 | Ready to get strong?  (dark band) |
 | ### Join GS Gym ###               |
 | Memberships are handled securely  |
@@ -271,6 +276,7 @@ who coaches at the gym:
 | Post cards | "Beginner Strength Training Manual" is an existing resource on the old site. `TODO(confirm)` that the new owners may republish it |
 | Testimonials | Placeholders. 3–5 quotes with permission (MVP Scope doc §7). Hide the band until they exist, never fabricate them |
 | Explore the gym | Links to `/gym/` |
+| Memberships teaser | Not in Figma; added for descriptive joining (§6). Shows the lowest month price and the day-pass price from the data file, and links to the full list |
 
 ---
 
@@ -336,12 +342,28 @@ location, 24/7 access, membership options, map.* **The Figma file has no frame f
 | ### Ask about visiting ###       |
 | [ map image -> Google Maps ]     |
 +----------------------------------+
-| MEMBERSHIP                       |
-| +------------------------------+ |  one card per tier, from the data file
-| | [tier]       $TODO / week    | |
-| | ### Join GS Gym ###          | |
+| MEMBERSHIPS               (#join)|  id="memberships"
+| Everything you need to choose,   |
+| right here - no need to open     |
+| Debit Success to compare.        |
+| +------------------------------+ |  one card per month-based term,
+| | [term] month membership      | |  every term the gym offers,
+| | $TODO / week                 | |  from the data file
+| | Min. term, joining fee [TODO]| |
+| | Includes:                    | |
+| |  - [access, e.g. hours]      | |
+| |  - [what's included]         | |
+| | ### Join on this plan ###    | |  -> Debit Success
 | +------------------------------+ |
-| ... repeated per tier ...        |
+| ... repeated for every term ...  |
+| +------------------------------+ |
+| | Casual day pass              | |  its own card, not a tier
+| | $TODO per visit              | |
+| | How to buy: [TODO]           | |
+| +------------------------------+ |
+| How joining works                |
+| 1 Pick a plan  2 Sign up on      |
+| Debit Success  3 [next step TODO]|
 | Memberships are handled securely |
 | through Debit Success            |
 +----------------------------------+
@@ -354,16 +376,50 @@ location, 24/7 access, membership options, map.* **The Figma file has no frame f
 
 - **Address and hours** are as in `GS/Location`. All `TODO(confirm)`, with member access
   kept separate from staffed / viewing hours. "24/7" isn't printed until it is confirmed.
-- **Membership tiers and prices: `TODO(confirm)`.** None are supplied. `current-site-audit.md`
-  §5 has scraped, unconfirmed figures. Don't publish them; ask the client whether they're
-  still right. The old site's coupon codes are not reproduced.
-- **Every price renders from one data file**, never typed into a template (ADR-003). Home's
-  short form, if it shows a "from" price, reads the same file, so the two can never
-  disagree.
-- At the 2026-10-11 client sprint review (minutes on `main`, D4), the client asked for prices
-  to be shown on the site as a graphic before the join step. This section is the natural
-  place for it. The graphic's design is a separate sprint-2 action in those minutes, not part
-  of GS-14.
+### Memberships — descriptive, on our site
+
+The client wants joining to be **descriptive**. The site itself shows what the gym offers,
+so a visitor never has to open Debit Success just to see the options. Debit Success is only
+the place to sign up. (This was stated to the team 2026-10-12. It extends D4 of the
+2026-10-11 client sprint review, minutes on `main`: prices shown on the site before the
+join step.)
+
+The section shows:
+
+- **Every month-based membership** the gym offers, as one card each, in term order. For each
+  card: the term, the price and how it's billed, the minimum term and joining fee if any,
+  and what's included (for example access hours). Every value is `TODO(confirm)`.
+- **A casual day pass** with its price, on its own card because it isn't a membership.
+  **How a day pass is bought is `TODO(confirm)`.** Debit Success is a direct-debit form, so
+  it may not sell one-off passes. The card may say "pay at the gym" instead of linking to
+  Debit Success. Never send a day-pass buyer to a direct-debit sign-up.
+- **How joining works**: a short three-step explainer, so the handoff to the third-party form
+  isn't a surprise.
+- Each membership card has its own **"Join on this plan"** button. It goes to the matching
+  Debit Success form if there is one per plan, or to the single recorded form otherwise
+  (`TODO(confirm)`).
+
+Rules:
+
+- **None of the prices are supplied yet.** `current-site-audit.md` §5 has scraped,
+  unconfirmed figures (12, 6 and 3 month terms). They are not published and not used as
+  real values. The terms themselves are also `TODO(confirm)`. Ask the client for the full
+  current list. The old site's coupon codes are not reproduced.
+- **Everything renders from one data file**, never typed into a template (ADR-003). For
+  example, `data/membership.json` holds a `plans` array (`term`, `price`, `billing`,
+  `minimumTerm`, `joiningFee`, `includes`, `joinUrl`) and a separate `dayPass` entry
+  (`price`, `howToBuy`). Adding or repricing a plan is a one-line edit. Home reads the same
+  file, so the two pages can never disagree.
+- On mobile the cards stack. On desktop they sit side by side, with the day pass last and
+  visually distinct.
+- The client's "graphic" (D4) is this section's visual treatment, not an image of prices.
+  Prices stay real text, so they're accessible, searchable and editable in one place.
+
+**Header Join.** Every "Join GS Gym" button still goes straight to Debit Success in one
+click, which is the brief's success measure. ⚠️ **Flag for Johnson:** if the client wants
+every visitor to see the options first, the header Join can point at `/gym/#memberships`
+instead. That makes joining two clicks and trades against "one click to sign-up". This
+spec doesn't decide it.
 - **Inside the gym:** 4–6 approved photos, with permission for anyone in them. Use marked
   placeholders until then.
 
@@ -499,12 +555,13 @@ change:
    "supplied". `TODO(confirm)` that the new owners have the right to use it and the
    original vector file. The old owners kept the merch business, and the logo is on that
    merch.
-5. **Membership form**: confirm the Debitsuccess form is the gym's under the new owners
-  .
-6. **Enquiries email and gym phone number.**
-7. **Member access and staffed / viewing hours.**
-8. **Testimonials**: 3–5, with permission.
-9. **Members' login URL, or confirmation there is none.**
+5. **Every membership term and the casual day pass**: prices, billing, minimum terms,
+   joining fees, what's included, and how a day pass is bought (§6).
+6. **Membership form**: confirm the Debitsuccess form is the gym's under the new owners.
+7. **Enquiries email and gym phone number.**
+8. **Member access and staffed / viewing hours.**
+9. **Testimonials**: 3–5, with permission.
+10. **Members' login URL, or confirmation there is none.**
 
 ## 11. Open questions this design raises
 
