@@ -107,7 +107,8 @@ Constraints the build still has to satisfy:
 | `docs/requirements.md` | **Client-facing requirements + quote.** Single source of truth. |
 | `docs/context/project-brief.md` | Scope, constraints, third-party systems, open questions |
 | `docs/context/current-site-audit.md` | Technical audit of the old site — evidence behind the decisions |
-| `docs/context/decisions/` | ADR-001 to ADR-005 — read the index `README.md` there |
+| `docs/context/decisions/` | ADR-001 to ADR-007 — read the index `README.md` there |
+| `docs/maintenance/` | Change-request guide (client) and content-changes runbook (developers) — ADR-006 |
 | `docs/context/stakeholders.md` | Team and client roles |
 | `docs/pricing.md` | **Internal.** Market research, per-person split, effective rate. Do not share. |
 | `docs/quote-GS-001.md` | Quote for the client's records — still needs address/contact details |

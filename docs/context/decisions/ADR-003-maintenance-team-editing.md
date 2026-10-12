@@ -34,6 +34,9 @@ Only ever a workaround for the GitHub-login problem. Moot — nobody at the gym 
 
 ## Decision
 **Option B.** Decap CMS, `/admin` and the GitHub OAuth app are **out of scope**.
+*File paths and deploy steps below predate ADR-005/006/007. Prices now live in
+`frontend/content/prices.json`, posts in `frontend/content/blog/` (ADR-006), and deploys go
+to S3 + CloudFront (ADR-007). The decision itself is unchanged. Marked 2026-10-13.*
 
 Unchanged from ADR-002: Eleventy, Markdown + front matter in Git, Nunjucks, plain CSS,
 every account in GetStrength's name. **Hosting and forms reference superseded by ADR-004
