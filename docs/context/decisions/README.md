@@ -17,5 +17,5 @@ Never edit an accepted ADR to change the decision. Write a new one and mark the 
 | [ADR-003](ADR-003-maintenance-team-editing.md) | Content changes go through our maintenance team; no in-site CMS | accepted 2026-10-05 |
 | [ADR-004](ADR-004-hosting-on-aws.md) | Host on AWS; Docker is local development only | accepted 2026-10-05 |
 | [ADR-005](ADR-005-nextjs-static-export.md) | Next.js with static export as the site generator | accepted 2026-10-05 |
-| ADR-006 | *Reserved — Desmond's content-as-files decision (GS-17 / GS-41)* | not yet written |
+| [ADR-006](ADR-006-content-as-files.md) | Content as files read at build time; prices in one data file | accepted 2026-10-11 |
 | [ADR-007](ADR-007-aws-delivery-route53-oac.md) | AWS delivery: Route 53 DNS, private S3 origin with OAC, CloudFront Function | accepted 2026-10-10 |

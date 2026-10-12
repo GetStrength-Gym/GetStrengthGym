@@ -24,6 +24,14 @@ The first run takes a few minutes.
 ## Production build
 `docker compose run --rm frontend npm run build` writes the static site to `frontend/out/`.
 
+## Content
+Blog posts and prices are files in `frontend/content/`, read at build time (ADR-006).
+A build is a **preview** build (sample prices, draft posts) unless `SITE_ENV=production` is
+set: `docker compose run --rm -e SITE_ENV=production frontend npm run build`. Never deploy a
+preview build to the live site.
+- [Developer runbook for content changes](docs/maintenance/content-changes.md)
+- [Change-request guide for GetStrength](docs/maintenance/change-request-guide.md) (client-facing)
+
 ## Static export rules (ADR-005)
 - No server features: no route handlers, middleware, server actions or ISR.
 - `next/image` runs unoptimized, so resize and compress photos before adding them.
