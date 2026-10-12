@@ -49,8 +49,19 @@ Users ──(HTTPS)───────► CloudFront ──► CloudFront Func
 Mail ─────────────────► Route 53 MX ──► Google Workspace   (must not break)
 ```
 
-**Deploy path:** GitHub → `npm run build` → upload `frontend/out/` to S3 → invalidate
-CloudFront. Manual until a pipeline exists.
+**Deploy path:** GitHub → `SITE_ENV=production npm run build` → upload `frontend/out/` to S3 →
+invalidate CloudFront. Manual until a pipeline exists.
+
+**`SITE_ENV=production` is load-bearing** (added 2026-10-13, from PR #5 / ADR-006). Any other
+value, including unset, is a *preview* build: fake sample prices and draft posts are shown,
+labelled "preview only", and the price-confirmation launch check does not run. So every
+production upload must:
+1. build with `SITE_ENV=production`, and
+2. **refuse to upload** if `out/` contains the text `preview only`, e.g.
+   `grep -rqi 'preview only' out/ && { echo "Preview build — not uploading"; exit 1; }`.
+
+The preview distribution is built without it, deliberately. Jev preferred this guard over making
+production the default (0.75), which would fail every everyday build until prices are confirmed.
 
 | Piece | Setting |
 |---|---|

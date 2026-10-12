@@ -54,6 +54,9 @@ Read the ADRs; this is a summary, not the decision.
   OAC plus a **CloudFront Function** that maps `/x/` to `/x/index.html` (a default root object
   only covers `/`), and 403 → `/404.html`. Switching DNS to Route 53 is the email hazard —
   rebuild MX, SPF, DKIM and DMARC first. The preview needs none of the DNS work.
+- **ADR-006 (accepted):** content as files — posts in `frontend/content/blog/*.md`, prices in
+  `frontend/content/prices.json`, validated at build time. **`SITE_ENV=production` is required for
+  production builds**; anything else is a preview build with sample prices and drafts.
 - **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.
   No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
   `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.
