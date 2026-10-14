@@ -57,7 +57,7 @@ or the sample prices and draft posts go live with it.
    | `title` | Required, non-empty |
    | `date` | Required, `YYYY-MM-DD`, **in quotes**. YAML silently rolls an unquoted `2026-02-30` over to 2 March, so the build rejects unquoted dates. |
    | `description` | Required, non-empty |
-   | `image` | Optional. A path starting with `/`, pointing into `frontend/public/` |
+   | `image` | Optional. A path starting with `/`, pointing into `frontend/public/`. The build fails if the file doesn't exist there |
    | `imageAlt` | **Required when `image` is set**, and not allowed without it. A short description of what the image shows, used as its alt text for screen readers |
    | `draft` | Optional, `true` or `false` (default `false`) |
 
