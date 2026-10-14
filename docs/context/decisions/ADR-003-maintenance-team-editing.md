@@ -1,6 +1,6 @@
 # ADR-003: Content changes go through our maintenance team; no in-site CMS
 
-- **Status:** accepted — 2026-10-05
+- **Status:** accepted — 2026-10-05 **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
 - **Deciders:** Johnson Zhang (lead), with GetStrength — mutual agreement, **verbal**
 - **Source:** supersedes the editing layer of `ADR-002-stack-eleventy-decap-netlify.md`.
   Minutes outstanding: TODO(confirm) date and attendees of the conversation.
@@ -34,6 +34,9 @@ Only ever a workaround for the GitHub-login problem. Moot — nobody at the gym 
 
 ## Decision
 **Option B.** Decap CMS, `/admin` and the GitHub OAuth app are **out of scope**.
+*File paths and deploy steps below predate ADR-005/006/007. Prices now live in
+`frontend/content/prices.json`, posts in `frontend/content/blog/` (ADR-006), and deploys go
+to S3 + CloudFront (ADR-007). The decision itself is unchanged. Marked 2026-10-13.*
 
 Unchanged from ADR-002: Eleventy, Markdown + front matter in Git, Nunjucks, plain CSS,
 every account in GetStrength's name. **Hosting and forms reference superseded by ADR-004
@@ -68,6 +71,7 @@ Two things this decision requires us to build anyway:
 - Staff cannot fix a typo at 9pm. Accepted by the client in exchange for never touching code.
 
 **Client-facing documents still to update** (requirements + ADRs win, so these are wrong until fixed)
+*Repo copy fixed 2026-10-05; the Google Doc re-upload and the client's agreement are still owed.*
 - `docs/requirements.md` — "Built so it's easy to look after" promises *"a simple how-to guide
   with screenshots, for posting a blog article or changing prices"*, and the quote line
   *"Your how-to guide and a training session — $110"*. Both now describe a different

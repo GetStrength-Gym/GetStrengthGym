@@ -1,0 +1,10 @@
+{
+  "currency": "NZD",
+  "confirmedWithClient": null,
+  "plans": [
+    { "id": "coaching", "name": "Coaching", "price": null, "period": null },
+    { "id": "standard-12-month", "name": "Standard (12 month minimum term)", "price": null, "period": null },
+    { "id": "standard-flexible", "name": "Standard (flexible term)", "price": null, "period": null },
+    { "id": "sub-juniors-students-12-month", "name": "Sub-juniors and undergraduate students (12 month minimum term)", "price": null, "period": null }
+  ]
+}

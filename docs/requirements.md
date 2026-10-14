@@ -32,9 +32,9 @@ Five pages, in this order:
 
 | Page | What's on it |
 |---|---|
-| **Home** | Who you are, and a clear way to join the gym |
+| **Home** | Who you are, video testimonials from your members, and a clear way to join the gym |
 | **Blog** | Your training articles, newest first |
-| **The Gym** | Onehunga location, 24/7 access, membership options, map |
+| **The Gym** | Onehunga location, 24/7 access, your membership options **with prices shown on the page**, map |
 | **About Us** | Your history, your coaches, who you've trained |
 | **Contact** | Address, email, and a form people can fill in |
 
@@ -43,7 +43,7 @@ Plus clearly-marked links out to your other things:
 - **Merch Store** (Teespring)
 - **Front Squat Harness** (Amazon)
 - **GS Videos** (YouTube)
-- **Photos** (Facebook)
+- **Instagram** (replaces the old Facebook page, which is no longer active)
 
 **One important change:** on the old site, the gym was the *fourth* thing in the menu, behind the shop. Someone in Onehunga looking for a gym found a blog and a shop first. On the new site, the gym comes first.
 
@@ -112,6 +112,9 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 - [ ] Confirmation of your current membership prices
 - [ ] The email address that enquiries should go to
 - [ ] Confirmation that you're allowed to use photos of the people in them
+- [ ] **Your privacy policy.** The contact form collects people's names and email addresses, so the site needs one. We'll publish it as a page; the wording has to come from you.
+- [ ] The testimonial videos — the interview footage from when the gym moved. If they're on YouTube, a link is all we need.
+- [ ] Your Instagram address
 
 ---
 

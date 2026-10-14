@@ -1,6 +1,12 @@
 # Handover — GetStrength Gym website
 
-**As at 2026-09-25.** Client has agreed the quote. Nothing has been built yet.
+**As at 2026-10-10.** Quote accepted. Stack decided (ADR-003/004/005/007) and agreed by the whole
+team on 2026-10-08 (`docs/meetings/2026-10-08-architecture-agreement.md`). Next.js scaffold **merged** (PR #1, 2026-10-10). Dependency
+patch open (PR #2, Next.js 16.3.8, needs one approval). No site pages built yet.
+
+**Critical path right now:** the week-1 preview (GS-16) is **blocked on one thing — no AWS
+account exists in GetStrength's name.** Nothing else on it waits on the client; it needs no
+DNS work (ADR-007). Ask John to create the account, or to approve us creating it in his name.
 New session: read this, then `CLAUDE.md`.
 
 ## Where the project stands
@@ -20,8 +26,9 @@ New session: read this, then `CLAUDE.md`.
 
 ## What we're building
 Five pages — Home, Blog, The Gym, About Us, Contact — plus outbound links to Teespring,
-the Amazon harness listing, YouTube and Facebook. Blog editable by non-technical staff.
-Contact form. Domain switch-over preserving email. How-to guide plus a training session.
+the Amazon harness listing, YouTube, Facebook and the membership sign-up. A blog that **our
+team** updates on request — no CMS (ADR-003). Contact form. Domain switch-over preserving
+email. A change-request guide for the client plus a written handover for future developers.
 
 **Not** building: shop, cart, checkout, member login, payments, booking, timetable.
 Memberships and product sales stay in the client's existing systems; we only link out.
@@ -34,22 +41,28 @@ Memberships and product sales stay in the client's existing systems; we only lin
    broken ("Banner Image Missing") — tell the client**, this is the page every join button
    will point at. Google Doc still needs the re-upload.
 2. **Members' login URL** — still unknown, or confirm there isn't one.
-3. **Logo (original file) and recent photos.** Historically the thing that delays these
-   projects. A gym site is mostly photography.
+3. ~~**Logo**~~ **received 2026-10-09** — a full logo suite (primary, secondary, icon, word
+   mark) plus a brand PDF, in a Drive folder shared by the client: (link held by Johnson — not in the public repo)
+   (owned by a third party, "anyone with the link" — keep the link out of the public repo).
+   **Recent photos are still outstanding** — historically the thing that delays these
+   projects, and a gym site is mostly photography.
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
-## The stack — partly settled, reconciliation owed (GS-13)
-- **ADR-002 (accepted):** Eleventy + Markdown in Git, Nunjucks, plain CSS.
+## The stack — decided
+- **ADR-002:** superseded in every part by 003–005. Kept for its reasoning only.
 - **ADR-003 (accepted):** no CMS — content changes go through **our maintenance team**,
   because gym staff do not code. Resolves decision 3 in `docs/requirements.md`.
 - **ADR-004 (accepted):** **hosting on AWS — S3 + CloudFront.** Docker is local dev/test
   only. Replaces ADR-002's Netlify hosting and Netlify Forms.
+- **ADR-007 (accepted 2026-10-10):** Route 53 DNS, ACM cert, private S3 + OAC + a CloudFront
+  Function for `/x/` → `/x/index.html`. ~US$1/month. The preview only needs the AWS account;
+  Route 53 and the email records matter at launch.
 - **ADR-005 (accepted):** **Next.js with static export.** Lead's decision, taken against an
   Eleventy recommendation — the dissent is recorded in the ADR, not hidden.
 
-**Still open — GS-13, don't guess:** whether a backend exists at all, what replaces Netlify
-Forms, the week-1 preview mechanism on AWS, who holds the AWS account and pays the bill,
-and the ongoing content-update terms.
+**Still open — GS-13, don't guess:** whether a backend exists at all (none planned), what
+replaces Netlify Forms (must stay free — the client doc promises it), the week-1 preview
+mechanism on AWS, and the ongoing content-update terms.
 
 ✅ **Both wrong promises are now fixed in `docs/requirements.md` (2026-10-05):**
 - Running costs now say a **small monthly AWS bill on GetStrength's own account**, and say
@@ -64,12 +77,18 @@ counts as an included "just ask" change versus a quoted job — the one commerci
 
 Constraints the build still has to satisfy:
 - Content changes are made by **our maintenance team** — prices in a data file, not in templates
-- Hosting must be **free**
+- Hosting on **AWS in GetStrength's own account**, cost kept small and visible (ADR-004)
 - **Standard, common tools** — any web developer must be able to pick it up
 - **No member, customer or payment data** stored by the site
 - Mobile-first, accessible, unique page titles and one H1 per page
 
 ## Watch-outs
+- 🔴 **Do not let the client cancel WPX, or "deregister" anything, before the DNS move.** Raised
+  2026-10-11: the client wants rid of the ~$40/month WPX bill and an action says "deregister current
+  site". WPX holds the DNS zone with the gym's email records. Cancel WPX only **after** Route 53 is
+  live with MX/SPF/DKIM/DMARC rebuilt (ADR-007). Never deregister the domain itself.
+- **Keep getstrength.com.** A new domain was floated on 2026-10-11. It contradicts the signed
+  document, splits web from email, and saves nothing: Route 53 is ~US$0.50/month. Q10 in the brief.
 - **Email is the biggest hazard.** MX points at Google Workspace, but the DNS zone lives in
   **WPX's** panel, which we cannot open. Reconstruct every record before touching
   nameservers, or the gym's email dies. This is the one irreversible mistake available.
@@ -88,17 +107,27 @@ Constraints the build still has to satisfy:
 | `docs/requirements.md` | **Client-facing requirements + quote.** Single source of truth. |
 | `docs/context/project-brief.md` | Scope, constraints, third-party systems, open questions |
 | `docs/context/current-site-audit.md` | Technical audit of the old site — evidence behind the decisions |
-| `docs/context/decisions/ADR-001-*.md` | Static-site decision (accepted) |
+| `docs/context/decisions/` | ADR-001 to ADR-007 — read the index `README.md` there |
+| `docs/maintenance/` | Change-request guide (client) and content-changes runbook (developers) — ADR-006 |
 | `docs/context/stakeholders.md` | Team and client roles |
 | `docs/pricing.md` | **Internal.** Market research, per-person split, effective rate. Do not share. |
 | `docs/quote-GS-001.md` | Quote for the client's records — still needs address/contact details |
 | `docs/content/site-inventory.md` | Old-site page inventory and asset checklist |
 | `docs/meetings/` | Minutes, template, and the discovery-meeting script |
 
-**Google Drive** — folder [GetStrength Gym — Website Project](https://drive.google.com/drive/folders/1TAPJFB_tZklXGSiQGMkAXj5u-I5E-rdL)
-holds the client-facing doc: [What We're Building, and the Quote](https://docs.google.com/document/d/1egfqdMKciEZfsbrsyuy3PE3WXO3GNL8sQtoQbqZIhSA/edit).
+**Google Drive** — folder GetStrength Gym — Website Project (link held by Johnson — not in the public repo)
+holds the client-facing doc: What We're Building, and the Quote (link held by Johnson — not in the public repo).
 The repo copy and the Drive copy are edited separately — **update both**, or the client
 reads a stale version. Drive updates are done by re-uploading the full markdown.
+**Both Drive links stay out of the public GitHub repo** — the client doc was found shared as
+"anyone with the link can edit" on 2026-10-09.
+
+**GitHub** — `GetStrength-Gym/GetStrengthGym` (**public**). `main` is protected (PR + 1 approval).
+Dependabot alerts and **security-update PRs are on**. Publish docs with
+`./scripts/publish-docs.sh "message"` — never by hand; it strips `docs/pricing.md`, personal
+emails and every Drive link, and refuses to push if any leak through.
+
+**Jira** — project `GS` on axioms.atlassian.net. Reconciliation is tracked in GS-13.
 
 ## Unresolved client decisions
 - **D1** Is the old WooCommerce store still taking orders? (retires ~10 pages if dead)

@@ -3,7 +3,8 @@
 ## Project
 Building a new static website for GetStrength Gym, Onehunga, Auckland. The old WordPress
 site was lost (no admin or hosting access) and is being abandoned, not migrated.
-**Scope and price are agreed; no code written yet.** Stack not yet chosen.
+**Scope, price and stack are agreed** (ADR-003/004/005/007). The Next.js scaffold is merged
+(PR #1, 2026-10-10); no site pages are built yet. Dependabot security updates are on.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
@@ -49,23 +50,33 @@ Read the ADRs; this is a summary, not the decision.
 - **ADR-004 (accepted):** **hosting on AWS — S3 origin, CloudFront CDN.** Docker is local
   development and testing only, no production containers. Bucket stays private behind OAC;
   TLS cert in `us-east-1`; invalidate CloudFront on deploy.
+- **ADR-007 (accepted):** **Route 53** for DNS, **ACM** cert in `us-east-1`, private S3 behind
+  OAC plus a **CloudFront Function** that maps `/x/` to `/x/index.html` (a default root object
+  only covers `/`), and 403 → `/404.html`. Switching DNS to Route 53 is the email hazard —
+  rebuild MX, SPF, DKIM and DMARC first. The preview needs none of the DNS work.
+- **ADR-006 (accepted):** content as files — posts in `frontend/content/blog/*.md`, prices in
+  `frontend/content/prices.json`, validated at build time. **`SITE_ENV=production` is required for
+  production builds**; anything else is a preview build with sample prices and drafts.
 - **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.
   No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
   `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.
 
-**Open, tracked in GS-13 — do not assume either way:** whether any backend exists at all,
-the contact-form mechanism now that Netlify Forms is gone, the week-1 preview mechanism on
-AWS, who holds the AWS account and its bill, and the ongoing content-update terms.
+**Open, tracked in GS-13 — do not assume either way:** whether any backend exists at all
+(none planned), the contact-form mechanism now that Netlify Forms is gone (the client doc
+still promises the form is free), the week-1 preview mechanism on AWS, and the ongoing
+content-update terms.
 
-**The client has not agreed to AWS running costs.** The signed document still says hosting
-is free. Never write or imply otherwise until that is renegotiated.
+**The client has not yet agreed to AWS running costs.** `docs/requirements.md` now states a
+small monthly cost on GetStrength's own AWS account, but the Google Doc the client reads still
+says hosting is free until it is re-uploaded. Never imply the client has agreed until they have.
 
 Binding constraints the build has to keep satisfying:
 
 - Content changes are made by **our maintenance team**, not gym staff (ADR-003). Keep every
-  editable fact in Markdown or a data file so a developer who has never seen Eleventy can
-  change it.
-- Hosting must be **free**
+  editable fact in Markdown or a data file so a developer who has never seen this codebase
+  can change it.
+- Hosting on **AWS in GetStrength's own account, on their billing** (ADR-004). Keep the bill
+  small and visible.
 - **Standard, common tools** — any web developer must be able to take it over
 - The site stores **no member, customer or payment data**
 - Mobile-first at 375px, WCAG 2.2 AA basics, unique page title and one H1 per page

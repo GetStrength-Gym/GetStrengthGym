@@ -14,7 +14,11 @@ FILES=(
   docs/context/stakeholders.md
   docs/context/current-site-audit.md
   docs/context/decisions/ADR-001-static-site-architecture.md
-  docs/context/decisions/ADR-002-stack-eleventy-decap-netlify.md
+  docs/context/decisions/ADR-003-maintenance-team-editing.md
+  docs/context/decisions/ADR-004-hosting-on-aws.md
+  docs/context/decisions/ADR-005-nextjs-static-export.md
+  docs/context/decisions/ADR-006-content-as-files.md
+  docs/context/decisions/ADR-007-aws-delivery-route53-oac.md
   docs/content/site-inventory.md
   docs/meetings/README.md
   docs/meetings/_prep-stakeholder-discovery.md

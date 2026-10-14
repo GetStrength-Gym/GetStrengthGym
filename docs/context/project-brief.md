@@ -13,14 +13,15 @@ fourth in the navigation, and its homepage has no title tag and no H1.
 
 ## Success looks like
 - A visitor looking for a gym in Onehunga can reach the membership sign-up in one click.
-- Gym staff can publish a blog article and change prices without a developer.
+- Gym staff get a blog article or a price change live by sending us one email (ADR-003).
 - Nobody can lose this site again: every account in GetStrength's name, documented.
 - TODO(confirm) — a number the client cares about (enquiries? trial sign-ups?). Never established.
 
 ## Scope (in)
 Five pages — Home, Blog, The Gym, About Us, Contact — plus outbound links to the merch
-store, Front Squat Harness, YouTube and Facebook. Blog editable by staff. Contact form.
-Domain switch-over with email preserved. How-to guide and a training session.
+store, Front Squat Harness, YouTube, Facebook and the membership sign-up. A blog our team
+updates on request (no CMS). Contact form. Domain switch-over with email preserved. A
+change-request guide and a written developer handover.
 
 ## Scope (out)
 Shop, cart, checkout, member login, payments, class booking, timetable, phone app,
@@ -41,9 +42,9 @@ replacing the merch store, migrating the old blog articles or forum.
 ## Constraints
 - **Budget: $1,500 fixed, no GST**, one payment on completion. Nothing up front.
 - **Timeline: ~5 weeks.** Team capacity 21.5 h/week (~107 h total).
-- **Maintained afterwards by non-technical gym staff.** This decides the stack: the blog
-  must be editable without a developer, and any web developer must be able to pick the
-  site up later.
+- **Maintained afterwards by our team, on request** (ADR-003). Gym staff do not edit the
+  site. Any web developer must still be able to pick it up later — Next.js (ADR-005) and a
+  written handover are how that promise is kept.
 - **Hosting is AWS (S3 + CloudFront) in the client's own account, with their billing**
   (ADR-004, 2026-10-05). The original "hosting must be free" constraint is superseded;
   the client-facing running-cost wording was corrected to match. Keep the bill small and
@@ -56,7 +57,9 @@ replacing the merch store, migrating the old blog articles or forum.
 | [Membership sign-up](https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde) — Debitsuccess direct-debit form, recorded 2026-10-05 | Joining the gym | GetStrength | Link out |
 | Teespring | Merch store | GetStrength | Link out |
 | Amazon | Front Squat Harness sales | affiliate | Link out |
-| YouTube / Facebook | Videos, photos | GetStrength | Link out |
+| YouTube | Videos, incl. testimonial footage (embed, don't self-host) | GetStrength | Link out / embed |
+| Instagram | Photos (replaces the dead Facebook pages, 2026-10-11) | GetStrength | Link out |
+| WPX hosting | Old site + **the DNS zone holding the email records** (~$40/month) | GetStrength | **Cancel only after DNS has moved to Route 53** |
 | Google Workspace | Gym email — MX records live in WPX DNS | GetStrength | **Must not break** |
 | WooCommerce store on old site | Unknown if still taking orders | — | Unresolved (D1) |
 
@@ -65,6 +68,18 @@ replacing the merch store, migrating the old blog articles or forum.
 - **Q2** Is the old WooCommerce store still taking real orders?
 - **Q3** Old blog articles — migrate all, migrate the best, or start fresh?
 - **Q4** Old forum (1,758 replies) — keep, archive, or retire?
+- **Q5** Does the client agree to a small monthly AWS bill on their own account, and to the
+  $110 line becoming a change-request guide plus developer handover? (Not yet asked.)
+- **Q6** "Just ask" content updates — what is an included change, how fast, and what gets quoted?
+- **Q7** Contact-form mechanism. Must stay free; the client doc promises it.
+- **Q8** Week-1 preview on AWS — mechanism, and is 2026-10-11 still realistic?
+- **Q9** Members' login URL — GS-9 is marked Done but nothing was recorded.
+- **Q10** Domain: keep getstrength.com (recommended; it's in the signed document, it carries the gym's
+  email, and it costs ~US$0.50/month in Route 53) or move to a new domain such as getstrengthstream.com
+  (a scope change)? Raised 2026-10-11; not decided.
+- **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
+- **Q12** Who is "Joe", and is he the decision-maker? What is the exact name of the coach replacing
+  "John" on the homepage ("Rain" in the meeting summary)?
 
 ## Changelog
 - 2026-08-30 — created; site audited, "static site" assumption disproved
@@ -72,3 +87,11 @@ replacing the merch store, migrating the old blog articles or forum.
 - 2026-09-23 — client accepted; agile cycles, 1-year monitoring, payment on completion
 - 2026-09-25 — client supplied membership sign-up URL; brief finalised for handover
 - 2026-10-05 — sign-up URL recorded and verified live
+- 2026-10-05 — no CMS (ADR-003), AWS S3 + CloudFront (ADR-004), Next.js static export (ADR-005);
+  AWS account in GetStrength's name on their billing; $1,500 unchanged
+- 2026-10-09 — logo suite received; open questions Q5–Q9 added
+- 2026-10-11 — client sprint review: designs approved; video testimonials, Instagram, prices on the
+  site; domain strategy and privacy policy open; WPX cancellation risk flagged
+- 2026-10-10 — scaffold merged (PR #1); AWS delivery recorded (ADR-007: Route 53, OAC, CloudFront
+  Function, ~US$1/month); architecture agreed by the whole team on 2026-10-08 (minutes);
+  Dependabot security updates on

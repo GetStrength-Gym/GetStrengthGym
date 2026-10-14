@@ -1,6 +1,6 @@
 # ADR-004: Host on AWS; Docker is local development only
 
-- **Status:** accepted — 2026-10-05, services confirmed 2026-10-05. **Scope: hosting and the contact-form mechanism only.**
+- **Status:** accepted — 2026-10-05, services confirmed 2026-10-05. **Scope: hosting and the contact-form mechanism only.** **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
 - **Deciders:** Johnson Zhang (lead), with the development team
 - **Source:** lead clarification 2026-10-05, recorded in GS-13. Supersedes the **hosting**
   and **forms** rows of `ADR-002-stack-eleventy-decap-netlify.md`.
@@ -22,13 +22,16 @@ not be inferred from silence. That reconciliation is owed to the client before l
 
 - **Services confirmed by the lead 2026-10-05: S3 as the origin, CloudFront as the CDN.**
   This fills the blank this ADR originally left open and matches PR #1's stated plan. No
-  other AWS services are in scope; adding one is a new decision.
+  other AWS services are in scope; adding one is a new decision. *Route 53, ACM and a
+  CloudFront Function were added 2026-10-10 — see ADR-007.*
 
   What that combination requires, so none of it is discovered at launch:
   - **Keep the bucket private** and serve it through CloudFront with Origin Access Control.
     A public website bucket is the common shortcut and it is not needed here.
-  - **`trailingSlash: true` in Next.js** (ADR-005) so pages emit `about/index.html`;
-    CloudFront will not serve `/about` otherwise. Set a default root object and a 404 page.
+  - **`trailingSlash: true` in Next.js** (ADR-005) so pages emit `about/index.html`.
+    *Corrected 2026-10-10 by ADR-007: a default root object only covers `/`. With OAC,
+    subpages also need a CloudFront Function to map `/x/` to `/x/index.html`, and missing
+    pages come back as 403, which must be mapped to `/404.html`.*
   - **The TLS certificate must live in `us-east-1`** to be usable by CloudFront, whatever
     region the bucket is in.
   - **Invalidate CloudFront on deploy**, or the client sees a stale site and reports a bug
@@ -46,11 +49,9 @@ not be inferred from silence. That reconciliation is owed to the client before l
 ## What this ADR does *not* decide
 Named here so nobody infers it later:
 
-- **The generator.** ADR-002's choice of **Eleventy stands** — nothing in the AWS direction
-  changes it, and it was not part of this clarification. Pull request #1 uses Next.js with
-  static export; that is an open question in GS-13, not a decision.
-- **Whether a backend service exists at all.** PR #1 carries a Spring Boot placeholder with
-  one health endpoint and an undecided role. The agreed scope has no payments, no logins and
+- **The generator.** *Since decided by ADR-005 (2026-10-05): Next.js with static export.*
+- **Whether a backend service exists at all.** *PR #1's Spring Boot placeholder was removed
+  2026-10-06; no backend is planned.* The agreed scope has no payments, no logins and
   no stored customer data, and the client was promised "nothing to update or patch" — so a
   long-lived server needs its own ADR and its own answer on who patches it.
 - **The week-1 preview mechanism.** Netlify deploy previews were ADR-002's answer. AWS needs

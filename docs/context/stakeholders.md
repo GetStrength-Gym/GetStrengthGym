@@ -17,6 +17,7 @@ gets three different answers from three developers.
 | Name | Role | Contact | Notes |
 |------|------|---------|-------|
 | John Strachan | Head Strength Coach & Gym Manager | (email held by Johnson — not in the public repo) | Published site contact; confirm he's the decision-maker |
+| Joe | Client representative at the 2026-10-11 sprint review | TODO(confirm) | Role and authority unconfirmed. Possibly the `joseph-mundey` account with edit access to the project docs; unconfirmed |
 | TODO | Owner (if different from above) | | Confirm who signs off |
 
 ## Decision rule

@@ -35,6 +35,8 @@ repointing DNS. The old WordPress install is abandoned in place, not migrated.
 - Running costs drop to just the domain.
 
 ## Still to decide
+*Resolved 2026-10-05 by ADR-003, ADR-004 and ADR-005. Kept below as written.*
+
 The specific stack — static site generator and editing method — is **not** settled here.
 That needs ADR-002, constrained by: staff must edit the blog without a developer,
 hosting must be free, and any web developer must be able to pick it up.

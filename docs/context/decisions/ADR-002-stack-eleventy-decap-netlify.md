@@ -1,6 +1,6 @@
 # ADR-002: Eleventy + Markdown in Git, Decap CMS, Netlify hosting
 
-- **Status:** accepted — 2026-10-05 (lead sign-off, GS-12). **Editing layer superseded by ADR-003 — 2026-10-05:** Decap CMS is out of scope; generator, hosting and forms below stand unchanged.
+- **Status:** accepted — 2026-10-05 (lead sign-off, GS-12). **Superseded in every part, 2026-10-05:** editing by ADR-003, hosting and forms by ADR-004, generator by ADR-005. Nothing below is the current stack; it is kept for its reasoning.
 - **Deciders:** Johnson Zhang (lead), with Desmond Li, Jayden Pham, Kevin Wang
 - **Source:** `docs/context/decisions/ADR-001-static-site-architecture.md` ("Still to decide"), `docs/requirements.md`, `docs/context/project-brief.md`
 

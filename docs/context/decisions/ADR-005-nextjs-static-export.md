@@ -1,6 +1,6 @@
 # ADR-005: Next.js with static export as the site generator
 
-- **Status:** accepted — 2026-10-05. **Scope: the generator only.**
+- **Status:** accepted — 2026-10-05. **Scope: the generator only.** **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
 - **Decider:** Johnson Zhang (lead), explicitly and against advice — see "Dissent on record"
 - **Source:** lead decision 2026-10-05, resolving the generator question left open by
   `ADR-004-hosting-on-aws.md` and tracked in GS-13. Supersedes the **generator and template**
