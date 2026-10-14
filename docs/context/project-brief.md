@@ -80,6 +80,9 @@ replacing the merch store, migrating the old blog articles or forum.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
 - **Q12** Who is "Joe", and is he the decision-maker? What is the exact name of the coach replacing
   "John" on the homepage ("Rain" in the meeting summary)?
+- **Q13** Is **The Gym** still its own page? requirements.md has five pages; the 2026-10-11 meeting
+  summary and a teammate's draft list four (no The Gym). It matters: the price list (D4) is due to
+  go there. Confirm with the lead's designs before GS-19 is built.
 
 ## Changelog
 - 2026-08-30 — created; site audited, "static site" assumption disproved
