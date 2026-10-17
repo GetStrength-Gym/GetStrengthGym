@@ -1,13 +1,8 @@
-import { getPrices, type Plan } from "@/lib/content";
+import { getPrices } from "@/lib/content";
+import { formatPrice } from "@/lib/format";
 
 // Membership prices from content/prices.json (or the sample file in preview builds).
 // Server component: read at build time. Unstyled on purpose; styling is GS-25.
-
-function formatPrice(plan: Plan, currency: string): string {
-  if (plan.price === null) return "Contact us for pricing";
-  const amount = new Intl.NumberFormat("en-NZ", { style: "currency", currency }).format(plan.price);
-  return plan.period ? `${amount} per ${plan.period}` : amount;
-}
 
 export default function PriceList() {
   const prices = getPrices();

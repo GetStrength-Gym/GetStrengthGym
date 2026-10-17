@@ -282,3 +282,114 @@ export function getPrices(): Prices {
   if (!sample.sample) fail("content/prices.sample.json", `"sample" must be true`);
   return sample;
 }
+
+// ---------------------------------------------------------------------------
+// Site facts (header, footer, Join button)
+// ---------------------------------------------------------------------------
+
+export type NavLink = { label: string; href: string };
+export type OutboundLink = { label: string; service: string; url: string };
+
+export type Site = {
+  name: string;
+  address: { street: string; locality: string };
+  memberAccessHours: string | null; // null until the client confirms
+  staffedHours: string | null;
+  joinUrl: string;
+  privacyPolicyUrl: string | null;
+  nav: NavLink[];
+  outboundLinks: OutboundLink[]; // links whose URL is still null are left out
+};
+
+const SITE_FIELDS = [
+  "name",
+  "address",
+  "memberAccessHours",
+  "staffedHours",
+  "joinUrl",
+  "privacyPolicyUrl",
+  "nav",
+  "outboundLinks",
+];
+
+function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
+  const value = data[field];
+  if (!(value === null || (typeof value === "string" && value.trim() !== ""))) {
+    fail(file, `"${field}" must be null or non-empty text`);
+  }
+  return value;
+}
+
+function requireUrl(file: string, value: unknown, label: string): string {
+  if (typeof value !== "string" || !value.startsWith("https://")) {
+    fail(file, `"${label}" must be a full address starting with https://`);
+  }
+  return value;
+}
+
+/** Facts shown on every page: content/site.json. */
+export function getSite(): Site {
+  const file = "content/site.json";
+  let data: unknown;
+  try {
+    data = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, "site.json"), "utf8"));
+  } catch (err) {
+    fail(file, `could not read as JSON (${(err as Error).message})`);
+  }
+  if (!isObject(data)) fail(file, "must be a JSON object");
+  rejectUnknownFields(file, data, SITE_FIELDS);
+
+  const name = requireString(file, data, "name");
+
+  if (!isObject(data.address)) fail(file, `"address" must be an object with "street" and "locality"`);
+  rejectUnknownFields(`${file} address`, data.address, ["street", "locality"]);
+  const address = {
+    street: requireString(file, data.address, "street", "address.street"),
+    locality: requireString(file, data.address, "locality", "address.locality"),
+  };
+
+  const memberAccessHours = optionalString(file, data, "memberAccessHours");
+  const staffedHours = optionalString(file, data, "staffedHours");
+  const joinUrl = requireUrl(file, data.joinUrl, "joinUrl");
+  const privacy = data.privacyPolicyUrl;
+  if (!(privacy === null || (typeof privacy === "string" && /^(\/|https:\/\/)/.test(privacy)))) {
+    fail(file, `"privacyPolicyUrl" must be null, a page such as /privacy/, or an https:// address`);
+  }
+  const privacyPolicyUrl = privacy;
+
+  if (!Array.isArray(data.nav) || data.nav.length === 0) fail(file, `"nav" must be a non-empty list`);
+  const nav = data.nav.map((link: unknown, i: number): NavLink => {
+    const where = `nav[${i}]`;
+    if (!isObject(link)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, link, ["label", "href"]);
+    const href = requireString(file, link, "href", `${where}.href`);
+    // Internal pages only, with the trailing slash S3 + CloudFront need (ADR-005, ADR-007).
+    if (!href.startsWith("/") || !href.endsWith("/")) {
+      fail(file, `"${where}.href" must start and end with /, e.g. /about/`);
+    }
+    return { label: requireString(file, link, "label", `${where}.label`), href };
+  });
+
+  if (!Array.isArray(data.outboundLinks)) fail(file, `"outboundLinks" must be a list`);
+  const outboundLinks = data.outboundLinks.flatMap((link: unknown, i: number): OutboundLink[] => {
+    const where = `outboundLinks[${i}]`;
+    if (!isObject(link)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, link, ["label", "service", "url"]);
+    const label = requireString(file, link, "label", `${where}.label`);
+    const service = requireString(file, link, "service", `${where}.service`);
+    // A null URL is a link we don't have yet. Leave it out rather than ship a dead link.
+    if (link.url === null) return [];
+    return [{ label, service, url: requireUrl(file, link.url, `${where}.url`) }];
+  });
+
+  return {
+    name,
+    address,
+    memberAccessHours,
+    staffedHours,
+    joinUrl,
+    privacyPolicyUrl,
+    nav,
+    outboundLinks,
+  };
+}

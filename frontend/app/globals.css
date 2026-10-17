@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Design tokens: docs/design/visual-direction.md §2–§4, taken from the Figma MVP. Every colour
+ * and font is declared once here and used through Tailwind classes (bg-charcoal, text-red,
+ * font-sans). Don't hard-code a hex value in a component. The palette is TODO(confirm) with
+ * the client (docs/design/README.md).
+ */
+@theme {
+  --color-*: initial;
+  --color-charcoal: #13100e; /* headings, dark grounds */
+  --color-grey: #625c57; /* secondary text on light grounds only: 2.88:1 on charcoal fails */
+  --color-red: #a81c22; /* buttons and brand accents */
+  --color-red-dark: #861619; /* button hover, proposed; white on it is 9.8:1 */
+  --color-neutral: #f3f1ee; /* section grounds */
+  --color-white: #ffffff;
+  --color-muted-on-dark: #b9b2ab; /* secondary text on charcoal, proposed; 9.0:1 */
+  --color-line: #8a837d; /* card borders, proposed; 3.7:1 on white. TODO(confirm) */
+  --color-focus: #1f6feb; /* focus ring, deliberately not red */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+}
+
+/* A visible focus ring on everything focusable (WCAG 2.2 AA). Never remove it. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
