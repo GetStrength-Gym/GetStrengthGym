@@ -154,6 +154,8 @@ TODO(confirm) in GS-16.
 - Pages export as `blog/<slug>/index.html` (`trailingSlash: true`). The S3 bucket is private
   behind OAC and doesn't resolve directory indexes, so `/blog/<slug>/` works only because of
   the **GS-16 CloudFront Function**, which maps `/x/` to `/x/index.html` (ADR-007).
+- The function's code is `frontend/cloudfront/viewer-request.js`. Test it with
+  `docker compose run --rm frontend node cloudfront/viewer-request.test.mjs`.
 - Only slugs that exist at build time are generated (`dynamicParams = false`). An unknown slug
   has no object in S3, S3 returns 403, and CloudFront's **403 → `/404.html`** mapping shows
   the 404 page (ADR-007).
