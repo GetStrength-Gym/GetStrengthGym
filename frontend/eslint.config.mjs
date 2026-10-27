@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "cloudfront/viewer-request.js", // CloudFront calls handler() by name; kept identical to ADR-007 and the live function
   ]),
 ]);
 
