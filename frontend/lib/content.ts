@@ -152,7 +152,7 @@ function readPostFile(filename: string): { summary: PostSummary; body: string } 
     const segs = path.relative(PUBLIC_DIR, imagePath).split(path.sep);
     const exact = segs.every((seg, i) => {
       const dir = path.join(PUBLIC_DIR, ...segs.slice(0, i));
-      return fs.existsSync(dir) && fs.readdirSync(dir).includes(seg);
+      return fs.statSync(dir, { throwIfNoEntry: false })?.isDirectory() && fs.readdirSync(dir).includes(seg);
     });
     if (!exact || !fs.statSync(imagePath).isFile()) {
       fail(file, `image "${data.image}" not found in public/ (names are case-sensitive)`);
