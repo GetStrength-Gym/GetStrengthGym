@@ -3,9 +3,53 @@
   "currency": "NZD",
   "confirmedWithClient": null,
   "plans": [
-    { "id": "coaching", "name": "Coaching", "price": 11.11, "period": "week" },
-    { "id": "standard-12-month", "name": "Standard (12 month minimum term)", "price": 22.22, "period": "week" },
-    { "id": "standard-flexible", "name": "Standard (flexible term)", "price": 33.33, "period": "week" },
-    { "id": "sub-juniors-students-12-month", "name": "Sub-juniors and undergraduate students (12 month minimum term)", "price": null, "period": null }
-  ]
+    {
+      "id": "standard-12-month",
+      "name": "Standard",
+      "price": 27.99,
+      "period": "week",
+      "details": [
+        "12-month minimum term.",
+        "Weekly, fortnightly or monthly billing.",
+        "$45 one-off payment."
+      ]
+    },
+    {
+      "id": "standard-flexible",
+      "name": "Flexible",
+      "price": 35.99,
+      "period": "week",
+      "details": [
+        "Confirm the minimum term with the gym.",
+        "Weekly, fortnightly or monthly billing.",
+        "$45 one-off payment."
+      ]
+    },
+    {
+      "id": "coaching",
+      "name": "Coaching",
+      "price": 54.99,
+      "period": "week",
+      "details": [
+        "Gym access, programming and coaching.",
+        "Confirm the minimum term with the gym.",
+        "$45 one-off payment."
+      ]
+    },
+    {
+      "id": "sub-juniors-students-12-month",
+      "name": "Student / sub-junior",
+      "price": 18.99,
+      "period": "week",
+      "details": [
+        "For sub-juniors and undergraduate students.",
+        "12-month minimum; eligibility proof required.",
+        "$45 one-off payment."
+      ]
+    }
+  ],
+  "dayPass": {
+    "price": null,
+    "howToBuy": null
+  }
 }

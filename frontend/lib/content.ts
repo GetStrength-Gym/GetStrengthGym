@@ -208,6 +208,7 @@ export type Plan = {
   name: string;
   price: number | null;
   period: string | null;
+  details: string[];
 };
 
 export type Prices = {
@@ -215,6 +216,7 @@ export type Prices = {
   confirmedWithClient: string | null; // YYYY-MM-DD the client confirmed, or null
   sample: boolean;
   plans: Plan[];
+  dayPass: { price: number | null; howToBuy: string | null };
 };
 
 function readPricesFile(filename: string): Prices {
@@ -226,7 +228,7 @@ function readPricesFile(filename: string): Prices {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans"]);
+  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans", "dayPass"]);
 
   const currency = requireString(file, data, "currency");
 
@@ -246,7 +248,7 @@ function readPricesFile(filename: string): Prices {
   const plans = data.plans.map((plan: unknown, i: number): Plan => {
     const where = `plans[${i}]`;
     if (!isObject(plan)) fail(file, `"${where}" must be an object`);
-    rejectUnknownFields(`${file} ${where}`, plan, ["id", "name", "price", "period"]);
+    rejectUnknownFields(`${file} ${where}`, plan, ["id", "name", "price", "period", "details"]);
 
     const id = requireString(file, plan, "id", `${where}.id`);
     if (!SLUG.test(id)) fail(file, `"${where}.id" must be lower-case words separated by hyphens`);
@@ -263,10 +265,21 @@ function readPricesFile(filename: string): Prices {
     if (!(period === null || (typeof period === "string" && period.trim() !== ""))) {
       fail(file, `"${where}.period" must be null or text such as "week" or "month"`);
     }
-    return { id, name, price, period };
+    const details = plan.details;
+    if (!Array.isArray(details) || !details.every(detail => typeof detail === "string" && detail.trim() !== "")) {
+      fail(file, `"${where}.details" must be a list of non-empty text`);
+    }
+    return { id, name, price, period, details };
   });
 
-  return { currency, confirmedWithClient: confirmed, sample: data.sample === true, plans };
+  if (!isObject(data.dayPass)) fail(file, '"dayPass" must be an object');
+  rejectUnknownFields(file + " dayPass", data.dayPass, ["price", "howToBuy"]);
+  const dayPassPrice = data.dayPass.price;
+  if (!(dayPassPrice === null || (typeof dayPassPrice === "number" && Number.isFinite(dayPassPrice) && dayPassPrice > 0))) {
+    fail(file, '"dayPass.price" must be null or a positive number');
+  }
+  const dayPass = { price: dayPassPrice, howToBuy: optionalString(file + " dayPass", data.dayPass, "howToBuy") };
+  return { currency, confirmedWithClient: confirmed, sample: data.sample === true, plans, dayPass };
 }
 
 /**
@@ -314,6 +327,12 @@ export type Site = {
   privacyPolicyUrl: string | null;
   nav: NavLink[];
   outboundLinks: OutboundLink[]; // links whose URL is still null are left out
+  home: {
+    introduction: string;
+    whyIntroduction: string;
+    benefits: { title: string; description: string }[];
+    togetherIntroduction: string;
+  };
 };
 
 const SITE_FIELDS = [
@@ -325,6 +344,7 @@ const SITE_FIELDS = [
   "privacyPolicyUrl",
   "nav",
   "outboundLinks",
+  "home",
 ];
 
 function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
@@ -397,6 +417,25 @@ export function getSite(): Site {
     return [{ label, service, url: requireUrl(file, link.url, `${where}.url`) }];
   });
 
+  if (!isObject(data.home)) fail(file, '"home" must be an object');
+  rejectUnknownFields(file + " home", data.home, ["introduction", "whyIntroduction", "benefits", "togetherIntroduction"]);
+  const benefits = data.home.benefits;
+  if (!Array.isArray(benefits) || benefits.length === 0) fail(file, '"home.benefits" must be a non-empty list');
+  const home = {
+    introduction: requireString(file, data.home, "introduction", "home.introduction"),
+    whyIntroduction: requireString(file, data.home, "whyIntroduction", "home.whyIntroduction"),
+    togetherIntroduction: requireString(file, data.home, "togetherIntroduction", "home.togetherIntroduction"),
+    benefits: benefits.map((benefit: unknown, i: number) => {
+      const where = "home.benefits[" + i + "]";
+      if (!isObject(benefit)) fail(file, where + " must be an object");
+      rejectUnknownFields(file + " " + where, benefit, ["title", "description"]);
+      return {
+        title: requireString(file, benefit, "title", where + ".title"),
+        description: requireString(file, benefit, "description", where + ".description"),
+      };
+    }),
+  };
+
   return {
     name,
     address,
@@ -406,5 +445,6 @@ export function getSite(): Site {
     privacyPolicyUrl,
     nav,
     outboundLinks,
+    home,
   };
 }

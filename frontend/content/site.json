@@ -1,22 +1,60 @@
 {
   "name": "GetStrength Gym",
   "address": {
-    "street": "385B Neilson St",
-    "locality": "Onehunga, Auckland"
+    "street": "20/10 Olive Road",
+    "locality": "Penrose, Auckland 1061"
   },
   "memberAccessHours": null,
   "staffedHours": null,
   "joinUrl": "https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde",
   "privacyPolicyUrl": null,
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "Blog", "href": "/blog/" },
-    { "label": "The Gym", "href": "/gym/" },
-    { "label": "About Us", "href": "/about/" },
-    { "label": "Contact", "href": "/contact/" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About Us",
+      "href": "/about/"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
   ],
   "outboundLinks": [
-    { "label": "GS Videos", "service": "YouTube", "url": "https://www.youtube.com/user/getstrength" },
-    { "label": "Instagram", "service": "Instagram", "url": null }
-  ]
+    {
+      "label": "Instagram",
+      "service": "Instagram",
+      "url": "https://www.instagram.com/getstrengthgym/"
+    },
+    {
+      "label": "GS Videos",
+      "service": "YouTube",
+      "url": null
+    }
+  ],
+  "home": {
+    "introduction": "Train for powerlifting, weightlifting, strongman or the enjoyment of getting stronger, in a supportive gym community.",
+    "whyIntroduction": "Experienced coaching. Specialist equipment. People who share your goals.",
+    "benefits": [
+      {
+        "title": "Experienced coaching",
+        "description": "Build confidence in your technique with support from strength coaches."
+      },
+      {
+        "title": "Specialist equipment",
+        "description": "Explore a gym built around strength training, with equipment for a range of lifting goals."
+      },
+      {
+        "title": "Supportive community",
+        "description": "Train alongside people who encourage progress at every experience level."
+      }
+    ],
+    "togetherIntroduction": "Powerlifting, weightlifting, strongman and strength training for the enjoyment of getting stronger. Discover the gym and the people who make it a community."
+  }
 }
