@@ -115,6 +115,11 @@ investigate. The signed document still says the site goes on getstrength.com —
 
 ## Promoted to
 - D1, D5 → no change needed; already matches `docs/requirements.md` (five pages)
+  - **Correction 2026-10-14:** wrong. The summary lists **four** pages (Home, About Us, Blog,
+    Contact); `requirements.md` has **five**, including **The Gym** (location, 24/7 access,
+    membership options with prices). A teammate's draft scope doc also lists four. Whether The
+    Gym was merged into another page or left out of the summary is **unconfirmed** — see
+    project brief Q13. Until confirmed, requirements.md (five pages) stands.
 - D2, D3, D4 → `docs/requirements.md` ("What the new website will have"), plus the client Google
   Doc once it can be synced
 - A5 (privacy policy) → `docs/requirements.md` ("What we need from you")

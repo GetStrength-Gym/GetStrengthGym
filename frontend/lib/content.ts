@@ -15,6 +15,7 @@ import { isScalar, parseDocument, Scalar } from "yaml";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const BLOG_DIR = path.join(CONTENT_DIR, "blog");
+const PUBLIC_DIR = path.join(process.cwd(), "public");
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -141,6 +142,20 @@ function readPostFile(filename: string): { summary: PostSummary; body: string } 
     // Rendered as the image's alt text (WCAG 2.2 AA), so every image needs one.
     if (typeof data.imageAlt !== "string" || data.imageAlt.trim() === "") {
       fail(file, `"imageAlt" is required when "image" is set: a short description of what the image shows`);
+    }
+    // A typo would otherwise ship as a broken image. The path must stay inside public/.
+    const imagePath = path.join(PUBLIC_DIR, data.image);
+    if (!imagePath.startsWith(PUBLIC_DIR + path.sep)) {
+      fail(file, `"image" "${data.image}" must point to a file inside public/`);
+    }
+    // macOS (and Docker bind mounts from it) ignore case, but S3 doesn't: match each segment exactly.
+    const segs = path.relative(PUBLIC_DIR, imagePath).split(path.sep);
+    const exact = segs.every((seg, i) => {
+      const dir = path.join(PUBLIC_DIR, ...segs.slice(0, i));
+      return fs.statSync(dir, { throwIfNoEntry: false })?.isDirectory() && fs.readdirSync(dir).includes(seg);
+    });
+    if (!exact || !fs.statSync(imagePath).isFile()) {
+      fail(file, `image "${data.image}" not found in public/ (names are case-sensitive)`);
     }
     image = { src: data.image, alt: data.imageAlt };
   } else if (data.imageAlt !== undefined) {

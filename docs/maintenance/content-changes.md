@@ -57,7 +57,7 @@ or the sample prices and draft posts go live with it.
    | `title` | Required, non-empty |
    | `date` | Required, `YYYY-MM-DD`, **in quotes**. YAML silently rolls an unquoted `2026-02-30` over to 2 March, so the build rejects unquoted dates. |
    | `description` | Required, non-empty |
-   | `image` | Optional. A path starting with `/`, pointing into `frontend/public/` |
+   | `image` | Optional. A path starting with `/`, pointing into `frontend/public/`. The build fails if the file doesn't exist there; names are case-sensitive |
    | `imageAlt` | **Required when `image` is set**, and not allowed without it. A short description of what the image shows, used as its alt text for screen readers |
    | `draft` | Optional, `true` or `false` (default `false`) |
 
@@ -154,6 +154,8 @@ TODO(confirm) in GS-16.
 - Pages export as `blog/<slug>/index.html` (`trailingSlash: true`). The S3 bucket is private
   behind OAC and doesn't resolve directory indexes, so `/blog/<slug>/` works only because of
   the **GS-16 CloudFront Function**, which maps `/x/` to `/x/index.html` (ADR-007).
+- The function's code is `frontend/cloudfront/viewer-request.js`. Test it with
+  `docker compose run --rm frontend node cloudfront/viewer-request.test.mjs`.
 - Only slugs that exist at build time are generated (`dynamicParams = false`). An unknown slug
   has no object in S3, S3 returns 403, and CloudFront's **403 → `/404.html`** mapping shows
   the 404 page (ADR-007).
