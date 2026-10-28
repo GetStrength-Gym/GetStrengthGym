@@ -16,12 +16,15 @@ gets three different answers from three developers.
 
 | Name | Role | Contact | Notes |
 |------|------|---------|-------|
-| John Strachan | Head Strength Coach & Gym Manager | (email held by Johnson — not in the public repo) | Published site contact; confirm he's the decision-maker |
-| Joe | Client representative at the 2026-10-11 sprint review | TODO(confirm) | Role and authority unconfirmed. Possibly the `joseph-mundey` account with edit access to the project docs; unconfirmed |
-| TODO | Owner (if different from above) | | Confirm who signs off |
+| Joe | Current gym owner | TODO(confirm) | Confirmed by Johnson's 2026-10-26 approval on PR #7; full name and exact sign-off authority still need recording |
+| Current coach | Name and role TODO(confirm) | TODO(confirm) | Portrait, biography and credentials require current-owner approval |
+| John Strachan | Historical old-site contact | Not used for the new gym site | Do not infer current ownership, coaching role or authority from legacy website content |
 
 ## Decision rule
-TODO(confirm) — who at GetStrength has final say on scope and sign-off.
+Joe's ownership is confirmed; final scope/sign-off authority is still `TODO(confirm)`.
+The user's 2026-10-28 migration decisions are recorded in
+`../meetings/2026-10-28-design-reconciliation.md`; these do not establish unrelated
+commercial, account-access or content approvals.
 
 ## Communication
 - Cadence: TODO(confirm)

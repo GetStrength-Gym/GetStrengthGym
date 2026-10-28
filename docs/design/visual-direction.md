@@ -1,12 +1,11 @@
 # Visual direction
 
 - **Ticket:** GS-14 (parent GS-4), sprint *GS 1 — Build & preview*
-- **Status:** taken from the Figma MVP and ready to show at the week-2 review. Not yet
-  approved by the new owners.
+- **Status:** migration reference reconciled with the user's decisions on 2026-10-28.
+  Content approval, photography and logo rights remain separate confirmations.
 - **Written:** 2026-10-07. **Rewritten 2026-10-12** to adopt the Figma colour scheme,
   typography and components in place of the earlier provisional tokens.
-- **Design source:** Figma **GetStrength MVP**,
-  <https://www.figma.com/design/wwJSIomAL5ysJB0GrFRVfx/GetStrength-MVP>, frames
+- **Design source:** the user's Figma **GetStrength MVP**, frames
   *GS/Colour scheme — reference layout*, `GS/Button`, `GS/Benefit card`,
   `GS/Photo placeholder`, `GS/Location`, Header and Footer
 - **Pairs with:** `five-page-journey.md` (layout and content), `README.md` (brand inputs)
@@ -95,7 +94,8 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
 - **Self-host Inter** (it's under the SIL Open Font License). Don't use a Google Fonts
   request: ADR-004 serves everything from S3 + CloudFront, so a font is just another asset,
   and a third-party call would need a privacy-policy mention.
-- Nothing smaller than 15px anywhere, and body text never below 16px.
+- Body stays at least 16px. Smaller Figma captions/eyebrows need readable contrast and
+  must not replace body text or control labels.
 - Line length caps at about 68 characters. The article template's 760px column holds this.
 - No text as an image, except the logo.
 
@@ -147,7 +147,8 @@ ratio per slot, so the layout never shifts.
 
 An eyebrow, the H2 "Find GS Gym", the address, member-access and staffed-hours lines,
 **Get directions** (secondary) and **Ask about visiting** (primary), plus a map image. The
-address and hours are `TODO(confirm)`.
+address is 20/10 Olive Road, Penrose, Auckland 1061, confirmed in Figma's 2026-10-12 notes.
+Member access and staffed/viewing hours remain `TODO(confirm)`.
 
 ### Header and Footer
 
@@ -158,11 +159,13 @@ a red underline, the nav list, three info columns, then © and Privacy policy.
 
 Post card: image, a category eyebrow (· date), an H3 title as the link text, and an
 excerpt. The whole card is one link target, and its accessible name is the title, not
-"read more". Testimonial and offer cards are white with a 1px border.
+"read more". Offer cards are white with a 1px border. Testimonials use video, with labelled
+preview placeholders until approved footage arrives; text quote cards are not required.
 
 ### Form field
 
-A visible label above a 48px input with a 1px border and a focus ring. The error state adds
+A visible label above an input with a 1px border and a focus ring. Follow the repaired
+mobile Figma: at least 52px inputs with 16px text and a 140px message area. The error state adds
 a red edge **and** a text message, tied to the input with `aria-describedby`.
 
 ---
@@ -171,8 +174,8 @@ a red edge **and** a text message, tied to the input with `aria-describedby`.
 
 Per ADR-003 the site is maintained by our team and must be handed on to any web developer.
 
-- Every value in §2–§4 is a CSS custom property declared once in a single `tokens.css`
-  (proposed `styles/tokens.css`). Nothing hard-codes a hex value or a px size.
+- Reuse the existing design tokens in `frontend/app/globals.css`, consumed by project
+  components. Do not create a second `tokens.css` or duplicate the palette.
 - The Figma swatch names are kept as the token names, so a designer and a developer use
   the same words.
 - It's the same principle as keeping editable facts in a data file rather than in
@@ -184,10 +187,11 @@ Per ADR-003 the site is maintained by our team and must be handed on to any web 
 
 **Show:**
 
-1. The five pages at mobile and desktop width: Home, Blog, The Gym, About Us, Contact.
-   The Gym is assembled from the Figma components until its own frame exists.
+1. Home (including memberships/location), About Us and Contact at phone/desktop widths.
+   Blog keeps the shared shell and a basic newest-first list; enhanced styling is deferred.
 2. The Join path clicked end to end, including the broken banner on the Debitsuccess form.
-3. The page structure, if it's still in question (`five-page-journey.md` §2, D-1).
+3. The four-page navigation and Home membership section; these decisions are resolved.
+   Remove Facebook and use Instagram plus confirmed current-gym YouTube only.
 
 **Ask, in this order** (highest-leverage first):
 

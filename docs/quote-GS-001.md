@@ -1,5 +1,9 @@
 # QUOTE
 
+Historical quote dated 23 September 2026, retained unchanged below. Current page layout
+and gym details are in `requirements.md`, updated 2026-10-28; quote amounts and payment
+terms are unchanged by that design reconciliation.
+
 **Quote number:** GS-Q001
 **Date:** 23 September 2026
 **Valid until:** 23 October 2026

@@ -2,17 +2,18 @@
 
 Design work for the gym-only GetStrength site. Scope comes from `docs/requirements.md`;
 nothing here overrides it. Where the Figma file goes further than the agreed scope, the
-difference is flagged in `five-page-journey.md` §2 and §11.
+difference is recorded in `five-page-journey.md` §11. Updated 2026-10-28 using the user's
+GetStrength MVP and confirmed decisions; see `../meetings/2026-10-28-design-reconciliation.md`.
 
 | Document | What it is |
 |---|---|
-| [`five-page-journey.md`](five-page-journey.md) | **The design spec.** The five agreed pages in order (Home, Blog, The Gym, About Us, Contact): URLs, titles and H1s, wireframes, the one-click Join path, content slots and every `TODO(confirm)`. Built from the Figma MVP. GS-14. |
+| [`five-page-journey.md`](five-page-journey.md) | **Current four-page design.** Home serves as The Gym; nav is Home, About Us, Blog, Contact. Covers memberships, joining, content gates and intentional deviations from Figma. Existing filename retained for implementation references. |
 | [`visual-direction.md`](visual-direction.md) | The look and feel from the Figma file: colour and type tokens, contrast checks, components, and what to show and ask at the week-2 review. GS-14. |
 
 ## Direction
 "Stronger together": bold and warm. A charcoal ground, warm neutrals and one GetStrength
-red, Inter type, and photographs of people training. See `visual-direction.md` §1. **Not
-yet approved by the new owners.**
+red, Inter type, and photographs of people training. Use the user's GetStrength MVP as
+the migration reference. Content, photography and logo-rights confirmations remain separate.
 
 ## Brand
 - Colours: from Figma. Charcoal `#13100E`, warm grey `#625C57`, GetStrength red
@@ -30,10 +31,10 @@ Sites the client likes, and specifically *what* they like about each (not just t
 | TODO — ask at the week-2 review | |
 
 ## Figma / mockups
-- **GetStrength MVP** (the current file):
-  <https://www.figma.com/design/wwJSIomAL5ysJB0GrFRVfx/GetStrength-MVP>. Home, About Us,
-  Blog, Contact and the Blog Post template at 1440 and 390, plus components, the colour
-  scheme and review notes. **It has no The Gym frame yet**, and its nav order differs from
-  the spec (`five-page-journey.md` §2).
+- **GetStrength MVP** (the user's current file; canonical link held with the project):
+  Home, About Us, Blog, Contact and article template at 1440/390, plus components,
+  colour scheme and review notes. **Home is The Gym**; no separate Gym frame is needed.
+- Confirmed deviations: video testimonials, no Facebook and a minimal blog. Missing assets
+  stay labelled in preview; no invented gym facts or approved prices.
 - *GetStrength MVP – Low-Fi Wireframes* (`031LOpSNuRceNYL3J45RTC`) is an earlier copy that
   still has the Front Squat Harness band. **Superseded; don't build from it.**
