@@ -1,20 +1,22 @@
 # Handover — GetStrength Gym website
 
-**As at 2026-10-10.** Quote accepted. Stack decided (ADR-003/004/005/007) and agreed by the whole
-team on 2026-10-08 (`docs/meetings/2026-10-08-architecture-agreement.md`). Next.js scaffold **merged** (PR #1, 2026-10-10). Dependency
-patch open (PR #2, Next.js 16.3.8, needs one approval). No site pages built yet.
+**Design reconciliation as at 2026-10-28.** Use the user's GetStrength MVP and
+`docs/design/five-page-journey.md`. Decisions and evidence are in
+`docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
+About Us, Blog, Contact. Keep video testimonial placeholders, a minimal blog and no
+Facebook. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
-**Critical path right now:** the week-1 preview (GS-16) is **blocked on one thing — no AWS
-account exists in GetStrength's name.** Nothing else on it waits on the client; it needs no
-DNS work (ADR-007). Ask John to create the account, or to approve us creating it in his name.
-New session: read this, then `CLAUDE.md`.
+**Next:** implement the reconciled design on GS-15. Preserve main's image validation,
+CloudFront routing and production price-confirmation guard. Remaining infrastructure and
+commercial notes below are historical planning, not a fresh operational-status check.
+Do not infer a current AWS-account blocker or approval from that older snapshot.
 
 ## Where the project stands
 
 | | |
 |---|---|
-| Client | GetStrength Gym, 385B Neilson St, Onehunga, Auckland |
-| Contact | John Strachan, (email held by Johnson — not in the public repo) (decision-maker unconfirmed — Q1) |
+| Client | GetStrength Gym, 20/10 Olive Road, Penrose, Auckland 1061 |
+| Contact | Joe, current owner; full name, contact and sign-off authority TODO(confirm) — see stakeholders record |
 | Team | Johnson Zhang (lead, 3.5 h/wk), Desmond Li, Jayden Pham, Kevin Wang (6 h/wk each) |
 | Price | **$1,500 fixed, no GST**, one payment on completion. No deposit. |
 | Timeline | ~5 weeks, ~107 team hours |
@@ -25,15 +27,19 @@ New session: read this, then `CLAUDE.md`.
 | Status | Quote accepted verbally; signature not yet obtained |
 
 ## What we're building
-Five pages — Home, Blog, The Gym, About Us, Contact — plus outbound links to Teespring,
-the Amazon harness listing, YouTube, Facebook and the membership sign-up. A blog that **our
-team** updates on request — no CMS (ADR-003). Contact form. Domain switch-over preserving
-email. A change-request guide for the client plus a written handover for future developers.
+Four primary pages: Home, About Us, Blog, Contact. Home includes gym/location information,
+four membership cards and a day-pass block, followed by the existing Join CTA; no separate
+Gym page or per-plan buttons. Header/footer Join actions remain. Prices and terms still
+need client confirmation. Video testimonials retain preview placeholders until supplied.
+Blog keeps the basic newest-first list and article routes, with enhanced features deferred.
 
-**Not** building: shop, cart, checkout, member login, payments, booking, timetable.
-Memberships and product sales stay in the client's existing systems; we only link out.
+The site is gym-only: no merch, harness, Record Board or Amazon links. Instagram is
+`https://www.instagram.com/getstrengthgym/`; Facebook is removed and YouTube requires a
+confirmed current-gym destination. Maintenance-team content changes, contact form,
+email-preserving domain work, client change-request guide and developer handover remain.
+No store, checkout, member login, payments, booking or timetable is built here.
 
-## ⚠️ Blocked — do this first
+## Remaining content/access confirmations
 1. ~~**The membership sign-up URL.**~~ **Done 2026-10-05.** Recorded in
    `docs/requirements.md` and `docs/context/project-brief.md`:
    <https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde>
@@ -133,4 +139,5 @@ emails and every Drive link, and refuses to push if any leak through.
 - **D1** Is the old WooCommerce store still taking orders? (retires ~10 pages if dead)
 - **D2** Old forum, 1,758 replies — keep, archive read-only, or retire?
 - **D3** Old blog, 323 articles — migrate all, the best, or start fresh? *(quote assumes fresh)*
-- **D4** Do the Amazon and ClickBank affiliate links stay?
+- **D4 — resolved:** no product/affiliate links in the gym-only site (PR #7 approval,
+  2026-10-26).

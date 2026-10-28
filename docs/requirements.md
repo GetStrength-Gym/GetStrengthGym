@@ -2,6 +2,11 @@
 
 **Draft for your review · 22 September 2026**
 
+**Design scope updated 28 October 2026:** Home serves as The Gym; navigation follows
+GetStrength MVP. Video testimonials remain, Facebook is removed and Blog is low priority.
+See `docs/meetings/2026-10-28-design-reconciliation.md` for the decision record. Quote
+amounts and payment terms are unchanged.
+
 Please read this and tell us anything that looks wrong or missing. Once you're happy, we'll sign it and start building.
 
 ---
@@ -10,7 +15,7 @@ Please read this and tell us anything that looks wrong or missing. Once you're h
 
 - We're building a **new, simple website** for GetStrength.
 - It covers the **gym, the blog, and your story**. Nothing else.
-- **Memberships and product sales stay exactly where they are.** The website just points people to them.
+- **Membership signup stays on Debit Success.** This gym-only site has no product-sales links.
 - **Total price: $1,500, all included.** About **5 weeks** from when we start.
 - You'll see it as we build it, with a **catch-up every two weeks**. Your feedback is included.
 
@@ -28,24 +33,32 @@ Your gym email address will keep working. We'll take care of that during the swi
 
 ## What the new website will have
 
-Five pages, in this order:
+Four pages, in this order. Home serves as The Gym:
 
 | Page | What's on it |
 |---|---|
-| **Home** | Who you are, video testimonials from your members, and a clear way to join the gym |
-| **Blog** | Your training articles, newest first |
-| **The Gym** | Onehunga location, 24/7 access, your membership options **with prices shown on the page**, map |
-| **About Us** | Your history, your coaches, who you've trained |
+| **Home** | The Penrose gym, video testimonials, location/map, access and viewing hours once confirmed, four membership cards and a casual-day-pass block, and a clear way to join |
+| **About Us** | The current gym's story, confirmed coaches/services and gym gallery |
+| **Blog** | Basic newest-first articles; low priority, with enhanced search/filter/pagination work deferred |
 | **Contact** | Address, email, and a form people can fill in |
 
-Plus clearly-marked links out to your other things:
+The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
+GetStrength MVP's current-gym notes. Member access and staffed/viewing hours remain
+separate unconfirmed fields; do not assume 24/7 access from the old website.
 
-- **Merch Store** (Teespring)
-- **Front Squat Harness** (Amazon)
-- **GS Videos** (YouTube)
-- **Instagram** (replaces the old Facebook page, which is no longer active)
+Membership options appear on Home before its existing bottom **Join GS Gym** CTA. Cards
+have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
+Success in the same tab. Prices, fees, inclusions and terms need current-gym approval;
+Figma's observed figures are not approval. Day-pass price and purchase method remain
+unconfirmed. Keep video testimonial placeholders until approved footage arrives.
 
-**One important change:** on the old site, the gym was the *fourth* thing in the menu, behind the shop. Someone in Onehunga looking for a gym found a blog and a shop first. On the new site, the gym comes first.
+External links are Debit Success, the current gym's Instagram
+(<https://www.instagram.com/getstrengthgym/>), and YouTube only after the current gym's
+ownership and exact destination are confirmed. Facebook is removed. No Merch Store,
+Front Squat Harness, Record Board or Amazon links are included.
+
+**The gym comes first:** practical visit and membership information live on Home.
+Article and privacy pages are supporting routes outside the four-item primary navigation.
 
 ---
 
@@ -114,7 +127,7 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 - [ ] Confirmation that you're allowed to use photos of the people in them
 - [ ] **Your privacy policy.** The contact form collects people's names and email addresses, so the site needs one. We'll publish it as a page; the wording has to come from you.
 - [ ] The testimonial videos — the interview footage from when the gym moved. If they're on YouTube, a link is all we need.
-- [ ] Your Instagram address
+- [x] Instagram: <https://www.instagram.com/getstrengthgym/> (recorded in the current Figma notes)
 
 ---
 
@@ -157,7 +170,7 @@ Any of these can be quoted separately later:
 |---|---|
 | Planning and meetings with you | $170 |
 | Designing how the site looks | $250 |
-| Building the five pages and the blog | $560 |
+| Building the four-page site, including Home gym/membership content and the basic blog | $560 |
 | Contact form and links to your other pages | $70 |
 | Moving getstrength.com across, keeping your email working | $80 |
 | Testing on phones and computers, and checking Google can find you | $170 |
