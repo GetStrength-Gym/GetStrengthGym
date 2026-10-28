@@ -1,10 +1,15 @@
 # CLAUDE.md — GetStrength Gym website refurbishment
 
 ## Project
-Building a new static website for GetStrength Gym, Onehunga, Auckland. The old WordPress
+Building a new static website for GetStrength Gym, Penrose, Auckland. The old WordPress
 site was lost (no admin or hosting access) and is being abandoned, not migrated.
 **Scope, price and stack are agreed** (ADR-003/004/005/007). The Next.js scaffold is merged
 (PR #1, 2026-10-10); no site pages are built yet. Dependabot security updates are on.
+
+Design update 2026-10-28: use the user's GetStrength MVP and
+`docs/design/five-page-journey.md`. Four primary pages: Home (also The Gym), About Us,
+Blog, Contact. Blog is low priority. Decisions are recorded in
+`docs/meetings/2026-10-28-design-reconciliation.md`; GS-15 has the partial implementation.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.

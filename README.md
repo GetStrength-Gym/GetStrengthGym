@@ -1,6 +1,9 @@
 # GetStrength Gym website
 
-Static website for GetStrength Gym, Onehunga. Decisions live in `docs/context/decisions/`.
+Static website for GetStrength Gym, Penrose. Decisions live in `docs/context/decisions/`.
+Current page/layout scope follows the user's GetStrength MVP and
+[`docs/design/five-page-journey.md`](docs/design/five-page-journey.md): Home serves as The
+Gym, followed by About Us, Blog and Contact. Blog is low priority.
 
 ## Stack
 - **Next.js with static export** (ADR-005): `npm run build` produces plain files in `frontend/out/`
