@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import JoinButton from "@/components/JoinButton";
+import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
 import { getAllPosts, getSite, isPreviewBuild } from "@/lib/content";
-import { formatDate } from "@/lib/format";
+import { directionsUrl, formatDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: { absolute: "GetStrength Gym — Strength Gym in Penrose, Auckland" },
@@ -16,8 +17,7 @@ export default function Home() {
   const site = getSite();
   const preview = isPreviewBuild();
   const posts = getAllPosts().slice(0, 3);
-  const directions = "https://www.google.com/maps/dir/?api=1&destination=" +
-    encodeURIComponent(site.address.street + ", " + site.address.locality);
+  const directions = directionsUrl(site.address);
 
   return (
     <main className="home">
@@ -141,14 +141,8 @@ export default function Home() {
       </section>
 
       <PriceList />
-      <section className="membership-cta" aria-labelledby="join-heading">
-        <div className="page-width section-space section-stack">
-          <h2 id="join-heading" className="section-heading">Find your membership.</h2>
-          <p>Check Debit Success for membership options, prices and terms.</p>
-          <JoinButton />
-          <p className="cta-note">Opens Debit Success.</p>
-        </div>
-      </section>
+      <JoinCta heading="Find your membership." text="Check Debit Success for membership options, prices and terms."
+        note="Opens Debit Success." />
     </main>
   );
 }
