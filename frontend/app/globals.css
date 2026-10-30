@@ -133,6 +133,22 @@ body { font-size: 16px; line-height: 1.625; }
 .bg-neutral .placeholder { background: var(--color-white); }
 .gallery-grid { display: grid; gap: 16px; }
 .gallery-photo { min-height: 240px; }
+.contact-row { display: grid; align-items: start; gap: 48px; }
+.enquiry-form, .contact-details { display: flex; flex-direction: column; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; line-height: 21px; }
+/* Grey, not --color-line: an input's only boundary needs 3:1 (visual-direction.md §2). */
+.field input, .field select, .field textarea { min-height: 48px; padding: 12px 14px; border: 1px solid var(--color-grey); border-radius: 4px; background: var(--color-white); font-size: 16px; font-weight: 400; }
+.field textarea { min-height: 140px; }
+.gs-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.form-note { font-size: 13px; color: var(--color-grey); }
+.form-note a, .details-card a:not(.gs-button) { text-decoration: underline; }
+.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; }
+.details-card h2 { font-size: 22px; font-weight: 700; line-height: 33px; }
+.details-card dl { display: flex; flex-direction: column; gap: 12px; }
+.details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
+.details-card address { font-style: normal; }
+.social-links { display: flex; flex-direction: column; gap: 12px; }
+.social-links .gs-button { width: 100%; }
 
 @media (min-width: 600px) and (max-width: 959px) {
   .benefit-grid, .post-grid, .testimonial-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -174,6 +190,10 @@ body { font-size: 16px; line-height: 1.625; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); gap: 80px; }
+  .enquiry-form .gs-button, .details-card .gs-button { align-self: flex-start; }
+  .social-links { flex-direction: row; }
+  .social-links .gs-button { width: auto; }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }
