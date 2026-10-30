@@ -323,6 +323,8 @@ export type Site = {
   address: { street: string; locality: string };
   memberAccessHours: string | null; // null until the client confirms
   staffedHours: string | null;
+  phone: string | null; // null until the client confirms
+  email: string | null;
   joinUrl: string;
   privacyPolicyUrl: string | null;
   nav: NavLink[];
@@ -340,6 +342,8 @@ const SITE_FIELDS = [
   "address",
   "memberAccessHours",
   "staffedHours",
+  "phone",
+  "email",
   "joinUrl",
   "privacyPolicyUrl",
   "nav",
@@ -385,6 +389,8 @@ export function getSite(): Site {
 
   const memberAccessHours = optionalString(file, data, "memberAccessHours");
   const staffedHours = optionalString(file, data, "staffedHours");
+  const phone = optionalString(file, data, "phone");
+  const email = optionalString(file, data, "email");
   const joinUrl = requireUrl(file, data.joinUrl, "joinUrl");
   const privacy = data.privacyPolicyUrl;
   if (!(privacy === null || (typeof privacy === "string" && /^(\/|https:\/\/)/.test(privacy)))) {
@@ -441,6 +447,8 @@ export function getSite(): Site {
     address,
     memberAccessHours,
     staffedHours,
+    phone,
+    email,
     joinUrl,
     privacyPolicyUrl,
     nav,

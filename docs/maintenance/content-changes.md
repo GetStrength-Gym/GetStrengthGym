@@ -90,7 +90,8 @@ Use only the words and facts the client sent. Don't fill gaps; ask them.
 
 ## Update Home and shared details
 
-Edit `frontend/content/site.json` for the address, separate access/viewing hours, shared
+Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
+Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
 Join destination, navigation, approved social links and Home's introductory/benefit copy.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Missing coach, photograph, map and video-testimonial content stays labelled in preview

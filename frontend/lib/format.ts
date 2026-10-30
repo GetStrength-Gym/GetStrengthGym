@@ -1,6 +1,11 @@
-import type { Plan } from "./content";
+import type { Plan, Site } from "./content";
 
-// Display helpers shared by the blog pages and the price list.
+// Display helpers shared by the pages and the price list.
+
+/** Google Maps directions to the gym, used by Home and Contact. */
+export function directionsUrl(address: Site["address"]): string {
+  return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(address.street + ", " + address.locality);
+}
 
 /** "2026-10-10" -> "10 October 2026". Dates are calendar days, so format in UTC. */
 export function formatDate(isoDate: string): string {

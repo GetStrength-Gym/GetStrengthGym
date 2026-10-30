@@ -6,6 +6,8 @@
   },
   "memberAccessHours": null,
   "staffedHours": null,
+  "phone": null,
+  "email": null,
   "joinUrl": "https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde",
   "privacyPolicyUrl": null,
   "nav": [

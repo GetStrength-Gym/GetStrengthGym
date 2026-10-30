@@ -78,7 +78,7 @@ body { font-size: 16px; line-height: 1.625; }
 .hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
 .benefit-grid, .post-grid, .testimonial-grid { display: grid; gap: 24px; }
 .benefit-card { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; background: var(--color-white); }
-.home h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
+.home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
 .coach-row, .together-row, .location-row { display: grid; align-items: center; gap: 24px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
@@ -127,9 +127,31 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-legal { display: flex; flex-direction: column; gap: 16px; font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-footer-muted); }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 #the-gym, #memberships { scroll-margin-top: 24px; }
+.section-heading.page-title { font-weight: 800; line-height: 42px; }
+.offer-card { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-white); }
+.offer-photo { min-height: 160px; }
+.bg-neutral .placeholder { background: var(--color-white); }
+.gallery-grid { display: grid; gap: 16px; }
+.gallery-photo { min-height: 240px; }
+.contact-row { display: grid; align-items: start; gap: 48px; }
+.enquiry-form, .contact-details { display: flex; flex-direction: column; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; line-height: 21px; }
+/* Grey, not --color-line: an input's only boundary needs 3:1 (visual-direction.md §2). */
+.field input, .field select, .field textarea { min-height: 48px; padding: 12px 14px; border: 1px solid var(--color-grey); border-radius: 4px; background: var(--color-white); font-size: 16px; font-weight: 400; }
+.field textarea { min-height: 140px; }
+.gs-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.form-note { font-size: 13px; color: var(--color-grey); }
+.form-note a, .details-card a:not(.gs-button) { text-decoration: underline; }
+.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; }
+.details-card h2 { font-size: 22px; font-weight: 700; line-height: 33px; }
+.details-card dl { display: flex; flex-direction: column; gap: 12px; }
+.details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
+.details-card address { font-style: normal; }
+.social-links { display: flex; flex-direction: column; gap: 12px; }
+.social-links .gs-button { width: 100%; }
 
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .post-grid, .testimonial-grid, .membership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .post-grid, .testimonial-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
@@ -167,6 +189,11 @@ body { font-size: 16px; line-height: 1.625; }
   .membership-card { min-height: 276px; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }
+  .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); gap: 80px; }
+  .enquiry-form .gs-button, .details-card .gs-button { align-self: flex-start; }
+  .social-links { flex-direction: row; }
+  .social-links .gs-button { width: auto; }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }
