@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens: docs/design/visual-direction.md §2–§4, taken from the Figma MVP. Every colour
+ * and font is declared once here and used through Tailwind classes (bg-charcoal, text-red,
+ * font-sans). Don't hard-code a hex value in a component. The palette is TODO(confirm) with
+ * the client (docs/design/README.md).
+ */
+@theme {
+  --color-*: initial;
+  --color-charcoal: #13100e; /* headings, dark grounds */
+  --color-grey: #625c57; /* secondary text on light grounds only: 2.88:1 on charcoal fails */
+  --color-red: #a81c22; /* buttons and brand accents */
+  --color-red-dark: #861619; /* button hover, proposed; white on it is 9.8:1 */
+  --color-neutral: #f3f1ee; /* section grounds */
+  --color-white: #ffffff;
+  --color-muted-on-dark: #b9b2ab; /* secondary text on charcoal, proposed; 9.0:1 */
+  --color-line: #d5d0cc;
+  --color-footer-text: #f8f5ef;
+  --color-footer-muted: #aaa39c;
+  --color-footer-divider: #403a35;
+  --color-cta: #262626;
+  --color-focus: #1f6feb; /* focus ring, deliberately not red */
+
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+}
+
+/* A visible focus ring on everything focusable (WCAG 2.2 AA). Never remove it. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+body { font-size: 16px; line-height: 1.625; }
+.page-width { width: calc(100% - 48px); max-width: 1280px; margin-inline: auto; }
+.section-space { padding-block: 48px; }
+.section-stack { display: flex; flex-direction: column; gap: 24px; }
+.section-heading { font-size: 36px; font-weight: 800; line-height: 42px; }
+.body-large { color: var(--color-grey); font-size: 18px; line-height: 28px; }
+.eyebrow { color: var(--color-red); font-size: 12px; font-weight: 600; line-height: 18px; text-transform: uppercase; }
+.gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 15px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms; }
+.gs-button-primary { color: var(--color-white); background: var(--color-red); }
+.gs-button-primary:hover { background: var(--color-red-dark); }
+.gs-button-secondary { color: var(--color-charcoal); border-color: currentColor; background: var(--color-white); }
+.gs-button-secondary:hover { color: var(--color-white); background: var(--color-charcoal); }
+.text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; }
+.text-link:hover, .post-grid a:hover { text-decoration: underline; }
+.section-action { align-self: stretch; }
+.site-header { color: var(--color-white); background: var(--color-charcoal); }
+.header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; padding-block: 12px; }
+.header-logo { width: 100px; height: 47px; object-fit: contain; }
+.header-inner nav { grid-column: 1 / -1; }
+.header-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.header-nav a { display: flex; min-height: 44px; align-items: center; font-size: 15px; font-weight: 600; line-height: 22px; }
+.header-nav a:hover, .header-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 8px; }
+.skip-link { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+.skip-link:focus { top: 8px; left: 8px; z-index: 10; width: auto; height: auto; padding: 12px 20px; color: var(--color-charcoal); background: var(--color-white); clip-path: none; }
+.home-hero { color: var(--color-white); background: var(--color-charcoal); }
+.hero-inner { display: flex; flex-direction: column; gap: 24px; padding-block: 48px; }
+.hero-photo-note { font-size: 12px; font-weight: 600; line-height: 18px; }
+.hero-copy { display: flex; flex-direction: column; gap: 24px; }
+.hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
+.hero-copy > p { max-width: 560px; }
+.hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
+.benefit-grid, .post-grid, .testimonial-grid { display: grid; gap: 24px; }
+.benefit-card { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; background: var(--color-white); }
+.home h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
+.coach-row, .together-row, .location-row { display: grid; align-items: center; gap: 24px; }
+.coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
+.placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
+.placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
+.placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
+.coach-photo { min-height: 300px; }
+.gym-photo { min-height: 260px; }
+.section-title-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+.post-photo { width: 100%; height: 220px; object-fit: cover; }
+.post-date { margin-block: 12px; font-size: 12px; font-weight: 600; color: var(--color-red); }
+.post-grid h3 { margin-bottom: 12px; }
+.video-placeholder { min-height: 180px; background: var(--color-white); }
+.location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
+.location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
+.map-link { display: block; min-width: 0; }
+.map-placeholder { min-height: 220px; }
+.memberships-section { display: flex; flex-direction: column; gap: 24px; padding-block: 48px 24px; }
+.membership-intro { display: flex; flex-direction: column; gap: 8px; }
+.membership-intro .eyebrow { font-size: 15px; line-height: 22px; }
+.membership-grid { display: grid; gap: 24px; }
+.membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 24px; border: 1px solid var(--color-line); background: var(--color-white); }
+.membership-card h3, .day-pass h3 { margin-bottom: 16px; }
+.membership-price { margin-bottom: 16px; font-size: 24px; font-weight: 700; line-height: 32px; color: var(--color-red); }
+.membership-card > .text-grey { white-space: normal; }
+.membership-cta { color: var(--color-white); background: var(--color-cta); }
+.membership-cta .gs-button { align-self: stretch; }
+.membership-cta .cta-note { font-size: 13px; color: var(--color-muted-on-dark); }
+.site-footer { color: var(--color-footer-text); background: var(--color-charcoal); }
+.footer-inner { display: flex; flex-direction: column; gap: 32px; padding-block: 24px; }
+.footer-brand { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.footer-logo { width: 100px; height: auto; }
+.footer-brand .gs-button { min-width: 152px; }
+.footer-invitation { display: grid; gap: 32px; }
+.footer-statement { font-size: clamp(36px, 12.3vw, 48px); font-weight: 800; line-height: 1.04; }
+.brand-underline { display: block; margin-top: 24px; width: 64px; height: 5px; background: var(--color-red); }
+.footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
+.footer-nav a { display: flex; min-height: 58px; align-items: center; justify-content: center; padding: 15px 12px; font-size: 20px; font-weight: 700; line-height: 28px; }
+.footer-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.footer-details { display: grid; gap: 24px; padding-block: 32px; border-block: 1px solid var(--color-footer-divider); }
+.footer-details h2 { margin-bottom: 8px; font-size: 15px; font-weight: 600; line-height: 22px; }
+.footer-details p, .footer-details address { color: var(--color-footer-muted); font-style: normal; }
+.footer-contact-link { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; font-weight: 600; }
+.footer-contact-link:hover, .footer-socials a:hover, .footer-legal a:hover { text-decoration: underline; }
+.footer-socials { display: flex; gap: 16px; }
+.footer-socials a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; }
+.footer-legal { display: flex; flex-direction: column; gap: 16px; font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-footer-muted); }
+.footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
+#the-gym, #memberships { scroll-margin-top: 24px; }
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .benefit-grid, .post-grid, .testimonial-grid, .membership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 960px) {
+  .page-width { width: calc(100% - 160px); }
+  .section-space { padding-block: 72px; }
+  .section-heading { font-weight: 700; line-height: 44px; }
+  .section-action { align-self: flex-start; }
+  .site-header { border-bottom: 2px solid var(--color-red); }
+  .header-inner { display: flex; justify-content: space-between; gap: 32px; padding-block: 7px; }
+  .header-logo { width: 120px; height: 56px; }
+  .header-inner nav { order: 1; }
+  .header-join { order: 2; min-height: 48px; padding-block: 12px; }
+  .header-nav { display: flex; gap: 36px; }
+  .header-nav a { font-weight: 500; }
+  .home-hero { background: linear-gradient(110deg, #1a1410, #0d0b09); border-top: 3px solid var(--color-red); }
+  .hero-inner { position: relative; min-height: 897px; justify-content: flex-end; padding-block: 80px 96px; }
+  .hero-copy { gap: 32px; }
+  .hero-copy h1 { font-size: 68px; line-height: 1.05; }
+  .hero-copy > p { font-size: 18px; line-height: 1.6; color: #d4d4d4; }
+  .hero-photo-note { position: absolute; top: 180px; right: 0; max-width: 48%; padding: 24px 32px; border: 1px dashed var(--color-footer-muted); color: var(--color-footer-muted); text-align: center; }
+  .hero-actions, .coach-actions { flex-direction: row; flex-wrap: wrap; }
+  .hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
+  .hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }
+  .benefit-grid, .post-grid, .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
+  .coach-copy { align-items: flex-start; }
+  .coach-photo { min-height: 430px; }
+  .together-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
+  .gym-photo { min-height: 380px; }
+  .post-photo { height: 240px; }
+  .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
+  .location-information { align-items: flex-start; }
+  .map-placeholder { min-height: 340px; }
+  .memberships-section { padding-block: 72px 32px; }
+  .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .membership-card { min-height: 276px; }
+  .membership-cta .section-stack { align-items: center; text-align: center; }
+  .membership-cta .gs-button { align-self: center; }
+  .site-footer { border-top: 2px solid var(--color-red); }
+  .footer-inner { gap: 48px; padding-block: 48px 32px; }
+  .footer-logo { width: 120px; }
+  .footer-brand .gs-button { min-width: 210px; }
+  .footer-invitation { grid-template-columns: minmax(0, 872fr) minmax(0, 360fr); gap: 48px; }
+  .footer-statement { font-size: clamp(48px, 7.22vw, 104px); line-height: 1; }
+  .brand-underline { width: 96px; }
+  .footer-invitation nav { padding-left: 32px; border-left: 1px solid var(--color-footer-divider); }
+  .footer-nav { display: flex; flex-direction: column; gap: 8px; }
+  .footer-nav a { justify-content: flex-start; min-height: 48px; padding: 0; font-size: 28px; line-height: 36px; }
+  .footer-details { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; padding-block: 48px; }
+  .footer-legal { flex-direction: row; align-items: center; justify-content: space-between; }
 }

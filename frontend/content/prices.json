@@ -2,9 +2,37 @@
   "currency": "NZD",
   "confirmedWithClient": null,
   "plans": [
-    { "id": "coaching", "name": "Coaching", "price": null, "period": null },
-    { "id": "standard-12-month", "name": "Standard (12 month minimum term)", "price": null, "period": null },
-    { "id": "standard-flexible", "name": "Standard (flexible term)", "price": null, "period": null },
-    { "id": "sub-juniors-students-12-month", "name": "Sub-juniors and undergraduate students (12 month minimum term)", "price": null, "period": null }
-  ]
+    {
+      "id": "standard-12-month",
+      "name": "Standard",
+      "price": null,
+      "period": null,
+      "details": []
+    },
+    {
+      "id": "standard-flexible",
+      "name": "Flexible",
+      "price": null,
+      "period": null,
+      "details": []
+    },
+    {
+      "id": "coaching",
+      "name": "Coaching",
+      "price": null,
+      "period": null,
+      "details": []
+    },
+    {
+      "id": "sub-juniors-students-12-month",
+      "name": "Student / sub-junior",
+      "price": null,
+      "period": null,
+      "details": []
+    }
+  ],
+  "dayPass": {
+    "price": null,
+    "howToBuy": null
+  }
 }

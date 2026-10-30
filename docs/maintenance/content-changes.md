@@ -25,7 +25,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
-| Prices | `prices.sample.json`, labelled "Sample prices — preview only" | `prices.json` |
+| Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
 | Draft posts | shown, marked "Draft (preview only)" | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
@@ -81,8 +81,21 @@ Use only the words and facts the client sent. Don't fill gaps; ask them.
 3. Don't rename a plan's `id`. Plan names come from the client's sign-up form (GS-8), so
    change a `name` only if the client has changed it there too.
 4. Update `confirmedWithClient` to the date the client confirmed the new price (next section).
-5. Keep `prices.sample.json` in the same shape if you add or remove a plan. Its numbers stay
-   obvious placeholders.
+5. Each plan's `details` is a list of display lines for billing, minimum term, fees and
+   inclusions. Keep facts in this file rather than in the card component. `dayPass` holds
+   a positive `price` (or `null`) and `howToBuy` text (or `null`).
+6. Keep `prices.sample.json` in the same shape. Its current numbers are the unconfirmed
+   observations recorded in Figma on 2026-10-12, displayed only in labelled previews.
+   They are not client approval and must not be copied into production without confirmation.
+
+## Update Home and shared details
+
+Edit `frontend/content/site.json` for the address, separate access/viewing hours, shared
+Join destination, navigation, approved social links and Home's introductory/benefit copy.
+Use only the current gym's confirmed external destinations; a null social URL is omitted.
+Missing coach, photograph, map and video-testimonial content stays labelled in preview
+and is hidden in production. The supplied Figma logo is stored locally in
+`frontend/public/images/brand/`; confirm current-owner usage rights before launch.
 
 ## Confirm prices before launch
 
@@ -102,6 +115,7 @@ records, **not in this repo**, which is public.
 ```sh
 docker compose up                                  # http://localhost:3000/blog/
 docker compose run --rm frontend npm run lint
+docker compose run --rm frontend node --experimental-strip-types lib/content.test.mjs
 docker compose run --rm frontend npm run build     # preview build into frontend/out/
 ```
 

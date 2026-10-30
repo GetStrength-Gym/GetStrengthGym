@@ -208,6 +208,7 @@ export type Plan = {
   name: string;
   price: number | null;
   period: string | null;
+  details: string[];
 };
 
 export type Prices = {
@@ -215,6 +216,7 @@ export type Prices = {
   confirmedWithClient: string | null; // YYYY-MM-DD the client confirmed, or null
   sample: boolean;
   plans: Plan[];
+  dayPass: { price: number | null; howToBuy: string | null };
 };
 
 function readPricesFile(filename: string): Prices {
@@ -226,7 +228,7 @@ function readPricesFile(filename: string): Prices {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans"]);
+  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans", "dayPass"]);
 
   const currency = requireString(file, data, "currency");
 
@@ -246,7 +248,7 @@ function readPricesFile(filename: string): Prices {
   const plans = data.plans.map((plan: unknown, i: number): Plan => {
     const where = `plans[${i}]`;
     if (!isObject(plan)) fail(file, `"${where}" must be an object`);
-    rejectUnknownFields(`${file} ${where}`, plan, ["id", "name", "price", "period"]);
+    rejectUnknownFields(`${file} ${where}`, plan, ["id", "name", "price", "period", "details"]);
 
     const id = requireString(file, plan, "id", `${where}.id`);
     if (!SLUG.test(id)) fail(file, `"${where}.id" must be lower-case words separated by hyphens`);
@@ -263,10 +265,21 @@ function readPricesFile(filename: string): Prices {
     if (!(period === null || (typeof period === "string" && period.trim() !== ""))) {
       fail(file, `"${where}.period" must be null or text such as "week" or "month"`);
     }
-    return { id, name, price, period };
+    const details = plan.details;
+    if (!Array.isArray(details) || !details.every(detail => typeof detail === "string" && detail.trim() !== "")) {
+      fail(file, `"${where}.details" must be a list of non-empty text`);
+    }
+    return { id, name, price, period, details };
   });
 
-  return { currency, confirmedWithClient: confirmed, sample: data.sample === true, plans };
+  if (!isObject(data.dayPass)) fail(file, '"dayPass" must be an object');
+  rejectUnknownFields(file + " dayPass", data.dayPass, ["price", "howToBuy"]);
+  const dayPassPrice = data.dayPass.price;
+  if (!(dayPassPrice === null || (typeof dayPassPrice === "number" && Number.isFinite(dayPassPrice) && dayPassPrice > 0))) {
+    fail(file, '"dayPass.price" must be null or a positive number');
+  }
+  const dayPass = { price: dayPassPrice, howToBuy: optionalString(file + " dayPass", data.dayPass, "howToBuy") };
+  return { currency, confirmedWithClient: confirmed, sample: data.sample === true, plans, dayPass };
 }
 
 /**
@@ -296,4 +309,142 @@ export function getPrices(): Prices {
   const sample = readPricesFile("prices.sample.json");
   if (!sample.sample) fail("content/prices.sample.json", `"sample" must be true`);
   return sample;
+}
+
+// ---------------------------------------------------------------------------
+// Site facts (header, footer, Join button)
+// ---------------------------------------------------------------------------
+
+export type NavLink = { label: string; href: string };
+export type OutboundLink = { label: string; service: string; url: string };
+
+export type Site = {
+  name: string;
+  address: { street: string; locality: string };
+  memberAccessHours: string | null; // null until the client confirms
+  staffedHours: string | null;
+  joinUrl: string;
+  privacyPolicyUrl: string | null;
+  nav: NavLink[];
+  outboundLinks: OutboundLink[]; // links whose URL is still null are left out
+  home: {
+    introduction: string;
+    whyIntroduction: string;
+    benefits: { title: string; description: string }[];
+    togetherIntroduction: string;
+  };
+};
+
+const SITE_FIELDS = [
+  "name",
+  "address",
+  "memberAccessHours",
+  "staffedHours",
+  "joinUrl",
+  "privacyPolicyUrl",
+  "nav",
+  "outboundLinks",
+  "home",
+];
+
+function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
+  const value = data[field];
+  if (!(value === null || (typeof value === "string" && value.trim() !== ""))) {
+    fail(file, `"${field}" must be null or non-empty text`);
+  }
+  return value;
+}
+
+function requireUrl(file: string, value: unknown, label: string): string {
+  if (typeof value !== "string" || !value.startsWith("https://")) {
+    fail(file, `"${label}" must be a full address starting with https://`);
+  }
+  return value;
+}
+
+/** Facts shown on every page: content/site.json. */
+export function getSite(): Site {
+  const file = "content/site.json";
+  let data: unknown;
+  try {
+    data = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, "site.json"), "utf8"));
+  } catch (err) {
+    fail(file, `could not read as JSON (${(err as Error).message})`);
+  }
+  if (!isObject(data)) fail(file, "must be a JSON object");
+  rejectUnknownFields(file, data, SITE_FIELDS);
+
+  const name = requireString(file, data, "name");
+
+  if (!isObject(data.address)) fail(file, `"address" must be an object with "street" and "locality"`);
+  rejectUnknownFields(`${file} address`, data.address, ["street", "locality"]);
+  const address = {
+    street: requireString(file, data.address, "street", "address.street"),
+    locality: requireString(file, data.address, "locality", "address.locality"),
+  };
+
+  const memberAccessHours = optionalString(file, data, "memberAccessHours");
+  const staffedHours = optionalString(file, data, "staffedHours");
+  const joinUrl = requireUrl(file, data.joinUrl, "joinUrl");
+  const privacy = data.privacyPolicyUrl;
+  if (!(privacy === null || (typeof privacy === "string" && /^(\/|https:\/\/)/.test(privacy)))) {
+    fail(file, `"privacyPolicyUrl" must be null, a page such as /privacy/, or an https:// address`);
+  }
+  const privacyPolicyUrl = privacy;
+
+  if (!Array.isArray(data.nav) || data.nav.length === 0) fail(file, `"nav" must be a non-empty list`);
+  const nav = data.nav.map((link: unknown, i: number): NavLink => {
+    const where = `nav[${i}]`;
+    if (!isObject(link)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, link, ["label", "href"]);
+    const href = requireString(file, link, "href", `${where}.href`);
+    // Internal pages only, with the trailing slash S3 + CloudFront need (ADR-005, ADR-007).
+    if (!href.startsWith("/") || !href.endsWith("/")) {
+      fail(file, `"${where}.href" must start and end with /, e.g. /about/`);
+    }
+    return { label: requireString(file, link, "label", `${where}.label`), href };
+  });
+
+  if (!Array.isArray(data.outboundLinks)) fail(file, `"outboundLinks" must be a list`);
+  const outboundLinks = data.outboundLinks.flatMap((link: unknown, i: number): OutboundLink[] => {
+    const where = `outboundLinks[${i}]`;
+    if (!isObject(link)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, link, ["label", "service", "url"]);
+    const label = requireString(file, link, "label", `${where}.label`);
+    const service = requireString(file, link, "service", `${where}.service`);
+    // A null URL is a link we don't have yet. Leave it out rather than ship a dead link.
+    if (link.url === null) return [];
+    return [{ label, service, url: requireUrl(file, link.url, `${where}.url`) }];
+  });
+
+  if (!isObject(data.home)) fail(file, '"home" must be an object');
+  rejectUnknownFields(file + " home", data.home, ["introduction", "whyIntroduction", "benefits", "togetherIntroduction"]);
+  const benefits = data.home.benefits;
+  if (!Array.isArray(benefits) || benefits.length === 0) fail(file, '"home.benefits" must be a non-empty list');
+  const home = {
+    introduction: requireString(file, data.home, "introduction", "home.introduction"),
+    whyIntroduction: requireString(file, data.home, "whyIntroduction", "home.whyIntroduction"),
+    togetherIntroduction: requireString(file, data.home, "togetherIntroduction", "home.togetherIntroduction"),
+    benefits: benefits.map((benefit: unknown, i: number) => {
+      const where = "home.benefits[" + i + "]";
+      if (!isObject(benefit)) fail(file, where + " must be an object");
+      rejectUnknownFields(file + " " + where, benefit, ["title", "description"]);
+      return {
+        title: requireString(file, benefit, "title", where + ".title"),
+        description: requireString(file, benefit, "description", where + ".description"),
+      };
+    }),
+  };
+
+  return {
+    name,
+    address,
+    memberAccessHours,
+    staffedHours,
+    joinUrl,
+    privacyPolicyUrl,
+    nav,
+    outboundLinks,
+    home,
+  };
 }
