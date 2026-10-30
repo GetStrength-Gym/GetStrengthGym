@@ -28,6 +28,8 @@ try {
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Blog', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
+  assert.equal(getSite().phone, null);
+  assert.equal(getSite().email, null);
 
   const prices = read('prices.json');
   write('prices.json', { ...prices, plans: [{ ...prices.plans[0], details: [42] }] });
