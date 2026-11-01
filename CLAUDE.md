@@ -7,9 +7,10 @@ site was lost (no admin or hosting access) and is being abandoned, not migrated.
 (PR #1, 2026-10-10); no site pages are built yet. Dependabot security updates are on.
 
 Design update 2026-10-28: use the user's GetStrength MVP and
-`docs/design/five-page-journey.md`. Four primary pages: Home (also The Gym), About Us,
-Blog, Contact. Blog is low priority. Decisions are recorded in
-`docs/meetings/2026-10-28-design-reconciliation.md`; GS-15 has the partial implementation.
+`docs/design/five-page-journey.md`. Three primary pages: Home (also The Gym), About Us,
+Contact. Decisions are recorded in `docs/meetings/2026-10-28-design-reconciliation.md`;
+GS-15 has the partial implementation. **No blog:** removed 2026-11-01 per
+`docs/meetings/2026-10-18-website-launch-feature-review.md`; its replacement is open.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
@@ -59,9 +60,10 @@ Read the ADRs; this is a summary, not the decision.
   OAC plus a **CloudFront Function** that maps `/x/` to `/x/index.html` (a default root object
   only covers `/`), and 403 → `/404.html`. Switching DNS to Route 53 is the email hazard —
   rebuild MX, SPF, DKIM and DMARC first. The preview needs none of the DNS work.
-- **ADR-006 (accepted):** content as files — posts in `frontend/content/blog/*.md`, prices in
-  `frontend/content/prices.json`, validated at build time. **`SITE_ENV=production` is required for
-  production builds**; anything else is a preview build with sample prices and drafts.
+- **ADR-006 (accepted):** content as files — prices in `frontend/content/prices.json`, site
+  details in `frontend/content/site.json`, validated at build time (its blog-post parts are
+  unused since the blog was removed). **`SITE_ENV=production` is required for production
+  builds**; anything else is a preview build with sample prices and labelled placeholders.
 - **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.
   No server runtime. Needs `trailingSlash: true` for clean URLs on S3/CloudFront, and
   `next/image` needs `unoptimized: true` or a custom loader — there is no optimizer at runtime.

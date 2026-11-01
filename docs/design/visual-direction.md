@@ -188,7 +188,7 @@ Per ADR-003 the site is maintained by our team and must be handed on to any web 
 **Show:**
 
 1. Home (including memberships/location), About Us and Contact at phone/desktop widths.
-   Blog keeps the shared shell and a basic newest-first list; enhanced styling is deferred.
+   There is no blog (removed per the 2026-10-18 meeting); post-card and article styles below are unused.
 2. The Join path clicked end to end, including the broken banner on the Debitsuccess form.
 3. The four-page navigation and Home membership section; these decisions are resolved.
    Remove Facebook and use Instagram plus confirmed current-gym YouTube only.

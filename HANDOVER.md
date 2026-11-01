@@ -3,8 +3,9 @@
 **Design reconciliation as at 2026-10-28.** Use the user's GetStrength MVP and
 `docs/design/five-page-journey.md`. Decisions and evidence are in
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
-About Us, Blog, Contact. Keep video testimonial placeholders, a minimal blog and no
-Facebook. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
+About Us, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
+removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
+what replaces it is still open (brief Q14). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
 **Next:** implement the reconciled design on GS-15. Preserve main's image validation,
 CloudFront routing and production price-confirmation guard. Remaining infrastructure and
@@ -27,11 +28,11 @@ Do not infer a current AWS-account blocker or approval from that older snapshot.
 | Status | Quote accepted verbally; signature not yet obtained |
 
 ## What we're building
-Four primary pages: Home, About Us, Blog, Contact. Home includes gym/location information,
+Three primary pages: Home, About Us, Contact. Home includes gym/location information,
 four membership cards and a day-pass block, followed by the existing Join CTA; no separate
 Gym page or per-plan buttons. Header/footer Join actions remain. Prices and terms still
 need client confirmation. Video testimonials retain preview placeholders until supplied.
-Blog keeps the basic newest-first list and article routes, with enhanced features deferred.
+There is no blog; its replacement (photo album or photo drive) is not yet agreed.
 
 The site is gym-only: no merch, harness, Record Board or Amazon links. Instagram is
 `https://www.instagram.com/getstrengthgym/`; Facebook is removed and YouTube requires a
@@ -138,6 +139,6 @@ emails and every Drive link, and refuses to push if any leak through.
 ## Unresolved client decisions
 - **D1** Is the old WooCommerce store still taking orders? (retires ~10 pages if dead)
 - **D2** Old forum, 1,758 replies — keep, archive read-only, or retire?
-- **D3** Old blog, 323 articles — migrate all, the best, or start fresh? *(quote assumes fresh)*
+- **D3 — resolved 2026-10-18:** no blog on the new site, so no old articles are migrated.
 - **D4 — resolved:** no product/affiliate links in the gym-only site (PR #7 approval,
   2026-10-26).

@@ -7,6 +7,11 @@ GetStrength MVP. Video testimonials remain, Facebook is removed and Blog is low 
 See `docs/meetings/2026-10-28-design-reconciliation.md` for the decision record. Quote
 amounts and payment terms are unchanged.
 
+**Blog removed 1 November 2026:** as agreed at the 18 October 2026 meeting, the site has no
+blog. What replaces it (for example a photo album) is still to be agreed. See
+`docs/meetings/2026-10-18-website-launch-feature-review.md`. Quote amounts and payment terms
+are unchanged.
+
 Please read this and tell us anything that looks wrong or missing. Once you're happy, we'll sign it and start building.
 
 ---
@@ -14,7 +19,7 @@ Please read this and tell us anything that looks wrong or missing. Once you're h
 ## The short version
 
 - We're building a **new, simple website** for GetStrength.
-- It covers the **gym, the blog, and your story**. Nothing else.
+- It covers the **gym and your story**. Nothing else.
 - **Membership signup stays on Debit Success.** This gym-only site has no product-sales links.
 - **Total price: $1,500, all included.** About **5 weeks** from when we start.
 - You'll see it as we build it, with a **catch-up every two weeks**. Your feedback is included.
@@ -33,13 +38,12 @@ Your gym email address will keep working. We'll take care of that during the swi
 
 ## What the new website will have
 
-Four pages, in this order. Home serves as The Gym:
+Three pages, in this order. Home serves as The Gym:
 
 | Page | What's on it |
 |---|---|
 | **Home** | The Penrose gym, video testimonials, location/map, access and viewing hours once confirmed, four membership cards and a casual-day-pass block, and a clear way to join |
 | **About Us** | The current gym's story, confirmed coaches/services and gym gallery |
-| **Blog** | Basic newest-first articles; low priority, with enhanced search/filter/pagination work deferred |
 | **Contact** | Address, email, and a form people can fill in |
 
 The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
@@ -58,7 +62,7 @@ ownership and exact destination are confirmed. Facebook is removed. No Merch Sto
 Front Squat Harness, Record Board or Amazon links are included.
 
 **The gym comes first:** practical visit and membership information live on Home.
-Article and privacy pages are supporting routes outside the four-item primary navigation.
+The privacy page is a supporting route outside the three-item primary navigation.
 
 ---
 
@@ -83,7 +87,7 @@ Nobody could work out how the old site was put together or where to log in — t
 - **Everything is in your name.** The hosting, the domain and every login belong to GetStrength. We're just given access.
 - **One page listing every login**, kept by you — not in someone's head.
 - **A simple guide for getting changes made.** Who to email, what to send us, and what
-  happens next — for a new blog article, a price change, or swapping a photo.
+  happens next — for a price change, new wording, or swapping a photo.
 - **A written handover for any future developer**, so the site can be picked up by
   someone else without us. The old site was lost because nobody had this.
 - **Built with common, standard tools**, so any web developer could pick it up later — not just us.
@@ -133,13 +137,13 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 
 ## Three things for you to decide
 
-**1. The old blog articles.** There are around 300 on the old site. We can copy them across, copy just the best ones, or start fresh. Copying them all costs more but keeps the visitors who currently find you through Google.
+**1. The old blog articles.** ✅ **Decided 18 October 2026 — no blog on the new site**, so none are copied across. What replaces the blog section is still to be agreed.
 
 **2. The old members' forum.** There are about 1,700 posts on it. Do you want to keep it, put it somewhere as a read-only archive, or let it go?
 
 **3. Who updates the site afterwards.** ✅ **Decided — we handle it.** You told us the gym's
 staff don't want to be editing the website themselves, so we're not building an editor into
-it. You email us what you want changed — an article, a price, a photo — and we make the
+it. You email us what you want changed — some wording, a price, a photo — and we make the
 change. This is simpler and cheaper to build, and it's why the guide above is about
 requesting changes rather than making them yourself.
 
@@ -170,7 +174,7 @@ Any of these can be quoted separately later:
 |---|---|
 | Planning and meetings with you | $170 |
 | Designing how the site looks | $250 |
-| Building the four-page site, including Home gym/membership content and the basic blog | $560 |
+| Building the three-page site, including Home gym/membership content | $560 |
 | Contact form and links to your other pages | $70 |
 | Moving getstrength.com across, keeping your email working | $80 |
 | Testing on phones and computers, and checking Google can find you | $170 |

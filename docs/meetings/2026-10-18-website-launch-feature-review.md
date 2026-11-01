@@ -84,7 +84,8 @@ blog. It was written without this meeting's decision. D1 here supersedes it, per
 ## Promoted to
 - D1 → `docs/requirements.md` (pages, scope and quote wording), `docs/design/five-page-journey.md`,
   `docs/design/README.md`, `docs/context/project-brief.md`, `HANDOVER.md`, `README.md`,
-  `CLAUDE.md`, maintenance runbooks and an amendment note on ADR-006. Code removed in PR #11 (GS-19).
+  `CLAUDE.md`, maintenance runbooks and the ADR index (ADR-006's blog parts now unused; the
+  ADR itself is unchanged). Code removed in PR #11 (GS-19).
 - D2 → not promoted; the GS-16 preview is live, and the cost check is A3.
 - D3 → already in `docs/requirements.md` ("Your privacy policy"); the website-specific point is A4.
 - D4 → not promoted; the photo checklist in `docs/requirements.md` still applies.
