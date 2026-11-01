@@ -7,16 +7,6 @@ export function directionsUrl(address: Site["address"]): string {
   return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(address.street + ", " + address.locality);
 }
 
-/** "2026-10-10" -> "10 October 2026". Dates are calendar days, so format in UTC. */
-export function formatDate(isoDate: string): string {
-  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString("en-NZ", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
-
 /** A plan's price as shown on the site. A null price never shows as blank or $0 (ADR-006). */
 export function formatPrice(plan: Pick<Plan, "price" | "period">, currency: string): string {
   if (plan.price === null) return "Contact us for pricing";
