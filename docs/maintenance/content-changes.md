@@ -145,8 +145,51 @@ Clean up afterwards with `docker compose run --rm frontend rm -rf out`.
 ## Deploy
 
 ADR-007 sets the deploy path: build, upload `frontend/out/` to S3, invalidate CloudFront.
-It's manual until a pipeline exists. The exact commands, bucket and distribution belong to
-GS-16 and aren't defined yet.
+The **preview** site deploys automatically (ADR-008). The **live** site is still manual.
+
+### Preview: automatic on merge
+
+How it works: when a PR that changes anything under `frontend/` merges to `main`, the GitHub
+Actions workflow `.github/workflows/deploy-preview.yml` ("Deploy preview") runs. It makes a
+plain preview build (no `SITE_ENV`, so sample prices and drafts show), uploads `frontend/out/`
+to the preview bucket with `--delete`, and invalidates the preview CloudFront distribution.
+AWS access is a short-lived OIDC session for a role that trusts `main` only; there are no AWS
+keys anywhere. Docs-only merges don't deploy. Deploys never overlap: a second merge waits for
+the first to finish.
+
+Check it: GitHub → **Actions** → **Deploy preview** → the latest run should be green. Then open
+the preview address (TODO(confirm): where the preview address is kept; not in this repo).
+
+**Re-run it with the manual button:** Actions → **Deploy preview** → **Run workflow** → branch
+`main` → **Run workflow**. This deploys the current `main`. Use it after a failure such as Google
+Fonts being unreachable (the build downloads the Inter font). Runs started from any other branch
+are skipped. Avoid **Re-run jobs** on an *old* run: it redeploys that old commit, and the next
+merge silently replaces it.
+
+**Roll back:** revert the bad PR on GitHub (the PR's **Revert** button), get the revert PR
+approved, and merge it. The workflow redeploys the previous state, and `--delete` removes any
+files the bad change added. There is no other "previous version" to restore.
+
+**Manual fallback** if Actions is unavailable. Needs the AWS CLI on your machine and AWS
+credentials for the preview bucket and distribution; how a person gets those (the deploy role
+trusts GitHub only): TODO(confirm). Run from the repo root on an up-to-date `main`:
+
+```sh
+docker compose run --rm frontend rm -rf out                 # start from a clean out/
+docker compose run --rm frontend npm run build              # preview build into frontend/out/
+aws s3 sync frontend/out/ s3://<preview-bucket-name> --delete
+aws cloudfront create-invalidation --distribution-id <preview-distribution-id> --paths "/*"
+```
+
+Replace the `<...>` placeholders with the values from the GitHub repository settings
+(variable `PREVIEW_BUCKET`, secret `CLOUDFRONT_DISTRIBUTION_ID`; TODO(confirm) where the team
+keeps a readable copy, since GitHub secrets can't be viewed). **Never commit the real values**:
+the repo is public.
+
+### Live site: manual
+
+Not automated, and not to be added to the preview workflow. A production pipeline needs its
+own workflow with an approval step (ADR-008).
 
 1. From an up-to-date `main`, make a production build:
 
@@ -159,9 +202,6 @@ GS-16 and aren't defined yet.
 3. **Invalidate CloudFront**, or visitors keep seeing the old pages. Command and distribution
    ID: TODO(confirm) in GS-16.
 4. Check the live page, then email the client that the change is live.
-
-The preview site uses the same steps with a plain (preview) build and the preview bucket:
-TODO(confirm) in GS-16.
 
 ## How blog URLs work on AWS
 
