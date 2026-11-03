@@ -123,14 +123,15 @@ Nothing below is in this repo, and none of the real values may be added to it.
    }
    ```
 
-   If the bucket uses SSE-KMS rather than the default S3-managed encryption, the role also
-   needs `kms:GenerateDataKey` on that key. TODO(confirm) which the preview bucket uses.
+   Confirmed on 2026-11-03 that the preview bucket uses default SSE-S3 (AES256) encryption, so
+   the role needs no KMS permissions. If the bucket is ever switched to SSE-KMS, the role also
+   needs `kms:GenerateDataKey` on that key.
 3. In GitHub, repository settings: add secrets `AWS_ROLE_ARN` and `CLOUDFRONT_DISTRIBUTION_ID`,
    and variable `PREVIEW_BUCKET` (bucket name only, no `s3://`).
 4. Run the workflow once with the manual button from `main` and check the preview address.
 
-The workflow assumes the AWS CLI region `ap-southeast-2`. TODO(confirm) that the preview bucket
-is in that region.
+The workflow uses region `ap-southeast-2`. Confirmed on 2026-11-03 that the preview bucket is in
+that region.
 
 ## Consequences
 
