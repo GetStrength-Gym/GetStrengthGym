@@ -10,7 +10,7 @@
 
 **Key Decisions**
 
-* **Membership Pricing:** Confirmed standard flexible coaching prices are $30 (with discounts for Australian students and Black members).
+* **Membership Pricing:** [Withheld 2026-11-08: the transcription garbled the prices and discount groups in this line. The verbatim text is kept in the team's private copy, not in this repo. See Q2 in the minutes.]
 
 * **Content Replacement:** The blog section will be replaced with a placeholder photo album or photo drive.
 

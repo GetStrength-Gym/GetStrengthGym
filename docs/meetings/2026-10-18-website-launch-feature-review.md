@@ -50,6 +50,8 @@ what replaces the blog.
 ## Decisions
 - **D1** — Remove the blog section from the site. Its replacement (photo album or photo
   drive) is still to be decided. (decided by: client and team; confirmed by Kevin 2026-11-01)
+  Johnson confirmed on 2026-11-08 that the removal was the client's decision, and that the
+  replacement will be agreed with the client at the same price.
 - **D2** — Deploy the site within a week and measure running costs over one to two weeks.
   (decided by: team)
 - **D3** — The site gets its own privacy or cookie policy. (decided by: client and team)
@@ -76,16 +78,16 @@ blog. It was written without this meeting's decision. D1 here supersedes it, per
 - **Q3** — Who is "Monarchy" in A4? (needs: team)
 
 ## Client-supplied facts
-- Pricing, **verbatim and not usable as stated**: "Confirmed standard flexible coaching
-  prices are $30 (with discounts for Australian students and Black members)". The gym is in
-  Auckland, so "Australian" and "Black members" are very likely mis-transcriptions. **Do not
-  publish or put into `prices.json` until the client confirms the figures in writing.**
+- Pricing: **withheld.** The summary records a price and two discount groups, but the
+  transcription garbled them, so the line is not usable and is not reproduced here. The
+  verbatim text is in the team's private copy. **Do not publish or put into `prices.json`
+  until the client confirms the figures in writing.**
 
 ## Promoted to
 - D1 → `docs/requirements.md` (pages, scope and quote wording), `docs/design/five-page-journey.md`,
   `docs/design/README.md`, `docs/context/project-brief.md`, `HANDOVER.md`, `README.md`,
-  `CLAUDE.md`, maintenance runbooks and the ADR index (ADR-006's blog parts now unused; the
-  ADR itself is unchanged). Code removed in PR #11 (GS-19).
+  `CLAUDE.md`, maintenance runbooks and the ADR index, plus a dated status note on ADR-006 (its
+  blog parts are unused; its decision text is unchanged). Code removed in PR #11 (GS-19).
 - D2 → not promoted; the GS-16 preview is live, and the cost check is A3.
 - D3 → already in `docs/requirements.md` ("Your privacy policy"); the website-specific point is A4.
 - D4 → not promoted; the photo checklist in `docs/requirements.md` still applies.

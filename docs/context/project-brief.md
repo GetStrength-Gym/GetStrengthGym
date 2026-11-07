@@ -95,11 +95,14 @@ contacts or account ownership without current-owner confirmation.
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
-  photo drive? Raised 2026-10-18 (A2); not decided. New work, so check scope before building.
+  photo drive? Raised 2026-10-18 (A2); not decided. It replaces the blog at the same price
+  (client's decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size.
 - **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
+- 2026-11-08 — Q14: the blog's replacement keeps the blog's price (client's decision,
+  confirmed by Johnson).
 - 2026-11-01 — Blog removed per the 2026-10-18 meeting (D1); three pages. Q3 resolved;
   Q14 (blog replacement) and Q15 (garbled prices) added.
 - 2026-10-28 — Figma migration reconciled: Penrose, four-page structure, memberships on

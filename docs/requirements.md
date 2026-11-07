@@ -8,7 +8,7 @@ See `docs/meetings/2026-10-28-design-reconciliation.md` for the decision record.
 amounts and payment terms are unchanged.
 
 **Blog removed 1 November 2026:** as agreed at the 18 October 2026 meeting, the site has no
-blog. What replaces it (for example a photo album) is still to be agreed. See
+blog. We'll agree a replacement with you (for example a photo album) at the same price. See
 `docs/meetings/2026-10-18-website-launch-feature-review.md`. Quote amounts and payment terms
 are unchanged.
 
@@ -137,7 +137,7 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 
 ## Three things for you to decide
 
-**1. The old blog articles.** ✅ **Decided 18 October 2026 — no blog on the new site**, so none are copied across. What replaces the blog section is still to be agreed.
+**1. The old blog articles.** ✅ **Decided 18 October 2026 — no blog on the new site**, so none are copied across. We'll agree what replaces the blog section with you, at the same price.
 
 **2. The old members' forum.** There are about 1,700 posts on it. Do you want to keep it, put it somewhere as a read-only archive, or let it go?
 
@@ -174,7 +174,7 @@ Any of these can be quoted separately later:
 |---|---|
 | Planning and meetings with you | $170 |
 | Designing how the site looks | $250 |
-| Building the three-page site, including Home gym/membership content | $560 |
+| Building the three-page site, including Home gym/membership content and the blog's replacement (to be agreed) | $560 |
 | Contact form and links to your other pages | $70 |
 | Moving getstrength.com across, keeping your email working | $80 |
 | Testing on phones and computers, and checking Google can find you | $170 |

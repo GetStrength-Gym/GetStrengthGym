@@ -1,6 +1,8 @@
 # ADR-006: Content as files read at build time; prices in one data file
 
-- **Status:** accepted
+- **Status:** accepted. **Blog parts unused since 2026-10-18:** the client removed the blog
+  (`docs/meetings/2026-10-18-website-launch-feature-review.md`, D1). The rest, including
+  prices in one data file, still applies.
 - **Date:** 2026-10-11
 - **Deciders:** Desmond Li, with Johnson Zhang (lead)
 - **Source:** GS-17, scope agreed with the lead. No meeting minutes.
