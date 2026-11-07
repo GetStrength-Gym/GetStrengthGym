@@ -13,8 +13,7 @@ All commands run from the repo root, through Docker.
 
 | What | File |
 |---|---|
-| Blog posts | `frontend/content/blog/<slug>.md` |
-| Blog images | `frontend/public/images/blog/` |
+| Address, hours, contact details, nav, social links, Home copy | `frontend/content/site.json` |
 | Membership prices (the only place prices live) | `frontend/content/prices.json` |
 | Sample prices for the preview site only | `frontend/content/prices.sample.json` |
 | Loader and validation | `frontend/lib/content.ts` |
@@ -26,52 +25,15 @@ The build mode comes from the `SITE_ENV` environment variable.
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
-| Draft posts | shown, marked "Draft (preview only)" | left out |
+| Unconfirmed content (coach, photos, map, phone, email, hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain
 `npm run build`. Never upload a build made without `SITE_ENV=production` to the live site,
-or the sample prices and draft posts go live with it.
+or the sample prices and placeholders go live with it.
 
-## Add a blog post
-
-1. Choose a slug: lower-case words separated by hyphens, e.g. `deadlift-basics`. It becomes
-   the address `/blog/deadlift-basics/`, so don't change it after publishing.
-2. Create `frontend/content/blog/<slug>.md`:
-
-   ```markdown
-   ---
-   title: "Post title"
-   date: "2026-10-11"
-   description: "One sentence for the blog list and search results."
-   image: "/images/blog/deadlift-basics.jpg"
-   imageAlt: "What the photo shows, in a short sentence"
-   draft: true
-   ---
-
-   Body text in Markdown. Use ## for headings, never #.
-   ```
-
-   | Field | Rules |
-   |---|---|
-   | `title` | Required, non-empty |
-   | `date` | Required, `YYYY-MM-DD`, **in quotes**. YAML silently rolls an unquoted `2026-02-30` over to 2 March, so the build rejects unquoted dates. |
-   | `description` | Required, non-empty |
-   | `image` | Optional. A path starting with `/`, pointing into `frontend/public/`. The build fails if the file doesn't exist there; names are case-sensitive |
-   | `imageAlt` | **Required when `image` is set**, and not allowed without it. A short description of what the image shows, used as its alt text for screen readers |
-   | `draft` | Optional, `true` or `false` (default `false`) |
-
-   Any other field fails the build, so a typo such as `drafts: true` can't publish a draft
-   by accident. Body headings start at `##`, because the title is the page's only `<h1>`.
-3. Images: **resize and compress before adding** (no image optimizer in a static export,
-   ADR-005), then put them in `frontend/public/images/blog/`. Target dimensions and file size:
-   TODO(confirm) with GS-25. Write `imageAlt` from what the photo actually shows; if you
-   can't tell who or what is in it, ask the client rather than guessing. Images in the body
-   need alt text too: `![What the photo shows](/images/blog/photo.jpg)`.
-4. Keep `draft: true` while the client reviews it on the preview. Remove it, or set it to
-   `false`, to publish.
-
-Use only the words and facts the client sent. Don't fill gaps; ask them.
+There is no blog: it was removed per the 2026-10-18 meeting. Use only the words and facts
+the client sent. Don't fill gaps; ask them.
 
 ## Change a price
 
@@ -90,7 +52,8 @@ Use only the words and facts the client sent. Don't fill gaps; ask them.
 
 ## Update Home and shared details
 
-Edit `frontend/content/site.json` for the address, separate access/viewing hours, shared
+Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
+Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
 Join destination, navigation, approved social links and Home's introductory/benefit copy.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Missing coach, photograph, map and video-testimonial content stays labelled in preview
@@ -113,7 +76,7 @@ records, **not in this repo**, which is public.
 ## Check it locally
 
 ```sh
-docker compose up                                  # http://localhost:3000/blog/
+docker compose up                                  # http://localhost:3000/
 docker compose run --rm frontend npm run lint
 docker compose run --rm frontend node --experimental-strip-types lib/content.test.mjs
 docker compose run --rm frontend npm run build     # preview build into frontend/out/
@@ -122,13 +85,8 @@ docker compose run --rm frontend npm run build     # preview build into frontend
 Invalid content fails the build with the file and field, for example:
 
 ```
-content/blog/deadlift-basics.md: "date" must be YYYY-MM-DD
+content/prices.json: "confirmedWithClient" must be null or YYYY-MM-DD
 ```
-
-**A production build with no published posts is fine.** `/blog/` says "No posts yet." Next.js
-static export can't build a route with no pages, so the build emits one placeholder,
-`blog/_no-posts/`. It shows the 404 page, is marked `noindex` and is never linked
-(ADR-006). It disappears once a post is published.
 
 Clean up afterwards with `docker compose run --rm frontend rm -rf out`.
 
@@ -203,15 +161,13 @@ own workflow with an approval step (ADR-008).
    ID: TODO(confirm) in GS-16.
 4. Check the live page, then email the client that the change is live.
 
-## How blog URLs work on AWS
+## How page URLs work on AWS
 
-- Pages export as `blog/<slug>/index.html` (`trailingSlash: true`). The S3 bucket is private
-  behind OAC and doesn't resolve directory indexes, so `/blog/<slug>/` works only because of
-  the **GS-16 CloudFront Function**, which maps `/x/` to `/x/index.html` (ADR-007).
+- Pages export as `<page>/index.html` (`trailingSlash: true`), e.g. `about/index.html`. The
+  S3 bucket is private behind OAC and doesn't resolve directory indexes, so `/about/` works
+  only because of the **GS-16 CloudFront Function**, which maps `/x/` to `/x/index.html` (ADR-007).
 - The function's code is `frontend/cloudfront/viewer-request.js`. Test it with
   `docker compose run --rm frontend node cloudfront/viewer-request.test.mjs`.
-- Only slugs that exist at build time are generated (`dynamicParams = false`). An unknown slug
-  has no object in S3, S3 returns 403, and CloudFront's **403 → `/404.html`** mapping shows
-  the 404 page (ADR-007).
-- Renaming or deleting a post therefore breaks its old URL. Redirects:
-  TODO(confirm), not in scope for GS-17.
+- A page that doesn't exist has no object in S3, S3 returns 403, and CloudFront's
+  **403 → `/404.html`** mapping shows the 404 page (ADR-007). Since the blog was removed,
+  `/blog/` is one of these.

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 // The 404 page: exported as out/404.html, which CloudFront serves for missing pages
-// (ADR-007). Also rendered by blog/_no-posts/ when there are no posts (ADR-006).
-// Unstyled on purpose; styling is GS-25.
+// (ADR-007). Unstyled on purpose; styling is GS-25.
 export const metadata: Metadata = {
   title: "Page not found",
 };

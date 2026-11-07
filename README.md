@@ -3,7 +3,7 @@
 Static website for GetStrength Gym, Penrose. Decisions live in `docs/context/decisions/`.
 Current page/layout scope follows the user's GetStrength MVP and
 [`docs/design/five-page-journey.md`](docs/design/five-page-journey.md): Home serves as The
-Gym, followed by About Us, Blog and Contact. Blog is low priority.
+Gym, followed by About Us and Contact. There is no blog (removed per the 2026-10-18 meeting).
 
 ## Stack
 - **Next.js with static export** (ADR-005): `npm run build` produces plain files in `frontend/out/`
@@ -28,8 +28,8 @@ The first run takes a few minutes.
 `docker compose run --rm frontend npm run build` writes the static site to `frontend/out/`.
 
 ## Content
-Blog posts and prices are files in `frontend/content/`, read at build time (ADR-006).
-A build is a **preview** build (sample prices, draft posts) unless `SITE_ENV=production` is
+Site details and prices are JSON files in `frontend/content/`, read at build time (ADR-006).
+A build is a **preview** build (sample prices, labelled placeholders) unless `SITE_ENV=production` is
 set: `docker compose run --rm -e SITE_ENV=production frontend npm run build`. Never deploy a
 preview build to the live site.
 - [Developer runbook for content changes](docs/maintenance/content-changes.md)

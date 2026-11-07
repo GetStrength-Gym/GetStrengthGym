@@ -7,7 +7,7 @@ GetStrength MVP and confirmed decisions; see `../meetings/2026-10-28-design-reco
 
 | Document | What it is |
 |---|---|
-| [`five-page-journey.md`](five-page-journey.md) | **Current four-page design.** Home serves as The Gym; nav is Home, About Us, Blog, Contact. Covers memberships, joining, content gates and intentional deviations from Figma. Existing filename retained for implementation references. |
+| [`five-page-journey.md`](five-page-journey.md) | **Current three-page design.** Home serves as The Gym; nav is Home, About Us, Contact (blog removed per the 2026-10-18 meeting). Covers memberships, joining, content gates and intentional deviations from Figma. Existing filename retained for implementation references. |
 | [`visual-direction.md`](visual-direction.md) | The look and feel from the Figma file: colour and type tokens, contrast checks, components, and what to show and ask at the week-2 review. GS-14. |
 
 ## Direction
@@ -34,7 +34,8 @@ Sites the client likes, and specifically *what* they like about each (not just t
 - **GetStrength MVP** (the user's current file; canonical link held with the project):
   Home, About Us, Blog, Contact and article template at 1440/390, plus components,
   colour scheme and review notes. **Home is The Gym**; no separate Gym frame is needed.
-- Confirmed deviations: video testimonials, no Facebook and a minimal blog. Missing assets
+- Confirmed deviations: video testimonials, no Facebook, and no blog (its Figma frames
+  are not built; 2026-10-18 meeting). Missing assets
   stay labelled in preview; no invented gym facts or approved prices.
 - *GetStrength MVP – Low-Fi Wireframes* (`031LOpSNuRceNYL3J45RTC`) is an earlier copy that
   still has the Front Squat Harness band. **Superseded; don't build from it.**
