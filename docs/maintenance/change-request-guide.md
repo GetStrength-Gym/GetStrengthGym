@@ -14,20 +14,9 @@ When you want something changed, send us an email and we'll make the change for 
 - **Email:** TODO(confirm)
 - **Who looks after it:** TODO(confirm)
 
-Please put what you want in the subject line, for example "New blog post" or "Price change".
+Please put what you want in the subject line, for example "Price change" or "New photo".
 
 ## What to send us
-
-### A new blog post
-- The **title** of the post.
-- The **text** of the post. A Word document, a Google Doc or the body of the email is fine.
-- A **one-sentence summary**. This appears in the list of posts and in Google results.
-- The **date** you want it to go up. If you don't mind, we'll use the day we publish it.
-- Any **photos** you want with it, as attachments. Please make sure you're allowed to use
-  them, and that the people in them are happy to appear on the website.
-- A **short description of each photo**: who or what is in it and what's happening. For
-  example, "Two members deadlifting in the main training area". This lets people who use
-  screen readers, and Google, understand the photo.
 
 ### A price change
 - **Which membership** the price is for, using the name it has on the website.

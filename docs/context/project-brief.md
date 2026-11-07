@@ -15,16 +15,16 @@ fourth in the navigation, and its homepage has no title tag and no H1.
 
 ## Success looks like
 - A visitor looking for a gym in Penrose can compare memberships on Home and reach signup.
-- Gym staff get a blog article or a price change live by sending us one email (ADR-003).
+- Gym staff get a wording, photo or price change live by sending us one email (ADR-003).
 - Nobody can lose this site again: every account in GetStrength's name, documented.
 - TODO(confirm) — a number the client cares about (enquiries? trial sign-ups?). Never established.
 
 ## Scope (in)
-Four primary pages in order: Home, About Us, Blog, Contact. Home serves as The Gym and
+Three primary pages in order: Home, About Us, Contact. Home serves as The Gym and
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
-Success. Video testimonials retain placeholders until approved footage arrives. Blog
-keeps a basic newest-first list and existing article routes; enhanced features are deferred.
+Success. Video testimonials retain placeholders until approved footage arrives. There is
+no blog (removed per the 2026-10-18 meeting); its replacement is Q14.
 
 The current address is **20/10 Olive Road, Penrose, Auckland 1061**, confirmed in Figma's
 2026-10-12 notes. Instagram is `https://www.instagram.com/getstrengthgym/`. Remove Facebook;
@@ -38,7 +38,7 @@ replacing the merch store, migrating the old blog articles or forum.
 
 ## Audiences
 1. Prospective members comparing the Penrose gym
-2. Existing members and the wider strength-training audience reading the blog
+2. Existing members looking up practical details (location, hours, contact)
 
 ## Legacy site — historical audit
 
@@ -78,7 +78,7 @@ contacts or account ownership without current-owner confirmation.
 - **Q1** Joe is the new owner (Johnson's 2026-10-26 PR #7 approval). Confirm his full name,
   exact sign-off authority and contact channel; do not use the old-owner contact by default.
 - **Q2** Is the old WooCommerce store still taking real orders?
-- **Q3** Old blog articles — migrate all, migrate the best, or start fresh?
+- **Q3 — resolved 2026-10-18:** no blog on the new site, so no old articles are migrated.
 - **Q4** Old forum (1,758 replies) — keep, archive, or retire?
 - **Q5** Does the client agree to a small monthly AWS bill on their own account, and to the
   $110 line becoming a change-request guide plus developer handover? (Not yet asked.)
@@ -94,8 +94,17 @@ contacts or account ownership without current-owner confirmation.
   and credentials remain unconfirmed. Keep the generic coach slot.
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
+- **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
+  photo drive? Raised 2026-10-18 (A2); not decided. It replaces the blog at the same price
+  (client's decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size.
+- **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
+  garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
+- 2026-11-08 — Q14: the blog's replacement keeps the blog's price (client's decision,
+  confirmed by Johnson).
+- 2026-11-01 — Blog removed per the 2026-10-18 meeting (D1); three pages. Q3 resolved;
+  Q14 (blog replacement) and Q15 (garbled prices) added.
 - 2026-10-28 — Figma migration reconciled: Penrose, four-page structure, memberships on
   Home, video placeholders, minimal Blog, no Facebook; Joe/gym-only confirmed by PR #7.
 - 2026-08-30 — created; site audited, "static site" assumption disproved

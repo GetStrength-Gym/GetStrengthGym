@@ -7,15 +7,17 @@
   Wireframes file is superseded.
 - **Scope:** `../requirements.md`; build decisions: ADR-003/004/005/006/007.
 - **Decision record:** `../meetings/2026-10-28-design-reconciliation.md`.
+- **Blog removed 2026-11-01:** per `../meetings/2026-10-18-website-launch-feature-review.md`
+  (D1), which supersedes the 2026-10-28 D5. Its replacement is still open (A2).
 
-The existing filename is retained for implementation references. This is a four-page
+The existing filename is retained for implementation references. This is a three-page
 journey: Home serves as The Gym. Unconfirmed current-gym facts stay `TODO(confirm)`;
 legacy getstrength.com content is historical evidence only.
 
 ## 1. Purpose and scope
 
 Help prospective members understand the Penrose gym, compare memberships and join through
-Debit Success. The blog remains available but is low priority.
+Debit Success. There is no blog.
 
 Joe is the new owner, confirmed by Johnson's 2026-10-26 approval on PR #7. The site is
 gym-only: no merch store, Front Squat Harness, Record Board or Amazon links. Exact sign-off
@@ -27,20 +29,18 @@ authority and account access still need recording; ownership alone does not esta
 |---|---|---|---|---|
 | 1 | Home / The Gym | `/` | GetStrength Gym — Strength Gym in Penrose, Auckland | Build strength. Find your community. |
 | 2 | About Us | `/about/` | About GetStrength Gym — Our Story and Coaching | About Us |
-| 3 | Blog | `/blog/` | Training Articles — GetStrength Gym | Blog |
-| 4 | Contact | `/contact/` | Contact GetStrength Gym — Penrose, Auckland | Contact |
-| — | Article | `/blog/<slug>/` | Article title — GetStrength Gym | Article title |
+| 3 | Contact | `/contact/` | Contact GetStrength Gym — Penrose, Auckland | Contact |
 | — | Privacy | `/privacy/` | Privacy Policy — GetStrength Gym | Privacy policy |
 
 No separate `/gym/` page or additional Gym frame is required. Location and membership
 options live on Home; link to `/#memberships` for the comparison. Explore the gym stays on
 Home and moves to its gym-information section. Do not leave links to the unbuilt Gym route.
-Article/privacy routes are outside primary navigation. Use one H1 and a unique title per
+The privacy route is outside primary navigation. Use one H1 and a unique title per
 page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Blog · Contact, Join GS Gym. Charcoal ground
+- Header: supplied logo, Home · About Us · Contact, Join GS Gym. Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
@@ -55,7 +55,7 @@ page, and retain trailing slashes (ADR-005/007).
   publish 24/7 access without current-gym confirmation. Phone, inbox and privacy wording
   remain unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
-  430px plus desktop. Four mobile nav links sit below logo/Join and wrap if needed; no
+  430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target
   phone viewport, preserving the photo focal point and readable overlay.
 - Required: ordered headings, visible field labels, meaningful alt text, keyboard access,
@@ -70,12 +70,11 @@ Use Home (`1:29`) and Home — Mobile (`45:307`) as visual targets, in this orde
 2. Why GS Gym? — three benefit cards and Explore About Us.
 3. Coach slot with approved portrait, role, biography and credentials.
 4. Gym imagery and Train together. Grow stronger., linking to the gym's story.
-5. Latest articles only when published content exists; low priority.
-6. Video testimonials, with labelled preview placeholders until approved footage arrives.
-7. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action
+5. Video testimonials, with labelled preview placeholders until approved footage arrives.
+6. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action
    and static map placeholder.
-8. Membership options and casual day pass (§6).
-9. Existing bottom membership CTA immediately below the options, then the shared footer.
+7. Membership options and casual day pass (§6).
+8. Existing bottom membership CTA immediately below the options, then the shared footer.
 
 Reuse Figma layout and supplied logo. Keep marked preview placeholders until approved
 photography arrives; do not use stock gym photos or old-owner portraits. Current coach,
@@ -87,16 +86,12 @@ content in production; never invent content for layout completeness.
 Use approved YouTube footage with a click-to-load preview, rather than self-hosting video
 on S3. Do not invent quotes or assume footage is cleared for publication.
 
-## 5. Blog — `/blog/` and `/blog/<slug>/`
+## 5. Blog — removed
 
-Keep the existing content-as-files reader and static article routes. Launch uses a simple
-newest-first list with an empty state, shared shell and readable article typography.
-No old-article migration is included.
-
-Search, filters, featured treatment, pagination and related-post features shown in Figma
-are deferred, not migration acceptance requirements. Preserve existing published URLs and
-draft/production filtering. Deprioritizing Blog does not delete it or authorize fabricated
-articles, authors or excerpts. Maintainers publish Markdown through PRs; no CMS or admin.
+Removed 2026-11-01 per the 2026-10-18 meeting (D1): no `/blog/` or article routes, no nav
+link and no latest-articles section on Home. Figma's Blog and article frames are not built.
+A replacement, such as a photo album page or a link to a photo drive, is open (A2/Q14);
+design it as new work once agreed. Don't invent photos or captions for it.
 
 ## 6. Memberships on Home — `/#memberships`
 
@@ -173,9 +168,9 @@ reopen resolved page or button decisions.
 |---|---|
 | Testimonials | Video; preview placeholders until approved footage arrives |
 | Social links | Remove Facebook; Instagram plus confirmed current-gym YouTube only |
-| Blog | Basic newest-first list; defer enhanced features |
+| Blog | Removed (2026-10-18 meeting); Figma's Blog and article frames are not built |
 
-Penrose location, the four-page structure and Home membership cards follow Figma.
+Penrose location, the three-page structure and Home membership cards follow Figma.
 
 ## 12. Promotion and acceptance
 
@@ -187,4 +182,4 @@ is required; the stack has not changed.
 Implementation acceptance: check the shell and priority pages at phone/desktop widths;
 remove dead Gym links; verify Penrose directions and all Join destinations; exercise
 membership display/build-mode behavior; test contact delivery when chosen; run lint,
-TypeScript, static build and CloudFront tests. Blog polish is not a blocker.
+TypeScript, static build and CloudFront tests. Check no link points at `/blog/`.

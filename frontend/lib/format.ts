@@ -1,15 +1,10 @@
-import type { Plan } from "./content";
+import type { Plan, Site } from "./content";
 
-// Display helpers shared by the blog pages and the price list.
+// Display helpers shared by the pages and the price list.
 
-/** "2026-10-10" -> "10 October 2026". Dates are calendar days, so format in UTC. */
-export function formatDate(isoDate: string): string {
-  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString("en-NZ", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+/** Google Maps directions to the gym, used by Home and Contact. */
+export function directionsUrl(address: Site["address"]): string {
+  return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(address.street + ", " + address.locality);
 }
 
 /** A plan's price as shown on the site. A null price never shows as blank or $0 (ADR-006). */

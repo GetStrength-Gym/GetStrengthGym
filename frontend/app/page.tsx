@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import JoinButton from "@/components/JoinButton";
+import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
-import { getAllPosts, getSite, isPreviewBuild } from "@/lib/content";
-import { formatDate } from "@/lib/format";
+import { getSite, isPreviewBuild } from "@/lib/content";
+import { directionsUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: { absolute: "GetStrength Gym — Strength Gym in Penrose, Auckland" },
@@ -15,9 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
   const site = getSite();
   const preview = isPreviewBuild();
-  const posts = getAllPosts().slice(0, 3);
-  const directions = "https://www.google.com/maps/dir/?api=1&destination=" +
-    encodeURIComponent(site.address.street + ", " + site.address.locality);
+  const directions = directionsUrl(site.address);
 
   return (
     <main className="home">
@@ -82,29 +80,6 @@ export default function Home() {
         </div>
       </section>
 
-      {posts.length > 0 && (
-        <section aria-labelledby="posts-heading">
-          <div className="page-width section-space section-stack">
-            <div className="section-title-row">
-              <h2 id="posts-heading" className="section-heading">Start strong. Keep learning.</h2>
-              <Link href="/blog/" className="text-link">View all posts <span aria-hidden="true">→</span></Link>
-            </div>
-            <ul className="post-grid">
-              {posts.map(post => (
-                <li key={post.slug}>
-                  {post.image ? <Image src={post.image.src} alt={post.image.alt} width={820} height={480} className="post-photo" /> :
-                    <Placeholder label="Post image" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="post-photo" />}
-                  <p className="post-date"><time dateTime={post.date}>{formatDate(post.date)}</time>
-                    {post.draft && " · Draft (preview only)"}</p>
-                  <h3><Link href={"/blog/" + post.slug + "/"}>{post.title}</Link></h3>
-                  <p className="text-grey">{post.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
       {preview && (
         <section aria-labelledby="testimonials-heading" className="bg-neutral">
           <div className="page-width section-space section-stack">
@@ -141,14 +116,8 @@ export default function Home() {
       </section>
 
       <PriceList />
-      <section className="membership-cta" aria-labelledby="join-heading">
-        <div className="page-width section-space section-stack">
-          <h2 id="join-heading" className="section-heading">Find your membership.</h2>
-          <p>Check Debit Success for membership options, prices and terms.</p>
-          <JoinButton />
-          <p className="cta-note">Opens Debit Success.</p>
-        </div>
-      </section>
+      <JoinCta heading="Find your membership." text="Check Debit Success for membership options, prices and terms."
+        note="Opens Debit Success." />
     </main>
   );
 }
