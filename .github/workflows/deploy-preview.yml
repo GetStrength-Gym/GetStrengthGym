@@ -1,5 +1,5 @@
 # Deploy the PREVIEW site to AWS whenever a change to the site merges to main.
-# Preview only: builds without SITE_ENV, so sample prices and draft posts are shown.
+# Preview only: builds without SITE_ENV, so sample prices and "preview only" labels are shown.
 # It never touches production; that needs its own workflow (ADR-008).
 # AWS access is a short-lived OIDC role session; no AWS keys are stored anywhere.
 name: Deploy preview

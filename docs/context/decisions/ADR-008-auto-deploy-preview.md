@@ -17,7 +17,7 @@ Constraints that apply:
 - The repo is **public**. No account ID, distribution ID, bucket name, domain or key may be
   committed (ADR-007 already rules out long-lived keys in the repo).
 - `main` is protected and needs one approval (`docs/maintenance/content-changes.md`).
-- A build without `SITE_ENV=production` is a **preview** build: sample prices, draft posts,
+- A build without `SITE_ENV=production` is a **preview** build: sample prices and
   "preview only" labels (ADR-006). That is exactly what the preview should show, and exactly
   what production must never get.
 - The AWS account is in GetStrength's name, on their billing (ADR-004). This ADR adds no AWS
@@ -66,7 +66,10 @@ kept as a secondary trigger alongside Option A.**
 ### Security
 - **OIDC trust is limited to this repo's `main` branch.** The role's trust policy accepts only
   tokens from `token.actions.githubusercontent.com` with audience `sts.amazonaws.com` and
-  subject exactly `repo:GetStrength-Gym/GetStrengthGym:ref:refs/heads/main`. A run from any
+  subject exactly `repo:GetStrength-Gym@337686561/GetStrengthGym@1404327806:ref:refs/heads/main`.
+  This repo emits GitHub's immutable subject claim, which adds the organisation's and the
+  repo's numeric IDs (checked 2026-11-08 in the repo's OIDC settings), so a trust policy with
+  the name-only form `repo:GetStrength-Gym/GetStrengthGym:...` is refused. A run from any
   other branch, a fork or a pull request cannot assume it. The workflow's job also skips any
   run whose ref is not `main`. The job must not use a GitHub `environment:`; that changes the
   token's subject to `...:environment:<name>` and the trust policy would stop matching.
@@ -100,7 +103,7 @@ Nothing below is in this repo, and none of the real values may be added to it.
        "Condition": {
          "StringEquals": {
            "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-           "token.actions.githubusercontent.com:sub": "repo:GetStrength-Gym/GetStrengthGym:ref:refs/heads/main"
+           "token.actions.githubusercontent.com:sub": "repo:GetStrength-Gym@337686561/GetStrengthGym@1404327806:ref:refs/heads/main"
          }
        }
      }]

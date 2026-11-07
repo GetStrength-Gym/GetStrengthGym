@@ -151,7 +151,7 @@ The **preview** site deploys automatically (ADR-008). The **live** site is still
 
 How it works: when a PR that changes anything under `frontend/` merges to `main`, the GitHub
 Actions workflow `.github/workflows/deploy-preview.yml` ("Deploy preview") runs. It makes a
-plain preview build (no `SITE_ENV`, so sample prices and drafts show), uploads `frontend/out/`
+plain preview build (no `SITE_ENV`, so sample prices show), uploads `frontend/out/`
 to the preview bucket with `--delete`, and invalidates the preview CloudFront distribution.
 AWS access is a short-lived OIDC session for a role that trusts `main` only; there are no AWS
 keys anywhere. Docs-only merges don't deploy. Deploys never overlap: a second merge waits for
