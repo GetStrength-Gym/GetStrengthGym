@@ -106,6 +106,8 @@ contacts or account ownership without current-owner confirmation.
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
+- 2026-11-11 — Member access hours set to 24/7 (per Kevin; Google Maps also lists the gym as
+  open 24 hours). Staffed/viewing hours still unknown.
 - 2026-11-11 — About's story written (`site.json` `about.story`): "since 2001" per Kevin;
   "#1 ranked powerlifting team in Auckland" and the May 2026 move to Olive Road per the gym's
   own Instagram. The old-owner Facebook page's phone, email and history are not used.

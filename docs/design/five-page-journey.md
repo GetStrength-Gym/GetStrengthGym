@@ -51,9 +51,9 @@ page, and retain trailing slashes (ADR-005/007).
 - Address: **20/10 Olive Road, Penrose, Auckland 1061**. Figma's 2026-10-12 notes record
   confirmation by Kevin and the current gym's Instagram. Use it in site data, directions,
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
-- Member access and staffed/viewing hours remain separate, unconfirmed fields. Do not
-  publish 24/7 access without current-gym confirmation. Phone, inbox and privacy wording
-  remain unconfirmed.
+- Member access and staffed/viewing hours remain separate fields. Member access is 24/7
+  (confirmed 2026-11-11); staffed/viewing hours, phone, inbox and privacy wording remain
+  unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target

@@ -47,8 +47,8 @@ Three pages, in this order. Home serves as The Gym:
 | **Contact** | Address, email, and a form people can fill in |
 
 The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
-GetStrength MVP's current-gym notes. Member access and staffed/viewing hours remain
-separate unconfirmed fields; do not assume 24/7 access from the old website.
+GetStrength MVP's current-gym notes. Member access is **24/7** (confirmed 2026-11-11, and
+Google Maps lists the gym as open 24 hours); staffed/viewing hours are still to be confirmed.
 
 Membership options appear on Home before its existing bottom **Join GS Gym** CTA. Cards
 have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
