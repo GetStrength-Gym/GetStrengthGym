@@ -69,9 +69,14 @@ body { font-size: 16px; line-height: 1.625; }
 .header-nav a:hover, .header-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 8px; }
 .skip-link { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
 .skip-link:focus { top: 8px; left: 8px; z-index: 10; width: auto; height: auto; padding: 12px 20px; color: var(--color-charcoal); background: var(--color-white); clip-path: none; }
-.home-hero { color: var(--color-white); background: var(--color-charcoal); }
-.hero-inner { display: flex; flex-direction: column; gap: 24px; padding-block: 48px; }
-.hero-photo-note { font-size: 12px; font-weight: 600; line-height: 18px; }
+.home-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Darkens the video so white hero text stays above 4.5:1 wherever it lands. */
+.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.92) 25%, rgb(13 11 9 / 0.5)); }
+.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
+.hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; min-height: 44px; padding: 10px 16px; border: 1px solid currentColor; border-radius: 4px; background: rgb(13 11 9 / 0.6); font-size: 14px; font-weight: 600; }
+.hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
+.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
@@ -161,12 +166,12 @@ body { font-size: 16px; line-height: 1.625; }
   .header-join { order: 2; min-height: 48px; padding-block: 12px; }
   .header-nav { display: flex; gap: 36px; }
   .header-nav a { font-weight: 500; }
-  .home-hero { background: linear-gradient(110deg, #1a1410, #0d0b09); border-top: 3px solid var(--color-red); }
-  .hero-inner { position: relative; min-height: 897px; justify-content: flex-end; padding-block: 80px 96px; }
+  .home-hero { border-top: 3px solid var(--color-red); }
+  .hero-inner { min-height: 897px; padding-block: 80px 96px; }
+  .hero-video-toggle { top: 24px; right: 24px; }
   .hero-copy { gap: 32px; }
   .hero-copy h1 { font-size: 68px; line-height: 1.05; }
   .hero-copy > p { font-size: 18px; line-height: 1.6; color: #d4d4d4; }
-  .hero-photo-note { position: absolute; top: 180px; right: 0; max-width: 48%; padding: 24px 32px; border: 1px dashed var(--color-footer-muted); color: var(--color-footer-muted); text-align: center; }
   .hero-actions, .coach-actions { flex-direction: row; flex-wrap: wrap; }
   .hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
   .hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import JoinButton from "@/components/JoinButton";
+import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
-import { getSite, isPreviewBuild } from "@/lib/content";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -14,14 +16,15 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const site = getSite();
+  const photos = getPhotos();
   const preview = isPreviewBuild();
   const directions = directionsUrl(site.address);
 
   return (
     <main className="home">
       <section className="home-hero" aria-labelledby="hero-heading">
+        <HeroVideo video={photos.homeHero.video} poster={photos.homeHero.poster} />
         <div className="page-width hero-inner">
-          {preview && <p className="hero-photo-note">PLACEHOLDER · APPROVED MEMBER PHOTOGRAPHY</p>}
           <div className="hero-copy">
             <h1 id="hero-heading">Build strength. Find your community.</h1>
             <p>{site.home.introduction}</p>
@@ -71,7 +74,7 @@ export default function Home() {
 
       <section aria-labelledby="together-heading">
         <div className="page-width section-space together-row">
-          <Placeholder label="Gym interior photo" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="gym-photo" />
+          <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={1200} height={800} className="photo" />
           <div className="section-stack">
             <h2 id="together-heading" className="section-heading">Train together. Grow stronger.</h2>
             <p className="body-large">{site.home.togetherIntroduction}</p>
