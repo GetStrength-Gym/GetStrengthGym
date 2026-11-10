@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import JoinButton from "@/components/JoinButton";
+import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
@@ -125,9 +126,7 @@ export default function Home() {
               <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
               <Link href="/contact/" className="gs-button gs-button-primary">Ask about visiting</Link>
             </div>
-            {preview && <a href={directions} aria-label="Get directions to GetStrength Gym in Penrose" className="map-link">
-              <Placeholder label="Map · GS Gym, Penrose" detail="PLACEHOLDER · APPROVED MAP NEEDED" className="map-placeholder" />
-            </a>}
+            <GymMap name={site.name} address={site.address} />
           </div>
         </div>
       </section>

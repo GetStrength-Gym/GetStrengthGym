@@ -25,7 +25,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
-| Unconfirmed content (coach, map, phone, email, hours) | labelled placeholders | left out |
+| Unconfirmed content (coach, phone, email, staffed hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain
@@ -59,8 +59,8 @@ About's `about.story`.
 Each Home benefit has an `icon` (`coaching`, `equipment` or `community`, drawn in `app/page.tsx`)
 and a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
-Missing coach, map and video-testimonial content stays labelled in preview and is hidden in
-production. The supplied Figma logo is stored locally in
+Missing coach and video-testimonial content stays labelled in preview and is hidden in
+production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
 
 ## Swap a photo or the hero video

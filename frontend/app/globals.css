@@ -111,8 +111,7 @@ body { font-size: 16px; line-height: 1.625; }
 .video-placeholder { min-height: 180px; background: var(--color-white); }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
-.map-link { display: block; min-width: 0; }
-.map-placeholder { min-height: 220px; }
+.gym-map { display: block; width: 100%; min-height: 220px; border: 0; border-radius: 16px; }
 .memberships-section { display: flex; flex-direction: column; gap: 24px; padding-block: 48px 24px; }
 .membership-intro { display: flex; flex-direction: column; gap: 8px; }
 .membership-grid { display: grid; gap: 24px; }
@@ -203,7 +202,7 @@ body { font-size: 16px; line-height: 1.625; }
   .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.8) 38%, rgb(13 11 9 / 0) 60%); }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }
-  .map-placeholder { min-height: 340px; }
+  .gym-map { min-height: 340px; }
   .memberships-section { padding-block: 72px 32px; }
   .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .membership-card { min-height: 276px; }
