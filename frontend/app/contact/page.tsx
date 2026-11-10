@@ -15,8 +15,8 @@ export default function Contact() {
   const directions = directionsUrl(site.address);
   // Unconfirmed details are labelled in preview and left out of production.
   const details = [
-    { term: "Phone", value: site.phone },
-    { term: "Email", value: site.email },
+    { term: "Phone", value: site.phone, href: site.phone && "tel:" + site.phone.replace(/[^\d+]/g, "") },
+    { term: "Email", value: site.email, href: site.email && "mailto:" + site.email },
   ].filter(detail => detail.value || preview);
 
   return (
@@ -67,8 +67,8 @@ export default function Contact() {
             <section aria-labelledby="details-heading" className="details-card">
               <h2 id="details-heading">Get in touch</h2>
               <dl>
-                {details.map(({ term, value }) => (
-                  <div key={term}><dt>{term}</dt><dd>{value ?? "Awaiting confirmation"}</dd></div>
+                {details.map(({ term, value, href }) => (
+                  <div key={term}><dt>{term}</dt><dd>{value && href ? <a href={href}>{value}</a> : "Awaiting confirmation"}</dd></div>
                 ))}
                 <div><dt>Address</dt><dd><address>{site.address.street}<br />{site.address.locality}</address></dd></div>
                 {(site.memberAccessHours || site.staffedHours || preview) && (

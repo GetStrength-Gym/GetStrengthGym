@@ -31,7 +31,7 @@ try {
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
-  assert.equal(getSite().phone, null);
+  assert.equal(getSite().phone, '09 622 2885');
   assert.equal(getSite().email, null);
 
   const prices = read('prices.json');

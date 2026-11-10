@@ -106,6 +106,8 @@ contacts or account ownership without current-owner confirmation.
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
+- 2026-11-11 — Phone set to 09 622 2885 (per Kevin, from the gym's Google Maps listing at
+  20/10 Olive Road). It matches the old Facebook page's number; the old owner's email is still not used.
 - 2026-11-11 — Member access hours set to 24/7 (per Kevin; Google Maps also lists the gym as
   open 24 hours). Staffed/viewing hours still unknown.
 - 2026-11-11 — About's story written (`site.json` `about.story`): "since 2001" per Kevin;
