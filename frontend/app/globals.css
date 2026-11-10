@@ -77,6 +77,12 @@ body { font-size: 16px; line-height: 1.625; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
 .photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+/* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
+.together { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
+.together-inner { position: relative; z-index: 1; padding-block: 32px 48px; }
+.together-copy .body-large { color: var(--color-muted-on-dark); }
+.together-copy .section-heading { text-wrap: balance; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
@@ -192,6 +198,11 @@ body { font-size: 16px; line-height: 1.625; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
   .together-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
+  /* Zoom from the left edge: crops the empty wall on the right and moves the people clear of the text. */
+  .together-photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: left center; transform: scale(1.2); transform-origin: left center; }
+  .together::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 11 9 / 0.92), rgb(13 11 9 / 0.8) 35%, rgb(13 11 9 / 0) 65%); }
+  .together-inner { display: flex; align-items: center; min-height: 720px; padding-block: 72px; }
+  .together-copy { max-width: 440px; }
   .gym-photo { min-height: 380px; }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }

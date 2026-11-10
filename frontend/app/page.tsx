@@ -86,13 +86,13 @@ export default function Home() {
         </section>
       )}
 
-      <section aria-labelledby="together-heading">
-        <div className="page-width section-space together-row">
-          <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={1200} height={800} className="photo" />
-          <div className="section-stack">
+      <section aria-labelledby="together-heading" className="together">
+        <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={2880} height={1920} className="together-photo" />
+        <div className="page-width together-inner">
+          <div className="together-copy section-stack">
             <h2 id="together-heading" className="section-heading">Train together. Grow stronger.</h2>
             <p className="body-large">{site.home.togetherIntroduction}</p>
-            <Link href="/about/" className="text-link">Read our story <span aria-hidden="true">→</span></Link>
+            <Link href="/about/" className="gs-button gs-button-primary section-action">Read our story <span aria-hidden="true">&nbsp;→</span></Link>
           </div>
         </div>
       </section>
