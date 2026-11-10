@@ -5,8 +5,7 @@
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
 About Us, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
-the team decided on 2026-11-11 to use photos across Home and About instead of an album page
-or drive link (brief Q14; client still to confirm). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
+its replacement is an events calendar page, decided 2026-11-11 and not yet built (brief Q14). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
 **Next:** implement the reconciled design on GS-15. Preserve main's image validation,
 CloudFront routing and production price-confirmation guard. Remaining infrastructure and
@@ -33,8 +32,8 @@ Three primary pages: Home, About Us, Contact. Home includes gym/location informa
 four membership cards and a day-pass block, followed by the existing Join CTA; no separate
 Gym page or per-plan buttons. Header/footer Join actions remain. Prices and terms still
 need client confirmation. Video testimonials retain preview placeholders until supplied.
-There is no blog. In its place, interim photos and a drone video from the client's 2026-11-09
-album run through Home and About (GS-23); the client has still to confirm that as the replacement.
+There is no blog; an events calendar page replaces it (brief Q14, not yet built). Interim photos
+and a drone video from the client's 2026-11-09 album run through Home and About (GS-23).
 
 The site is gym-only: no merch, harness, Record Board or Amazon links. Instagram is
 `https://www.instagram.com/getstrengthgym/`; Facebook is removed and YouTube requires a

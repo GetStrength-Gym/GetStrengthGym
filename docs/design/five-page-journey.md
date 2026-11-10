@@ -90,8 +90,9 @@ on S3. Do not invent quotes or assume footage is cleared for publication.
 
 Removed 2026-11-01 per the 2026-10-18 meeting (D1): no `/blog/` or article routes, no nav
 link and no latest-articles section on Home. Figma's Blog and article frames are not built.
-Team decision 2026-11-11 (GS-23, Q14): no album page or drive link. Approved photos from the
-client's 2026-11-09 album fill the existing Home and About sections instead; client to confirm.
+Decided 2026-11-11 (Q14): the replacement is an events calendar page working like
+<https://www.sporty.co.nz/aucklandpowerlifting/events-calendar> — competitions with status and entry dates, upcoming events with dates
+and location. Not yet designed or built. Gym photos run through Home and About separately (GS-23).
 
 ## 6. Memberships on Home — `/#memberships`
 

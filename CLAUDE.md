@@ -10,8 +10,8 @@ Design update 2026-10-28: use the user's GetStrength MVP and
 `docs/design/five-page-journey.md`. Three primary pages: Home (also The Gym), About Us,
 Contact. Decisions are recorded in `docs/meetings/2026-10-28-design-reconciliation.md`;
 GS-15 has the partial implementation. **No blog:** removed 2026-11-01 per
-`docs/meetings/2026-10-18-website-launch-feature-review.md`; in its place, gym photos run
-through Home and About (team decision 2026-11-11, brief Q14; client to confirm).
+`docs/meetings/2026-10-18-website-launch-feature-review.md`; an events calendar page replaces
+it (decided 2026-11-11, brief Q14; not yet built).
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.

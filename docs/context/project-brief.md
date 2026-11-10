@@ -24,8 +24,8 @@ Three primary pages in order: Home, About Us, Contact. Home serves as The Gym an
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
 Success. Video testimonials retain placeholders until approved footage arrives. There is
-no blog (removed per the 2026-10-18 meeting); its replacement is Q14 (team decision 2026-11-11:
-photos in existing sections).
+no blog (removed per the 2026-10-18 meeting); its replacement is an events calendar page (Q14),
+not yet built.
 
 The current address is **20/10 Olive Road, Penrose, Auckland 1061**, confirmed in Figma's
 2026-10-12 notes. Instagram is `https://www.instagram.com/getstrengthgym/`. Remove Facebook;
@@ -97,16 +97,18 @@ contacts or account ownership without current-owner confirmation.
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
   photo drive? Raised 2026-10-18 (A2). It replaces the blog at the same price (client's
-  decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size. **Team decision
-  2026-11-11 (Kevin, GS-23):** neither — photos and the drone video from the client's
-  2026-11-09 album are used across Home and About, with no album page or drive link. Still
-  to confirm with the client that this counts as the blog's replacement.
+  decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size. **Decided
+  2026-11-11 (per Kevin):** neither — the replacement is an events calendar page working like
+  the Auckland Powerlifting Association's <https://www.sporty.co.nz/aucklandpowerlifting/events-calendar>: competitions with their status and entry
+  dates, and upcoming events with dates and location. Not yet built. Separately, photos and
+  the drone video from the client's 2026-11-09 album now run through Home and About (GS-23).
 - **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
-- 2026-11-11 — GS-23: interim photos and drone video from the client's 2026-11-09 album
-  are on Home and About; Q14 decided by the team (no album page or link), client to confirm.
+- 2026-11-11 — Q14 decided: the blog's replacement is an events calendar page (not yet
+  built). GS-23: interim photos and drone video from the client's 2026-11-09 album are on
+  Home and About.
 - 2026-11-08 — Q14: the blog's replacement keeps the blog's price (client's decision,
   confirmed by Johnson).
 - 2026-11-01 — Blog removed per the 2026-10-18 meeting (D1); three pages. Q3 resolved;
