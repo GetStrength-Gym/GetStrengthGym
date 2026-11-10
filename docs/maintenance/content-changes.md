@@ -55,6 +55,8 @@ the client sent. Don't fill gaps; ask them.
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
 Join destination, navigation, approved social links and Home's introductory/benefit copy.
+Each Home benefit has an `icon` (`coaching`, `equipment` or `community`, drawn in `app/page.tsx`)
+and a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Missing coach, photograph, map and video-testimonial content stays labelled in preview
 and is hidden in production. The supplied Figma logo is stored locally in

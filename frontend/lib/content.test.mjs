@@ -44,6 +44,10 @@ try {
   const site = read('site.json');
   write('site.json', { ...site, home: { ...site.home, benefits: [{ title: 'Coaching', description: '' }] } });
   assert.throws(getSite, /home.benefits\[0\].description/);
+  write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], icon: 'trophy' }] } });
+  assert.throws(getSite, /home.benefits\[0\].icon/);
+  write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], photo: '/images/gym/missing.jpg' }] } });
+  assert.throws(getSite, /home.benefits\[0\].photo/);
 
   assert.equal(getPhotos().aboutGallery.length, 8);
   const photos = read('photos.json');

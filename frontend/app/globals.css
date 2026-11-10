@@ -82,7 +82,19 @@ body { font-size: 16px; line-height: 1.625; }
 .hero-copy > p { max-width: 560px; }
 .hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
 .benefit-grid, .testimonial-grid { display: grid; gap: 24px; }
-.benefit-card { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; background: var(--color-white); }
+/* Photo card: title sits on the photo; icon and description slide down on hover, and are always shown on touch screens. */
+.benefit-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
+.benefit-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.benefit-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0) 55%); transition: background-color 300ms; }
+.benefit-card:hover::after { background-color: rgb(13 11 9 / 0.72); }
+.benefit-reveal, .benefit-card h3 { position: relative; z-index: 1; }
+.benefit-reveal { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; opacity: 0; transform: translateY(-24px); transition: opacity 300ms, transform 300ms; }
+.benefit-card:hover .benefit-reveal { opacity: 1; transform: none; }
+.benefit-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: var(--color-red); background: var(--color-white); }
+@media (hover: none) {
+  .benefit-card::after { background-color: rgb(13 11 9 / 0.72); }
+  .benefit-reveal { opacity: 1; transform: none; }
+}
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
 .coach-row, .together-row, .location-row { display: grid; align-items: center; gap: 24px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }

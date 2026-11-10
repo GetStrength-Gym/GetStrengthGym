@@ -180,6 +180,7 @@ export function getPrices(): Prices {
 // ---------------------------------------------------------------------------
 
 export type NavLink = { label: string; href: string };
+export const BENEFIT_ICONS = ["coaching", "equipment", "community"] as const;
 export type OutboundLink = { label: string; service: string; url: string };
 
 export type Site = {
@@ -196,7 +197,7 @@ export type Site = {
   home: {
     introduction: string;
     whyIntroduction: string;
-    benefits: { title: string; description: string }[];
+    benefits: { title: string; description: string; icon: (typeof BENEFIT_ICONS)[number]; photo: string }[];
     togetherIntroduction: string;
   };
 };
@@ -298,11 +299,12 @@ export function getSite(): Site {
     benefits: benefits.map((benefit: unknown, i: number) => {
       const where = "home.benefits[" + i + "]";
       if (!isObject(benefit)) fail(file, where + " must be an object");
-      rejectUnknownFields(file + " " + where, benefit, ["title", "description"]);
-      return {
-        title: requireString(file, benefit, "title", where + ".title"),
-        description: requireString(file, benefit, "description", where + ".description"),
-      };
+      rejectUnknownFields(file + " " + where, benefit, ["title", "description", "icon", "photo"]);
+      const title = requireString(file, benefit, "title", where + ".title");
+      const description = requireString(file, benefit, "description", where + ".description");
+      const icon = benefit.icon as (typeof BENEFIT_ICONS)[number];
+      if (!BENEFIT_ICONS.includes(icon)) fail(file, `"${where}.icon" must be one of: ${BENEFIT_ICONS.join(", ")}`);
+      return { title, description, icon, photo: requirePublicFile(file, benefit, "photo", where + ".photo") };
     }),
   };
 
