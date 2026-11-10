@@ -25,7 +25,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
-| Unconfirmed content (coach, photos, map, phone, email, hours) | labelled placeholders | left out |
+| Unconfirmed content (coach, map, phone, email, hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain
@@ -58,9 +58,27 @@ Join destination, navigation, approved social links and Home's introductory/bene
 Each Home benefit has an `icon` (`coaching`, `equipment` or `community`, drawn in `app/page.tsx`)
 and a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
-Missing coach, photograph, map and video-testimonial content stays labelled in preview
-and is hidden in production. The supplied Figma logo is stored locally in
+Missing coach, map and video-testimonial content stays labelled in preview and is hidden in
+production. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
+
+## Swap a photo or the hero video
+
+`frontend/content/photos.json` says which file each slot uses: the Home hero video and its
+poster, Home's Train together photo, About's story photo and the About gallery. Every photo
+needs `alt` text describing what is visible; the hero video is decorative, so it has none.
+The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
+
+1. Use only photos the client has approved, with permission for anyone in them. Leave out
+   anything showing a number plate.
+2. Resize before adding: 1200px wide for gallery and story photos, 800px for the Why GS Gym
+   cards (portrait), 2880px for the full-width Train together photo. JPEG, roughly 60–420 KB.
+3. Remove location data. Keep the photographer's copyright (`qbkl.media` for the
+   2026-11-09 album).
+4. Put the file in `frontend/public/images/gym/` and point the slot at it.
+
+The hero video lives in `frontend/public/videos/`; keep it short, muted-friendly and about
+5 MB or less, with a matching still frame as its `poster`.
 
 ## Confirm prices before launch
 
