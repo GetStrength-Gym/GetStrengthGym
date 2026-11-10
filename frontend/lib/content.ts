@@ -320,3 +320,64 @@ export function getSite(): Site {
     home,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Photos
+// ---------------------------------------------------------------------------
+
+export type Photo = { src: string; alt: string };
+
+export type Photos = {
+  homeHero: { video: string; poster: string }; // decorative, so no alt text
+  homeTogether: Photo;
+  aboutStory: Photo;
+  aboutGallery: Photo[];
+};
+
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+
+function requirePublicFile(file: string, data: Record<string, unknown>, field: string, label: string): string {
+  const src = requireString(file, data, field, label);
+  // Exact-case match: S3 paths are case-sensitive, Windows and macOS file systems are not.
+  const dir = path.join(PUBLIC_DIR, path.dirname(src));
+  if (!/^\/(images|videos)\//.test(src) || !fs.existsSync(dir) || !fs.readdirSync(dir).includes(path.basename(src))) {
+    fail(file, `"${label}" must be an existing file under public/images/ or public/videos/`);
+  }
+  return src;
+}
+
+function readPhoto(file: string, value: unknown, label: string): Photo {
+  if (!isObject(value)) fail(file, `"${label}" must be an object with "src" and "alt"`);
+  rejectUnknownFields(`${file} ${label}`, value, ["src", "alt"]);
+  return {
+    src: requirePublicFile(file, value, "src", `${label}.src`),
+    alt: requireString(file, value, "alt", `${label}.alt`),
+  };
+}
+
+/** Approved gym photos and the hero video, and where each one is used: content/photos.json. */
+export function getPhotos(): Photos {
+  const file = "content/photos.json";
+  let data: unknown;
+  try {
+    data = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, "photos.json"), "utf8"));
+  } catch (err) {
+    fail(file, `could not read as JSON (${(err as Error).message})`);
+  }
+  if (!isObject(data)) fail(file, "must be a JSON object");
+  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery"]);
+  if (!Array.isArray(data.aboutGallery) || data.aboutGallery.length === 0) {
+    fail(file, '"aboutGallery" must be a non-empty list');
+  }
+  if (!isObject(data.homeHero)) fail(file, '"homeHero" must be an object with "video" and "poster"');
+  rejectUnknownFields(file + " homeHero", data.homeHero, ["video", "poster"]);
+  return {
+    homeHero: {
+      video: requirePublicFile(file, data.homeHero, "video", "homeHero.video"),
+      poster: requirePublicFile(file, data.homeHero, "poster", "homeHero.poster"),
+    },
+    homeTogether: readPhoto(file, data.homeTogether, "homeTogether"),
+    aboutStory: readPhoto(file, data.aboutStory, "aboutStory"),
+    aboutGallery: data.aboutGallery.map((photo: unknown, i: number) => readPhoto(file, photo, `aboutGallery[${i}]`)),
+  };
+}

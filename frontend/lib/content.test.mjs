@@ -8,7 +8,10 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const name of ['site.json', 'prices.json', 'prices.sample.json']) {
+for (const dir of ['images/gym', 'videos']) {
+  fs.cpSync(path.join(originalDirectory, 'public', dir), path.join(fixture, 'public', dir), { recursive: true });
+}
+for (const name of ['site.json', 'prices.json', 'prices.sample.json', 'photos.json']) {
   fs.copyFileSync(path.join(originalDirectory, 'content', name), path.join(content, name));
 }
 const read = name => JSON.parse(fs.readFileSync(path.join(content, name), 'utf8'));
@@ -16,7 +19,7 @@ const write = (name, value) => fs.writeFileSync(path.join(content, name), JSON.s
 
 try {
   process.chdir(fixture);
-  const { getPrices, getSite } = await import('./content.ts');
+  const { getPhotos, getPrices, getSite } = await import('./content.ts');
   const { formatPrice } = await import('./format.ts');
   assert.equal(formatPrice({ price: 27.99, period: 'week' }, 'NZD'), '$27.99 / week');
   assert.equal(formatPrice({ price: null, period: null }, 'NZD'), 'Contact us for pricing');
@@ -42,13 +45,21 @@ try {
   write('site.json', { ...site, home: { ...site.home, benefits: [{ title: 'Coaching', description: '' }] } });
   assert.throws(getSite, /home.benefits\[0\].description/);
 
+  assert.equal(getPhotos().aboutGallery.length, 8);
+  const photos = read('photos.json');
+  write('photos.json', { ...photos, homeHero: { ...photos.homeHero, video: '/videos/Gym-Drone.mp4' } });
+  assert.throws(getPhotos, /homeHero.video/);
+  write('photos.json', { ...photos, aboutGallery: [{ ...photos.aboutGallery[0], alt: '' }] });
+  assert.throws(getPhotos, /aboutGallery\[0\].alt/);
+  write('photos.json', photos);
+
   process.env.SITE_ENV = 'production';
   assert.throws(getPrices, /prices not confirmed/);
   write('prices.json', { ...prices, confirmedWithClient: '2026-10-28' });
   const production = getPrices();
   assert.equal(production.sample, false);
   assert(production.plans.every(plan => plan.price === null));
-  console.log('content: preview isolation, validation and production gate passed');
+  console.log('content: preview isolation, validation, photos and production gate passed');
 } finally {
   process.chdir(originalDirectory);
   if (originalMode === undefined) delete process.env.SITE_ENV;
