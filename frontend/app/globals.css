@@ -102,7 +102,7 @@ body { font-size: 16px; line-height: 1.625; }
   .benefit-reveal { opacity: 1; transform: none; }
 }
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
-.coach-row, .together-row, .location-row { display: grid; align-items: center; gap: 24px; }
+.coach-row, .location-row { display: grid; align-items: center; gap: 24px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
@@ -193,12 +193,14 @@ body { font-size: 16px; line-height: 1.625; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
-  .together-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
   /* Zoom from the left edge: crops the empty wall on the right and moves the people clear of the text. */
   .together-photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: left center; transform: scale(1.2); transform-origin: left center; }
   .together::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 11 9 / 0.92), rgb(13 11 9 / 0.8) 35%, rgb(13 11 9 / 0) 65%); }
   .together-inner { display: flex; align-items: center; min-height: 720px; padding-block: 72px; }
   .together-copy { max-width: 440px; }
+  /* Our story: no zoom and a shorter, lighter fade so more of the photo shows. */
+  .story .together-photo { transform: none; }
+  .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.88), rgb(13 11 9 / 0.65) 32%, rgb(13 11 9 / 0) 55%); }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }
   .map-placeholder { min-height: 340px; }

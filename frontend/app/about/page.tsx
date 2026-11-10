@@ -32,14 +32,14 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="story-heading">
-        <div className="page-width section-space together-row">
-          <div className="section-stack">
+      <section aria-labelledby="story-heading" className="together story">
+        <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={2880} height={1920} className="together-photo" />
+        <div className="page-width together-inner">
+          <div className="together-copy section-stack">
             <h2 id="story-heading" className="section-heading">Our story</h2>
             <p className="body-large">{site.name} is located at {site.address.street}, {site.address.locality}.</p>
             {preview && <p className="body-large">[Current gym story to be supplied by the owners.]</p>}
           </div>
-          <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={1200} height={800} className="photo" />
         </div>
       </section>
 
