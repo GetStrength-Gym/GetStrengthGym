@@ -63,11 +63,11 @@ export default function About() {
             <h2 id="offer-heading" className="section-heading">What we offer</h2>
             <p className="text-grey">Services to confirm with the gym — preview only.</p>
             <ul className="benefit-grid">
-              {OFFERS.map(offer => (
-                <li key={offer.title} className="offer-card">
-                  <Placeholder label="Icon / photo" className="offer-photo" />
+              {OFFERS.map((offer, i) => (
+                <li key={offer.title} className="benefit-card">
+                  <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
+                  <div className="benefit-reveal"><p>{offer.description}</p></div>
                   <h3>{offer.title}</h3>
-                  <p className="text-grey">{offer.description}</p>
                 </li>
               ))}
             </ul>

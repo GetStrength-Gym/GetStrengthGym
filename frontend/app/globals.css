@@ -145,8 +145,6 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 #the-gym, #memberships { scroll-margin-top: 24px; }
 .section-heading.page-title { font-weight: 800; line-height: 42px; }
-.offer-card { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-white); }
-.offer-photo { min-height: 160px; }
 .bg-neutral .placeholder { background: var(--color-white); }
 .gallery-grid { display: grid; gap: 16px; }
 .contact-row { display: grid; align-items: start; gap: 48px; }

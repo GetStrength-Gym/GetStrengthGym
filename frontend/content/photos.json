@@ -44,5 +44,19 @@
       "src": "/images/gym/deadlift-close-up.jpg",
       "alt": "Member gripping a loaded barbell before a deadlift"
     }
+  ],
+  "aboutOffers": [
+    {
+      "src": "/images/gym/members-training-tall.jpg",
+      "alt": "Members training across the gym floor"
+    },
+    {
+      "src": "/images/gym/members-talking-at-the-bar.jpg",
+      "alt": "A member talking two others through a session at the bar"
+    },
+    {
+      "src": "/images/gym/lifter-before-a-lift.jpg",
+      "alt": "Belted lifter focusing before a lift"
+    }
   ]
 }
