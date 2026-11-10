@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getSite, isPreviewBuild } from "@/lib/content";
 import JoinButton from "./JoinButton";
 import NavLinks from "./NavLinks";
+import SocialIcon from "./SocialIcon";
 
 export default function SiteFooter() {
   const site = getSite();
@@ -42,7 +43,7 @@ export default function SiteFooter() {
             <Link href="/contact/" className="footer-contact-link">Contact the team</Link>
             {site.outboundLinks.length > 0 && (
               <ul className="footer-socials">
-                {site.outboundLinks.map(link => <li key={link.url}><a href={link.url}>{link.service}</a></li>)}
+                {site.outboundLinks.map(link => <li key={link.url}><a href={link.url} aria-label={link.label} className="social-icon"><SocialIcon service={link.service} /></a></li>)}
               </ul>
             )}
           </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JoinCta from "@/components/JoinCta";
+import SocialIcon from "@/components/SocialIcon";
 import GymMap from "@/components/GymMap";
 import { getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
@@ -84,7 +85,7 @@ export default function Contact() {
             {site.outboundLinks.length > 0 && (
               <ul className="social-links" aria-label="Social media">
                 {site.outboundLinks.map(link => (
-                  <li key={link.url}><a href={link.url} className="gs-button gs-button-secondary">{link.service}</a></li>
+                  <li key={link.url}><a href={link.url} aria-label={link.label} className="social-icon"><SocialIcon service={link.service} size={26} /></a></li>
                 ))}
               </ul>
             )}

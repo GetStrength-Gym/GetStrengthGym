@@ -59,6 +59,8 @@ About's `about.story`.
 Each Home benefit has an `icon` (`coaching`, `equipment` or `community`, drawn in `app/page.tsx`)
 and a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
+Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
+shows its name instead.
 Missing coach and video-testimonial content stays labelled in preview and is hidden in
 production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.

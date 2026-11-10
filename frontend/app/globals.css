@@ -153,6 +153,8 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-contact-link:hover, .footer-socials a:hover, .footer-legal a:hover { text-decoration: underline; }
 .footer-socials { display: flex; gap: 16px; }
 .footer-socials a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; }
+.social-icon { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: 50%; transition: background-color 150ms, color 150ms; }
+.footer-socials .social-icon:hover { color: var(--color-charcoal); background: var(--color-footer-text); }
 .footer-legal { display: flex; flex-direction: column; gap: 16px; font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-footer-muted); }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 #the-gym, #memberships { scroll-margin-top: 24px; }
@@ -173,8 +175,9 @@ body { font-size: 16px; line-height: 1.625; }
 .details-card dl { display: flex; flex-direction: column; gap: 12px; }
 .details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
 .details-card address { font-style: normal; }
-.social-links { display: flex; flex-direction: column; gap: 12px; }
-.social-links .gs-button { width: 100%; }
+.social-links { display: flex; gap: 12px; }
+.social-links .social-icon { width: 52px; height: 52px; border: 1px solid currentColor; }
+.social-links .social-icon:hover { color: var(--color-white); background: var(--color-charcoal); }
 
 @media (min-width: 600px) and (max-width: 959px) {
   .benefit-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -231,8 +234,6 @@ body { font-size: 16px; line-height: 1.625; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); gap: 80px; }
   .enquiry-form .gs-button, .details-card .gs-button { align-self: flex-start; }
-  .social-links { flex-direction: row; }
-  .social-links .gs-button { width: auto; }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }
