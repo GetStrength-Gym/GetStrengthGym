@@ -347,12 +347,13 @@ export type Photos = {
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 
-function requirePublicFile(file: string, data: Record<string, unknown>, field: string, label: string): string {
+function requirePublicFile(file: string, data: Record<string, unknown>, field: string, label: string,
+  folder: "images" | "videos" = "images"): string {
   const src = requireString(file, data, field, label);
   // Exact-case match: S3 paths are case-sensitive, Windows and macOS file systems are not.
   const dir = path.join(PUBLIC_DIR, path.dirname(src));
-  if (!/^\/(images|videos)\//.test(src) || !fs.existsSync(dir) || !fs.readdirSync(dir).includes(path.basename(src))) {
-    fail(file, `"${label}" must be an existing file under public/images/ or public/videos/`);
+  if (!src.startsWith(`/${folder}/`) || src.includes("..") || !fs.existsSync(dir) || !fs.readdirSync(dir).includes(path.basename(src))) {
+    fail(file, `"${label}" must be an existing file under public/${folder}/`);
   }
   return src;
 }
@@ -384,7 +385,7 @@ export function getPhotos(): Photos {
   rejectUnknownFields(file + " homeHero", data.homeHero, ["video", "poster"]);
   return {
     homeHero: {
-      video: requirePublicFile(file, data.homeHero, "video", "homeHero.video"),
+      video: requirePublicFile(file, data.homeHero, "video", "homeHero.video", "videos"),
       poster: requirePublicFile(file, data.homeHero, "poster", "homeHero.poster"),
     },
     homeTogether: readPhoto(file, data.homeTogether, "homeTogether"),

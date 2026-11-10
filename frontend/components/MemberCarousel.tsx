@@ -18,6 +18,8 @@ export default function MemberCarousel({ photos }: { photos: Photo[] }) {
   return (
     <div className="carousel" role="region" aria-roledescription="carousel" aria-label="Member testimonials"
       onPointerDown={event => { swipeStart.current = event.clientX; }}
+      onPointerCancel={() => { swipeStart.current = null; }}
+      onPointerLeave={() => { swipeStart.current = null; }}
       onPointerUp={event => {
         const moved = swipeStart.current === null ? 0 : event.clientX - swipeStart.current;
         swipeStart.current = null;
@@ -29,7 +31,7 @@ export default function MemberCarousel({ photos }: { photos: Photo[] }) {
           // A card wrapping from one end to the other jumps while off-screen instead of sliding across.
           const wraps = Math.abs(now - offset(i, from)) > 1;
           return (
-            <li key={photo.src} style={{ "--offset": now } as React.CSSProperties}
+            <li key={i} style={{ "--offset": now } as React.CSSProperties}
               className={"benefit-card member-card" + (now === 0 ? " is-active" : "") + (wraps ? " no-slide" : "")}>
               <Image src={photo.src} alt={photo.alt} width={1600} height={800} className="benefit-photo" draggable={false} />
               <div className="benefit-reveal"><p>[Member testimonial to be supplied]</p></div>

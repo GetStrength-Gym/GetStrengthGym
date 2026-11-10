@@ -9,7 +9,10 @@ const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
 for (const dir of ['images/gym', 'videos']) {
-  fs.cpSync(path.join(originalDirectory, 'public', dir), path.join(fixture, 'public', dir), { recursive: true });
+  fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
+  for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
+    fs.writeFileSync(path.join(fixture, 'public', dir, name), '');
+  }
 }
 for (const name of ['site.json', 'prices.json', 'prices.sample.json', 'photos.json']) {
   fs.copyFileSync(path.join(originalDirectory, 'content', name), path.join(content, name));
@@ -57,6 +60,10 @@ try {
   const photos = read('photos.json');
   write('photos.json', { ...photos, homeHero: { ...photos.homeHero, video: '/videos/Gym-Drone.mp4' } });
   assert.throws(getPhotos, /homeHero.video/);
+  write('photos.json', { ...photos, homeTogether: { ...photos.homeTogether, src: photos.homeHero.video } });
+  assert.throws(getPhotos, /homeTogether.src/);
+  write('photos.json', { ...photos, homeTogether: { ...photos.homeTogether, src: '/images/../content/site.json' } });
+  assert.throws(getPhotos, /homeTogether.src/);
   write('photos.json', { ...photos, aboutGallery: [{ ...photos.aboutGallery[0], alt: '' }] });
   assert.throws(getPhotos, /aboutGallery\[0\].alt/);
   write('photos.json', photos);

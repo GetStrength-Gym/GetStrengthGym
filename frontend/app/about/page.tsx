@@ -22,6 +22,9 @@ export default function About() {
   const site = getSite();
   const photos = getPhotos();
   const preview = isPreviewBuild();
+  if (photos.aboutOffers.length !== OFFERS.length) {
+    throw new Error(`content/photos.json: "aboutOffers" needs ${OFFERS.length} photos, one per What we offer card`);
+  }
 
   return (
     <main className="about">
@@ -78,8 +81,8 @@ export default function About() {
         <div className="page-width section-space section-stack">
           <h2 id="gallery-heading" className="section-heading">Inside the gym</h2>
           <ul className="gallery-grid">
-            {photos.aboutGallery.map(photo => (
-              <li key={photo.src}><Image src={photo.src} alt={photo.alt} width={1200} height={800} className="photo" /></li>
+            {photos.aboutGallery.map((photo, i) => (
+              <li key={i}><Image src={photo.src} alt={photo.alt} width={1200} height={800} className="photo" /></li>
             ))}
           </ul>
         </div>
