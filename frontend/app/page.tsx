@@ -76,7 +76,7 @@ export default function Home() {
               <h2 id="coach-heading" className="section-heading">Coach profile</h2>
               <p className="body-large">Coach role to confirm</p>
               <p className="text-grey">Current coach name, role and biography awaiting confirmation with the gym.</p>
-              <p className="eyebrow">Approved coach credentials needed.</p>
+              <p className="text-grey">Approved coach credentials needed.</p>
               <div className="coach-actions">
                 <Link href="/contact/" className="gs-button gs-button-primary">Enquire about coaching</Link>
                 <Link href="/about/" className="gs-button gs-button-secondary">About the gym</Link>
