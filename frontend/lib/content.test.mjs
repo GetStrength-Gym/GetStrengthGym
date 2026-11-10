@@ -53,6 +53,7 @@ try {
 
   assert.equal(getPhotos().aboutGallery.length, 8);
   assert.equal(getPhotos().aboutOffers.length, 3);
+  assert.equal(getPhotos().homeMembers.length, 5);
   const photos = read('photos.json');
   write('photos.json', { ...photos, homeHero: { ...photos.homeHero, video: '/videos/Gym-Drone.mp4' } });
   assert.throws(getPhotos, /homeHero.video/);

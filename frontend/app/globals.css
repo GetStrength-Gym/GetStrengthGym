@@ -87,7 +87,7 @@ body { font-size: 16px; line-height: 1.625; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
 .hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
-.benefit-grid, .testimonial-grid { display: grid; gap: 24px; }
+.benefit-grid { display: grid; gap: 24px; }
 /* Photo card: title sits on the photo; icon and description slide down on hover, and are always shown on touch screens. */
 .benefit-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
 .benefit-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -108,7 +108,20 @@ body { font-size: 16px; line-height: 1.625; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-.video-placeholder { min-height: 180px; background: var(--color-white); }
+/* Member spotlight carousel: full section width, cards placed by their --offset from the active one,
+   neighbours darkened and scaled down, arrows on the sides. It cycles, so both sides always have a card. */
+.members { padding-block: 48px; }
+.members .section-heading { margin-bottom: 24px; }
+/* clip, not hidden: a hidden overflow is still a scroll container, and focus or clicks scrolled it sideways. */
+.carousel { --gap: 16px; position: relative; height: 320px; overflow: clip; container-type: inline-size; touch-action: pan-y; }
+.carousel-track { position: relative; height: 100%; }
+.carousel-track > li { --card: min(780px, 82cqw); position: absolute; top: 0; left: 50%; width: var(--card); height: 100%; transform: translateX(calc(-50% + var(--offset) * (var(--card) + var(--gap)))) scale(0.9); filter: brightness(0.5); transition: transform 450ms ease, filter 450ms ease; user-select: none; }
+.carousel-track > li.is-active { transform: translateX(-50%); filter: none; }
+.carousel-track > li.no-slide { transition: none; }
+.benefit-card.member-card { min-height: 0; }
+.carousel-controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: 12px; pointer-events: none; }
+.carousel-button { pointer-events: auto; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: var(--color-charcoal); background: var(--color-white); box-shadow: 0 8px 24px rgb(13 11 9 / 0.3); transition: background-color 150ms, color 150ms; }
+.carousel-button:hover { color: var(--color-white); background: var(--color-charcoal); }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
 .gym-map { display: block; width: 100%; min-height: 220px; border: 0; border-radius: 16px; }
@@ -164,7 +177,7 @@ body { font-size: 16px; line-height: 1.625; }
 .social-links .gs-button { width: 100%; }
 
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .testimonial-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
@@ -188,7 +201,14 @@ body { font-size: 16px; line-height: 1.625; }
   .hero-actions, .coach-actions { flex-direction: row; flex-wrap: wrap; }
   .hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
   .hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }
-  .benefit-grid, .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .members { padding-block: 72px; }
+  .members .section-heading { margin-bottom: 32px; }
+  .carousel { --gap: 32px; height: 400px; }
+  .benefit-card.member-card { padding: 32px 40px; }
+  .member-card h3 { font-size: 32px; line-height: 40px; }
+  .carousel-controls { padding-inline: 32px; }
+  .carousel-button { width: 56px; height: 56px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }

@@ -66,7 +66,8 @@ production. The map on Home and Contact is a Google Maps embed built from `name`
 ## Swap a photo or the hero video
 
 `frontend/content/photos.json` says which file each slot uses: the Home hero video and its
-poster, Home's Train together photo, About's story photo and the About gallery. Every photo
+poster, Home's Train together photo, Home's five member-carousel photos (`homeMembers`), About's
+story photo, About's What we offer cards (`aboutOffers`) and the About gallery. Every photo
 needs `alt` text describing what is visible; the hero video is decorative, so it has none.
 The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
 

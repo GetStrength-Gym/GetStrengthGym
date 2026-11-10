@@ -5,6 +5,7 @@ import JoinButton from "@/components/JoinButton";
 import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
+import MemberCarousel from "@/components/MemberCarousel";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
 import { getPhotos, getSite, isPreviewBuild, type BENEFIT_ICONS } from "@/lib/content";
@@ -99,16 +100,9 @@ export default function Home() {
       </section>
 
       {preview && (
-        <section aria-labelledby="testimonials-heading" className="bg-neutral">
-          <div className="page-width section-space section-stack">
-            <h2 id="testimonials-heading" className="section-heading">What our members say</h2>
-            <div className="testimonial-grid">
-              {[1, 2, 3].map(number => (
-                <Placeholder key={number} label={"Member video " + number}
-                  detail="PLACEHOLDER · APPROVED TESTIMONIAL FOOTAGE NEEDED" className="video-placeholder" />
-              ))}
-            </div>
-          </div>
+        <section aria-labelledby="testimonials-heading" className="bg-neutral members">
+          <h2 id="testimonials-heading" className="page-width section-heading">What our members say</h2>
+          <MemberCarousel photos={photos.homeMembers} />
         </section>
       )}
 

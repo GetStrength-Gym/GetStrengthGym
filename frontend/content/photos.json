@@ -58,5 +58,27 @@
       "src": "/images/gym/lifter-before-a-lift.jpg",
       "alt": "Belted lifter focusing before a lift"
     }
+  ],
+  "homeMembers": [
+    {
+      "src": "/images/gym/lifter-gripping-bar-wide.jpg",
+      "alt": "Lifter gripping a loaded barbell before a deadlift"
+    },
+    {
+      "src": "/images/gym/member-deadlifting-wide.jpg",
+      "alt": "Member deadlifting on a marked platform while others train behind"
+    },
+    {
+      "src": "/images/gym/members-chatting-wide.jpg",
+      "alt": "Two members chatting and smiling between sets"
+    },
+    {
+      "src": "/images/gym/deadlift-lockout-wide.jpg",
+      "alt": "Lifter locking out a deadlift while a member watches"
+    },
+    {
+      "src": "/images/gym/lifter-focus-wide.jpg",
+      "alt": "Lifter looking down, focusing before a lift"
+    }
   ]
 }
