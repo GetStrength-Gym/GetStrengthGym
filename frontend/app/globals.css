@@ -76,7 +76,7 @@ body { font-size: 16px; line-height: 1.625; }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
-.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 16px; }
 /* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
 .together { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
 .together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
@@ -108,7 +108,6 @@ body { font-size: 16px; line-height: 1.625; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-.gym-photo { min-height: 260px; }
 .video-placeholder { min-height: 180px; background: var(--color-white); }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
@@ -150,7 +149,6 @@ body { font-size: 16px; line-height: 1.625; }
 .offer-photo { min-height: 160px; }
 .bg-neutral .placeholder { background: var(--color-white); }
 .gallery-grid { display: grid; gap: 16px; }
-.gallery-photo { min-height: 240px; }
 .contact-row { display: grid; align-items: start; gap: 48px; }
 .enquiry-form, .contact-details { display: flex; flex-direction: column; gap: 20px; }
 .field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; line-height: 21px; }
@@ -203,7 +201,6 @@ body { font-size: 16px; line-height: 1.625; }
   .together::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 11 9 / 0.92), rgb(13 11 9 / 0.8) 35%, rgb(13 11 9 / 0) 65%); }
   .together-inner { display: flex; align-items: center; min-height: 720px; padding-block: 72px; }
   .together-copy { max-width: 440px; }
-  .gym-photo { min-height: 380px; }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }
   .map-placeholder { min-height: 340px; }

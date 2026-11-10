@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
-import { getSite, isPreviewBuild } from "@/lib/content";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: { absolute: "About GetStrength Gym — Our Story and Coaching" },
@@ -19,6 +20,7 @@ const OFFERS = [
 
 export default function About() {
   const site = getSite();
+  const photos = getPhotos();
   const preview = isPreviewBuild();
 
   return (
@@ -37,7 +39,7 @@ export default function About() {
             <p className="body-large">{site.name} is located at {site.address.street}, {site.address.locality}.</p>
             {preview && <p className="body-large">[Current gym story to be supplied by the owners.]</p>}
           </div>
-          <Placeholder label="Gym / team photo" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="gym-photo" />
+          <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={1200} height={800} className="photo" />
         </div>
       </section>
 
@@ -73,19 +75,16 @@ export default function About() {
         </section>
       )}
 
-      {preview && (
-        <section aria-labelledby="gallery-heading">
-          <div className="page-width section-space section-stack">
-            <h2 id="gallery-heading" className="section-heading">Inside the gym</h2>
-            <div className="gallery-grid">
-              {[1, 2, 3, 4].map(number => (
-                <Placeholder key={number} label={"Gym photo " + number} detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED"
-                  className="gallery-photo" />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <section aria-labelledby="gallery-heading">
+        <div className="page-width section-space section-stack">
+          <h2 id="gallery-heading" className="section-heading">Inside the gym</h2>
+          <ul className="gallery-grid">
+            {photos.aboutGallery.map(photo => (
+              <li key={photo.src}><Image src={photo.src} alt={photo.alt} width={1200} height={800} className="photo" /></li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <JoinCta heading="Train with us" text="Become a GS Gym member."
         note="Memberships are handled securely through Debit Success." />
