@@ -54,7 +54,8 @@ Membership options appear on Home before its existing bottom **Join GS Gym** CTA
 have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
 Success in the same tab. Prices, fees, inclusions and terms need current-gym approval;
 Figma's observed figures are not approval. The casual day pass is $30 a visit, agreed with
-the client at the latest client meeting (reported 2026-11-10); how to buy one is unconfirmed. Keep video testimonial placeholders until approved footage arrives.
+the client (see `docs/meetings/2026-11-11-gs23-content-decisions.md` D1); how to buy one is
+unconfirmed. Keep video testimonial placeholders until approved footage arrives.
 
 External links are Debit Success, the current gym's Instagram
 (<https://www.instagram.com/getstrengthgym/>), and YouTube only after the current gym's
