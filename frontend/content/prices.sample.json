@@ -49,7 +49,7 @@
     }
   ],
   "dayPass": {
-    "price": null,
+    "price": 30,
     "howToBuy": null
   }
 }

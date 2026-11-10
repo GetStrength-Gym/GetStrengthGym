@@ -24,7 +24,7 @@ try {
   const preview = getPrices();
   assert.equal(preview.sample, true);
   assert.deepEqual(preview.plans.map(plan => plan.price), [27.99, 35.99, 54.99, 18.99]);
-  assert.equal(preview.dayPass.price, null);
+  assert.equal(preview.dayPass.price, 30);
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);

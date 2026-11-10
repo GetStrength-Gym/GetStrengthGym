@@ -112,8 +112,8 @@ These are observations recorded in Figma on 2026-10-12, not approved current pri
 Label unconfirmed observations in preview. Production still requires client-confirmed
 values under ADR-006; do not set `confirmedWithClient` from a Figma observation.
 
-The day pass is absent from the observed form: price and purchase method remain
-`TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
+The day pass is absent from the observed form. Its price is $30 a visit (agreed with the
+client, reported 2026-11-10); the purchase method remains `TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
 
 Extend **`frontend/content/prices.json`**, not `data/membership.json`, with confirmed
 billing, minimum term, one-off payment, inclusions and day-pass details. Reuse existing
