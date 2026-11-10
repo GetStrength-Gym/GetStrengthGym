@@ -74,7 +74,7 @@ body { font-size: 16px; line-height: 1.625; }
 /* Darkens the video so white hero text stays above 4.5:1 wherever it lands. */
 .home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.92) 25%, rgb(13 11 9 / 0.5)); }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
-.hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; min-height: 44px; padding: 10px 16px; border: 1px solid currentColor; border-radius: 4px; background: rgb(13 11 9 / 0.6); font-size: 14px; font-weight: 600; }
+.hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
 .photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
