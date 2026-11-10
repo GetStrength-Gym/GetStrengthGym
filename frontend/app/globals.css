@@ -198,9 +198,9 @@ body { font-size: 16px; line-height: 1.625; }
   .together::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 11 9 / 0.92), rgb(13 11 9 / 0.8) 35%, rgb(13 11 9 / 0) 65%); }
   .together-inner { display: flex; align-items: center; min-height: 720px; padding-block: 72px; }
   .together-copy { max-width: 440px; }
-  /* Our story: no zoom and a shorter, lighter fade so more of the photo shows. */
+  /* Our story: no zoom, and the fade stays dark only behind the text so the rest of the photo shows. */
   .story .together-photo { transform: none; }
-  .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.88), rgb(13 11 9 / 0.65) 32%, rgb(13 11 9 / 0) 55%); }
+  .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.8) 38%, rgb(13 11 9 / 0) 60%); }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }
   .map-placeholder { min-height: 340px; }

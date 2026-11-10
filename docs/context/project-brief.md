@@ -106,6 +106,9 @@ contacts or account ownership without current-owner confirmation.
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 
 ## Changelog
+- 2026-11-11 — About's story written (`site.json` `about.story`): "since 2001" per Kevin;
+  "#1 ranked powerlifting team in Auckland" and the May 2026 move to Olive Road per the gym's
+  own Instagram. The old-owner Facebook page's phone, email and history are not used.
 - 2026-11-11 — Q14 decided: the blog's replacement is an events calendar page (not yet
   built). GS-23: interim photos and drone video from the client's 2026-11-09 album are on
   Home and About.

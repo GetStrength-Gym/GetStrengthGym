@@ -200,6 +200,7 @@ export type Site = {
     benefits: { title: string; description: string; icon: (typeof BENEFIT_ICONS)[number]; photo: string }[];
     togetherIntroduction: string;
   };
+  about: { story: string };
 };
 
 const SITE_FIELDS = [
@@ -214,6 +215,7 @@ const SITE_FIELDS = [
   "nav",
   "outboundLinks",
   "home",
+  "about",
 ];
 
 function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
@@ -308,6 +310,10 @@ export function getSite(): Site {
     }),
   };
 
+  if (!isObject(data.about)) fail(file, '"about" must be an object');
+  rejectUnknownFields(file + " about", data.about, ["story"]);
+  const about = { story: requireString(file, data.about, "story", "about.story") };
+
   return {
     name,
     address,
@@ -320,6 +326,7 @@ export function getSite(): Site {
     nav,
     outboundLinks,
     home,
+    about,
   };
 }
 

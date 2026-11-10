@@ -37,8 +37,7 @@ export default function About() {
         <div className="page-width together-inner">
           <div className="together-copy section-stack">
             <h2 id="story-heading" className="section-heading">Our story</h2>
-            <p className="body-large">{site.name} is located at {site.address.street}, {site.address.locality}.</p>
-            {preview && <p className="body-large">[Current gym story to be supplied by the owners.]</p>}
+            <p className="body-large">{site.about.story}</p>
           </div>
         </div>
       </section>
