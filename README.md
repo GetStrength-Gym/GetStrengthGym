@@ -68,8 +68,7 @@ docker compose up                      # dev server on http://localhost:3000
 docker compose down                    # stop it
 
 docker compose run --rm frontend npm run lint
-docker compose run --rm frontend node --experimental-strip-types lib/content.test.mjs
-docker compose run --rm frontend node cloudfront/viewer-request.test.mjs
+docker compose run --rm frontend npm test       # content loader and CloudFront function tests
 
 docker compose run --rm frontend npm run build                        # preview build → frontend/out/
 docker compose run --rm -e SITE_ENV=production frontend npm run build # production build

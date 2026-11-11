@@ -14,13 +14,13 @@ const run = (uri) => handler({ request: { method: 'GET', uri, querystring: {}, h
 const rewrites = {
   '/': '/index.html',
   '/about/': '/about/index.html',
-  '/blog/some-post/': '/blog/some-post/index.html',
+  '/contact/': '/contact/index.html',
 };
 for (const [uri, expected] of Object.entries(rewrites)) {
   assert.equal(run(uri).uri, expected, uri);
 }
 
-for (const uri of ['/about', '/blog/some-post']) {
+for (const uri of ['/about', '/contact']) {
   const res = run(uri);
   assert.equal(res.statusCode, 301, uri);
   assert.equal(res.headers.location.value, uri + '/', uri);
