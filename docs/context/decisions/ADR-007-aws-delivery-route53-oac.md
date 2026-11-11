@@ -1,6 +1,8 @@
 # ADR-007: AWS delivery — Route 53 DNS, private S3 origin with OAC, CloudFront Function
 
 - **Status:** accepted — 2026-10-10 **Agreed by the whole team 2026-10-08** (`docs/meetings/2026-10-08-architecture-agreement.md`).
+  **Note 2026-11-08:** the preview now deploys automatically (`ADR-008-auto-deploy-preview.md`).
+  "Manual until a pipeline exists" below still holds for the live site.
 - **Deciders:** Johnson Zhang (lead), with the development team
 - **Source:** the lead's deployment architecture, 2026-10-10 (Users → Route 53 → CloudFront →
   S3, with ACM). Extends `ADR-004-hosting-on-aws.md`, which said any AWS service beyond S3 and
