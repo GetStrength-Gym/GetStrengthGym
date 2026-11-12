@@ -19,4 +19,4 @@ Never edit an accepted ADR to change the decision. Write a new one and mark the 
 | [ADR-005](ADR-005-nextjs-static-export.md) | Next.js with static export as the site generator | accepted 2026-10-05 |
 | [ADR-006](ADR-006-content-as-files.md) | Content as files read at build time; prices in one data file | accepted 2026-10-11; blog-post parts unused since the blog was removed (2026-10-18 meeting) |
 | [ADR-007](ADR-007-aws-delivery-route53-oac.md) | AWS delivery: Route 53 DNS, private S3 origin with OAC, CloudFront Function | accepted 2026-10-10 |
-| [ADR-008](ADR-008-auto-deploy-preview.md) | Deploy the preview automatically on merge to main (GitHub Actions + OIDC) | proposed 2026-11-03 |
+| [ADR-008](ADR-008-auto-deploy-preview.md) | Deploy the preview automatically on merge to main (GitHub Actions + OIDC) | accepted 2026-11-08 |
