@@ -91,6 +91,7 @@ contacts or account ownership without current-owner confirmation.
   email, and it costs ~US$0.50/month in Route 53) or move to a new domain such as getstrengthstream.com
   (a scope change)? Raised 2026-10-11; not decided.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
+  It must mention the Google Maps embed on Home and Contact (third-party; may set cookies).
 - **Q12** Owner identity is settled as Joe; the current coach's exact name, role, biography
   and credentials remain unconfirmed. Keep the generic coach slot.
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
@@ -104,8 +105,13 @@ contacts or account ownership without current-owner confirmation.
   the drone video from the client's 2026-11-09 album now run through Home and About (GS-23).
 - **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
   garbled. Get the real figures from the client in writing before touching `prices.json`.
+- **Q16** "#1 ranked powerlifting team in Auckland" (gym's Instagram bio) and "since 2001"
+  (per Kevin) are on About; get a source the gym approves before launch
+  (`docs/meetings/2026-11-12-gs23-review-follow-up.md` Q2).
 
 ## Changelog
+- 2026-11-12 — PR #15 review: testimonials preview is a CSS scroll-snap photo row (video
+  testimonials still the deliverable); Q11 extended for the Maps embed; Q16 added.
 - 2026-11-11 — Phone set to 09 622 2885 (per Kevin, from the gym's Google Maps listing at
   20/10 Olive Road). It matches the old Facebook page's number; the old owner's email is still not used.
 - 2026-11-11 — Member access hours set to 24/7 (per Kevin; Google Maps also lists the gym as
