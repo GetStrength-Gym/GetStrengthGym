@@ -78,9 +78,11 @@ records, **not in this repo**, which is public.
 ```sh
 docker compose up                                  # http://localhost:3000/
 docker compose run --rm frontend npm run lint
-docker compose run --rm frontend node --experimental-strip-types lib/content.test.mjs
+docker compose run --rm frontend npm test
 docker compose run --rm frontend npm run build     # preview build into frontend/out/
 ```
+
+GitHub runs the same three checks on every pull request (the **Checks** workflow).
 
 Invalid content fails the build with the file and field, for example:
 
@@ -111,6 +113,8 @@ How it works: when a PR that changes anything under `frontend/` merges to `main`
 Actions workflow `.github/workflows/deploy-preview.yml` ("Deploy preview") runs. It makes a
 plain preview build (no `SITE_ENV`, so sample prices show), uploads `frontend/out/`
 to the preview bucket with `--delete`, and invalidates the preview CloudFront distribution.
+The upload tells browsers to keep fingerprinted files under `_next/static/` for a year and to
+re-check everything else on each visit.
 AWS access is a short-lived OIDC session for a role that trusts `main` only; there are no AWS
 keys anywhere. Docs-only merges don't deploy. Deploys never overlap: a second merge waits for
 the first to finish.

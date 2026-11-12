@@ -6,6 +6,10 @@
 - **Source:** GS-42, requested by Johnson Zhang. No meeting minutes. Answers the "Revisit if"
   in `ADR-007-aws-delivery-route53-oac.md`, which asks for a pipeline's credentials model to be
   recorded as its own decision. **Preview only.**
+- **Note 2026-11-12:** the upload now runs as separate `aws s3 sync` passes so pages and
+  fingerprinted assets get different `Cache-Control` headers; the bucket is still an exact
+  mirror of the build. Dependabot is now configured (`.github/dependabot.yml`), and a Checks
+  workflow runs lint, tests and a build on every pull request.
 
 ## Context
 ADR-007 makes deploys manual: build, upload `frontend/out/` to S3, invalidate CloudFront. Every
