@@ -342,7 +342,7 @@ export type Photos = {
   aboutStory: Photo;
   aboutGallery: Photo[];
   aboutOffers: Photo[]; // same order as OFFERS in app/about/page.tsx
-  homeMembers: Photo[]; // testimonial carousel, preview-only until testimonials are supplied
+  homeMembers: Photo[]; // testimonial row, preview-only until testimonials are supplied
 };
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");

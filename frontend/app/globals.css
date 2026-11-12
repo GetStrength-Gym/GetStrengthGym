@@ -108,20 +108,14 @@ body { font-size: 16px; line-height: 1.625; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-/* Member spotlight carousel: full section width, cards placed by their --offset from the active one,
-   neighbours darkened and scaled down, arrows on the sides. It cycles, so both sides always have a card. */
-.members { padding-block: 48px; }
+/* Member row: native scroll-snap, so the browser handles swipe and keyboard scrolling. Side padding
+   of half the leftover width lets the first and last cards centre. */
+.members { padding-block: 48px; container-type: inline-size; }
 .members .section-heading { margin-bottom: 24px; }
-/* clip, not hidden: a hidden overflow is still a scroll container, and focus or clicks scrolled it sideways. */
-.carousel { --gap: 16px; position: relative; height: 320px; overflow: clip; container-type: inline-size; touch-action: pan-y; }
-.carousel-track { position: relative; height: 100%; }
-.carousel-track > li { --card: min(780px, 82cqw); position: absolute; top: 0; left: 50%; width: var(--card); height: 100%; transform: translateX(calc(-50% + var(--offset) * (var(--card) + var(--gap)))) scale(0.9); filter: brightness(0.5); transition: transform 450ms ease, filter 450ms ease; user-select: none; }
-.carousel-track > li.is-active { transform: translateX(-50%); filter: none; }
-.carousel-track > li.no-slide { transition: none; }
-.benefit-card.member-card { min-height: 0; }
-.carousel-controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: 12px; pointer-events: none; }
-.carousel-button { pointer-events: auto; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: var(--color-charcoal); background: var(--color-white); box-shadow: 0 8px 24px rgb(13 11 9 / 0.3); transition: background-color 150ms, color 150ms; }
-.carousel-button:hover { color: var(--color-white); background: var(--color-charcoal); }
+.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, 82cqw); gap: 16px; padding-inline: calc((100cqw - min(780px, 82cqw)) / 2); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.member-row::-webkit-scrollbar { display: none; }
+.member-row > li { scroll-snap-align: center; }
+.benefit-card.member-card { min-height: 320px; }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
 .gym-map { display: block; width: 100%; min-height: 220px; border: 0; border-radius: 16px; }
@@ -207,11 +201,9 @@ body { font-size: 16px; line-height: 1.625; }
   .benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .members { padding-block: 72px; }
   .members .section-heading { margin-bottom: 32px; }
-  .carousel { --gap: 32px; height: 400px; }
-  .benefit-card.member-card { padding: 32px 40px; }
+  .member-row { gap: 32px; }
+  .benefit-card.member-card { min-height: 400px; padding: 32px 40px; }
   .member-card h3 { font-size: 32px; line-height: 40px; }
-  .carousel-controls { padding-inline: 32px; }
-  .carousel-button { width: 56px; height: 56px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
