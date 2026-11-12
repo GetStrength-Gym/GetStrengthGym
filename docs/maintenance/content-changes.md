@@ -74,8 +74,11 @@ The build fails if a file is missing, its path's case differs from the file, or 
 
 1. Use only photos the client has approved, with permission for anyone in them. Leave out
    anything showing a number plate.
-2. Resize before adding: 1200px wide for gallery and story photos, 800px for the Why GS Gym
-   cards (portrait), 2880px for the full-width Train together photo. JPEG, roughly 60–420 KB.
+2. Resize before adding, as JPEG:
+   - 2880px wide for the full-width Train together and About story photos (about 400–700 KB);
+   - 1600×800 for the member photos (`homeMembers`);
+   - 1200×800 for the About gallery;
+   - 800×1200 for the Why GS Gym cards and 800×1000 for What we offer (portrait).
 3. Remove location data. Keep the photographer's copyright (`qbkl.media` for the
    2026-11-09 album).
 4. Put the file in `frontend/public/images/gym/` and point the slot at it.

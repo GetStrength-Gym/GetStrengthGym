@@ -16,7 +16,7 @@ export default function Contact() {
   const directions = directionsUrl(site.address);
   // Unconfirmed details are labelled in preview and left out of production.
   const details = [
-    { term: "Phone", value: site.phone, href: site.phone && "tel:" + site.phone.replace(/[^\d+]/g, "") },
+    { term: "Phone", value: site.phone, href: site.phone && "tel:+64" + site.phone.replace(/\D/g, "").replace(/^0/, "") }, // NZ number
     { term: "Email", value: site.email, href: site.email && "mailto:" + site.email },
   ].filter(detail => detail.value || preview);
 

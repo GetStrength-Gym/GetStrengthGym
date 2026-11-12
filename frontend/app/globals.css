@@ -90,10 +90,10 @@ body { font-size: 16px; line-height: 1.625; }
 .benefit-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
 .benefit-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .benefit-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0) 55%); transition: background-color 300ms; }
-.benefit-card:hover::after { background-color: rgb(13 11 9 / 0.72); }
+.benefit-card:hover::after, .benefit-card:focus-visible::after { background-color: rgb(13 11 9 / 0.72); }
 .benefit-reveal, .benefit-card h3 { position: relative; z-index: 1; }
 .benefit-reveal { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; opacity: 0; transform: translateY(-24px); transition: opacity 300ms, transform 300ms; }
-.benefit-card:hover .benefit-reveal { opacity: 1; transform: none; }
+.benefit-card:hover .benefit-reveal, .benefit-card:focus-visible .benefit-reveal { opacity: 1; transform: none; }
 .benefit-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: var(--color-red); background: var(--color-white); }
 @media (hover: none) {
   .benefit-card::after { background-color: rgb(13 11 9 / 0.72); }
@@ -110,8 +110,7 @@ body { font-size: 16px; line-height: 1.625; }
    of half the leftover width lets the first and last cards centre. */
 .members { padding-block: 48px; container-type: inline-size; }
 .members .section-heading { margin-bottom: 24px; }
-.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, 82cqw); gap: 16px; padding-inline: calc((100cqw - min(780px, 82cqw)) / 2); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.member-row::-webkit-scrollbar { display: none; }
+.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, 82cqw); gap: 16px; padding-inline: calc((100cqw - min(780px, 82cqw)) / 2); padding-bottom: 12px; overflow-x: auto; scroll-snap-type: x mandatory; }
 .member-row > li { scroll-snap-align: center; }
 .benefit-card.member-card { min-height: 320px; }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }

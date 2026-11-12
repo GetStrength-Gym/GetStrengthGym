@@ -51,7 +51,7 @@ export default function Home() {
           <p className="body-large">{site.home.whyIntroduction}</p>
           <ol className="benefit-grid">
             {site.home.benefits.map((benefit, i) => (
-              <li key={benefit.title} className="benefit-card">
+              <li key={benefit.title} className="benefit-card" tabIndex={0}>
                 <Image src={benefit.photo} alt="" width={800} height={1200} className="benefit-photo" />
                 <div className="benefit-reveal">
                   <span className="benefit-icon" aria-hidden="true">
