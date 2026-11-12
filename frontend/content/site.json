@@ -43,19 +43,16 @@
       {
         "title": "Experienced coaching",
         "description": "Build confidence in your technique with support from strength coaches.",
-        "icon": "coaching",
         "photo": "/images/gym/deadlift-lockout.jpg"
       },
       {
         "title": "Specialist equipment",
         "description": "Explore a gym built around strength training, with equipment for a range of lifting goals.",
-        "icon": "equipment",
         "photo": "/images/gym/plates-under-banners.jpg"
       },
       {
         "title": "Supportive community",
         "description": "Train alongside people who encourage progress at every experience level.",
-        "icon": "community",
         "photo": "/images/gym/members-chatting.jpg"
       }
     ],

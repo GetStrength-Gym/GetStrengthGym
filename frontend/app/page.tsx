@@ -7,7 +7,7 @@ import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
-import { getPhotos, getSite, isPreviewBuild, type BENEFIT_ICONS } from "@/lib/content";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   description: "Build strength. Find your community. Explore GetStrength Gym in Penrose, Auckland, and find your membership.",
 };
 
-// Line icons for the Why GS Gym cards, keyed by each benefit's "icon" in site.json.
-const ICONS: Record<(typeof BENEFIT_ICONS)[number], React.ReactNode> = {
-  coaching: <><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V2.5h6V4M9 13l2 2 4-4" /></>,
-  equipment: <path d="M2.5 10v4M6 7v10M18 7v10M21.5 10v4M6 12h12" />,
-  community: <><circle cx="9" cy="8" r="3" /><circle cx="17" cy="9" r="2.5" /><path d="M3 20a6 6 0 0 1 12 0M15.5 14.3A4 4 0 0 1 21 18v2" /></>,
-};
+// Line icons for the Why GS Gym cards, in card order: coaching, equipment, community.
+const ICONS = [
+  <g key="coaching"><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V2.5h6V4M9 13l2 2 4-4" /></g>,
+  <g key="equipment"><path d="M2.5 10v4M6 7v10M18 7v10M21.5 10v4M6 12h12" /></g>,
+  <g key="community"><circle cx="9" cy="8" r="3" /><circle cx="17" cy="9" r="2.5" /><path d="M3 20a6 6 0 0 1 12 0M15.5 14.3A4 4 0 0 1 21 18v2" /></g>,
+];
 
 export default function Home() {
   const site = getSite();
@@ -50,13 +50,13 @@ export default function Home() {
           <h2 id="why-heading" className="section-heading">Why GS Gym?</h2>
           <p className="body-large">{site.home.whyIntroduction}</p>
           <ol className="benefit-grid">
-            {site.home.benefits.map(benefit => (
+            {site.home.benefits.map((benefit, i) => (
               <li key={benefit.title} className="benefit-card">
                 <Image src={benefit.photo} alt="" width={800} height={1200} className="benefit-photo" />
                 <div className="benefit-reveal">
                   <span className="benefit-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2"
-                      strokeLinecap="round" strokeLinejoin="round">{ICONS[benefit.icon]}</svg>
+                      strokeLinecap="round" strokeLinejoin="round">{ICONS[i]}</svg>
                   </span>
                   <p>{benefit.description}</p>
                 </div>
