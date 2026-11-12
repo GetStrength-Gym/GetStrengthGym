@@ -1,6 +1,6 @@
 # ADR-008: Deploy the preview automatically on merge to main (GitHub Actions + OIDC)
 
-- **Status:** proposed
+- **Status:** accepted — 2026-11-08, when PR #13 merged and the first automatic deploy succeeded.
 - **Date:** 2026-11-03
 - **Deciders:** Johnson Zhang (lead), with the development team
 - **Source:** GS-42, requested by Johnson Zhang. No meeting minutes. Answers the "Revisit if"

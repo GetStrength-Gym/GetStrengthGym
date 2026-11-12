@@ -7,10 +7,11 @@ About Us, Contact. Keep video testimonial placeholders and no Facebook. **The bl
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
 its replacement is an events calendar page, decided 2026-11-11 and not yet built (brief Q14). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
-**Next:** implement the reconciled design on GS-15. Preserve main's image validation,
-CloudFront routing and production price-confirmation guard. Remaining infrastructure and
-commercial notes below are historical planning, not a fresh operational-status check.
-Do not infer a current AWS-account blocker or approval from that older snapshot.
+**Status at 2026-11-12:** Home, About Us and Contact are built (GS-15, GS-19), and the preview
+deploys itself on merge to `main` (ADR-008). What's left is on the
+[roadmap](https://github.com/GetStrength-Gym/GetStrengthGym/wiki/Roadmap). Remaining
+infrastructure and commercial notes below are historical planning, not a fresh
+operational-status check.
 
 ## Where the project stands
 
@@ -110,7 +111,7 @@ Constraints the build still has to satisfy:
 
 ## Where everything lives
 
-**Repo** (`~/Library/CloudStorage/OneDrive-EROAD/Desktop/getstrength-gym-website`)
+**Repo**
 | File | What it is |
 |---|---|
 | `docs/requirements.md` | **Client-facing requirements + quote.** Single source of truth. |
