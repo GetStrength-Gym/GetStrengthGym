@@ -25,7 +25,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
-| Unconfirmed content (coach, photos, map, phone, email, hours) | labelled placeholders | left out |
+| Unconfirmed content (coach, email, staffed hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain
@@ -54,11 +54,37 @@ the client sent. Don't fill gaps; ask them.
 
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
-Join destination, navigation, approved social links and Home's introductory/benefit copy.
+Join destination, navigation, approved social links, Home's introductory/benefit copy and
+About's `about.story`.
+Each Home benefit has a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
-Missing coach, photograph, map and video-testimonial content stays labelled in preview
-and is hidden in production. The supplied Figma logo is stored locally in
+Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
+shows its name instead.
+Missing coach and video-testimonial content stays labelled in preview and is hidden in
+production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
+
+## Swap a photo or the hero video
+
+`frontend/content/photos.json` says which file each slot uses: the Home hero video and its
+poster, Home's Train together photo, Home's five member-testimonial photos (`homeMembers`), About's
+story photo, About's What we offer cards (`aboutOffers`) and the About gallery. Every photo
+needs `alt` text describing what is visible; the hero video is decorative, so it has none.
+The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
+
+1. Use only photos the client has approved, with permission for anyone in them. Leave out
+   anything showing a number plate.
+2. Resize before adding, as JPEG:
+   - 2880px wide for the full-width Train together and About story photos (about 400–700 KB);
+   - 1600×800 for the member photos (`homeMembers`);
+   - 1200×800 for the About gallery;
+   - 800×1200 for the Why GS Gym cards and 800×1000 for What we offer (portrait).
+3. Remove location data. Keep the photographer's copyright (`qbkl.media` for the
+   2026-11-09 album).
+4. Put the file in `frontend/public/images/gym/` and point the slot at it.
+
+The hero video lives in `frontend/public/videos/`; keep it short, muted-friendly and about
+5 MB or less, with a matching still frame as its `poster`.
 
 ## Confirm prices before launch
 

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import JoinCta from "@/components/JoinCta";
 import Placeholder from "@/components/Placeholder";
-import { getSite, isPreviewBuild } from "@/lib/content";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: { absolute: "About GetStrength Gym — Our Story and Coaching" },
@@ -19,7 +20,11 @@ const OFFERS = [
 
 export default function About() {
   const site = getSite();
+  const photos = getPhotos();
   const preview = isPreviewBuild();
+  if (photos.aboutOffers.length !== OFFERS.length) {
+    throw new Error(`content/photos.json: "aboutOffers" needs ${OFFERS.length} photos, one per What we offer card`);
+  }
 
   return (
     <main className="about">
@@ -30,14 +35,13 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="story-heading">
-        <div className="page-width section-space together-row">
-          <div className="section-stack">
+      <section aria-labelledby="story-heading" className="together story">
+        <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={2880} height={1920} className="together-photo" />
+        <div className="page-width together-inner">
+          <div className="together-copy section-stack">
             <h2 id="story-heading" className="section-heading">Our story</h2>
-            <p className="body-large">{site.name} is located at {site.address.street}, {site.address.locality}.</p>
-            {preview && <p className="body-large">[Current gym story to be supplied by the owners.]</p>}
+            <p className="body-large">{site.about.story}</p>
           </div>
-          <Placeholder label="Gym / team photo" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="gym-photo" />
         </div>
       </section>
 
@@ -61,11 +65,11 @@ export default function About() {
             <h2 id="offer-heading" className="section-heading">What we offer</h2>
             <p className="text-grey">Services to confirm with the gym — preview only.</p>
             <ul className="benefit-grid">
-              {OFFERS.map(offer => (
-                <li key={offer.title} className="offer-card">
-                  <Placeholder label="Icon / photo" className="offer-photo" />
+              {OFFERS.map((offer, i) => (
+                <li key={offer.title} className="benefit-card" tabIndex={0}>
+                  <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
+                  <div className="benefit-reveal"><p>{offer.description}</p></div>
                   <h3>{offer.title}</h3>
-                  <p className="text-grey">{offer.description}</p>
                 </li>
               ))}
             </ul>
@@ -73,19 +77,16 @@ export default function About() {
         </section>
       )}
 
-      {preview && (
-        <section aria-labelledby="gallery-heading">
-          <div className="page-width section-space section-stack">
-            <h2 id="gallery-heading" className="section-heading">Inside the gym</h2>
-            <div className="gallery-grid">
-              {[1, 2, 3, 4].map(number => (
-                <Placeholder key={number} label={"Gym photo " + number} detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED"
-                  className="gallery-photo" />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <section aria-labelledby="gallery-heading">
+        <div className="page-width section-space section-stack">
+          <h2 id="gallery-heading" className="section-heading">Inside the gym</h2>
+          <ul className="gallery-grid">
+            {photos.aboutGallery.map((photo, i) => (
+              <li key={i}><Image src={photo.src} alt={photo.alt} width={1200} height={800} className="photo" /></li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <JoinCta heading="Train with us" text="Become a GS Gym member."
         note="Memberships are handled securely through Debit Success." />

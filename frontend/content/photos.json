@@ -1,0 +1,84 @@
+{
+  "homeHero": {
+    "video": "/videos/gym-drone.mp4",
+    "poster": "/images/gym/gym-drone-poster.jpg"
+  },
+  "homeTogether": {
+    "src": "/images/gym/members-between-sets.jpg",
+    "alt": "Members laughing together between sets"
+  },
+  "aboutStory": {
+    "src": "/images/gym/gym-floor-banners.jpg",
+    "alt": "The gym floor with loaded squat racks under GetStrength banners"
+  },
+  "aboutGallery": [
+    {
+      "src": "/images/gym/members-training.jpg",
+      "alt": "Members training on the lifting platforms at GetStrength Gym"
+    },
+    {
+      "src": "/images/gym/lifting-platforms.jpg",
+      "alt": "Wide view of the gym floor with marked lifting platforms and squat racks"
+    },
+    {
+      "src": "/images/gym/loaded-squat-rack.jpg",
+      "alt": "Squat rack loaded with blue, yellow and red weight plates"
+    },
+    {
+      "src": "/images/gym/member-deadlifting.jpg",
+      "alt": "Member deadlifting on a marked platform while others train nearby"
+    },
+    {
+      "src": "/images/gym/benches-and-dumbbells.jpg",
+      "alt": "Benches and a dumbbell rack in the training area"
+    },
+    {
+      "src": "/images/gym/member-setting-up.jpg",
+      "alt": "Member standing by a loaded barbell on a marked platform"
+    },
+    {
+      "src": "/images/gym/racks-by-roller-door.jpg",
+      "alt": "Racks and loaded barbells near the roller door"
+    },
+    {
+      "src": "/images/gym/deadlift-close-up.jpg",
+      "alt": "Member gripping a loaded barbell before a deadlift"
+    }
+  ],
+  "aboutOffers": [
+    {
+      "src": "/images/gym/members-training-tall.jpg",
+      "alt": "Members training across the gym floor"
+    },
+    {
+      "src": "/images/gym/members-talking-at-the-bar.jpg",
+      "alt": "A member talking two others through a session at the bar"
+    },
+    {
+      "src": "/images/gym/lifter-before-a-lift.jpg",
+      "alt": "Belted lifter focusing before a lift"
+    }
+  ],
+  "homeMembers": [
+    {
+      "src": "/images/gym/lifter-gripping-bar-wide.jpg",
+      "alt": "Lifter gripping a loaded barbell before a deadlift"
+    },
+    {
+      "src": "/images/gym/member-deadlifting-wide.jpg",
+      "alt": "Member deadlifting on a marked platform while others train behind"
+    },
+    {
+      "src": "/images/gym/members-chatting-wide.jpg",
+      "alt": "Two members chatting and smiling between sets"
+    },
+    {
+      "src": "/images/gym/deadlift-lockout-wide.jpg",
+      "alt": "Lifter locking out a deadlift while a member watches"
+    },
+    {
+      "src": "/images/gym/lifter-focus-wide.jpg",
+      "alt": "Lifter looking down, focusing before a lift"
+    }
+  ]
+}

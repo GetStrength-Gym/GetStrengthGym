@@ -23,8 +23,8 @@ export default function PriceList() {
         </ul>
         <div className="day-pass">
           <h3>Casual day pass</h3>
-          {prices.dayPass.price !== null && <p className="membership-price">{formatPrice({ price: prices.dayPass.price, period: "visit" }, prices.currency)}</p>}
-          <p className="text-grey">{prices.dayPass.howToBuy ?? "Ask the gym for the day-pass price and purchase details."}</p>
+          <p className="membership-price">{formatPrice({ price: prices.dayPass.price, period: "visit" }, prices.currency)}</p>
+          <p className="text-grey">{prices.dayPass.howToBuy ?? "Ask the gym how to buy a day pass."}</p>
         </div>
       </div>
     </section>

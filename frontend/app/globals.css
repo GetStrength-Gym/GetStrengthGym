@@ -51,14 +51,12 @@ body { font-size: 16px; line-height: 1.625; }
 .section-stack { display: flex; flex-direction: column; gap: 24px; }
 .section-heading { font-size: 36px; font-weight: 800; line-height: 42px; }
 .body-large { color: var(--color-grey); font-size: 18px; line-height: 28px; }
-.eyebrow { color: var(--color-red); font-size: 12px; font-weight: 600; line-height: 18px; text-transform: uppercase; }
+.eyebrow { color: var(--color-red); font-size: 30px; font-weight: 800; line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; }
 .gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 15px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms; }
 .gs-button-primary { color: var(--color-white); background: var(--color-red); }
 .gs-button-primary:hover { background: var(--color-red-dark); }
 .gs-button-secondary { color: var(--color-charcoal); border-color: currentColor; background: var(--color-white); }
 .gs-button-secondary:hover { color: var(--color-white); background: var(--color-charcoal); }
-.text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; }
-.text-link:hover { text-decoration: underline; }
 .section-action { align-self: stretch; }
 .site-header { color: var(--color-white); background: var(--color-charcoal); }
 .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; padding-block: 12px; }
@@ -69,31 +67,57 @@ body { font-size: 16px; line-height: 1.625; }
 .header-nav a:hover, .header-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 8px; }
 .skip-link { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
 .skip-link:focus { top: 8px; left: 8px; z-index: 10; width: auto; height: auto; padding: 12px 20px; color: var(--color-charcoal); background: var(--color-white); clip-path: none; }
-.home-hero { color: var(--color-white); background: var(--color-charcoal); }
-.hero-inner { display: flex; flex-direction: column; gap: 24px; padding-block: 48px; }
-.hero-photo-note { font-size: 12px; font-weight: 600; line-height: 18px; }
+.home-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Darkens the video so white hero text stays above 4.5:1 wherever it lands. */
+.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.92) 25%, rgb(13 11 9 / 0.5)); }
+.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
+.hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
+.hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
+.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 16px; }
+/* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
+.together { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
+.together-inner { position: relative; z-index: 1; padding-block: 32px 48px; }
+.together-copy .body-large { color: var(--color-muted-on-dark); }
+.together-copy .section-heading { text-wrap: balance; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
 .hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
-.benefit-grid, .testimonial-grid { display: grid; gap: 24px; }
-.benefit-card { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; background: var(--color-white); }
+.benefit-grid { display: grid; gap: 24px; }
+/* Photo card: title sits on the photo; icon and description slide down on hover, and are always shown on touch screens. */
+.benefit-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
+.benefit-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.benefit-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0) 55%); transition: background-color 300ms; }
+.benefit-card:hover::after, .benefit-card:focus-visible::after { background-color: rgb(13 11 9 / 0.72); }
+.benefit-reveal, .benefit-card h3 { position: relative; z-index: 1; }
+.benefit-reveal { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; opacity: 0; transform: translateY(-24px); transition: opacity 300ms, transform 300ms; }
+.benefit-card:hover .benefit-reveal, .benefit-card:focus-visible .benefit-reveal { opacity: 1; transform: none; }
+.benefit-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: var(--color-red); background: var(--color-white); }
+@media (hover: none) {
+  .benefit-card::after { background-color: rgb(13 11 9 / 0.72); }
+  .benefit-reveal { opacity: 1; transform: none; }
+}
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
-.coach-row, .together-row, .location-row { display: grid; align-items: center; gap: 24px; }
+.coach-row, .location-row { display: grid; align-items: center; gap: 24px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-.gym-photo { min-height: 260px; }
-.video-placeholder { min-height: 180px; background: var(--color-white); }
+/* Member row: native scroll-snap, so the browser handles swipe and keyboard scrolling. Side padding
+   of half the leftover width lets the first and last cards centre. */
+.members { padding-block: 48px; container-type: inline-size; }
+.members .section-heading { margin-bottom: 24px; }
+.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, 82cqw); gap: 16px; padding-inline: calc((100cqw - min(780px, 82cqw)) / 2); padding-bottom: 12px; overflow-x: auto; scroll-snap-type: x mandatory; }
+.member-row > li { scroll-snap-align: center; }
+.benefit-card.member-card { min-height: 320px; }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
-.map-link { display: block; min-width: 0; }
-.map-placeholder { min-height: 220px; }
+.gym-map { display: block; width: 100%; min-height: 220px; border: 0; border-radius: 16px; }
 .memberships-section { display: flex; flex-direction: column; gap: 24px; padding-block: 48px 24px; }
 .membership-intro { display: flex; flex-direction: column; gap: 8px; }
-.membership-intro .eyebrow { font-size: 15px; line-height: 22px; }
 .membership-grid { display: grid; gap: 24px; }
 .membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 24px; border: 1px solid var(--color-line); background: var(--color-white); }
 .membership-card h3, .day-pass h3 { margin-bottom: 16px; }
@@ -120,15 +144,15 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-contact-link:hover, .footer-socials a:hover, .footer-legal a:hover { text-decoration: underline; }
 .footer-socials { display: flex; gap: 16px; }
 .footer-socials a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; }
+.social-icon { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: 50%; transition: background-color 150ms, color 150ms; }
+.social-icon svg { width: 24px; height: 24px; }
+.footer-socials .social-icon:hover { color: var(--color-charcoal); background: var(--color-footer-text); }
 .footer-legal { display: flex; flex-direction: column; gap: 16px; font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-footer-muted); }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 #the-gym, #memberships { scroll-margin-top: 24px; }
 .section-heading.page-title { font-weight: 800; line-height: 42px; }
-.offer-card { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-white); }
-.offer-photo { min-height: 160px; }
 .bg-neutral .placeholder { background: var(--color-white); }
 .gallery-grid { display: grid; gap: 16px; }
-.gallery-photo { min-height: 240px; }
 .contact-row { display: grid; align-items: start; gap: 48px; }
 .enquiry-form, .contact-details { display: flex; flex-direction: column; gap: 20px; }
 .field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; line-height: 21px; }
@@ -143,16 +167,19 @@ body { font-size: 16px; line-height: 1.625; }
 .details-card dl { display: flex; flex-direction: column; gap: 12px; }
 .details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
 .details-card address { font-style: normal; }
-.social-links { display: flex; flex-direction: column; gap: 12px; }
-.social-links .gs-button { width: 100%; }
+.social-links { display: flex; gap: 12px; }
+.social-links .social-icon { width: 52px; height: 52px; border: 1px solid currentColor; }
+.social-links .social-icon svg { width: 26px; height: 26px; }
+.social-links .social-icon:hover { color: var(--color-white); background: var(--color-charcoal); }
 
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .testimonial-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
   .section-space { padding-block: 72px; }
   .section-heading { font-weight: 700; line-height: 44px; }
+  .eyebrow { font-size: 36px; }
   .section-action { align-self: flex-start; }
   .site-header { border-bottom: 2px solid var(--color-red); }
   .header-inner { display: flex; justify-content: space-between; gap: 32px; padding-block: 7px; }
@@ -161,24 +188,35 @@ body { font-size: 16px; line-height: 1.625; }
   .header-join { order: 2; min-height: 48px; padding-block: 12px; }
   .header-nav { display: flex; gap: 36px; }
   .header-nav a { font-weight: 500; }
-  .home-hero { background: linear-gradient(110deg, #1a1410, #0d0b09); border-top: 3px solid var(--color-red); }
-  .hero-inner { position: relative; min-height: 897px; justify-content: flex-end; padding-block: 80px 96px; }
+  .home-hero { border-top: 3px solid var(--color-red); }
+  .hero-inner { min-height: 897px; padding-block: 80px 96px; }
+  .hero-video-toggle { top: 24px; right: 24px; }
   .hero-copy { gap: 32px; }
   .hero-copy h1 { font-size: 68px; line-height: 1.05; }
   .hero-copy > p { font-size: 18px; line-height: 1.6; color: #d4d4d4; }
-  .hero-photo-note { position: absolute; top: 180px; right: 0; max-width: 48%; padding: 24px 32px; border: 1px dashed var(--color-footer-muted); color: var(--color-footer-muted); text-align: center; }
   .hero-actions, .coach-actions { flex-direction: row; flex-wrap: wrap; }
   .hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
   .hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }
-  .benefit-grid, .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .members { padding-block: 72px; }
+  .members .section-heading { margin-bottom: 32px; }
+  .member-row { gap: 32px; }
+  .benefit-card.member-card { min-height: 400px; padding: 32px 40px; }
+  .member-card h3 { font-size: 32px; line-height: 40px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
-  .together-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
-  .gym-photo { min-height: 380px; }
+  /* Zoom from the left edge: crops the empty wall on the right and moves the people clear of the text. */
+  .together-photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: left center; transform: scale(1.2); transform-origin: left center; }
+  .together::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 11 9 / 0.92), rgb(13 11 9 / 0.8) 35%, rgb(13 11 9 / 0) 65%); }
+  .together-inner { display: flex; align-items: center; min-height: 720px; padding-block: 72px; }
+  .together-copy { max-width: 440px; }
+  /* Our story: no zoom, and the fade stays dark only behind the text so the rest of the photo shows. */
+  .story .together-photo { transform: none; }
+  .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.8) 38%, rgb(13 11 9 / 0) 60%); }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }
-  .map-placeholder { min-height: 340px; }
+  .gym-map { min-height: 340px; }
   .memberships-section { padding-block: 72px 32px; }
   .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .membership-card { min-height: 276px; }
@@ -187,8 +225,6 @@ body { font-size: 16px; line-height: 1.625; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); gap: 80px; }
   .enquiry-form .gs-button, .details-card .gs-button { align-self: flex-start; }
-  .social-links { flex-direction: row; }
-  .social-links .gs-button { width: auto; }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }

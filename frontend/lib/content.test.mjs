@@ -8,7 +8,13 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const name of ['site.json', 'prices.json', 'prices.sample.json']) {
+for (const dir of ['images/gym', 'videos']) {
+  fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
+  for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
+    fs.writeFileSync(path.join(fixture, 'public', dir, name), '');
+  }
+}
+for (const name of ['site.json', 'prices.json', 'prices.sample.json', 'photos.json']) {
   fs.copyFileSync(path.join(originalDirectory, 'content', name), path.join(content, name));
 }
 const read = name => JSON.parse(fs.readFileSync(path.join(content, name), 'utf8'));
@@ -16,7 +22,7 @@ const write = (name, value) => fs.writeFileSync(path.join(content, name), JSON.s
 
 try {
   process.chdir(fixture);
-  const { getPrices, getSite } = await import('./content.ts');
+  const { getPhotos, getPrices, getSite } = await import('./content.ts');
   const { formatPrice } = await import('./format.ts');
   assert.equal(formatPrice({ price: 27.99, period: 'week' }, 'NZD'), '$27.99 / week');
   assert.equal(formatPrice({ price: null, period: null }, 'NZD'), 'Contact us for pricing');
@@ -24,11 +30,11 @@ try {
   const preview = getPrices();
   assert.equal(preview.sample, true);
   assert.deepEqual(preview.plans.map(plan => plan.price), [27.99, 35.99, 54.99, 18.99]);
-  assert.equal(preview.dayPass.price, null);
+  assert.equal(preview.dayPass.price, 30);
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
-  assert.equal(getSite().phone, null);
+  assert.equal(getSite().phone, '09 622 2885');
   assert.equal(getSite().email, null);
 
   const prices = read('prices.json');
@@ -41,6 +47,24 @@ try {
   const site = read('site.json');
   write('site.json', { ...site, home: { ...site.home, benefits: [{ title: 'Coaching', description: '' }] } });
   assert.throws(getSite, /home.benefits\[0\].description/);
+  write('site.json', { ...site, about: { story: '' } });
+  assert.throws(getSite, /about.story/);
+  write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], photo: '/images/gym/missing.jpg' }] } });
+  assert.throws(getSite, /home.benefits\[0\].photo/);
+
+  assert.equal(getPhotos().aboutGallery.length, 8);
+  assert.equal(getPhotos().aboutOffers.length, 3);
+  assert.equal(getPhotos().homeMembers.length, 5);
+  const photos = read('photos.json');
+  write('photos.json', { ...photos, homeHero: { ...photos.homeHero, video: '/videos/Gym-Drone.mp4' } });
+  assert.throws(getPhotos, /homeHero.video/);
+  write('photos.json', { ...photos, homeTogether: { ...photos.homeTogether, src: photos.homeHero.video } });
+  assert.throws(getPhotos, /homeTogether.src/);
+  write('photos.json', { ...photos, homeTogether: { ...photos.homeTogether, src: '/images/../content/site.json' } });
+  assert.throws(getPhotos, /homeTogether.src/);
+  write('photos.json', { ...photos, aboutGallery: [{ ...photos.aboutGallery[0], alt: '' }] });
+  assert.throws(getPhotos, /aboutGallery\[0\].alt/);
+  write('photos.json', photos);
 
   process.env.SITE_ENV = 'production';
   assert.throws(getPrices, /prices not confirmed/);
@@ -48,7 +72,7 @@ try {
   const production = getPrices();
   assert.equal(production.sample, false);
   assert(production.plans.every(plan => plan.price === null));
-  console.log('content: preview isolation, validation and production gate passed');
+  console.log('content: preview isolation, validation, photos and production gate passed');
 } finally {
   process.chdir(originalDirectory);
   if (originalMode === undefined) delete process.env.SITE_ENV;

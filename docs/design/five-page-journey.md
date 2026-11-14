@@ -51,9 +51,9 @@ page, and retain trailing slashes (ADR-005/007).
 - Address: **20/10 Olive Road, Penrose, Auckland 1061**. Figma's 2026-10-12 notes record
   confirmation by Kevin and the current gym's Instagram. Use it in site data, directions,
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
-- Member access and staffed/viewing hours remain separate, unconfirmed fields. Do not
-  publish 24/7 access without current-gym confirmation. Phone, inbox and privacy wording
-  remain unconfirmed.
+- Member access and staffed/viewing hours remain separate fields. Member access is 24/7
+  (confirmed 2026-11-11) and the phone is 09 622 2885; staffed/viewing hours, inbox and privacy wording remain
+  unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target
@@ -90,8 +90,9 @@ on S3. Do not invent quotes or assume footage is cleared for publication.
 
 Removed 2026-11-01 per the 2026-10-18 meeting (D1): no `/blog/` or article routes, no nav
 link and no latest-articles section on Home. Figma's Blog and article frames are not built.
-A replacement, such as a photo album page or a link to a photo drive, is open (A2/Q14);
-design it as new work once agreed. Don't invent photos or captions for it.
+Decided 2026-11-11 (Q14): the replacement is an events calendar page working like
+<https://www.sporty.co.nz/aucklandpowerlifting/events-calendar> — competitions with status and entry dates, upcoming events with dates
+and location. Not yet designed or built. Gym photos run through Home and About separately (GS-23).
 
 ## 6. Memberships on Home — `/#memberships`
 
@@ -112,8 +113,8 @@ These are observations recorded in Figma on 2026-10-12, not approved current pri
 Label unconfirmed observations in preview. Production still requires client-confirmed
 values under ADR-006; do not set `confirmedWithClient` from a Figma observation.
 
-The day pass is absent from the observed form: price and purchase method remain
-`TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
+The day pass is absent from the observed form. Its price is $30 a visit (agreed with the
+client, reported 2026-11-10); the purchase method remains `TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
 
 Extend **`frontend/content/prices.json`**, not `data/membership.json`, with confirmed
 billing, minimum term, one-off payment, inclusions and day-pass details. Reuse existing

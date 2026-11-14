@@ -24,7 +24,8 @@ Three primary pages in order: Home, About Us, Contact. Home serves as The Gym an
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
 Success. Video testimonials retain placeholders until approved footage arrives. There is
-no blog (removed per the 2026-10-18 meeting); its replacement is Q14.
+no blog (removed per the 2026-10-18 meeting); its replacement is an events calendar page (Q14),
+not yet built.
 
 The current address is **20/10 Olive Road, Penrose, Auckland 1061**, confirmed in Figma's
 2026-10-12 notes. Instagram is `https://www.instagram.com/getstrengthgym/`. Remove Facebook;
@@ -90,17 +91,37 @@ contacts or account ownership without current-owner confirmation.
   email, and it costs ~US$0.50/month in Route 53) or move to a new domain such as getstrengthstream.com
   (a scope change)? Raised 2026-10-11; not decided.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
+  It must mention the Google Maps embed on Home and Contact (third-party; may set cookies).
 - **Q12** Owner identity is settled as Joe; the current coach's exact name, role, biography
   and credentials remain unconfirmed. Keep the generic coach slot.
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
-  photo drive? Raised 2026-10-18 (A2); not decided. It replaces the blog at the same price
-  (client's decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size.
+  photo drive? Raised 2026-10-18 (A2). It replaces the blog at the same price (client's
+  decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size. **Decided
+  2026-11-11 (per Kevin):** neither — the replacement is an events calendar page working like
+  the Auckland Powerlifting Association's <https://www.sporty.co.nz/aucklandpowerlifting/events-calendar>: competitions with their status and entry
+  dates, and upcoming events with dates and location. Not yet built. Separately, photos and
+  the drone video from the client's 2026-11-09 album now run through Home and About (GS-23).
 - **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
   garbled. Get the real figures from the client in writing before touching `prices.json`.
+- **Q16** "#1 ranked powerlifting team in Auckland" (gym's Instagram bio) and "since 2001"
+  (per Kevin) are on About; get a source the gym approves before launch
+  (`docs/meetings/2026-11-12-gs23-review-follow-up.md` Q2).
 
 ## Changelog
+- 2026-11-12 — PR #15 review: testimonials preview is a CSS scroll-snap photo row (video
+  testimonials still the deliverable); Q11 extended for the Maps embed; Q16 added.
+- 2026-11-11 — Phone set to 09 622 2885 (per Kevin, from the gym's Google Maps listing at
+  20/10 Olive Road). It matches the old Facebook page's number; the old owner's email is still not used.
+- 2026-11-11 — Member access hours set to 24/7 (per Kevin; Google Maps also lists the gym as
+  open 24 hours). Staffed/viewing hours still unknown.
+- 2026-11-11 — About's story written (`site.json` `about.story`): "since 2001" per Kevin;
+  "#1 ranked powerlifting team in Auckland" and the May 2026 move to Olive Road per the gym's
+  own Instagram. The old-owner Facebook page's phone, email and history are not used.
+- 2026-11-11 — Q14 decided: the blog's replacement is an events calendar page (not yet
+  built). GS-23: interim photos and drone video from the client's 2026-11-09 album are on
+  Home and About.
 - 2026-11-08 — Q14: the blog's replacement keeps the blog's price (client's decision,
   confirmed by Johnson).
 - 2026-11-01 — Blog removed per the 2026-10-18 meeting (D1); three pages. Q3 resolved;

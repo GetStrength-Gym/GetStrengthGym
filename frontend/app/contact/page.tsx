@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JoinCta from "@/components/JoinCta";
-import Placeholder from "@/components/Placeholder";
+import SocialIcon from "@/components/SocialIcon";
+import GymMap from "@/components/GymMap";
 import { getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
 
@@ -15,8 +16,8 @@ export default function Contact() {
   const directions = directionsUrl(site.address);
   // Unconfirmed details are labelled in preview and left out of production.
   const details = [
-    { term: "Phone", value: site.phone },
-    { term: "Email", value: site.email },
+    { term: "Phone", value: site.phone, href: site.phone && "tel:+64" + site.phone.replace(/\D/g, "").replace(/^0/, "") }, // NZ number
+    { term: "Email", value: site.email, href: site.email && "mailto:" + site.email },
   ].filter(detail => detail.value || preview);
 
   return (
@@ -67,8 +68,8 @@ export default function Contact() {
             <section aria-labelledby="details-heading" className="details-card">
               <h2 id="details-heading">Get in touch</h2>
               <dl>
-                {details.map(({ term, value }) => (
-                  <div key={term}><dt>{term}</dt><dd>{value ?? "Awaiting confirmation"}</dd></div>
+                {details.map(({ term, value, href }) => (
+                  <div key={term}><dt>{term}</dt><dd>{value && href ? <a href={href}>{value}</a> : "Awaiting confirmation"}</dd></div>
                 ))}
                 <div><dt>Address</dt><dd><address>{site.address.street}<br />{site.address.locality}</address></dd></div>
                 {(site.memberAccessHours || site.staffedHours || preview) && (
@@ -80,13 +81,11 @@ export default function Contact() {
               </dl>
               <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
             </section>
-            {preview && <a href={directions} aria-label="Get directions to GetStrength Gym in Penrose" className="map-link">
-              <Placeholder label="Map · GS Gym, Penrose" detail="PLACEHOLDER · APPROVED MAP NEEDED" className="map-placeholder" />
-            </a>}
+            <GymMap name={site.name} address={site.address} />
             {site.outboundLinks.length > 0 && (
               <ul className="social-links" aria-label="Social media">
                 {site.outboundLinks.map(link => (
-                  <li key={link.url}><a href={link.url} className="gs-button gs-button-secondary">{link.service}</a></li>
+                  <li key={link.url}><a href={link.url} aria-label={link.label} className="social-icon"><SocialIcon service={link.service} /></a></li>
                 ))}
               </ul>
             )}

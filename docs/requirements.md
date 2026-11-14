@@ -47,13 +47,14 @@ Three pages, in this order. Home serves as The Gym:
 | **Contact** | Address, email, and a form people can fill in |
 
 The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
-GetStrength MVP's current-gym notes. Member access and staffed/viewing hours remain
-separate unconfirmed fields; do not assume 24/7 access from the old website.
+GetStrength MVP's current-gym notes. Member access is **24/7** (confirmed 2026-11-11, and
+Google Maps lists the gym as open 24 hours); staffed/viewing hours are still to be confirmed.
 
 Membership options appear on Home before its existing bottom **Join GS Gym** CTA. Cards
 have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
 Success in the same tab. Prices, fees, inclusions and terms need current-gym approval;
-Figma's observed figures are not approval. Day-pass price and purchase method remain
+Figma's observed figures are not approval. The casual day pass is $30 a visit, agreed with
+the client (see `docs/meetings/2026-11-11-gs23-content-decisions.md` D1); how to buy one is
 unconfirmed. Keep video testimonial placeholders until approved footage arrives.
 
 External links are Debit Success, the current gym's Instagram

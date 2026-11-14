@@ -5,7 +5,7 @@
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
 About Us, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
-what replaces it is still open (brief Q14). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
+its replacement is an events calendar page, decided 2026-11-11 and not yet built (brief Q14). Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
 **Status at 2026-11-12:** Home, About Us and Contact are built (GS-15, GS-19), and the preview
 deploys itself on merge to `main` (ADR-008). What's left is on the
@@ -33,7 +33,8 @@ Three primary pages: Home, About Us, Contact. Home includes gym/location informa
 four membership cards and a day-pass block, followed by the existing Join CTA; no separate
 Gym page or per-plan buttons. Header/footer Join actions remain. Prices and terms still
 need client confirmation. Video testimonials retain preview placeholders until supplied.
-There is no blog; its replacement (photo album or photo drive) is not yet agreed.
+There is no blog; an events calendar page replaces it (brief Q14, not yet built). Interim photos
+and a drone video from the client's 2026-11-09 album run through Home and About (GS-23).
 
 The site is gym-only: no merch, harness, Record Board or Amazon links. Instagram is
 `https://www.instagram.com/getstrengthgym/`; Facebook is removed and YouTube requires a
@@ -52,8 +53,9 @@ No store, checkout, member login, payments, booking or timetable is built here.
 3. ~~**Logo**~~ **received 2026-10-09** — a full logo suite (primary, secondary, icon, word
    mark) plus a brand PDF, in a Drive folder shared by the client: (link held by Johnson — not in the public repo)
    (owned by a third party, "anyone with the link" — keep the link out of the public repo).
-   **Recent photos are still outstanding** — historically the thing that delays these
-   projects, and a gym site is mostly photography.
+   **Recent photos received 2026-11-09** — a shared Google Photos album (37 photos, one drone
+   video, link held by Kevin, not in the public repo), approved for use per the latest client
+   meeting. Coach portraits are still outstanding. Professional photos may follow (D4).
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
 ## The stack — decided
