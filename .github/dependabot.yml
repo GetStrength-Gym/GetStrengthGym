@@ -5,6 +5,12 @@ updates:
     directory: /frontend
     schedule:
       interval: weekly
+    groups:
+      # react-dom requires the matching react version, so they must move together.
+      react:
+        patterns:
+          - react
+          - react-dom
   - package-ecosystem: github-actions
     directory: /
     schedule:
