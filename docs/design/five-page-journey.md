@@ -108,7 +108,7 @@ and location. Gym photos run through Home and About separately (GS-23).
   On now, Completed; gym events count down. Every status is written as text.
 - Competitions are solid red, gym events outlined charcoal (different fill, shape and
   lightness, not hue alone). Red buttons stay for actions: Enter appears only while entries are open.
-- Each event has Add to calendar (an `.ics` file made in the browser) and, when it has an
+- Each event has Add to calendar (a link to `/events/<id>.ics`, written at build time) and, when it has an
   address, Get directions.
 
 ## 6. Memberships on Home — `/#memberships`

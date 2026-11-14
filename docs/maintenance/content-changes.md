@@ -124,6 +124,8 @@ ones whenever the list gets long.
 - Dates are `YYYY-MM-DD` in Auckland time. **Never add a status:** the page works out
   "Entries open", "Entries closed", "Completed" and the rest from the dates every time it loads,
   so nothing goes stale between deploys.
+- Each event's "Add to calendar" file (`public/events/<id>.ics`) is written automatically before
+  `npm run dev` and `npm run build` by `frontend/scripts/write-ics.mjs`. Don't edit or commit them.
 
 ## Confirm prices before launch
 

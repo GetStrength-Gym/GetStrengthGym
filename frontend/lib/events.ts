@@ -119,7 +119,7 @@ export function mapsUrl(event: Pick<GymEvent, "venue" | "address">): string {
   return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([event.venue, event.address].filter(Boolean).join(", "));
 }
 
-/** An all-day iCalendar entry, so "Add to calendar" works without a server. */
+/** An all-day iCalendar entry; scripts/write-ics.mjs writes one per event for "Add to calendar". */
 export function eventIcs(event: GymEvent, stamp: string): string {
   const text = (value: string) => value.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
   const date = (value: string) => value.replace(/-/g, "");

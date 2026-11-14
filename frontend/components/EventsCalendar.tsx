@@ -5,7 +5,7 @@ import { useState, useSyncExternalStore, type ReactNode } from "react";
 import { flushSync } from "react-dom";
 import type { Photo } from "@/lib/content";
 import {
-  type EventStatus, type EventType, type GymEvent, dateRange, dayOfMonth, daysBetween, eventIcs, eventStatus, longDate,
+  type EventStatus, type EventType, type GymEvent, dateRange, dayOfMonth, daysBetween, eventStatus, longDate,
   mapsUrl, monthGrid, monthLabel, shiftMonth, shortDate, shortMonth, todayInAuckland, weekday,
 } from "@/lib/events";
 
@@ -69,7 +69,7 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
   }
 
   const detail = (event: GymEvent, className: string) =>
-    <EventDetail event={event} today={today} stamp={buildDate} className={className} />;
+    <EventDetail event={event} today={today} className={className} />;
 
   return (
     <>
@@ -239,7 +239,7 @@ function Chevron({ d }: { d: string }) {
   );
 }
 
-function EventDetail({ event, today, stamp, className }: { event: GymEvent; today: string; stamp: string; className: string }) {
+function EventDetail({ event, today, className }: { event: GymEvent; today: string; className: string }) {
   const status = eventStatus(event, today);
   return (
     <article className={"event-detail " + className} aria-label={event.title} tabIndex={-1}>
@@ -261,8 +261,9 @@ function EventDetail({ event, today, stamp, className }: { event: GymEvent; toda
         {status.key === "open" && event.entryUrl && (
           <a href={event.entryUrl} className="gs-button gs-button-primary">Enter on the organiser&apos;s site</a>
         )}
-        <a href={"data:text/calendar;charset=utf-8," + encodeURIComponent(eventIcs(event, stamp))} download={event.id + ".ics"}
-          className="gs-button gs-button-secondary">Add to calendar</a>
+        {/* A plain link to the text/calendar file written by scripts/write-ics.mjs: phones open it
+            in their calendar app; no `download` attribute, which would file it away instead. */}
+        <a href={`/events/${event.id}.ics`} className="gs-button gs-button-secondary">Add to calendar</a>
         {event.address && <a href={mapsUrl(event)} className="event-directions">Get directions</a>}
       </div>
     </article>
