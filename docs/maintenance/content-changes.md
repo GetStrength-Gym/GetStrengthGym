@@ -17,6 +17,8 @@ All commands run from the repo root, through Docker.
 | Membership prices (the only place prices live) | `frontend/content/prices.json` |
 | Sample prices for the preview site only | `frontend/content/prices.sample.json` |
 | Which photo or video fills each slot | `frontend/content/photos.json` |
+| Events and competitions on `/events/` | `frontend/content/events.json` |
+| Sample events for the preview site only | `frontend/content/events.sample.json` |
 | Loader and validation | `frontend/lib/content.ts` |
 
 ## Preview builds and production builds
@@ -26,6 +28,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 | | Preview (default) | Production (`SITE_ENV=production`) |
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
+| Events | `events.sample.json`, labelled "Sample events — preview only" | `events.json` |
 | Unconfirmed content (coach, email, staffed hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
@@ -86,6 +89,41 @@ The build fails if a file is missing, its path's case differs from the file, or 
 
 The hero video lives in `frontend/public/videos/`; keep it short, muted-friendly and about
 5 MB or less, with a matching still frame as its `poster`.
+
+## Add or change an event
+
+Edit `frontend/content/events.json`. Add only events the gym has given us (brief Q17); an
+empty list is fine and shows "Nothing on the calendar yet". The order in the file doesn't
+matter: the page sorts by date. Past events stay listed under "Past events", so delete old
+ones whenever the list gets long.
+
+```json
+{
+  "id": "auckland-cup-2027",
+  "title": "Auckland Cup 2027",
+  "type": "competition",
+  "start": "2027-11-27",
+  "end": "2027-11-28",
+  "venue": "Venue name",
+  "address": "Street, suburb, Auckland",
+  "organiser": "Auckland Powerlifting Association",
+  "entriesOpen": "2027-10-16",
+  "entriesClose": "2027-11-06",
+  "entryUrl": "https://organiser.example/enter",
+  "note": "One or two sentences for visitors."
+}
+```
+
+- **Required:** `id` (lower-case words joined by hyphens, unique), `title`, `type`
+  (`"competition"` or `"gym"`), `start`, `venue`, `organiser`.
+- **Optional** (leave out or `null`): `end` (defaults to `start`), `time`
+  (e.g. `"9:00am – 1:00pm"`), `address` (needed for Get directions), `note`.
+- **Competitions only:** `entriesOpen` and `entriesClose`, both or neither, in the order
+  open ≤ close ≤ start. `entryUrl` (https) needs them; the Enter button shows only while
+  entries are open.
+- Dates are `YYYY-MM-DD` in Auckland time. **Never add a status:** the page works out
+  "Entries open", "Entries closed", "Completed" and the rest from the dates every time it loads,
+  so nothing goes stale between deploys.
 
 ## Confirm prices before launch
 

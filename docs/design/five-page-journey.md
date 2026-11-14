@@ -30,6 +30,7 @@ authority and account access still need recording; ownership alone does not esta
 | 1 | Home / The Gym | `/` | GetStrength Gym — Strength Gym in Penrose, Auckland | Build strength. Find your community. |
 | 2 | About Us | `/about/` | About GetStrength Gym — Our Story and Coaching | About Us |
 | 3 | Contact | `/contact/` | Contact GetStrength Gym — Penrose, Auckland | Contact |
+| 4 | Events | `/events/` | Events & Competitions — GetStrength Gym, Penrose | Events & competitions |
 | — | Privacy | `/privacy/` | Privacy Policy — GetStrength Gym | Privacy policy |
 
 No separate `/gym/` page or additional Gym frame is required. Location and membership
@@ -40,7 +41,7 @@ page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Contact, Join GS Gym. Charcoal ground
+- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym. Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
@@ -92,7 +93,23 @@ Removed 2026-11-01 per the 2026-10-18 meeting (D1): no `/blog/` or article route
 link and no latest-articles section on Home. Figma's Blog and article frames are not built.
 Decided 2026-11-11 (Q14): the replacement is an events calendar page working like
 <https://www.sporty.co.nz/aucklandpowerlifting/events-calendar> — competitions with status and entry dates, upcoming events with dates
-and location. Not yet designed or built. Gym photos run through Home and About separately (GS-23).
+and location. Gym photos run through Home and About separately (GS-23).
+
+### Events — `/events/` (built 2026-11-14)
+
+- Hero: photo with charcoal scrim, H1 "Events & competitions", and a Next competition card
+  with a countdown. Red eyebrow text is not used on charcoal (2.58:1); a red bar marks it instead.
+- Desktop: event list (filter All / Competitions / At the gym, grouped by month, past events
+  collapsed) beside a Monday-first month calendar. Picking an event in either highlights it
+  in both and shows its details under the calendar.
+- Phone: filter, then a compact month with a marker per event, then the list; the chosen
+  event's details open under its list item.
+- Status is worked out from the dates: Entries open, Entries open <date>, Entries closed,
+  On now, Completed; gym events count down. Every status is written as text.
+- Competitions are solid red, gym events outlined charcoal (different fill, shape and
+  lightness, not hue alone). Red buttons stay for actions: Enter appears only while entries are open.
+- Each event has Add to calendar (an `.ics` file made in the browser) and, when it has an
+  address, Get directions.
 
 ## 6. Memberships on Home — `/#memberships`
 
