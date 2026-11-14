@@ -92,8 +92,10 @@ The hero video lives in `frontend/public/videos/`; keep it short, muted-friendly
 
 ## Add or change an event
 
-Edit `frontend/content/events.json`. Add only events the gym has given us (brief Q17); an
-empty list is fine and shows "Nothing on the calendar yet". The order in the file doesn't
+Edit `frontend/content/events.json`. Copy competitions from the Auckland Powerlifting
+Association calendar (<https://www.sporty.co.nz/aucklandpowerlifting/events-calendar>, brief Q17),
+and add gym events only when the gym gives them to us. An empty list is fine and shows
+"Nothing on the calendar yet". The order in the file doesn't
 matter: the page sorts by date. Past events stay listed under "Past events", so delete old
 ones whenever the list gets long.
 

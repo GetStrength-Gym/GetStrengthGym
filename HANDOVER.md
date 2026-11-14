@@ -5,8 +5,10 @@
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
 About Us, Events, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
-its replacement is the events calendar page at `/events/` (brief Q14, built 2026-11-14). It
-shows sample events in preview and none in production until brief Q17 is answered. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
+its replacement is the events calendar page at `/events/` (brief Q14, built 2026-11-14), which
+the client asked for. The maintenance team fills `frontend/content/events.json` by hand from
+the APA calendar (brief Q17); preview builds show sample events. **The client's Google Doc copy
+of `docs/requirements.md` needs re-uploading** with the 2026-11-15 events wording. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
 **Status at 2026-11-12:** Home, About Us and Contact are built (GS-15, GS-19), and the preview
 deploys itself on merge to `main` (ADR-008). What's left is on the

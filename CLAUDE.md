@@ -12,8 +12,8 @@ Contact. Decisions are recorded in `docs/meetings/2026-10-28-design-reconciliati
 GS-15 has the partial implementation. **No blog:** removed 2026-11-01 per
 `docs/meetings/2026-10-18-website-launch-feature-review.md`; an events calendar page at
 `/events/` replaces it (decided 2026-11-11, brief Q14). Events live in
-`frontend/content/events.json` (empty until brief Q17 says who supplies them); preview builds
-show `events.sample.json`.
+`frontend/content/events.json`, filled by hand from the APA calendar (brief Q17); preview
+builds show `events.sample.json`.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
