@@ -49,9 +49,14 @@ export function addDays(date: string, days: number): string {
   return new Date(utc(date) + days * DAY_MS).toISOString().slice(0, 10);
 }
 
+// Built once: the page reads today's date on every render.
+const AUCKLAND = new Intl.DateTimeFormat("en-NZ", { timeZone: "Pacific/Auckland", year: "numeric", month: "2-digit", day: "2-digit" });
+
 /** Today's date in Auckland, whatever time zone the browser or build machine is in. */
 export function todayInAuckland(now = new Date()): string {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "Pacific/Auckland", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+  // Assembled from parts, because a locale's date order and separators can change between ICU versions.
+  const part = Object.fromEntries(AUCKLAND.formatToParts(now).map(({ type, value }) => [type, value]));
+  return `${part.year}-${part.month}-${part.day}`;
 }
 
 // Formatting is done by hand, not Intl, so the build and the browser print identical text
@@ -111,7 +116,7 @@ export function shiftMonth(month: string, by: number): string {
 }
 
 export function mapsUrl(event: Pick<GymEvent, "venue" | "address">): string {
-  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([event.venue, event.address].filter(Boolean).join(", "));
+  return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([event.venue, event.address].filter(Boolean).join(", "));
 }
 
 /** An all-day iCalendar entry, so "Add to calendar" works without a server. */

@@ -106,6 +106,8 @@ try {
   assert.equal(ev.eventStatus(cup, '2026-11-30').key, 'done');
   assert.equal(ev.dateRange(cup), 'Sat 28 – Sun 29 November 2026');
   assert.equal(ev.todayInAuckland(new Date('2026-11-14T12:30:00Z')), '2026-11-15', 'Auckland is ahead of UTC');
+  assert.equal(ev.todayInAuckland(new Date('2026-06-30T11:59:00Z')), '2026-06-30', 'NZST is UTC+12');
+  assert.match(ev.mapsUrl(cup), /^https:\/\/www\.google\.com\/maps\/dir\/\?api=1&destination=Kolmar%2C%20Sutton/);
   assert.equal(ev.shiftMonth('2026-12', 1), '2027-01');
   assert.equal(ev.shiftMonth('2027-01', -1), '2026-12');
   const november = ev.monthGrid('2026-11');

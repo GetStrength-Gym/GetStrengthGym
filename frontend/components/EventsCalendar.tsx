@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import type { Photo } from "@/lib/content";
 import {
-  type EventType, type GymEvent, dateRange, dayOfMonth, daysBetween, eventIcs, eventStatus, longDate,
+  type EventStatus, type EventType, type GymEvent, dateRange, dayOfMonth, daysBetween, eventIcs, eventStatus, longDate,
   mapsUrl, monthGrid, monthLabel, shiftMonth, shortDate, shortMonth, todayInAuckland, weekday,
 } from "@/lib/events";
 
@@ -39,7 +39,8 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
   const upcoming = shown.filter(event => event.end >= today);
   const past = shown.filter(event => event.end < today).reverse();
   const next = events.find(event => event.type === "competition" && event.start >= today);
-  const selected = events.find(event => event.id === chosenId) ?? upcoming[0] ?? null;
+  // From the filtered events, so the details never show an event the filter has hidden.
+  const selected = shown.find(event => event.id === chosenId) ?? upcoming[0] ?? null;
   const viewMonth = month ?? today.slice(0, 7);
 
   const choose = (event: GymEvent) => {
@@ -67,7 +68,7 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
             <button type="button" className="next-comp" onClick={() => choose(next)}>
               <span className="next-comp-head">
                 <span className="events-label">Next competition</span>
-                <StatusBadge event={next} today={today} />
+                <StatusBadge status={eventStatus(next, today)} />
               </span>
               <span className="next-comp-count">
                 {next.start === today ? <span className="next-comp-days">Today</span> : (
@@ -103,14 +104,14 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
                           <span className={`event-date event-date-${event.type}`}>
                             <span>{weekday(event.start)}</span>
                             <span className={"event-date-day" + (event.end !== event.start ? " is-range" : "")}>{dayOfMonth(event.start)}{event.end !== event.start && `–${dayOfMonth(event.end)}`}</span>
-                            <span>{shortMonth(event.start)}</span>
+                            <span>{shortMonth(event.start)}{event.end.slice(0, 7) !== event.start.slice(0, 7) && `–${shortMonth(event.end)}`}</span>
                           </span>
                           <span className="event-summary">
                             <TypeLabel type={event.type} />
                             <span className="event-title">{event.title}</span>
                             <span className="event-meta">{event.venue}</span>
                             <span className="event-status">
-                              <StatusBadge event={event} today={today} />
+                              <StatusBadge status={status} />
                               {status.detail && <span className="event-meta">{status.detail}</span>}
                             </span>
                           </span>
@@ -173,7 +174,8 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
                   + (date === today ? " is-today" : "")
                   + (dayEvents.some(event => event.id === selected?.id) ? " is-selected" : "");
                 const number = <span className="calendar-num">{dayOfMonth(date)}</span>;
-                if (dayEvents.length === 0) return <div key={date} className={className}>{number}</div>;
+                // Empty days are hidden from screen readers; they hear only days with events, by full date.
+                if (dayEvents.length === 0) return <div key={date} className={className} aria-hidden="true">{number}</div>;
                 // A second click on a busy day moves to its next event.
                 const pick = () => choose(dayEvents[(dayEvents.findIndex(event => event.id === selected?.id) + 1) % dayEvents.length]);
                 return (
@@ -213,8 +215,7 @@ function TypeLabel({ type }: { type: EventType }) {
   return <span className="event-type"><span className={`type-mark type-mark-${type}`} aria-hidden="true" />{TYPE_LABEL[type]}</span>;
 }
 
-function StatusBadge({ event, today }: { event: GymEvent; today: string }) {
-  const status = eventStatus(event, today);
+function StatusBadge({ status }: { status: EventStatus }) {
   return <span className={`status-badge status-${status.key}`}>{status.label}</span>;
 }
 
@@ -231,7 +232,7 @@ function EventDetail({ event, today, stamp, className }: { event: GymEvent; toda
     <article className={"event-detail " + className} aria-label={event.title}>
       <div className="event-detail-tags">
         <TypeLabel type={event.type} />
-        <StatusBadge event={event} today={today} />
+        <StatusBadge status={status} />
       </div>
       <h3 className="event-detail-title">{event.title}</h3>
       <dl className="event-facts">
