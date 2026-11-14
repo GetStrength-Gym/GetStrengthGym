@@ -80,5 +80,9 @@
       "src": "/images/gym/lifter-focus-wide.jpg",
       "alt": "Lifter looking down, focusing before a lift"
     }
-  ]
+  ],
+  "eventsHero": {
+    "src": "/images/gym/deadlift-lockout-wide.jpg",
+    "alt": "Lifter locking out a deadlift while a member watches"
+  }
 }
