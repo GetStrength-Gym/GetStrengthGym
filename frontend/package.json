@@ -10,7 +10,7 @@
     "test": "node --experimental-strip-types lib/content.test.mjs && node cloudfront/viewer-request.test.mjs"
   },
   "dependencies": {
-    "next": "16.4.1",
+    "next": "16.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
