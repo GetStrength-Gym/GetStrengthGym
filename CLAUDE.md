@@ -10,8 +10,10 @@ Design update 2026-10-28: use the user's GetStrength MVP and
 `docs/design/five-page-journey.md`. Three primary pages: Home (also The Gym), About Us,
 Contact. Decisions are recorded in `docs/meetings/2026-10-28-design-reconciliation.md`;
 GS-15 has the partial implementation. **No blog:** removed 2026-11-01 per
-`docs/meetings/2026-10-18-website-launch-feature-review.md`; an events calendar page replaces
-it (decided 2026-11-11, brief Q14; not yet built).
+`docs/meetings/2026-10-18-website-launch-feature-review.md`; an events calendar page at
+`/events/` replaces it (decided 2026-11-11, brief Q14). Events live in
+`frontend/content/events.json`, filled by hand from the APA calendar (brief Q17); preview
+builds show `events.sample.json`.
 
 ## Context sources — read in this order
 1. `HANDOVER.md` — current status, what's blocked, next decision.
@@ -62,7 +64,7 @@ Read the ADRs; this is a summary, not the decision.
   only covers `/`), and 403 → `/404.html`. Switching DNS to Route 53 is the email hazard —
   rebuild MX, SPF, DKIM and DMARC first. The preview needs none of the DNS work.
 - **ADR-006 (accepted):** content as files — prices in `frontend/content/prices.json`, site
-  details in `frontend/content/site.json`, validated at build time (its blog-post parts are
+  details in `frontend/content/site.json`, events in `frontend/content/events.json`, validated at build time (its blog-post parts are
   unused since the blog was removed). **`SITE_ENV=production` is required for production
   builds**; anything else is a preview build with sample prices and labelled placeholders.
 - **ADR-005 (accepted):** **Next.js with `output: 'export'`.** Static `out/` uploaded to AWS.

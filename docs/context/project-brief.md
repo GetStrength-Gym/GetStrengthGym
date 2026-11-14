@@ -24,8 +24,8 @@ Three primary pages in order: Home, About Us, Contact. Home serves as The Gym an
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
 Success. Video testimonials retain placeholders until approved footage arrives. There is
-no blog (removed per the 2026-10-18 meeting); its replacement is an events calendar page (Q14),
-not yet built.
+no blog (removed per the 2026-10-18 meeting); its replacement is the events calendar page at
+`/events/` (Q14), filled by hand from the APA calendar (Q17).
 
 The current address is **20/10 Olive Road, Penrose, Auckland 1061**, confirmed in Figma's
 2026-10-12 notes. Instagram is `https://www.instagram.com/getstrengthgym/`. Remove Facebook;
@@ -101,15 +101,25 @@ contacts or account ownership without current-owner confirmation.
   decision, confirmed by Johnson 2026-11-08), so keep it to the blog's size. **Decided
   2026-11-11 (per Kevin):** neither — the replacement is an events calendar page working like
   the Auckland Powerlifting Association's <https://www.sporty.co.nz/aucklandpowerlifting/events-calendar>: competitions with their status and entry
-  dates, and upcoming events with dates and location. Not yet built. Separately, photos and
+  dates, and upcoming events with dates and location. Built 2026-11-14 at `/events/`; see Q17
+  for its content. Separately, photos and
   the drone video from the client's 2026-11-09 album now run through Home and About (GS-23).
 - **Q15** The 2026-10-18 meeting summary records prices it calls confirmed, but the line is
   garbled. Get the real figures from the client in writing before touching `prices.json`.
 - **Q16** "#1 ranked powerlifting team in Auckland" (gym's Instagram bio) and "since 2001"
   (per Kevin) are on About; get a source the gym approves before launch
   (`docs/meetings/2026-11-12-gs23-review-follow-up.md` Q2).
+- **Q17 — resolved 2026-11-15:** where the events calendar's events come from
+  (`docs/meetings/2026-11-11-gs23-content-decisions.md` Q6). The maintenance team fills
+  `frontend/content/events.json` by hand from the APA calendar until an automatic feed exists
+  (`docs/meetings/2026-11-15-events-review-follow-up.md` D2). Feeding it from APA automatically
+  is a follow-up, waiting on whether APA's calendar has a public iCal link (same minutes, D3, Q1).
 
 ## Changelog
+- 2026-11-15 — PR #32 review: the client asked for the events page in place of the blog, so
+  `requirements.md` no longer says "to be agreed"; Q17 resolved (events filled by hand from APA).
+- 2026-11-14 — Events calendar page built at `/events/` (Q14) and added to the nav. Status is
+  worked out from the dates. Q17 added for where its events come from.
 - 2026-11-12 — PR #15 review: testimonials preview is a CSS scroll-snap photo row (video
   testimonials still the deliverable); Q11 extended for the Maps embed; Q16 added.
 - 2026-11-11 — Phone set to 09 622 2885 (per Kevin, from the gym's Google Maps listing at

@@ -155,9 +155,9 @@ with the official AWS icons. The command to regenerate them is at the top of tha
 ```text
 .
 ├── frontend/                 the website (Next.js)
-│   ├── app/                  pages: Home, about/, contact/, 404
-│   ├── components/           header, footer, join button, prices, hero video, map
-│   ├── content/              site.json, photos.json, prices.json, prices.sample.json
+│   ├── app/                  pages: Home, about/, contact/, events/, 404
+│   ├── components/           header, footer, join button, prices, hero video, map, events calendar
+│   ├── content/              site.json, photos.json, prices.json, events.json and their samples
 │   ├── lib/                  content loader and validation, with its test
 │   ├── cloudfront/           CloudFront viewer-request function, with its test
 │   └── public/               images and the hero video, served as-is

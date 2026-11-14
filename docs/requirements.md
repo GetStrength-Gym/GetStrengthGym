@@ -8,9 +8,13 @@ See `docs/meetings/2026-10-28-design-reconciliation.md` for the decision record.
 amounts and payment terms are unchanged.
 
 **Blog removed 1 November 2026:** as agreed at the 18 October 2026 meeting, the site has no
-blog. We'll agree a replacement with you (for example a photo album) at the same price. See
-`docs/meetings/2026-10-18-website-launch-feature-review.md`. Quote amounts and payment terms
-are unchanged.
+blog. See `docs/meetings/2026-10-18-website-launch-feature-review.md`. Quote amounts and
+payment terms are unchanged.
+
+**Blog replacement, updated 15 November 2026:** as you asked, an **events calendar page**
+replaces the blog, at the same price: upcoming competitions with their entry dates, and
+events at the gym. We keep it up to date from the Auckland Powerlifting Association
+calendar. See `docs/meetings/2026-11-15-events-review-follow-up.md`.
 
 Please read this and tell us anything that looks wrong or missing. Once you're happy, we'll sign it and start building.
 
@@ -38,13 +42,14 @@ Your gym email address will keep working. We'll take care of that during the swi
 
 ## What the new website will have
 
-Three pages, in this order. Home serves as The Gym:
+Three main pages, in this order, plus the events calendar that replaces the blog. Home serves as The Gym:
 
 | Page | What's on it |
 |---|---|
 | **Home** | The Penrose gym, video testimonials, location/map, access and viewing hours once confirmed, four membership cards and a casual-day-pass block, and a clear way to join |
 | **About Us** | The current gym's story, confirmed coaches/services and gym gallery |
 | **Contact** | Address, email, and a form people can fill in |
+| **Events** | A calendar of upcoming competitions (with when entries open and close) and events at the gym |
 
 The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
 GetStrength MVP's current-gym notes. Member access is **24/7** (confirmed 2026-11-11, and
@@ -138,7 +143,7 @@ We work in **two-week cycles**, so you see the site as it's being built and can 
 
 ## Three things for you to decide
 
-**1. The old blog articles.** ✅ **Decided 18 October 2026 — no blog on the new site**, so none are copied across. We'll agree what replaces the blog section with you, at the same price.
+**1. The old blog articles.** ✅ **Decided 18 October 2026 — no blog on the new site**, so none are copied across. An events calendar page replaces it, as you asked, at the same price.
 
 **2. The old members' forum.** There are about 1,700 posts on it. Do you want to keep it, put it somewhere as a read-only archive, or let it go?
 
@@ -175,7 +180,7 @@ Any of these can be quoted separately later:
 |---|---|
 | Planning and meetings with you | $170 |
 | Designing how the site looks | $250 |
-| Building the three-page site, including Home gym/membership content and the blog's replacement (to be agreed) | $560 |
+| Building the three-page site, including Home gym/membership content, and the events calendar page that replaces the blog | $560 |
 | Contact form and links to your other pages | $70 |
 | Moving getstrength.com across, keeping your email working | $80 |
 | Testing on phones and computers, and checking Google can find you | $170 |
