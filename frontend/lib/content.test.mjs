@@ -119,7 +119,9 @@ try {
   assert.match(ics, /SUMMARY:Cup\\, 2026\\; day\r\n/);
 
   process.env.SITE_ENV = 'production';
-  assert.deepEqual(getEvents(), { sample: false, events: [] });
+  const productionEvents = getEvents();
+  assert.equal(productionEvents.sample, false);
+  assert.deepEqual(productionEvents.events.map(e => e.id), realEvents.events.map(e => e.id), 'production reads events.json, never the sample');
   assert.throws(getPrices, /prices not confirmed/);
   write('prices.json', { ...prices, confirmedWithClient: '2026-10-28' });
   const production = getPrices();

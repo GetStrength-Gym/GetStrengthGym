@@ -1,3 +1,16 @@
 {
-  "events": []
+  "events": [
+    {
+      "id": "auckland-cup-2026",
+      "title": "Auckland Cup 2026",
+      "type": "competition",
+      "start": "2026-11-28",
+      "end": "2026-11-29",
+      "venue": "Kolmar",
+      "address": "Sutton Crescent, Papatoetoe, Auckland 1062",
+      "organiser": "Auckland Powerlifting Association",
+      "entriesOpen": "2026-10-17",
+      "entriesClose": "2026-11-07"
+    }
+  ]
 }
