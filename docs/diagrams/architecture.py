@@ -35,16 +35,18 @@ with Diagram("How a visit is served", filename="request-path", show=False, direc
         cdn = CloudFront("CloudFront\n+ viewer-request function")
         cert = ACM("ACM certificate\nus-east-1 (at launch)")
         bucket = S3("Private S3 bucket\nap-southeast-2")
-        dns = Route53("Route 53\ngetstrength.com\n(at launch)")
+        dns = Route53("Route 53\nthe gym's domain\n(at launch)")
 
     email = external("Google Workspace\nthe gym's email")
     signup = external("Debit Success\nmembership signup")
+    maps = external("Google Maps\nembedded map")
 
     cdn >> Edge(label="TLS", style="dotted", arrowhead="none") >> cert
     visitors >> Edge(label="HTTPS") >> cdn >> Edge(label="Origin Access Control") >> bucket
     visitors >> Edge(label="DNS lookup", style="dashed") >> dns
     dns >> Edge(label="MX, SPF, DKIM, DMARC", style="dashed") >> email
     visitors >> Edge(label="Join", style="dashed") >> signup
+    visitors >> Edge(label="map embed", style="dashed") >> maps
 
 
 with Diagram("How a change reaches the site", filename="deploy-pipeline", show=False, direction="LR",
@@ -52,7 +54,7 @@ with Diagram("How a change reaches the site", filename="deploy-pipeline", show=F
     dev = User("Developer")
 
     with Cluster("GitHub"):
-        pr = Github("Pull request\n1 approval")
+        pr = Github("Pull request\nchecks run,\n1 approval")
         deploy = GithubActions("Deploy preview workflow\nnpm ci, preview build,\nupload, invalidate")
 
     with Cluster("GetStrength's AWS account"):
