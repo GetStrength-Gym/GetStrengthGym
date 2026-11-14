@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useSyncExternalStore, type ReactNode } from "react";
+import { flushSync } from "react-dom";
 import type { Photo } from "@/lib/content";
 import {
   type EventStatus, type EventType, type GymEvent, dateRange, dayOfMonth, daysBetween, eventIcs, eventStatus, longDate,
@@ -44,8 +45,20 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
   const viewMonth = month ?? today.slice(0, 7);
 
   const choose = (event: GymEvent) => {
+    if (filter !== "all" && event.type !== filter) setFilter("all"); // the hero card can pick an event the filter hides
+    if (event.end < today) setShowPast(true); // on phones a past event's details sit inside the past list
     setChosenId(event.id);
     setMonth(event.start.slice(0, 7));
+  };
+
+  // The hero card's event is below the fold: render the choice now, then jump to and focus the
+  // visible details panel (beside the calendar, or under the list item on phones). An instant
+  // jump, because a smooth scroll started from a click was cancelled unpredictably in testing.
+  const chooseAndShow = (event: GymEvent) => {
+    flushSync(() => choose(event));
+    const panel = [...document.querySelectorAll<HTMLElement>(".event-detail")].find(el => el.offsetParent !== null);
+    panel?.focus({ preventScroll: true });
+    panel?.scrollIntoView({ block: "start" });
   };
 
   const groups: { month: string; events: GymEvent[] }[] = [];
@@ -65,7 +78,7 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
         <div className="page-width events-hero-inner">
           <div className="events-hero-copy">{children}</div>
           {next && (
-            <button type="button" className="next-comp" onClick={() => choose(next)}>
+            <button type="button" className="next-comp" onClick={() => chooseAndShow(next)}>
               <span className="next-comp-head">
                 <span className="events-label">Next competition</span>
                 <StatusBadge status={eventStatus(next, today)} />
@@ -229,7 +242,7 @@ function Chevron({ d }: { d: string }) {
 function EventDetail({ event, today, stamp, className }: { event: GymEvent; today: string; stamp: string; className: string }) {
   const status = eventStatus(event, today);
   return (
-    <article className={"event-detail " + className} aria-label={event.title}>
+    <article className={"event-detail " + className} aria-label={event.title} tabIndex={-1}>
       <div className="event-detail-tags">
         <TypeLabel type={event.type} />
         <StatusBadge status={status} />
