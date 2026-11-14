@@ -16,6 +16,7 @@ All commands run from the repo root, through Docker.
 | Address, hours, contact details, nav, social links, Home copy | `frontend/content/site.json` |
 | Membership prices (the only place prices live) | `frontend/content/prices.json` |
 | Sample prices for the preview site only | `frontend/content/prices.sample.json` |
+| Which photo or video fills each slot | `frontend/content/photos.json` |
 | Loader and validation | `frontend/lib/content.ts` |
 
 ## Preview builds and production builds
