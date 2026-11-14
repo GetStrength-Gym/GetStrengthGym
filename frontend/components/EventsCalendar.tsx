@@ -178,12 +178,12 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
                 const pick = () => choose(dayEvents[(dayEvents.findIndex(event => event.id === selected?.id) + 1) % dayEvents.length]);
                 return (
                   <button key={date} type="button" className={className} onClick={pick}
-                    aria-label={`${longDate(date)}: ${dayEvents.map(event => event.title).join(", ")}`}>
+                    aria-label={`${longDate(date)}: ${dayEvents.map(event => dayLabel(event, date) + event.title).join(", ")}`}>
                     {number}
                     <span className="calendar-chips">
                       {dayEvents.map(event => (
                         <span key={event.id} className={`calendar-chip calendar-chip-${event.type}${event.id === selected?.id ? " is-selected" : ""}`}>
-                          {date !== event.start && "↳ "}{event.title}
+                          {dayLabel(event, date)}{event.title}
                         </span>
                       ))}
                     </span>
@@ -202,6 +202,11 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
       </section>
     </>
   );
+}
+
+// Later days of a multi-day event read "Day 2 · Title", "Day 3 · Title"; the first day shows the title alone.
+function dayLabel(event: GymEvent, date: string): string {
+  return date === event.start ? "" : `Day ${daysBetween(event.start, date) + 1} · `;
 }
 
 function TypeLabel({ type }: { type: EventType }) {
