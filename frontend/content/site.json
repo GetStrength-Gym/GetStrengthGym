@@ -20,6 +20,10 @@
       "href": "/about/"
     },
     {
+      "label": "Events",
+      "href": "/events/"
+    },
+    {
       "label": "Contact",
       "href": "/contact/"
     }
