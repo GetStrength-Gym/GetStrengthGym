@@ -9,6 +9,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import type { GymEvent } from "./events";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -391,4 +392,108 @@ export function getPhotos(): Photos {
     aboutOffers: (data.aboutOffers as unknown[]).map((photo, i) => readPhoto(file, photo, `aboutOffers[${i}]`)),
     homeMembers: (data.homeMembers as unknown[]).map((photo, i) => readPhoto(file, photo, `homeMembers[${i}]`)),
   };
+}
+
+// ---------------------------------------------------------------------------
+// Events calendar
+// ---------------------------------------------------------------------------
+
+const EVENT_FIELDS = ["id", "title", "type", "start", "end", "time", "venue", "address", "organiser",
+  "entriesOpen", "entriesClose", "entryUrl", "note"];
+
+// Optional event fields may be left out of the file or set to null.
+function optionalEventString(file: string, data: Record<string, unknown>, field: string, label: string): string | null {
+  const value = data[field] ?? null;
+  if (!(value === null || (typeof value === "string" && value.trim() !== ""))) {
+    fail(file, `"${label}" must be left out, null or non-empty text`);
+  }
+  return value;
+}
+
+function eventDate(file: string, data: Record<string, unknown>, field: string, label: string): string | null {
+  const value = optionalEventString(file, data, field, label);
+  if (value !== null && !isRealDate(value)) fail(file, `"${label}" must be a real date written YYYY-MM-DD`);
+  return value;
+}
+
+function readEventsFile(filename: string): { sample: boolean; events: GymEvent[] } {
+  const file = `content/${filename}`;
+  let data: unknown;
+  try {
+    data = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, filename), "utf8"));
+  } catch (err) {
+    fail(file, `could not read as JSON (${(err as Error).message})`);
+  }
+  if (!isObject(data)) fail(file, "must be a JSON object");
+  rejectUnknownFields(file, data, ["sample", "events"]);
+  if (data.sample !== undefined && typeof data.sample !== "boolean") fail(file, `"sample" must be true or false`);
+  if (!Array.isArray(data.events)) fail(file, `"events" must be a list (it may be empty)`);
+
+  const seen = new Set<string>();
+  const events = data.events.map((event: unknown, i: number): GymEvent => {
+    const where = `events[${i}]`;
+    if (!isObject(event)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, event, EVENT_FIELDS);
+
+    const id = requireString(file, event, "id", `${where}.id`);
+    if (!SLUG.test(id)) fail(file, `"${where}.id" must be lower-case words separated by hyphens`);
+    if (seen.has(id)) fail(file, `"${where}.id" duplicates "${id}"`);
+    seen.add(id);
+
+    const type = event.type;
+    if (type !== "competition" && type !== "gym") fail(file, `"${where}.type" must be "competition" or "gym"`);
+
+    const start = eventDate(file, event, "start", `${where}.start`);
+    if (start === null) fail(file, `"${where}.start" is required`);
+    const end = eventDate(file, event, "end", `${where}.end`) ?? start;
+    if (end < start) fail(file, `"${where}.end" must not be before "start"`);
+
+    const entriesOpen = eventDate(file, event, "entriesOpen", `${where}.entriesOpen`);
+    const entriesClose = eventDate(file, event, "entriesClose", `${where}.entriesClose`);
+    if ((entriesOpen === null) !== (entriesClose === null)) {
+      fail(file, `"${where}" needs both "entriesOpen" and "entriesClose", or neither`);
+    }
+    if (entriesOpen !== null && type !== "competition") fail(file, `"${where}" entry dates are for competitions only`);
+    if (entriesOpen !== null && entriesClose !== null && !(entriesOpen <= entriesClose && entriesClose <= start)) {
+      fail(file, `"${where}" entry dates must run entriesOpen <= entriesClose <= start`);
+    }
+    const entryUrl = event.entryUrl ?? null;
+    if (entryUrl !== null) {
+      requireUrl(file, entryUrl, `${where}.entryUrl`);
+      if (entriesOpen === null) fail(file, `"${where}.entryUrl" needs "entriesOpen" and "entriesClose"`);
+    }
+
+    return {
+      id,
+      title: requireString(file, event, "title", `${where}.title`),
+      type,
+      start,
+      end,
+      time: optionalEventString(file, event, "time", `${where}.time`),
+      venue: requireString(file, event, "venue", `${where}.venue`),
+      address: optionalEventString(file, event, "address", `${where}.address`),
+      organiser: requireString(file, event, "organiser", `${where}.organiser`),
+      entriesOpen,
+      entriesClose,
+      entryUrl: entryUrl as string | null,
+      note: optionalEventString(file, event, "note", `${where}.note`),
+    };
+  });
+  events.sort((a, b) => a.start.localeCompare(b.start) || a.title.localeCompare(b.title));
+  return { sample: data.sample === true, events };
+}
+
+/**
+ * Events for this build, sorted by start date.
+ * - Production: content/events.json. An empty list is valid and shows an empty state.
+ * - Preview: content/events.sample.json, labelled as sample. events.json is still
+ *   validated so mistakes in it show up on everyday builds.
+ */
+export function getEvents(): { sample: boolean; events: GymEvent[] } {
+  const real = readEventsFile("events.json");
+  if (real.sample) fail("content/events.json", `"sample" must not be true in the real events list`);
+  if (!isPreviewBuild()) return real;
+  const sample = readEventsFile("events.sample.json");
+  if (!sample.sample) fail("content/events.sample.json", `"sample" must be true`);
+  return sample;
 }
