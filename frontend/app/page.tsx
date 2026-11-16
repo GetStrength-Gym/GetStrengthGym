@@ -95,7 +95,7 @@ export default function Home() {
       )}
 
       <section aria-labelledby="together-heading" className="together">
-        <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={1920} height={1280} className="together-photo" />
+        <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={2880} height={1920} className="together-photo" />
         <div className="page-width together-inner">
           <div className="together-copy section-stack">
             <h2 id="together-heading" className="section-heading">Train together. Grow stronger.</h2>

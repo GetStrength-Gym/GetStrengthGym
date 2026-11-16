@@ -41,9 +41,9 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 - **D5** — The navigation stays Home, About Us, Events, Contact. A "Memberships" link to Home's
   price section was tried and dropped the same day; memberships stay a section of Home, and the
   hero's "See memberships" button leads to them. (decided by: Johnson)
-- **D6** — Oversized images are resized in place (logo to 480px wide, two photos to 1920px).
-  Build-time WebP variants are not added now; revisit if page weight is still a problem.
-  (decided by: Johnson)
+- **D6** — The logo file is resized to 480px wide. The two full-width band photos were
+  recompressed, then restored the same day: they stay at original size and quality. No
+  build-time WebP variants for now. (decided by: Johnson)
 - **D7** — The map keeps loading by itself; a click-to-load version was tried and dropped the
   same day. The slot shows the address until the map paints. (decided by: Johnson)
 - **D8** — The testimonial row advances by itself every 6 seconds, waits on hover or focus, and

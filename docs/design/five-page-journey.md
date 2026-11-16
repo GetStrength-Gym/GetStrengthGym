@@ -240,4 +240,5 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   white ground; it pauses under the pointer and has a pause button. It is preview-only
   until the gym confirms the list and that the logos may be shown (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1). (3) Card and gallery photos zoom slightly on hover.
   (4) The hero heading, text and buttons rise in once on load, on Home and Events.
-- **Images:** the logo file is 480px wide and the two largest photos are 1920px wide.
+- **Images:** the logo file is 480px wide. The full-width band photos stay at their original
+  size and quality.
