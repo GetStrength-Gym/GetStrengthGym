@@ -43,7 +43,7 @@ export default function MemberRow({ children }: { children: ReactNode }) {
   return (
     <div className="member-carousel" onPointerEnter={() => { waiting.current = true; }} onPointerLeave={() => { waiting.current = false; }}
       onFocus={() => { waiting.current = true; }} onBlur={() => { waiting.current = false; }}>
-      <ul ref={ref} className="member-row" tabIndex={0} aria-label="Member testimonials" onScroll={onScroll}
+      <ul ref={ref} className="member-row" tabIndex={0} aria-label="Lifter testimonials" onScroll={onScroll}
         onTouchStart={takeOver} onWheel={takeOver} onKeyDown={takeOver}>{children}</ul>
       <div className="page-width member-controls">
         <button type="button" className="member-auto" aria-label={auto ? "Pause testimonials" : "Play testimonials"} onClick={() => setAuto(!auto)}>

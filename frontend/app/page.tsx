@@ -107,7 +107,7 @@ export default function Home() {
 
       {preview && (
         <section aria-labelledby="testimonials-heading" className="bg-neutral members">
-          <h2 id="testimonials-heading" className="page-width section-heading">What our members say</h2>
+          <h2 id="testimonials-heading" className="page-width section-heading">What our lifters say</h2>
           <MemberRow>
             {photos.homeMembers.map((photo, i) => (
               <li key={i} className="member-card">

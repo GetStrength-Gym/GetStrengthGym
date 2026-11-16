@@ -156,7 +156,7 @@ html { scroll-padding-top: 88px; }
 /* Member row: native scroll-snap, so the browser handles swipe and keyboard scrolling. The first card
    starts close to the left edge of the page, the next one peeks in, and two buttons step through the row. */
 .members { padding-block: 48px; container-type: inline-size; }
-.members .section-heading { margin-bottom: 24px; }
+.members .section-heading { margin-bottom: 24px; text-align: center; }
 .member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, calc(100cqw - 96px)); gap: 16px; padding-inline: 24px; overflow-x: auto; scroll-padding-inline: 24px; scroll-snap-type: x proximity; scrollbar-width: none; }
 /* No scrollbar: swipe, the arrow keys and the buttons below move the row. */
 .member-row::-webkit-scrollbar { display: none; }
