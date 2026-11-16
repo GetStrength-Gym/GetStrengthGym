@@ -43,6 +43,10 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 - **D6** — Oversized images are resized in place (logo to 480px wide, two photos to 1920px).
   Build-time WebP variants are not added now; revisit if page weight is still a problem.
   (decided by: Johnson)
+- **D7** — The map keeps loading by itself; a click-to-load version was tried and dropped the
+  same day. The slot shows the address until the map paints. (decided by: Johnson)
+- **D8** — The testimonial row advances by itself every 6 seconds, waits on hover or focus, and
+  has a pause button. (decided by: Johnson)
 
 ## Actions
 | # | Action | Owner | Due |
@@ -51,8 +55,7 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 | A2 | Try "Play gym video", the Menu and a shared event link on a real phone on the preview | Team | after merge |
 
 ## Open questions
-- **Q1** — The map now loads Google only on request. Does that change what the privacy policy
-  must say about Maps? (needs: brief Q11 owner)
+- None.
 
 ## Client-supplied facts
 - None. No gym fact was added or changed. The hero sentence now ends "in Penrose, Auckland",
@@ -61,4 +64,4 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 ## Promoted to
 - D1, D5 → `docs/design/five-page-journey.md` §3 and §13; `HANDOVER.md` (nav)
 - D2–D4, D6 → `docs/design/five-page-journey.md` §13
-- Q1 → open; relates to project brief Q11
+- D7, D8 → `docs/design/five-page-journey.md` §13

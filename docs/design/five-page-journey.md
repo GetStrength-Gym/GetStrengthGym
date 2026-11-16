@@ -222,10 +222,12 @@ this section is current. Brand colours, Inter and the page list are unchanged.
 - **Benefit and offer cards (Home, About):** a small photo beside the title and description on
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
 - **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
-- **Testimonial row (preview):** first card lines up with the page grid, the next card peeks in,
-  and previous/next buttons step through it.
-- **Map:** the slot shows the address and a "Load interactive map" button. Google's embed loads
-  only when asked for, so nothing is sent to Google before then (relevant to brief Q11).
+- **Testimonial row (preview):** first card lines up with the page grid and the next card peeks
+  in. The row glides to the next card every 6 seconds and loops. It waits while the pointer or
+  keyboard focus is on it, stops once the visitor scrolls or steps it themselves, has pause and
+  previous/next buttons, and never starts under reduced motion.
+- **Map:** the Google embed loads by itself when scrolled near, as before. Until it paints, the
+  slot shows the address instead of an empty box.
 - **Contact:** phone, address, hours, Call the gym and Get directions come before the form on
   phones. Desktop keeps the form on the left.
 - **Events:** phones list events first; the month sits behind "Show month calendar". Picking a
