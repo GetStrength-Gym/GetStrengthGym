@@ -41,7 +41,8 @@ page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym. Charcoal ground
+- Header: supplied logo, Home · About Us · Memberships · Events · Contact, Join GS Gym (see §13 for the
+  2026-11-16 header and layout refinements). Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
@@ -201,3 +202,33 @@ Implementation acceptance: check the shell and priority pages at phone/desktop w
 remove dead Gym links; verify Penrose directions and all Join destinations; exercise
 membership display/build-mode behavior; test contact delivery when chosen; run lint,
 TypeScript, static build and CloudFront tests. Check no link points at `/blog/`.
+
+## 13. MLP refinements — 2026-11-16
+
+Decided in `docs/meetings/2026-11-16-mlp-ux-review.md`. Where this section differs from §3–§8,
+this section is current. Brand colours, Inter and the page list are unchanged.
+
+- **Header:** sticky on every page. Phones get one 64px bar (logo, Join GS Gym, a Menu button
+  that drops the links below it; Escape closes it). Desktop keeps the links in the bar. The nav
+  gains **Memberships**, a link to `/#memberships`, not a new page.
+- **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
+  bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
+- **Home order:** hero → Why GS Gym → **Memberships** → coach (preview) → Train together →
+  testimonials (preview) → Find GS Gym → Join band. The hero's second button is "See
+  memberships" and is an outline on the dark hero at every width. The desktop hero is between
+  600 and 800px tall.
+- **Hero video:** phones, reduced motion and data saver show the poster and download nothing
+  until the visitor presses "Play gym video". Desktop plays it as before.
+- **Benefit and offer cards (Home, About):** a small photo beside the title and description on
+  phones; photo on top from 600px. The description is always visible; nothing waits for hover.
+- **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
+- **Testimonial row (preview):** first card lines up with the page grid, the next card peeks in,
+  and previous/next buttons step through it.
+- **Map:** the slot shows the address and a "Load interactive map" button. Google's embed loads
+  only when asked for, so nothing is sent to Google before then (relevant to brief Q11).
+- **Contact:** phone, address, hours, Call the gym and Get directions come before the form on
+  phones. Desktop keeps the form on the left.
+- **Events:** phones list events first; the month sits behind "Show month calendar". Picking a
+  day lists that day's events with full titles under the grid. Each event has its own address
+  (`/events/#<id>`) and a "Copy event link" button, so a shared link opens straight to it.
+- **Images:** the logo file is 480px wide and the two largest photos are 1920px wide.

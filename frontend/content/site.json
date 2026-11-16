@@ -20,6 +20,10 @@
       "href": "/about/"
     },
     {
+      "label": "Memberships",
+      "href": "/#memberships"
+    },
+    {
       "label": "Events",
       "href": "/events/"
     },
@@ -41,7 +45,7 @@
     }
   ],
   "home": {
-    "introduction": "Train for powerlifting, weightlifting, strongman or the enjoyment of getting stronger, in a supportive gym community.",
+    "introduction": "Train for powerlifting, weightlifting, strongman or the enjoyment of getting stronger, in a supportive gym community in Penrose, Auckland.",
     "whyIntroduction": "Experienced coaching. Specialist equipment. People who share your goals.",
     "benefits": [
       {

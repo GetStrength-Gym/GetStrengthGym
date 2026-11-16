@@ -36,7 +36,7 @@ export default function About() {
       </section>
 
       <section aria-labelledby="story-heading" className="together story">
-        <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={2880} height={1920} className="together-photo" />
+        <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={1920} height={1280} className="together-photo" />
         <div className="page-width together-inner">
           <div className="together-copy section-stack">
             <h2 id="story-heading" className="section-heading">Our story</h2>
@@ -66,10 +66,12 @@ export default function About() {
             <p className="text-grey">Services to confirm with the gym — preview only.</p>
             <ul className="benefit-grid">
               {OFFERS.map((offer, i) => (
-                <li key={offer.title} className="benefit-card" tabIndex={0}>
+                <li key={offer.title} className="benefit-card">
                   <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
-                  <div className="benefit-reveal"><p>{offer.description}</p></div>
-                  <h3>{offer.title}</h3>
+                  <div className="benefit-copy">
+                    <h3>{offer.title}</h3>
+                    <p>{offer.description}</p>
+                  </div>
                 </li>
               ))}
             </ul>

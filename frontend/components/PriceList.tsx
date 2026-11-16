@@ -4,12 +4,12 @@ import { formatPrice } from "@/lib/format";
 export default function PriceList() {
   const prices = getPrices();
   return (
-    <section id="memberships" aria-labelledby="memberships-heading" className="bg-neutral">
+    <section id="memberships" aria-labelledby="memberships-heading">
       <div className="page-width memberships-section">
         <div className="membership-intro">
           <p className="eyebrow">Memberships</p>
           <h2 id="memberships-heading" className="section-heading">Choose how you train.</h2>
-          <p className="body-large">Explore the available plans below. Check Debit Success for membership options, prices and terms.</p>
+          <p className="body-large">Compare the plans below. Sign-up, billing and terms are handled on Debit Success.</p>
           {prices.sample && <p className="text-grey">Unconfirmed prices and terms — preview only. Confirm current details with the gym.</p>}
         </div>
         <ul className="membership-grid">
