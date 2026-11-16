@@ -55,7 +55,7 @@ page, and retain trailing slashes (ADR-005/007).
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
 - Member access and staffed/viewing hours remain separate fields. Member access is 24/7
   (confirmed 2026-11-11) and the phone is 09 622 2885; viewing is by appointment (2026-11-16). The
-  inbox and privacy wording remain unconfirmed.
+  enquiry email is info@getstrengthgym.com (2026-11-16); the privacy wording remains unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target

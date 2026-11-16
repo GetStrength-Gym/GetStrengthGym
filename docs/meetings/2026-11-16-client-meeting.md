@@ -28,14 +28,14 @@ content questions.
 ## Open questions
 - **Q1** — The enquiry email was given as "info.getstrengthgym.com", which is not a valid email
   address as written. What is the exact address? Until confirmed it is not shown on the site.
-  (needs: Kevin or the client)
+  (needs: Kevin or the client) **Answered the same day by Kevin: `info@getstrengthgym.com`.**
 - **Q2** — Does the photographer (`qbkl.media`) want a credit on the site? Still to ask.
   (needs: client; carries over `docs/meetings/2026-11-11-gs23-content-decisions.md` Q2)
 
 ## Client-supplied facts
 - Viewing: by appointment, contact the gym to arrange.
 - Casual passes: walk in, or contact the gym online. Day pass $30 (already agreed), weekly pass $45.
-- Enquiry email, as given: "info.getstrengthgym.com" (exact address to confirm, Q1).
+- Enquiry email, as given: "info.getstrengthgym.com"; confirmed by Kevin as `info@getstrengthgym.com` (Q1).
 
 ## Promoted to
 - D1 → project brief Q11
@@ -47,4 +47,5 @@ content questions.
 - D5 → `frontend/content/site.json` `staffedHours`, `docs/requirements.md`, design docs
 - D6, D7 → `frontend/content/prices.json` and `prices.sample.json` (`dayPass`, new `weeklyPass`),
   `docs/requirements.md`, five-page journey §6, runbook
-- Q1, Q2 → open; not promoted
+- Q1 → `frontend/content/site.json` `email` (shown on Contact), project brief changelog, five-page journey §3
+- Q2 → open; not promoted

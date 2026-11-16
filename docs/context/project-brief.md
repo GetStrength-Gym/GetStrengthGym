@@ -125,7 +125,7 @@ contacts or account ownership without current-owner confirmation.
 ## Changelog
 - 2026-11-16 — Client meeting: testimonials become written quotes; viewing by appointment; casual
   passes bought by walking in or contacting online; weekly pass $45; privacy policy, coach
-  portrait and biography to come from the client. Enquiry email to confirm.
+  portrait and biography to come from the client. Enquiry email info@getstrengthgym.com.
 - 2026-11-16 — Q18 added: the gym to confirm the partners shown in Home's preview-only band.
 - 2026-11-15 — PR #32 review: the client asked for the events page in place of the blog, so
   `requirements.md` no longer says "to be agreed"; Q17 resolved (events filled by hand from APA).
