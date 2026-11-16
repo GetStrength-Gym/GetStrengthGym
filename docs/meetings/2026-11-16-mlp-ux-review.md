@@ -53,10 +53,10 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
   checked use scroll reveal and four use a text band. Still no animation library, parallax or
   count-up statistics; the last would need gym figures nobody has confirmed. (decided by: Johnson)
 - **D10** — The band under the hero shows the gym's partners and sponsors: Auckland Powerlifting
-  Association, SBD and New Zealand Powerlifting Federation (per Johnson). The list lives in `frontend/content/site.json`. Until
-  Q1 is answered it is preview-only. Each partner shows its name, with its logo once we hold the
-  file. SBD's logo was taken from sbdapparel.com on 2026-11-16 and sits beside its name;
-  the APA and NZPF sites refuse scripted downloads, so their logos are still to come.
+  Association, SBD New Zealand and New Zealand Powerlifting Federation (per Johnson). The list lives in `frontend/content/site.json`. Until
+  Q1 is answered it is preview-only. Each partner shows its logo and name. The APA and NZPF logo
+  files were supplied by Johnson on 2026-11-16; SBD's red logo was taken from sbdapparel.com the
+  same day.
   (decided by: Johnson)
 
 ## Actions
