@@ -42,6 +42,29 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Motion. Everything here is decoration: with reduced motion, or in a browser without
+   scroll-driven animations, the page simply appears. */
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: no-preference) {
+  /* The hero's heading, text and buttons rise in once on load, one after another. */
+  .hero-copy > *, .events-hero-copy > *, .next-comp { animation: rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-copy > :nth-child(2), .events-hero-copy > :nth-child(2) { animation-delay: 100ms; }
+  .hero-copy > :nth-child(3), .events-hero-copy > :nth-child(3) { animation-delay: 200ms; }
+  .events-hero-copy > :nth-child(4), .next-comp { animation-delay: 300ms; }
+  /* Each section's content rises in as it scrolls into view. The hero is left out: it is on
+     screen from the start. */
+  @supports (animation-timeline: view()) {
+    main section:not(.home-hero, .events-hero) > .page-width { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  }
+  /* Photos ease in a little closer under the pointer. */
+  .benefit-photo, .gallery-grid .photo, .member-photo { transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @media (hover: hover) and (min-width: 600px) {
+    .benefit-card:hover .benefit-photo, .gallery-grid li:hover .photo, .member-card:hover .member-photo { transform: scale(1.05); }
   }
 }
 
@@ -82,9 +105,27 @@ html { scroll-padding-top: 88px; }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
+.gallery-grid li { overflow: hidden; border-radius: 16px; }
+/* The band under the hero: a looping row of partner logos (names until the logo files arrive). Two copies of the list slide left by one
+   list-width, so the loop has no seam. It pauses under the pointer and from its button. */
+.marquee { position: relative; color: var(--color-white); background: var(--color-charcoal); border-block: 1px solid var(--color-footer-divider); }
+.marquee { display: flex; align-items: stretch; }
+.marquee-label { display: flex; flex: none; align-items: center; padding-inline: 24px 16px; border-right: 1px solid var(--color-footer-divider); color: var(--color-muted-on-dark); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.marquee-window { display: flex; flex: 1; min-width: 0; overflow: hidden; margin-right: 48px; }
+.marquee-logo { width: auto; height: 36px; object-fit: contain; }
+.marquee-track { display: flex; flex: none; align-items: center; min-width: 100%; justify-content: space-around; animation: marquee 32s linear infinite; }
+.marquee-track li { display: flex; align-items: center; gap: 28px; padding: 14px 0 14px 28px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; line-height: 20px; text-transform: uppercase; white-space: nowrap; }
+.marquee-track li::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--color-red); }
+.marquee:hover .marquee-track, .marquee.is-paused .marquee-track { animation-play-state: paused; }
+.marquee-pause { position: absolute; inset-block: 0; right: 0; display: grid; place-items: center; width: 48px; cursor: pointer; background: var(--color-charcoal); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-window { margin-right: 0; }
+  .marquee-track { flex: 1; flex-wrap: wrap; justify-content: center; }
+  .marquee-track[aria-hidden], .marquee-pause { display: none; }
+}
 .photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 16px; }
 /* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
-.together { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.together { position: relative; overflow: clip; color: var(--color-white); background: var(--color-charcoal); }
 .together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
 .together-inner { position: relative; z-index: 1; padding-block: 32px 48px; }
 .together-copy .body-large { color: var(--color-muted-on-dark); }

@@ -47,6 +47,14 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
   same day. The slot shows the address until the map paints. (decided by: Johnson)
 - **D8** — The testimonial row advances by itself every 6 seconds, waits on hover or focus, and
   has a pause button. (decided by: Johnson)
+- **D9** — Changes D4 the same day: add four light, CSS-based motions (scroll reveal, a looping
+  band under the hero, photo zoom on hover, a hero entrance). Six of twelve large gym sites
+  checked use scroll reveal and four use a text band. Still no animation library, parallax or
+  count-up statistics; the last would need gym figures nobody has confirmed. (decided by: Johnson)
+- **D10** — The band under the hero shows the gym's partners and sponsors: Auckland Powerlifting
+  Association, SBD Powerlifting, SBD Weightlifting and New Zealand Powerlifting Federation (per
+  Johnson), written in full. The list lives in `frontend/content/site.json`. Until
+  Q1 is answered it is preview-only and shows names in place of logos. (decided by: Johnson)
 
 ## Actions
 | # | Action | Owner | Due |
@@ -55,7 +63,8 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 | A2 | Try "Play gym video", the Menu and a shared event link on a real phone on the preview | Team | after merge |
 
 ## Open questions
-- None.
+- **Q1** — Does the gym confirm these four as its partners and sponsors, with their exact names,
+  and can it supply each logo file with permission to show it? (needs: the gym)
 
 ## Client-supplied facts
 - None. No gym fact was added or changed. The hero sentence now ends "in Penrose, Auckland",
@@ -64,4 +73,5 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 ## Promoted to
 - D1, D5 → `docs/design/five-page-journey.md` §3 and §13; `HANDOVER.md` (nav)
 - D2–D4, D6 → `docs/design/five-page-journey.md` §13
-- D7, D8 → `docs/design/five-page-journey.md` §13
+- D7–D10 → `docs/design/five-page-journey.md` §13
+- Q1 → open; not yet in the project brief

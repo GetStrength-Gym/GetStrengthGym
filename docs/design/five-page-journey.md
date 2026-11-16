@@ -233,4 +233,11 @@ this section is current. Brand colours, Inter and the page list are unchanged.
 - **Events:** phones list events first; the month sits behind "Show month calendar". Picking a
   day lists that day's events with full titles under the grid. Each event has its own address
   (`/events/#<id>`) and a "Copy event link" button, so a shared link opens straight to it.
+- **Motion:** four additions, all switched off under reduced motion. (1) Each section's content
+  rises in as it scrolls into view (browsers without scroll-driven animations just show it).
+  (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD Powerlifting, SBD
+  Weightlifting, New Zealand Powerlifting Federation, from `partners` in `site.json`); it pauses under the pointer and has a pause button. It is
+  preview-only and shows names, not logos, until the gym confirms the list and supplies logo
+  files (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1). (3) Card and gallery photos zoom slightly on hover.
+  (4) The hero heading, text and buttons rise in once on load, on Home and Events.
 - **Images:** the logo file is 480px wide and the two largest photos are 1920px wide.

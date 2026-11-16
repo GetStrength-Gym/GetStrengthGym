@@ -5,6 +5,7 @@ import JoinButton from "@/components/JoinButton";
 import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
+import Marquee from "@/components/Marquee";
 import MemberRow from "@/components/MemberRow";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
@@ -37,6 +38,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* TODO(confirm): the partner list is per the project lead (2026-11-16); the gym has not confirmed
+          it or supplied logo files, so the band is preview-only and shows names until logos arrive. */}
+      {preview && site.partners.length > 0 && (
+        <Marquee label="Partners">
+          {site.partners.map(partner => (
+            <li key={partner.name}>
+              {partner.logo ? <Image src={partner.logo} alt={partner.name} width={160} height={48} className="marquee-logo" /> : partner.name}
+            </li>
+          ))}
+        </Marquee>
+      )}
 
       <section id="the-gym" aria-labelledby="why-heading" className="bg-neutral">
         <div className="page-width section-space section-stack">

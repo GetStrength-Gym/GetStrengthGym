@@ -35,6 +35,7 @@ try {
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Memberships', 'Events', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
   assert.equal(getSite().phone, '09 622 2885');
+  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD Powerlifting', 'SBD Weightlifting', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, null);
 
   const prices = read('prices.json');
