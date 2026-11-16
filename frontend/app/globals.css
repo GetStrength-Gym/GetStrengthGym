@@ -112,10 +112,10 @@ html { scroll-padding-top: 88px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
 /* Member row: native scroll-snap, so the browser handles swipe and keyboard scrolling. The first card
-   lines up with the page grid, the next one peeks in, and two buttons step through the row. */
+   starts close to the left edge of the page, the next one peeks in, and two buttons step through the row. */
 .members { padding-block: 48px; container-type: inline-size; }
 .members .section-heading { margin-bottom: 24px; }
-.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, calc(100cqw - 96px)); gap: 16px; padding-inline: max(24px, calc((100cqw - 1280px) / 2)); overflow-x: auto; scroll-padding-inline: max(24px, calc((100cqw - 1280px) / 2)); scroll-snap-type: x proximity; scrollbar-width: none; }
+.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, calc(100cqw - 96px)); gap: 16px; padding-inline: 24px; overflow-x: auto; scroll-padding-inline: 24px; scroll-snap-type: x proximity; scrollbar-width: none; }
 /* No scrollbar: swipe, the arrow keys and the buttons below move the row. */
 .member-row::-webkit-scrollbar { display: none; }
 .member-row > li { scroll-snap-align: start; }
@@ -344,7 +344,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .members { padding-block: 72px; }
   .members .section-heading { margin-bottom: 32px; }
-  .member-row { gap: 32px; padding-inline: max(80px, calc((100cqw - 1280px) / 2)); scroll-padding-inline: max(80px, calc((100cqw - 1280px) / 2)); }
+  .member-row { gap: 32px; padding-inline: 40px; scroll-padding-inline: 40px; }
   .member-card { min-height: 400px; padding: 32px 40px; }
   .member-card h3 { font-size: 32px; line-height: 40px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }

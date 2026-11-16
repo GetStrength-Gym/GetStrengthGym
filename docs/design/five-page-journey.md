@@ -222,8 +222,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
 - **Benefit and offer cards (Home, About):** a small photo beside the title and description on
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
 - **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
-- **Testimonial row (preview):** first card lines up with the page grid and the next card peeks
-  in. The row glides to the next card every 6 seconds and loops. It waits while the pointer or
+- **Testimonial row (preview):** first card starts close to the left edge of the page and the next
+  card peeks in. The row glides to the next card every 6 seconds and loops. It waits while the pointer or
   keyboard focus is on it, stops once the visitor scrolls or steps it themselves, has pause and
   previous/next buttons, and never starts under reduced motion.
 - **Map:** the Google embed loads by itself when scrolled near, as before. Until it paints, the
