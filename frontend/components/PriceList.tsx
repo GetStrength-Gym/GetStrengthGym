@@ -21,11 +21,16 @@ export default function PriceList() {
             </li>
           ))}
         </ul>
-        <div className="day-pass">
-          <h3>Casual day pass</h3>
-          <p className="membership-price">{formatPrice({ price: prices.dayPass.price, period: "visit" }, prices.currency)}</p>
-          <p className="text-grey">{prices.dayPass.howToBuy ?? "Ask the gym how to buy a day pass."}</p>
-        </div>
+        {[
+          { pass: prices.dayPass, title: "Casual day pass", period: "visit", name: "a day pass" },
+          { pass: prices.weeklyPass, title: "Weekly pass", period: "week", name: "a weekly pass" },
+        ].map(({ pass, title, period, name }) => (
+          <div key={title} className="day-pass">
+            <h3>{title}</h3>
+            <p className="membership-price">{formatPrice({ price: pass.price, period }, prices.currency)}</p>
+            <p className="text-grey">{pass.howToBuy ?? `Ask the gym how to buy ${name}.`}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

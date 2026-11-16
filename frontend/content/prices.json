@@ -33,6 +33,10 @@
   ],
   "dayPass": {
     "price": 30,
-    "howToBuy": null
+    "howToBuy": "Walk in, or contact us online first."
+  },
+  "weeklyPass": {
+    "price": 45,
+    "howToBuy": "Walk in, or contact us online first."
   }
 }

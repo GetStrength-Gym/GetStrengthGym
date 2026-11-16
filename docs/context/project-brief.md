@@ -23,7 +23,8 @@ fourth in the navigation, and its homepage has no title tag and no H1.
 Three primary pages in order: Home, About Us, Contact. Home serves as The Gym and
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
-Success. Video testimonials retain placeholders until approved footage arrives. There is
+Success. Member testimonials are written quotes the client will send (2026-11-16); placeholders
+stay in preview until then. There is
 no blog (removed per the 2026-10-18 meeting); its replacement is the events calendar page at
 `/events/` (Q14), filled by hand from the APA calendar (Q17).
 
@@ -92,8 +93,10 @@ contacts or account ownership without current-owner confirmation.
   (a scope change)? Raised 2026-10-11; not decided.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
   It must mention the Google Maps embed on Home and Contact (third-party; may set cookies).
+  The client said on 2026-11-16 they will send it (`docs/meetings/2026-11-16-client-meeting.md` D1).
 - **Q12** Owner identity is settled as Joe; the current coach's exact name, role, biography
-  and credentials remain unconfirmed. Keep the generic coach slot.
+  and credentials remain unconfirmed. Keep the generic coach slot. The client will send the
+  head coach's portrait and biography (2026-11-16 client meeting, D2).
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
@@ -120,6 +123,9 @@ contacts or account ownership without current-owner confirmation.
   (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
 
 ## Changelog
+- 2026-11-16 — Client meeting: testimonials become written quotes; viewing by appointment; casual
+  passes bought by walking in or contacting online; weekly pass $45; privacy policy, coach
+  portrait and biography to come from the client. Enquiry email to confirm.
 - 2026-11-16 — Q18 added: the gym to confirm the partners shown in Home's preview-only band.
 - 2026-11-15 — PR #32 review: the client asked for the events page in place of the blog, so
   `requirements.md` no longer says "to be agreed"; Q17 resolved (events filled by hand from APA).

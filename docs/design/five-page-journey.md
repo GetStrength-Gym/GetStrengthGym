@@ -54,8 +54,8 @@ page, and retain trailing slashes (ADR-005/007).
   confirmation by Kevin and the current gym's Instagram. Use it in site data, directions,
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
 - Member access and staffed/viewing hours remain separate fields. Member access is 24/7
-  (confirmed 2026-11-11) and the phone is 09 622 2885; staffed/viewing hours, inbox and privacy wording remain
-  unconfirmed.
+  (confirmed 2026-11-11) and the phone is 09 622 2885; viewing is by appointment (2026-11-16). The
+  inbox and privacy wording remain unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target
@@ -72,7 +72,7 @@ Use Home (`1:29`) and Home — Mobile (`45:307`) as visual targets, in this orde
 2. Why GS Gym? — three benefit cards and Explore About Us.
 3. Coach slot with approved portrait, role, biography and credentials.
 4. Gym imagery and Train together. Grow stronger., linking to the gym's story.
-5. Video testimonials, with labelled preview placeholders until approved footage arrives.
+5. Member testimonials as written quotes (2026-11-16), with labelled preview placeholders until the client sends them.
 6. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action
    and static map placeholder.
 7. Membership options and casual day pass (§6).
@@ -132,7 +132,7 @@ Label unconfirmed observations in preview. Production still requires client-conf
 values under ADR-006; do not set `confirmedWithClient` from a Figma observation.
 
 The day pass is absent from the observed form. Its price is $30 a visit (agreed with the
-client, reported 2026-11-10); the purchase method remains `TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
+client, reported 2026-11-10), and a weekly pass is $45. Both are bought by walking in, or contacting the gym online first (2026-11-16 client meeting, D6, D7), so a one-off visitor is never sent to the direct-debit form.
 
 Extend **`frontend/content/prices.json`**, not `data/membership.json`, with confirmed
 billing, minimum term, one-off payment, inclusions and day-pass details. Reuse existing

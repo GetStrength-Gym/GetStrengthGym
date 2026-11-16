@@ -153,7 +153,7 @@ ratio per slot, so the layout never shifts.
 An eyebrow, the H2 "Find GS Gym", the address, member-access and staffed-hours lines,
 **Get directions** (secondary) and **Ask about visiting** (primary), plus a map image. The
 address is 20/10 Olive Road, Penrose, Auckland 1061, confirmed in Figma's 2026-10-12 notes.
-Member access and staffed/viewing hours remain `TODO(confirm)`.
+Member access is 24/7; viewing is by appointment (2026-11-16 client meeting).
 
 ### Header and Footer
 
@@ -164,8 +164,9 @@ a red underline, the nav list, three info columns, then © and Privacy policy.
 
 Post card: image, a category eyebrow (· date), an H3 title as the link text, and an
 excerpt. The whole card is one link target, and its accessible name is the title, not
-"read more". Offer cards are white with a 1px border. Testimonials use video, with labelled
-preview placeholders until approved footage arrives; text quote cards are not required.
+"read more". Offer cards are white with a 1px border. Testimonials are written quotes on member
+photo cards (2026-11-16 client meeting, D3), with labelled preview placeholders until the client
+sends them.
 
 ### Form field
 
