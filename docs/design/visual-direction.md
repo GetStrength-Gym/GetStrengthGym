@@ -36,7 +36,7 @@ Three principles, in priority order when they conflict:
    no smaller than 16px.
 
 What this direction is deliberately **not**: gradients, stock smiling models, icon
-illustrations, carousels, or animation beyond hover and focus.
+illustrations, or heavy animation. Since 2026-11-16 a few light motions are allowed (§4).
 
 ---
 
@@ -110,8 +110,13 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
   the only pill shape.
 - **Borders:** 1px on cards and inputs. Primary buttons are a solid fill with no border.
 - **Shadows:** none. Separation comes from the band grounds.
-- **Motion:** a 150ms ease on hover and focus colour only. No scroll animation, parallax
-  or carousels. Respect `prefers-reduced-motion`.
+- **Motion:** a 150ms ease on hover and focus colour. Since 2026-11-16
+  (`docs/meetings/2026-11-16-mlp-ux-review.md` D8, D9) also: the hero rises in once on load,
+  sections rise in as they scroll into view, photos zoom slightly on hover, a looping partners
+  band, and a testimonial row that advances by itself. Anything that moves for more than 5
+  seconds has a pause button (WCAG 2.2.2). All of it is CSS or a few lines of script, and all of
+  it is off under `prefers-reduced-motion`. Still no parallax, animation library or count-up
+  statistics.
 
 ---
 
@@ -148,7 +153,7 @@ ratio per slot, so the layout never shifts.
 An eyebrow, the H2 "Find GS Gym", the address, member-access and staffed-hours lines,
 **Get directions** (secondary) and **Ask about visiting** (primary), plus a map image. The
 address is 20/10 Olive Road, Penrose, Auckland 1061, confirmed in Figma's 2026-10-12 notes.
-Member access and staffed/viewing hours remain `TODO(confirm)`.
+Member access is 24/7; viewing is by appointment (2026-11-16 client meeting).
 
 ### Header and Footer
 
@@ -159,8 +164,9 @@ a red underline, the nav list, three info columns, then © and Privacy policy.
 
 Post card: image, a category eyebrow (· date), an H3 title as the link text, and an
 excerpt. The whole card is one link target, and its accessible name is the title, not
-"read more". Offer cards are white with a 1px border. Testimonials use video, with labelled
-preview placeholders until approved footage arrives; text quote cards are not required.
+"read more". Offer cards are white with a 1px border. Testimonials are written quotes on member
+photo cards (2026-11-16 client meeting, D3), with labelled preview placeholders until the client
+sends them.
 
 ### Form field
 

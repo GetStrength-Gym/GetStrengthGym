@@ -34,7 +34,7 @@ Sites the client likes, and specifically *what* they like about each (not just t
 - **GetStrength MVP** (the user's current file; canonical link held with the project):
   Home, About Us, Blog, Contact and article template at 1440/390, plus components,
   colour scheme and review notes. **Home is The Gym**; no separate Gym frame is needed.
-- Confirmed deviations: video testimonials, no Facebook, and no blog (its Figma frames
+- Confirmed deviations: written-quote testimonials (video until 2026-11-16), no Facebook, and no blog (its Figma frames
   are not built; 2026-10-18 meeting). Missing assets
   stay labelled in preview; no invented gym facts or approved prices.
 - *GetStrength MVP – Low-Fi Wireframes* (`031LOpSNuRceNYL3J45RTC`) is an earlier copy that

@@ -48,8 +48,8 @@ the client sent. Don't fill gaps; ask them.
    change a `name` only if the client has changed it there too.
 4. Update `confirmedWithClient` to the date the client confirmed the new price (next section).
 5. Each plan's `details` is a list of display lines for billing, minimum term, fees and
-   inclusions. Keep facts in this file rather than in the card component. `dayPass` holds
-   a positive `price` (or `null`) and `howToBuy` text (or `null`).
+   inclusions. Keep facts in this file rather than in the card component. `dayPass` and
+   `weeklyPass` each hold a positive `price` (or `null`) and `howToBuy` text (or `null`).
 6. Keep `prices.sample.json` in the same shape. Its current numbers are the unconfirmed
    observations recorded in Figma on 2026-10-12, displayed only in labelled previews.
    They are not client approval and must not be copied into production without confirmation.
@@ -64,7 +64,7 @@ Each Home benefit has a `photo` path under `public/images/`; the build fails if 
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
 shows its name instead.
-Missing coach and video-testimonial content stays labelled in preview and is hidden in
+Missing coach and testimonial (written quote) content stays labelled in preview and is hidden in
 production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
 

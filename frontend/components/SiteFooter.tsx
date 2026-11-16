@@ -13,7 +13,7 @@ export default function SiteFooter() {
       <div className="page-width footer-inner">
         <div className="footer-brand">
           <Link href="/" aria-label={site.name + ", home"}>
-            <Image src="/images/brand/getstrength-primary.png" width={2858} height={2042}
+            <Image src="/images/brand/getstrength-primary.png" width={480} height={343}
               alt={site.name} className="footer-logo" />
           </Link>
           <JoinButton />

@@ -41,7 +41,8 @@ page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym. Charcoal ground
+- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym (see §13 for the
+  2026-11-16 header and layout refinements). Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
@@ -53,8 +54,8 @@ page, and retain trailing slashes (ADR-005/007).
   confirmation by Kevin and the current gym's Instagram. Use it in site data, directions,
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
 - Member access and staffed/viewing hours remain separate fields. Member access is 24/7
-  (confirmed 2026-11-11) and the phone is 09 622 2885; staffed/viewing hours, inbox and privacy wording remain
-  unconfirmed.
+  (confirmed 2026-11-11) and the phone is 09 622 2885; viewing is by appointment (2026-11-16). The
+  enquiry email is info@getstrengthgym.com (2026-11-16); the privacy wording remains unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target
@@ -71,7 +72,7 @@ Use Home (`1:29`) and Home — Mobile (`45:307`) as visual targets, in this orde
 2. Why GS Gym? — three benefit cards and Explore About Us.
 3. Coach slot with approved portrait, role, biography and credentials.
 4. Gym imagery and Train together. Grow stronger., linking to the gym's story.
-5. Video testimonials, with labelled preview placeholders until approved footage arrives.
+5. Member testimonials as written quotes (2026-11-16), with labelled preview placeholders until the client sends them.
 6. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action
    and static map placeholder.
 7. Membership options and casual day pass (§6).
@@ -131,7 +132,7 @@ Label unconfirmed observations in preview. Production still requires client-conf
 values under ADR-006; do not set `confirmedWithClient` from a Figma observation.
 
 The day pass is absent from the observed form. Its price is $30 a visit (agreed with the
-client, reported 2026-11-10); the purchase method remains `TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
+client, reported 2026-11-10), and a weekly pass is $45. Both are bought by walking in, or contacting the gym online first (2026-11-16 client meeting, D6, D7), so a one-off visitor is never sent to the direct-debit form.
 
 Extend **`frontend/content/prices.json`**, not `data/membership.json`, with confirmed
 billing, minimum term, one-off payment, inclusions and day-pass details. Reuse existing
@@ -201,3 +202,43 @@ Implementation acceptance: check the shell and priority pages at phone/desktop w
 remove dead Gym links; verify Penrose directions and all Join destinations; exercise
 membership display/build-mode behavior; test contact delivery when chosen; run lint,
 TypeScript, static build and CloudFront tests. Check no link points at `/blog/`.
+
+## 13. MLP refinements — 2026-11-16
+
+Decided in `docs/meetings/2026-11-16-mlp-ux-review.md`. Where this section differs from §3–§8,
+this section is current. Brand colours, Inter and the page list are unchanged.
+
+- **Header:** sticky on every page. Phones get one 64px bar (logo, Join GS Gym, a Menu button
+  that drops the links below it; Escape closes it). Desktop keeps the links in the bar. The nav
+  items are unchanged; the hero's "See memberships" button is the route to the prices.
+- **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
+  bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
+- **Home order:** hero → Why GS Gym → **Memberships** → coach (preview) → Train together →
+  testimonials (preview) → Find GS Gym → Join band. The hero's second button is "See
+  memberships" and is an outline on the dark hero at every width. The desktop hero is between
+  600 and 800px tall.
+- **Hero video:** phones, reduced motion and data saver show the poster and download nothing
+  until the visitor presses "Play gym video". Desktop plays it as before.
+- **Benefit and offer cards (Home, About):** a small photo beside the title and description on
+  phones; photo on top from 600px. The description is always visible; nothing waits for hover.
+- **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
+- **Testimonial row (preview):** first card starts close to the left edge of the page and the next
+  card peeks in. The row glides to the next card every 6 seconds and loops. It waits while the pointer or
+  keyboard focus is on it, stops once the visitor scrolls or steps it themselves, has pause and
+  previous/next buttons, and never starts under reduced motion.
+- **Map:** the Google embed loads by itself when scrolled near, as before. Until it paints, the
+  slot shows the address instead of an empty box.
+- **Contact:** phone, address, hours, Call the gym and Get directions come before the form on
+  phones. Desktop keeps the form on the left.
+- **Events:** phones list events first; the month sits behind "Show month calendar". Picking a
+  day lists that day's events with full titles under the grid. Each event has its own address
+  (`/events/#<id>`) and a "Copy event link" button, so a shared link opens straight to it.
+- **Motion:** four additions, all switched off under reduced motion. (1) Each section's content
+  rises in as it scrolls into view (browsers without scroll-driven animations just show it).
+  (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD New Zealand,
+  New Zealand Powerlifting Federation, from `partners` in `site.json`), each a logo and a name on a
+  white ground; it pauses under the pointer and has a pause button. It is preview-only
+  until the gym confirms the list and that the logos may be shown (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1). (3) Card and gallery photos zoom slightly on hover.
+  (4) The hero heading, text and buttons rise in once on load, on Home and Events.
+- **Images:** the logo file is 480px wide. The full-width band photos stay at their original
+  size and quality.

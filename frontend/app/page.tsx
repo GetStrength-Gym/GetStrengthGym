@@ -5,6 +5,8 @@ import JoinButton from "@/components/JoinButton";
 import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
+import Marquee from "@/components/Marquee";
+import MemberRow from "@/components/MemberRow";
 import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
@@ -14,13 +16,6 @@ export const metadata: Metadata = {
   title: { absolute: "GetStrength Gym — Strength Gym in Penrose, Auckland" },
   description: "Build strength. Find your community. Explore GetStrength Gym in Penrose, Auckland, and find your membership.",
 };
-
-// Line icons for the Why GS Gym cards, in card order: coaching, equipment, community.
-const ICONS = [
-  <g key="coaching"><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V2.5h6V4M9 13l2 2 4-4" /></g>,
-  <g key="equipment"><path d="M2.5 10v4M6 7v10M18 7v10M21.5 10v4M6 12h12" /></g>,
-  <g key="community"><circle cx="9" cy="8" r="3" /><circle cx="17" cy="9" r="2.5" /><path d="M3 20a6 6 0 0 1 12 0M15.5 14.3A4 4 0 0 1 21 18v2" /></g>,
-];
 
 export default function Home() {
   const site = getSite();
@@ -38,11 +33,25 @@ export default function Home() {
             <p>{site.home.introduction}</p>
             <div className="hero-actions">
               <JoinButton />
-              <a href="#the-gym" className="gs-button gs-button-secondary">Explore the gym</a>
+              <a href="#memberships" className="gs-button gs-button-secondary">See memberships</a>
             </div>
           </div>
         </div>
       </section>
+
+      {/* TODO(confirm): the partner list is per the project lead (2026-11-16); the gym has not confirmed
+          it or supplied logo files, so the band is preview-only. A partner without a logo file shows its name alone. */}
+      {preview && site.partners.length > 0 && (
+        <Marquee label="Partners">
+          {site.partners.map(partner => (
+            <li key={partner.name}>
+              {/* The name follows the logo, so the logo itself needs no alt text. */}
+              {partner.logo && <Image src={partner.logo} alt="" width={64} height={64} className="marquee-logo" />}
+              {partner.name}
+            </li>
+          ))}
+        </Marquee>
+      )}
 
       <section id="the-gym" aria-labelledby="why-heading" className="bg-neutral">
         <div className="page-width section-space section-stack">
@@ -50,17 +59,13 @@ export default function Home() {
           <h2 id="why-heading" className="section-heading">Why GS Gym?</h2>
           <p className="body-large">{site.home.whyIntroduction}</p>
           <ol className="benefit-grid">
-            {site.home.benefits.map((benefit, i) => (
-              <li key={benefit.title} className="benefit-card" tabIndex={0}>
+            {site.home.benefits.map(benefit => (
+              <li key={benefit.title} className="benefit-card">
                 <Image src={benefit.photo} alt="" width={800} height={1200} className="benefit-photo" />
-                <div className="benefit-reveal">
-                  <span className="benefit-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2"
-                      strokeLinecap="round" strokeLinejoin="round">{ICONS[i]}</svg>
-                  </span>
+                <div className="benefit-copy">
+                  <h3>{benefit.title}</h3>
                   <p>{benefit.description}</p>
                 </div>
-                <h3>{benefit.title}</h3>
               </li>
             ))}
           </ol>
@@ -68,8 +73,10 @@ export default function Home() {
         </div>
       </section>
 
+      <PriceList />
+
       {preview && (
-        <section aria-labelledby="coach-heading">
+        <section aria-labelledby="coach-heading" className="bg-neutral">
           <div className="page-width section-space coach-row">
             <Placeholder label="Current coach photo needed" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="coach-photo" />
             <div className="coach-copy">
@@ -100,16 +107,16 @@ export default function Home() {
 
       {preview && (
         <section aria-labelledby="testimonials-heading" className="bg-neutral members">
-          <h2 id="testimonials-heading" className="page-width section-heading">What our members say</h2>
-          <ul className="member-row" tabIndex={0} aria-label="Member testimonials">
+          <h2 id="testimonials-heading" className="page-width section-heading">What our lifters say</h2>
+          <MemberRow>
             {photos.homeMembers.map((photo, i) => (
-              <li key={i} className="benefit-card member-card">
-                <Image src={photo.src} alt={photo.alt} width={1600} height={800} className="benefit-photo" />
-                <div className="benefit-reveal"><p>[Member testimonial to be supplied]</p></div>
+              <li key={i} className="member-card">
+                <Image src={photo.src} alt={photo.alt} width={1600} height={800} className="member-photo" />
+                <p>[Member testimonial to be supplied]</p>
                 <h3>Member {i + 1}</h3>
               </li>
             ))}
-          </ul>
+          </MemberRow>
         </section>
       )}
 
@@ -132,7 +139,6 @@ export default function Home() {
         </div>
       </section>
 
-      <PriceList />
       <JoinCta heading="Find your membership." text="Check Debit Success for membership options, prices and terms."
         note="Opens Debit Success." />
     </main>

@@ -8,7 +8,7 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const dir of ['images/gym', 'videos']) {
+for (const dir of ['images/gym', 'images/partners', 'videos']) {
   fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
   for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
     fs.writeFileSync(path.join(fixture, 'public', dir, name), '');
@@ -31,17 +31,21 @@ try {
   assert.equal(preview.sample, true);
   assert.deepEqual(preview.plans.map(plan => plan.price), [27.99, 35.99, 54.99, 18.99]);
   assert.equal(preview.dayPass.price, 30);
+  assert.equal(preview.weeklyPass.price, 45);
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Events', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
   assert.equal(getSite().phone, '09 622 2885');
-  assert.equal(getSite().email, null);
+  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
+  assert.equal(getSite().email, 'info@getstrengthgym.com');
 
   const prices = read('prices.json');
   write('prices.json', { ...prices, plans: [{ ...prices.plans[0], details: [42] }] });
   assert.throws(getPrices, /plans\[0\].details/);
   write('prices.json', { ...prices, dayPass: { price: -1, howToBuy: null } });
   assert.throws(getPrices, /dayPass.price/);
+  write('prices.json', { ...prices, weeklyPass: { price: 45, howToBuy: '' } });
+  assert.throws(getPrices, /howToBuy/);
   write('prices.json', prices);
 
   const site = read('site.json');

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSite } from "@/lib/content";
 import JoinButton from "./JoinButton";
-import NavLinks from "./NavLinks";
+import HeaderNav from "./HeaderNav";
 
 export default function SiteHeader() {
   const site = getSite();
@@ -11,11 +11,11 @@ export default function SiteHeader() {
       <a href="#content" className="skip-link">Skip to content</a>
       <div className="page-width header-inner">
         <Link href="/" aria-label={site.name + ", home"}>
-          <Image src="/images/brand/getstrength-primary.png" width={2858} height={2042}
+          <Image src="/images/brand/getstrength-primary.png" width={480} height={343}
             alt={site.name} className="header-logo" preload />
         </Link>
         <JoinButton className="header-join" />
-        <nav aria-label="Main"><NavLinks links={site.nav} className="header-nav" /></nav>
+        <HeaderNav links={site.nav} />
       </div>
     </header>
   );
