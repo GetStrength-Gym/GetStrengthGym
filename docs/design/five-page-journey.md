@@ -41,7 +41,7 @@ page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Memberships · Events · Contact, Join GS Gym (see §13 for the
+- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym (see §13 for the
   2026-11-16 header and layout refinements). Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
@@ -210,7 +210,7 @@ this section is current. Brand colours, Inter and the page list are unchanged.
 
 - **Header:** sticky on every page. Phones get one 64px bar (logo, Join GS Gym, a Menu button
   that drops the links below it; Escape closes it). Desktop keeps the links in the bar. The nav
-  gains **Memberships**, a link to `/#memberships`, not a new page.
+  items are unchanged; the hero's "See memberships" button is the route to the prices.
 - **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
   bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
 - **Home order:** hero → Why GS Gym → **Memberships** → coach (preview) → Train together →
@@ -235,8 +235,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   (`/events/#<id>`) and a "Copy event link" button, so a shared link opens straight to it.
 - **Motion:** four additions, all switched off under reduced motion. (1) Each section's content
   rises in as it scrolls into view (browsers without scroll-driven animations just show it).
-  (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD Powerlifting, SBD
-  Weightlifting, New Zealand Powerlifting Federation, from `partners` in `site.json`); it pauses under the pointer and has a pause button. Each
+  (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD, New Zealand
+  Powerlifting Federation, from `partners` in `site.json`); it pauses under the pointer and has a pause button. Each
   partner shows its name, with its logo once we hold the file (SBD's so far). It is preview-only
   until the gym confirms the list and that the logos may be shown (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1). (3) Card and gallery photos zoom slightly on hover.
   (4) The hero heading, text and buttons rise in once on load, on Home and Events.

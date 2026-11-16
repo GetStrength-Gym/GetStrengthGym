@@ -32,10 +32,10 @@ try {
   assert.deepEqual(preview.plans.map(plan => plan.price), [27.99, 35.99, 54.99, 18.99]);
   assert.equal(preview.dayPass.price, 30);
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
-  assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Memberships', 'Events', 'Contact']);
+  assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Events', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
   assert.equal(getSite().phone, '09 622 2885');
-  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD Powerlifting', 'SBD Weightlifting', 'New Zealand Powerlifting Federation']);
+  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, null);
 
   const prices = read('prices.json');

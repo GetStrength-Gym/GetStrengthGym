@@ -38,8 +38,9 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 - **D3** — No per-plan Join buttons and no "most popular" badge: the first is the client's
   earlier decision, the second would invent evidence. (decided by: Johnson)
 - **D4** — No scroll animations, carousel library or fixed bottom action bar. (decided by: Johnson)
-- **D5** — "Memberships" joins the navigation as a link to Home's price section. It is not a new
-  page, so the page list in `docs/requirements.md` is unchanged. (decided by: Johnson)
+- **D5** — The navigation stays Home, About Us, Events, Contact. A "Memberships" link to Home's
+  price section was tried and dropped the same day; memberships stay a section of Home, and the
+  hero's "See memberships" button leads to them. (decided by: Johnson)
 - **D6** — Oversized images are resized in place (logo to 480px wide, two photos to 1920px).
   Build-time WebP variants are not added now; revisit if page weight is still a problem.
   (decided by: Johnson)
@@ -52,10 +53,9 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
   checked use scroll reveal and four use a text band. Still no animation library, parallax or
   count-up statistics; the last would need gym figures nobody has confirmed. (decided by: Johnson)
 - **D10** — The band under the hero shows the gym's partners and sponsors: Auckland Powerlifting
-  Association, SBD Powerlifting, SBD Weightlifting and New Zealand Powerlifting Federation (per
-  Johnson), written in full. The list lives in `frontend/content/site.json`. Until
+  Association, SBD and New Zealand Powerlifting Federation (per Johnson). The list lives in `frontend/content/site.json`. Until
   Q1 is answered it is preview-only. Each partner shows its name, with its logo once we hold the
-  file. SBD's logo was taken from sbdapparel.com on 2026-11-16 and is used for both SBD entries;
+  file. SBD's logo was taken from sbdapparel.com on 2026-11-16 and sits beside its name;
   the APA and NZPF sites refuse scripted downloads, so their logos are still to come.
   (decided by: Johnson)
 
@@ -74,7 +74,7 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
   the address already on the site.
 
 ## Promoted to
-- D1, D5 → `docs/design/five-page-journey.md` §3 and §13; `HANDOVER.md` (nav)
+- D1, D5 → `docs/design/five-page-journey.md` §13
 - D2–D4, D6 → `docs/design/five-page-journey.md` §13
 - D7–D10 → `docs/design/five-page-journey.md` §13
 - Q1 → open; not yet in the project brief

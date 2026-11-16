@@ -274,9 +274,8 @@ export function getSite(): Site {
     rejectUnknownFields(`${file} ${where}`, link, ["label", "href"]);
     const href = requireString(file, link, "href", `${where}.href`);
     // Internal pages only, with the trailing slash S3 + CloudFront need (ADR-005, ADR-007).
-    // A page (/about/) or a section of a page (/#memberships).
-    if (!href.startsWith("/") || !/(\/|\/#[a-z-]+)$/.test(href)) {
-      fail(file, `"${where}.href" must be a page like /about/ or a section like /#memberships`);
+    if (!href.startsWith("/") || !href.endsWith("/")) {
+      fail(file, `"${where}.href" must start and end with /, e.g. /about/`);
     }
     return { label: requireString(file, link, "label", `${where}.label`), href };
   });

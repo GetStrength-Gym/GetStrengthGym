@@ -20,10 +20,6 @@
       "href": "/about/"
     },
     {
-      "label": "Memberships",
-      "href": "/#memberships"
-    },
-    {
       "label": "Events",
       "href": "/events/"
     },
@@ -68,8 +64,7 @@
   },
   "partners": [
     { "name": "Auckland Powerlifting Association", "logo": null },
-    { "name": "SBD Powerlifting", "logo": "/images/partners/sbd.png" },
-    { "name": "SBD Weightlifting", "logo": "/images/partners/sbd.png" },
+    { "name": "SBD", "logo": "/images/partners/sbd.png" },
     { "name": "New Zealand Powerlifting Federation", "logo": null }
   ],
   "about": {

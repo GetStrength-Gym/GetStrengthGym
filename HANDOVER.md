@@ -3,7 +3,7 @@
 **Design reconciliation as at 2026-10-28.** Use the user's GetStrength MVP and
 `docs/design/five-page-journey.md`. Decisions and evidence are in
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
-About Us, Memberships (a link to Home's price section), Events, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
+About Us, Events, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
 its replacement is the events calendar page at `/events/` (brief Q14, built 2026-11-14), which
 the client asked for. The maintenance team fills `frontend/content/events.json` by hand from
