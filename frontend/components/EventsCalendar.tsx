@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { flushSync } from "react-dom";
 import type { Photo } from "@/lib/content";
 import {
@@ -23,7 +23,10 @@ const onHash = (notify: () => void) => {
   addEventListener("hashchange", notify);
   return () => removeEventListener("hashchange", notify);
 };
-const readHash = () => decodeURIComponent(location.hash.slice(1));
+// A truncated or mangled link (a bad %-escape) selects nothing rather than crashing the page.
+const readHash = () => {
+  try { return decodeURIComponent(location.hash.slice(1)); } catch { return ""; }
+};
 
 // The event list and month calendar share one selection: picking an event in either
 // highlights it in both and shows its details (beside the calendar on desktop, under the
@@ -56,9 +59,20 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
   const linked = events.find(event => event.id === chosenId);
   const viewMonth = month ?? linked?.start.slice(0, 7) ?? today.slice(0, 7);
   const pastShown = showPast ?? (linked ? linked.end < today : false);
-  const onDayDate = dayDate ? shown.filter(event => event.start <= dayDate && dayDate <= event.end) : [];
+  // The picked day's list belongs to its month; it hides when the calendar moves to another month.
+  const onDayDate = dayDate?.startsWith(viewMonth) ? shown.filter(event => event.start <= dayDate && dayDate <= event.end) : [];
+
+  // A linked past event is only rendered after hydration, too late for the browser's own jump
+  // to #id, so scroll to it once. Upcoming events are in the static HTML and need no help.
+  const linkHandled = useRef(false);
+  useEffect(() => {
+    if (linkHandled.current || !linked) return;
+    linkHandled.current = true;
+    if (linked.end < today) document.getElementById(linked.id)?.scrollIntoView({ block: "start" });
+  }, [linked, today]);
 
   const choose = (event: GymEvent) => {
+    linkHandled.current = true; // the visitor is choosing now; never jump for them
     if (filter !== "all" && event.type !== filter) setFilter("all"); // the hero card can pick an event the filter hides
     if (event.end < today) setShowPast(true); // on phones a past event's details sit inside the past list
     setMonth(event.start.slice(0, 7));

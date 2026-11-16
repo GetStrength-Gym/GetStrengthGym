@@ -114,8 +114,13 @@ contacts or account ownership without current-owner confirmation.
   `frontend/content/events.json` by hand from the APA calendar until an automatic feed exists
   (`docs/meetings/2026-11-15-events-review-follow-up.md` D2). Feeding it from APA automatically
   is a follow-up, waiting on whether APA's calendar has a public iCal link (same minutes, D3, Q1).
+- **Q18** Does the gym confirm Auckland Powerlifting Association, SBD New Zealand and New Zealand
+  Powerlifting Federation as its partners and sponsors, with their exact names, and supply each
+  logo with permission to show it? Until then Home's partners band is preview-only
+  (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
 
 ## Changelog
+- 2026-11-16 — Q18 added: the gym to confirm the partners shown in Home's preview-only band.
 - 2026-11-15 — PR #32 review: the client asked for the events page in place of the blog, so
   `requirements.md` no longer says "to be agreed"; Q17 resolved (events filled by hand from APA).
 - 2026-11-14 — Events calendar page built at `/events/` (Q14) and added to the nav. Status is

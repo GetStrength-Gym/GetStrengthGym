@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { NavLink } from "@/lib/content";
 import NavLinks from "./NavLinks";
 
@@ -9,13 +9,22 @@ import NavLinks from "./NavLinks";
 export default function HeaderNav({ links }: { links: NavLink[] }) {
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
+  const nav = useRef<HTMLElement>(null);
+
+  // A tap anywhere outside the open menu closes it.
+  useEffect(() => {
+    if (!open) return;
+    const outside = (event: PointerEvent) => { if (!nav.current?.contains(event.target as Node)) setOpen(false); };
+    document.addEventListener("pointerdown", outside);
+    return () => document.removeEventListener("pointerdown", outside);
+  }, [open]);
   const close = (refocus: boolean) => {
     setOpen(false);
     if (refocus) button.current?.focus();
   };
 
   return (
-    <nav aria-label="Main" className={"header-menu" + (open ? " is-open" : "")}
+    <nav ref={nav} aria-label="Main" className={"header-menu" + (open ? " is-open" : "")}
       onKeyDown={event => { if (event.key === "Escape" && open) close(true); }}>
       <button ref={button} type="button" className="header-menu-button" aria-expanded={open} aria-controls="header-links"
         onClick={() => setOpen(!open)}>

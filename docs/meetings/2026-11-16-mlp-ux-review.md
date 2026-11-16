@@ -66,7 +66,7 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 | A2 | Try "Play gym video", the Menu and a shared event link on a real phone on the preview | Team | after merge |
 
 ## Open questions
-- **Q1** — Does the gym confirm these four as its partners and sponsors, with their exact names,
+- **Q1** — Does the gym confirm these three as its partners and sponsors, with their exact names,
   and can it supply each logo file with permission to show it? (needs: the gym)
 
 ## Client-supplied facts
@@ -77,4 +77,5 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 - D1, D5 → `docs/design/five-page-journey.md` §13
 - D2–D4, D6 → `docs/design/five-page-journey.md` §13
 - D7–D10 → `docs/design/five-page-journey.md` §13
-- Q1 → open; not yet in the project brief
+- D8, D9 → also `docs/design/visual-direction.md` §1 and §4 (motion)
+- Q1 → project brief Q18

@@ -36,7 +36,7 @@ Three principles, in priority order when they conflict:
    no smaller than 16px.
 
 What this direction is deliberately **not**: gradients, stock smiling models, icon
-illustrations, carousels, or animation beyond hover and focus.
+illustrations, or heavy animation. Since 2026-11-16 a few light motions are allowed (§4).
 
 ---
 
@@ -110,8 +110,13 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
   the only pill shape.
 - **Borders:** 1px on cards and inputs. Primary buttons are a solid fill with no border.
 - **Shadows:** none. Separation comes from the band grounds.
-- **Motion:** a 150ms ease on hover and focus colour only. No scroll animation, parallax
-  or carousels. Respect `prefers-reduced-motion`.
+- **Motion:** a 150ms ease on hover and focus colour. Since 2026-11-16
+  (`docs/meetings/2026-11-16-mlp-ux-review.md` D8, D9) also: the hero rises in once on load,
+  sections rise in as they scroll into view, photos zoom slightly on hover, a looping partners
+  band, and a testimonial row that advances by itself. Anything that moves for more than 5
+  seconds has a pause button (WCAG 2.2.2). All of it is CSS or a few lines of script, and all of
+  it is off under `prefers-reduced-motion`. Still no parallax, animation library or count-up
+  statistics.
 
 ---
 
