@@ -40,12 +40,14 @@ export default function Home() {
       </section>
 
       {/* TODO(confirm): the partner list is per the project lead (2026-11-16); the gym has not confirmed
-          it or supplied logo files, so the band is preview-only and shows names until logos arrive. */}
+          it or supplied logo files, so the band is preview-only. A partner without a logo file shows its name alone. */}
       {preview && site.partners.length > 0 && (
         <Marquee label="Partners">
           {site.partners.map(partner => (
             <li key={partner.name}>
-              {partner.logo ? <Image src={partner.logo} alt={partner.name} width={160} height={48} className="marquee-logo" /> : partner.name}
+              {/* The name follows the logo, so the logo itself needs no alt text. */}
+              {partner.logo && <Image src={partner.logo} alt="" width={64} height={64} className="marquee-logo" />}
+              {partner.name}
             </li>
           ))}
         </Marquee>

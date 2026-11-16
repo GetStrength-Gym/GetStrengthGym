@@ -54,7 +54,10 @@ Find and fix the UI/UX and quality-of-life problems a visitor meets on the curre
 - **D10** — The band under the hero shows the gym's partners and sponsors: Auckland Powerlifting
   Association, SBD Powerlifting, SBD Weightlifting and New Zealand Powerlifting Federation (per
   Johnson), written in full. The list lives in `frontend/content/site.json`. Until
-  Q1 is answered it is preview-only and shows names in place of logos. (decided by: Johnson)
+  Q1 is answered it is preview-only. Each partner shows its name, with its logo once we hold the
+  file. SBD's logo was taken from sbdapparel.com on 2026-11-16 and is used for both SBD entries;
+  the APA and NZPF sites refuse scripted downloads, so their logos are still to come.
+  (decided by: Johnson)
 
 ## Actions
 | # | Action | Owner | Due |

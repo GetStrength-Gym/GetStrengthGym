@@ -8,7 +8,7 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const dir of ['images/gym', 'videos']) {
+for (const dir of ['images/gym', 'images/partners', 'videos']) {
   fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
   for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
     fs.writeFileSync(path.join(fixture, 'public', dir, name), '');

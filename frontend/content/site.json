@@ -68,8 +68,8 @@
   },
   "partners": [
     { "name": "Auckland Powerlifting Association", "logo": null },
-    { "name": "SBD Powerlifting", "logo": null },
-    { "name": "SBD Weightlifting", "logo": null },
+    { "name": "SBD Powerlifting", "logo": "/images/partners/sbd.png" },
+    { "name": "SBD Weightlifting", "logo": "/images/partners/sbd.png" },
     { "name": "New Zealand Powerlifting Federation", "logo": null }
   ],
   "about": {
