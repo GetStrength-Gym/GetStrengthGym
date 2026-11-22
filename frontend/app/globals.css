@@ -182,6 +182,8 @@ html { scroll-padding-top: 88px; }
 .membership-intro { display: flex; flex-direction: column; gap: 8px; }
 .membership-intro .eyebrow { margin-bottom: 4px; }
 .membership-grid { display: grid; gap: 12px; }
+/* The day and weekly passes sit side by side from 600px; stacked on phones like the plan cards. */
+.pass-row { display: grid; gap: 12px; }
 .membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 20px; border-radius: 8px; background: var(--color-neutral); }
 .home .membership-card h3, .home .day-pass h3 { margin-bottom: 8px; font-size: 20px; line-height: 26px; }
 .membership-price { margin-bottom: 8px; font-size: 24px; font-weight: 700; line-height: 30px; color: var(--color-red); }
@@ -359,7 +361,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 24px; line-height: 32px; }
 }
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .membership-grid, .gallery-grid, .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
@@ -405,6 +407,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .gym-map { min-height: 340px; }
   .memberships-section { padding-block: 72px; }
   .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
