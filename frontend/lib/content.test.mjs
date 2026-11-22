@@ -38,6 +38,7 @@ try {
   assert.equal(getSite().phone, '09 622 2885');
   assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, 'info@getstrengthgym.com');
+  assert.equal(getSite().coach.role, 'Head coach');
 
   const prices = read('prices.json');
   write('prices.json', { ...prices, plans: [{ ...prices.plans[0], details: [42] }] });
@@ -53,6 +54,8 @@ try {
   assert.throws(getSite, /home.benefits\[0\].description/);
   write('site.json', { ...site, about: { story: '' } });
   assert.throws(getSite, /about.story/);
+  write('site.json', { ...site, coach: { ...site.coach, bio: '' } });
+  assert.throws(getSite, /coach.bio/);
   write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], photo: '/images/gym/missing.jpg' }] } });
   assert.throws(getSite, /home.benefits\[0\].photo/);
 

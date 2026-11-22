@@ -145,8 +145,8 @@ Follow About Us (`1:58`) and mobile (`45:508`): hero, current gym story, coach p
 confirmed services, Inside the gym gallery and Join CTA. The gallery remains here, as
 Figma shows, rather than moving to another Gym page.
 
-Keep a generic coach slot until name, role, biography, portrait consent and credentials
-are approved. Optional team content stays hidden until supplied. Do not reuse John
+The coach slot shows head coach Raynan Mishra: portrait, role and biography from
+`site.json` `coach` and `photos.json` `headCoach` (2026-11-23). Optional team content stays hidden until supplied. Do not reuse John
 Strachan's portrait/credentials or manufacturing history as current-gym facts. Confirm
 services before publishing them.
 
@@ -213,7 +213,7 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   items are unchanged; the hero's "See memberships" button is the route to the prices.
 - **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
   bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
-- **Home order:** hero → Why GS Gym → **Memberships** → coach (preview) → Train together →
+- **Home order:** hero → Why GS Gym → **Memberships** → coach → Train together →
   testimonials (preview) → Find GS Gym → Join band. The hero's second button is "See
   memberships" and is an outline on the dark hero at every width. The desktop hero is between
   600 and 800px tall.

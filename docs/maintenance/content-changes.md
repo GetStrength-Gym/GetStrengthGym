@@ -58,13 +58,14 @@ the client sent. Don't fill gaps; ask them.
 
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
-Join destination, navigation, approved social links, Home's introductory/benefit copy and
-About's `about.story`.
+Join destination, navigation, approved social links, Home's introductory/benefit copy,
+About's `about.story`, and the head coach's `coach.name`, `coach.role` and `coach.bio` (shown on
+Home and About beside `photos.json` `headCoach`).
 Each Home benefit has a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
 shows its name instead.
-Missing coach and testimonial (written quote) content stays labelled in preview and is hidden in
+Missing testimonial (written quote) content stays labelled in preview and is hidden in
 production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
 

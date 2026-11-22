@@ -211,6 +211,7 @@ export type Site = {
     togetherIntroduction: string;
   };
   about: { story: string };
+  coach: { name: string; role: string; bio: string }; // shown on Home and About with photos.json headCoach
   partners: { name: string; logo: string | null }[]; // logo is null until its file is supplied; the name shows instead
 };
 
@@ -227,6 +228,7 @@ const SITE_FIELDS = [
   "outboundLinks",
   "home",
   "about",
+  "coach",
   "partners",
 ];
 
@@ -324,6 +326,14 @@ export function getSite(): Site {
   rejectUnknownFields(file + " about", data.about, ["story"]);
   const about = { story: requireString(file, data.about, "story", "about.story") };
 
+  if (!isObject(data.coach)) fail(file, '"coach" must be an object with "name", "role" and "bio"');
+  rejectUnknownFields(file + " coach", data.coach, ["name", "role", "bio"]);
+  const coach = {
+    name: requireString(file, data.coach, "name", "coach.name"),
+    role: requireString(file, data.coach, "role", "coach.role"),
+    bio: requireString(file, data.coach, "bio", "coach.bio"),
+  };
+
   if (!Array.isArray(data.partners)) fail(file, `"partners" must be a list (it may be empty)`);
   const partners = data.partners.map((partner: unknown, i: number) => {
     const where = `partners[${i}]`;
@@ -348,6 +358,7 @@ export function getSite(): Site {
     outboundLinks,
     home,
     about,
+    coach,
     partners,
   };
 }

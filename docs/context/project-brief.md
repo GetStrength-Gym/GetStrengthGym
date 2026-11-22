@@ -94,9 +94,9 @@ contacts or account ownership without current-owner confirmation.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
   It must mention the Google Maps embed on Home and Contact (third-party; may set cookies).
   The client said on 2026-11-16 they will send it (`docs/meetings/2026-11-16-client-meeting.md` D1).
-- **Q12** Owner identity is settled as Joe; the current coach's exact name, role, biography
-  and credentials remain unconfirmed. Keep the generic coach slot. The client will send the
-  head coach's portrait and biography (2026-11-16 client meeting, D2).
+- **Q12 — resolved 2026-11-23:** owner identity is settled as Joe. The head coach is Raynan
+  Mishra; his portrait (from the client's album) and biography (from his Instagram, confirmed by
+  Kevin) are on Home and About (`docs/meetings/2026-11-23-head-coach-profile.md`).
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
@@ -123,6 +123,8 @@ contacts or account ownership without current-owner confirmation.
   (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
 
 ## Changelog
+- 2026-11-23 — Q12 resolved: head coach Raynan Mishra, with portrait and biography, now on Home
+  and About in production as well as preview.
 - 2026-11-16 — Client meeting: testimonials become written quotes; viewing by appointment; casual
   passes bought by walking in or contacting online; weekly pass $45; privacy policy, coach
   portrait and biography to come from the client. Enquiry email info@getstrengthgym.com.

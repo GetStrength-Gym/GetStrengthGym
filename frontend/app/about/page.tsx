@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: "Serious strength training. A welcoming community. About GetStrength Gym in Penrose, Auckland.",
 };
 
-// Story, coach and services are TODO(confirm) with the gym (docs/design/five-page-journey.md §7),
-// so they show as labelled placeholders in preview and are left out of production.
+// Services are TODO(confirm) with the gym (docs/design/five-page-journey.md §7), so they show as
+// labelled placeholders in preview and are left out of production. The coach comes from site.json.
 const OFFERS = [
   { title: "Gym membership", description: "Explore gym membership and access options through Debit Success." },
   { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support." },
@@ -44,19 +44,18 @@ export default function About() {
         </div>
       </section>
 
-      {preview && (
-        <section aria-labelledby="coach-heading" className="bg-neutral">
-          <div className="page-width section-space coach-row">
-            <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
-            <div className="coach-copy">
-              <p className="eyebrow">Coach profile · details to confirm</p>
-              <h2 id="coach-heading" className="section-heading">Coach profile</h2>
-              <p className="body-large">Current coach name, role and biography awaiting confirmation with the gym.</p>
-              <Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>
-            </div>
+      <section aria-labelledby="coach-heading" className="bg-neutral">
+        <div className="page-width section-space coach-row">
+          <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
+          <div className="coach-copy">
+            <p className="eyebrow">Meet your coach</p>
+            <h2 id="coach-heading" className="section-heading">{site.coach.name}</h2>
+            <p className="body-large">{site.coach.role}</p>
+            <p className="text-grey">{site.coach.bio}</p>
+            <Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {preview && (
         <section aria-labelledby="offer-heading">
