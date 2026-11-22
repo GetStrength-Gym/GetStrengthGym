@@ -39,7 +39,7 @@ export default function SiteFooter() {
           )}
           <section aria-labelledby="footer-contact">
             <h2 id="footer-contact">Get in touch</h2>
-            <p>Training, memberships &amp; enquiries</p>
+            {site.email && <p><a href={"mailto:" + site.email} className="footer-contact-link">{site.email}</a></p>}
             <Link href="/contact/" className="footer-contact-link">Contact the team</Link>
             {site.outboundLinks.length > 0 && (
               <ul className="footer-socials">
