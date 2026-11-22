@@ -58,7 +58,8 @@ No store, checkout, member login, payments, booking or timetable is built here.
    (owned by a third party, "anyone with the link" — keep the link out of the public repo).
    **Recent photos received 2026-11-09** — a shared Google Photos album (37 photos, one drone
    video, link held by Kevin, not in the public repo), approved for use per the latest client
-   meeting. Coach portraits are still outstanding. Professional photos may follow (D4).
+   meeting. Head coach portraits were added to the album on 2026-11-16; one (seated, in a
+   GetStrength shirt) is now the coach photo on Home and About. Professional photos may follow (D4).
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
 ## The stack — decided

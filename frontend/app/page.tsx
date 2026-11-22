@@ -7,7 +7,6 @@ import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Marquee from "@/components/Marquee";
 import MemberRow from "@/components/MemberRow";
-import Placeholder from "@/components/Placeholder";
 import PriceList from "@/components/PriceList";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
@@ -78,7 +77,7 @@ export default function Home() {
       {preview && (
         <section aria-labelledby="coach-heading" className="bg-neutral">
           <div className="page-width section-space coach-row">
-            <Placeholder label="Current coach photo needed" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="coach-photo" />
+            <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
             <div className="coach-copy">
               <p className="eyebrow">Meet your coach</p>
               <h2 id="coach-heading" className="section-heading">Coach profile</h2>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import JoinCta from "@/components/JoinCta";
-import Placeholder from "@/components/Placeholder";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -48,7 +47,7 @@ export default function About() {
       {preview && (
         <section aria-labelledby="coach-heading" className="bg-neutral">
           <div className="page-width section-space coach-row">
-            <Placeholder label="Portrait: head coach" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="coach-photo" />
+            <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
             <div className="coach-copy">
               <p className="eyebrow">Coach profile · details to confirm</p>
               <h2 id="coach-heading" className="section-heading">Coach profile</h2>
