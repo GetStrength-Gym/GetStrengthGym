@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Coaches from "@/components/Coaches";
 import JoinCta from "@/components/JoinCta";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 // Services are TODO(confirm) with the gym (docs/design/five-page-journey.md §7), so they show as
-// labelled placeholders in preview and are left out of production. The coach comes from site.json.
+// labelled placeholders in preview and are left out of production. The coaches come from site.json.
 const OFFERS = [
   { title: "Gym membership", description: "Explore gym membership and access options through Debit Success." },
   { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support." },
@@ -44,18 +45,7 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="coach-heading" className="bg-neutral">
-        <div className="page-width section-space coach-row">
-          <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
-          <div className="coach-copy">
-            <p className="eyebrow">Meet your coach</p>
-            <h2 id="coach-heading" className="section-heading">{site.coach.name}</h2>
-            <p className="body-large">{site.coach.role}</p>
-            <p className="text-grey">{site.coach.bio}</p>
-            <Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>
-          </div>
-        </div>
-      </section>
+      <Coaches actions={<Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>} />
 
       {preview && (
         <section aria-labelledby="offer-heading">

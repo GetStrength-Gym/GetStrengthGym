@@ -97,6 +97,8 @@ contacts or account ownership without current-owner confirmation.
 - **Q12 — resolved 2026-11-23:** owner identity is settled as Joe. The head coach is Raynan
   Mishra; his portrait (from the client's album) and biography (from his Instagram, confirmed by
   Kevin) are on Home and About (`docs/meetings/2026-11-23-head-coach-profile.md`).
+  Coach Joe Mundey (portrait from the album, biography from his Instagram) sits under him
+  (`docs/meetings/2026-11-23-coach-joe-profile.md`).
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
@@ -123,6 +125,7 @@ contacts or account ownership without current-owner confirmation.
   (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
 
 ## Changelog
+- 2026-11-23 — Coach Joe Mundey added under the head coach on Home and About.
 - 2026-11-23 — Q12 resolved: head coach Raynan Mishra, with portrait and biography, now on Home
   and About in production as well as preview.
 - 2026-11-16 — Client meeting: testimonials become written quotes; viewing by appointment; casual

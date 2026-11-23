@@ -145,8 +145,9 @@ Follow About Us (`1:58`) and mobile (`45:508`): hero, current gym story, coach p
 confirmed services, Inside the gym gallery and Join CTA. The gallery remains here, as
 Figma shows, rather than moving to another Gym page.
 
-The coach slot shows head coach Raynan Mishra: portrait, role and biography from
-`site.json` `coach` and `photos.json` `headCoach` (2026-11-23). Optional team content stays hidden until supplied. Do not reuse John
+The coach section shows head coach Raynan Mishra and coach Joe Mundey, each with portrait, role
+and biography from `site.json` `coaches` (2026-11-23). Joe's row sits under Raynan's with the photo
+on the right and the biography on the left. Optional team content stays hidden until supplied. Do not reuse John
 Strachan's portrait/credentials or manufacturing history as current-gym facts. Confirm
 services before publishing them.
 

@@ -70,9 +70,24 @@
   "about": {
     "story": "Since 2001, GetStrength Gym has been a home for people who love getting stronger, and today it's home to the #1 ranked powerlifting team in Auckland. In May 2026 we moved to our new home at 20/10 Olive Road, Penrose, where powerlifters, weightlifters, strongman athletes and anyone chasing their next personal best train side by side."
   },
-  "coach": {
-    "name": "Raynan Mishra",
-    "role": "Head coach",
-    "bio": "Raynan is GetStrength Gym's head coach and a competitive powerlifter in the under-93 kg class. He has competed at international powerlifting competitions, including in the UAE in 2023 and Japan in 2025."
-  }
+  "coaches": [
+    {
+      "name": "Raynan Mishra",
+      "role": "Head coach",
+      "bio": "Raynan is GetStrength Gym's head coach and a competitive powerlifter in the under-93 kg class. He has competed at international powerlifting competitions, including in the UAE in 2023 and Japan in 2025.",
+      "photo": {
+        "src": "/images/gym/head-coach.jpg",
+        "alt": "Head coach Raynan Mishra, smiling, seated in front of the squat racks in a GetStrength T-shirt"
+      }
+    },
+    {
+      "name": "Joe Mundey",
+      "role": "Coach",
+      "bio": "Joe is a competitive powerlifter in the under-105 kg class. He started competing in Australia in 2022, moved to Auckland in 2024, and has competed at the New Zealand Nationals in 2025 and 2026, where he totalled 680 kg.",
+      "photo": {
+        "src": "/images/gym/joe-mundey.jpg",
+        "alt": "Coach Joe Mundey, smiling, leaning on a squat rack in an SBD T-shirt"
+      }
+    }
+  ]
 }

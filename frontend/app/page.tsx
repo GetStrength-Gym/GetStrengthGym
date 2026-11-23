@@ -5,6 +5,7 @@ import JoinButton from "@/components/JoinButton";
 import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
+import Coaches from "@/components/Coaches";
 import Marquee from "@/components/Marquee";
 import MemberRow from "@/components/MemberRow";
 import PriceList from "@/components/PriceList";
@@ -74,21 +75,12 @@ export default function Home() {
 
       <PriceList />
 
-      <section aria-labelledby="coach-heading" className="bg-neutral">
-        <div className="page-width section-space coach-row">
-          <Image src={photos.headCoach.src} alt={photos.headCoach.alt} width={1600} height={1067} className="photo coach-photo" />
-          <div className="coach-copy">
-            <p className="eyebrow">Meet your coach</p>
-            <h2 id="coach-heading" className="section-heading">{site.coach.name}</h2>
-            <p className="body-large">{site.coach.role}</p>
-            <p className="text-grey">{site.coach.bio}</p>
-            <div className="coach-actions">
-              <Link href="/contact/" className="gs-button gs-button-primary">Enquire about coaching</Link>
-              <Link href="/about/" className="gs-button gs-button-secondary">About the gym</Link>
-            </div>
-          </div>
+      <Coaches actions={
+        <div className="coach-actions">
+          <Link href="/contact/" className="gs-button gs-button-primary">Enquire about coaching</Link>
+          <Link href="/about/" className="gs-button gs-button-secondary">About the gym</Link>
         </div>
-      </section>
+      } />
 
       <section aria-labelledby="together-heading" className="together">
         <Image src={photos.homeTogether.src} alt={photos.homeTogether.alt} width={2880} height={1920} className="together-photo" />

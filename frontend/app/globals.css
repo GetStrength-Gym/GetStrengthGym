@@ -148,6 +148,7 @@ html { scroll-padding-top: 88px; }
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
 .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 20px; line-height: 26px; }
 .coach-row, .location-row { display: grid; align-items: center; gap: 24px; }
+.coach-list { display: grid; gap: 48px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
@@ -392,6 +393,9 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .member-card { min-height: 400px; padding: 32px 40px; }
   .member-card h3 { font-size: 32px; line-height: 40px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
+  .coach-row.is-flipped { grid-template-columns: 4.5fr 3fr; }
+  .coach-row.is-flipped .coach-photo { order: 1; }
+  .coach-list { gap: 72px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
   /* Zoom from the left edge: crops the empty wall on the right and moves the people clear of the text. */

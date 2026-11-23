@@ -211,7 +211,7 @@ export type Site = {
     togetherIntroduction: string;
   };
   about: { story: string };
-  coach: { name: string; role: string; bio: string }; // shown on Home and About with photos.json headCoach
+  coaches: { name: string; role: string; bio: string; photo: Photo }[]; // Home and About, in this order; photos alternate sides
   partners: { name: string; logo: string | null }[]; // logo is null until its file is supplied; the name shows instead
 };
 
@@ -228,7 +228,7 @@ const SITE_FIELDS = [
   "outboundLinks",
   "home",
   "about",
-  "coach",
+  "coaches",
   "partners",
 ];
 
@@ -326,13 +326,18 @@ export function getSite(): Site {
   rejectUnknownFields(file + " about", data.about, ["story"]);
   const about = { story: requireString(file, data.about, "story", "about.story") };
 
-  if (!isObject(data.coach)) fail(file, '"coach" must be an object with "name", "role" and "bio"');
-  rejectUnknownFields(file + " coach", data.coach, ["name", "role", "bio"]);
-  const coach = {
-    name: requireString(file, data.coach, "name", "coach.name"),
-    role: requireString(file, data.coach, "role", "coach.role"),
-    bio: requireString(file, data.coach, "bio", "coach.bio"),
-  };
+  if (!Array.isArray(data.coaches) || data.coaches.length === 0) fail(file, '"coaches" must be a non-empty list');
+  const coaches = data.coaches.map((coach: unknown, i: number) => {
+    const where = `coaches[${i}]`;
+    if (!isObject(coach)) fail(file, `"${where}" must be an object with "name", "role", "bio" and "photo"`);
+    rejectUnknownFields(`${file} ${where}`, coach, ["name", "role", "bio", "photo"]);
+    return {
+      name: requireString(file, coach, "name", `${where}.name`),
+      role: requireString(file, coach, "role", `${where}.role`),
+      bio: requireString(file, coach, "bio", `${where}.bio`),
+      photo: readPhoto(file, coach.photo, `${where}.photo`),
+    };
+  });
 
   if (!Array.isArray(data.partners)) fail(file, `"partners" must be a list (it may be empty)`);
   const partners = data.partners.map((partner: unknown, i: number) => {
@@ -358,7 +363,7 @@ export function getSite(): Site {
     outboundLinks,
     home,
     about,
-    coach,
+    coaches,
     partners,
   };
 }
@@ -377,7 +382,6 @@ export type Photos = {
   aboutOffers: Photo[]; // same order as OFFERS in app/about/page.tsx
   homeMembers: Photo[]; // testimonial row, preview-only until testimonials are supplied
   eventsHero: Photo;
-  headCoach: Photo; // the coach slot on Home and About
 };
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
@@ -412,7 +416,7 @@ export function getPhotos(): Photos {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "aboutOffers", "homeMembers", "eventsHero", "headCoach"]);
+  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "aboutOffers", "homeMembers", "eventsHero"]);
   for (const list of ["aboutGallery", "aboutOffers", "homeMembers"]) {
     if (!Array.isArray(data[list]) || data[list].length === 0) fail(file, `"${list}" must be a non-empty list`);
   }
@@ -429,7 +433,6 @@ export function getPhotos(): Photos {
     aboutOffers: (data.aboutOffers as unknown[]).map((photo, i) => readPhoto(file, photo, `aboutOffers[${i}]`)),
     homeMembers: (data.homeMembers as unknown[]).map((photo, i) => readPhoto(file, photo, `homeMembers[${i}]`)),
     eventsHero: readPhoto(file, data.eventsHero, "eventsHero"),
-    headCoach: readPhoto(file, data.headCoach, "headCoach"),
   };
 }
 

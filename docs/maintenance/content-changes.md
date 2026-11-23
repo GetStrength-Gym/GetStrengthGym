@@ -59,8 +59,9 @@ the client sent. Don't fill gaps; ask them.
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
 Join destination, navigation, approved social links, Home's introductory/benefit copy,
-About's `about.story`, and the head coach's `coach.name`, `coach.role` and `coach.bio` (shown on
-Home and About beside `photos.json` `headCoach`).
+About's `about.story`, and the `coaches` list shown on Home and About: each coach's `name`, `role`,
+`bio` and `photo` (`src` and `alt`, sized like the other 1600×1067 photos). Coaches appear in list
+order, and on wide screens every second photo sits on the right.
 Each Home benefit has a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
@@ -74,7 +75,7 @@ production. The map on Home and Contact is a Google Maps embed built from `name`
 `frontend/content/photos.json` says which file each slot uses: the Home hero video and its
 poster, Home's Train together photo, Home's five member-testimonial photos (`homeMembers`), About's
 story photo, About's What we offer cards (`aboutOffers`), the About gallery, the Events hero
-(`eventsHero`) and the head coach portrait on Home and About (`headCoach`). Every photo
+(`eventsHero`). Coach portraits live with each coach in `site.json` `coaches`. Every photo
 needs `alt` text describing what is visible; the hero video is decorative, so it has none.
 The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
 

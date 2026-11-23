@@ -38,7 +38,8 @@ try {
   assert.equal(getSite().phone, '09 622 2885');
   assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, 'info@getstrengthgym.com');
-  assert.equal(getSite().coach.role, 'Head coach');
+  assert.deepEqual(getSite().coaches.map(coach => coach.role), ['Head coach', 'Coach']);
+  assert.equal(getSite().coaches[1].photo.src, '/images/gym/joe-mundey.jpg');
 
   const prices = read('prices.json');
   write('prices.json', { ...prices, plans: [{ ...prices.plans[0], details: [42] }] });
@@ -54,15 +55,16 @@ try {
   assert.throws(getSite, /home.benefits\[0\].description/);
   write('site.json', { ...site, about: { story: '' } });
   assert.throws(getSite, /about.story/);
-  write('site.json', { ...site, coach: { ...site.coach, bio: '' } });
-  assert.throws(getSite, /coach.bio/);
+  write('site.json', { ...site, coaches: [{ ...site.coaches[0], bio: '' }] });
+  assert.throws(getSite, /coaches\[0\]\.bio/);
+  write('site.json', { ...site, coaches: [{ ...site.coaches[0], photo: { ...site.coaches[0].photo, src: '/images/gym/missing.jpg' } }] });
+  assert.throws(getSite, /coaches\[0\]\.photo\.src/);
   write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], photo: '/images/gym/missing.jpg' }] } });
   assert.throws(getSite, /home.benefits\[0\].photo/);
 
   assert.equal(getPhotos().aboutGallery.length, 8);
   assert.equal(getPhotos().aboutOffers.length, 3);
   assert.equal(getPhotos().homeMembers.length, 5);
-  assert.equal(getPhotos().headCoach.src, '/images/gym/head-coach.jpg');
   const photos = read('photos.json');
   write('photos.json', { ...photos, homeHero: { ...photos.homeHero, video: '/videos/Gym-Drone.mp4' } });
   assert.throws(getPhotos, /homeHero.video/);
