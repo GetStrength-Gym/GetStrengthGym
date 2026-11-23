@@ -60,6 +60,14 @@ body {
      screen from the start. */
   @supports (animation-timeline: view()) {
     main section:not(.home-hero, .events-hero) > .page-width { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    /* Cards in a row arrive one after another: each starts a little further into the scroll.
+       On phones the cards stack, so each simply rises as it arrives. */
+    :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
+    @media (min-width: 600px) {
+      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 2) { animation-range: entry 20% entry 70%; }
+      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 3) { animation-range: entry 30% entry 80%; }
+      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 4) { animation-range: entry 40% entry 90%; }
+    }
   }
   /* Photos ease in a little closer under the pointer. */
   .benefit-photo, .gallery-grid .photo, .member-photo { transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1); }
@@ -79,7 +87,13 @@ html { scroll-padding-top: 88px; }
 /* A small kicker above a section heading, the same pattern as the Events hero. The heading stays the loudest line. */
 .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: -12px; color: var(--color-red); font-size: 13px; font-weight: 700; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
 .eyebrow::before { content: ""; flex: none; width: 24px; height: 3px; background: var(--color-red); }
-.gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 16px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms; }
+.gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 16px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms, transform 120ms ease-out; }
+.gs-button > [aria-hidden="true"] { display: inline-block; transition: transform 200ms ease-out; }
+/* Buttons press in slightly when clicked, and a trailing arrow nudges forward on hover. */
+@media (prefers-reduced-motion: no-preference) {
+  .gs-button:active:not(:disabled) { transform: scale(0.97); }
+  .gs-button:hover > [aria-hidden="true"] { transform: translateX(3px); }
+}
 .gs-button-primary { color: var(--color-white); background: var(--color-red); }
 .gs-button-primary:hover { background: var(--color-red-dark); }
 .gs-button-secondary { color: var(--color-charcoal); border-color: currentColor; background: var(--color-white); }

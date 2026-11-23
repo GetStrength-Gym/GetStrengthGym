@@ -113,7 +113,9 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
 - **Motion:** a 150ms ease on hover and focus colour. Since 2026-11-16
   (`docs/meetings/2026-11-16-mlp-ux-review.md` D8, D9) also: the hero rises in once on load,
   sections rise in as they scroll into view, photos zoom slightly on hover, a looping partners
-  band, and a testimonial row that advances by itself. Anything that moves for more than 5
+  band, and a testimonial row that advances by itself. Since 2026-11-23
+  (`docs/meetings/2026-11-23-visual-polish.md` D1, D2): buttons press in slightly when clicked, a
+  trailing arrow nudges forward on hover, and cards in a row rise in one after another. Anything that moves for more than 5
   seconds has a pause button (WCAG 2.2.2). All of it is CSS or a few lines of script, and all of
   it is off under `prefers-reduced-motion`. Still no parallax, animation library or count-up
   statistics.
