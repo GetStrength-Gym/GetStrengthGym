@@ -109,21 +109,20 @@ export default function Home() {
       )}
 
       <section aria-labelledby="location-heading">
-        <div className="page-width section-space section-stack">
-          <p className="eyebrow">Come train with us</p>
-          <h2 id="location-heading" className="section-heading">Find GS Gym</h2>
-          <div className="location-row">
-            <div className="location-information">
-              <address>{site.address.street}<br />{site.address.locality}</address>
-              <div className="text-grey">
-                {(site.memberAccessHours || preview) && <p>Member access hours: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
-                {(site.staffedHours || preview) && <p>Staffed / viewing hours: {site.staffedHours ?? "awaiting confirmation"}</p>}
-              </div>
-              <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
-              <Link href="/contact/" className="gs-button gs-button-primary">Ask about visiting</Link>
+        {/* The heading sits in the left column, so the map lines up with "Come train with us". */}
+        <div className="page-width section-space location-row">
+          <div className="location-information">
+            <p className="eyebrow">Come train with us</p>
+            <h2 id="location-heading" className="section-heading">Find GS Gym</h2>
+            <address>{site.address.street}<br />{site.address.locality}</address>
+            <div className="text-grey">
+              {(site.memberAccessHours || preview) && <p>Member access hours: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
+              {(site.staffedHours || preview) && <p>Staffed / viewing hours: {site.staffedHours ?? "awaiting confirmation"}</p>}
             </div>
-            <GymMap name={site.name} address={site.address} />
+            <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
+            <Link href="/contact/" className="gs-button gs-button-primary">Ask about visiting</Link>
           </div>
+          <GymMap name={site.name} address={site.address} />
         </div>
       </section>
 
