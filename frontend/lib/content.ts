@@ -212,7 +212,6 @@ export type Site = {
   };
   about: { story: string };
   coaches: { name: string; bio: string; photo: Photo }[]; // Home and About, in this order; photos alternate sides
-  partners: { name: string; logo: string | null }[]; // logo is null until its file is supplied; the name shows instead
 };
 
 const SITE_FIELDS = [
@@ -229,7 +228,6 @@ const SITE_FIELDS = [
   "home",
   "about",
   "coaches",
-  "partners",
 ];
 
 function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
@@ -338,17 +336,6 @@ export function getSite(): Site {
     };
   });
 
-  if (!Array.isArray(data.partners)) fail(file, `"partners" must be a list (it may be empty)`);
-  const partners = data.partners.map((partner: unknown, i: number) => {
-    const where = `partners[${i}]`;
-    if (!isObject(partner)) fail(file, `"${where}" must be an object`);
-    rejectUnknownFields(`${file} ${where}`, partner, ["name", "logo"]);
-    return {
-      name: requireString(file, partner, "name", `${where}.name`),
-      logo: partner.logo === null ? null : requirePublicFile(file, partner, "logo", `${where}.logo`),
-    };
-  });
-
   return {
     name,
     address,
@@ -363,7 +350,6 @@ export function getSite(): Site {
     home,
     about,
     coaches,
-    partners,
   };
 }
 

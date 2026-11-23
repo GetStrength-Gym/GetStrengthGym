@@ -249,7 +249,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD New Zealand,
   New Zealand Powerlifting Federation, from `partners` in `site.json`), each a logo and a name on a
   white ground; it pauses under the pointer and has a pause button. It is preview-only
-  until the gym confirms the list and that the logos may be shown (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1). (3) Card and gallery photos zoom slightly on hover.
+  until the gym confirms the list and that the logos may be shown (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
+  Removed 2026-11-23, with its list and logo files (`docs/meetings/2026-11-23-visual-polish.md` D11). (3) Card and gallery photos zoom slightly on hover.
   (4) The hero heading, text and buttons rise in once on load, on Home and Events.
 - **Images:** the logo file is 480px wide. The full-width band photos stay at their original
   size and quality.

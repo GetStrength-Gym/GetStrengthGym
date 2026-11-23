@@ -119,12 +119,13 @@ contacts or account ownership without current-owner confirmation.
   `frontend/content/events.json` by hand from the APA calendar until an automatic feed exists
   (`docs/meetings/2026-11-15-events-review-follow-up.md` D2). Feeding it from APA automatically
   is a follow-up, waiting on whether APA's calendar has a public iCal link (same minutes, D3, Q1).
-- **Q18** Does the gym confirm Auckland Powerlifting Association, SBD New Zealand and New Zealand
-  Powerlifting Federation as its partners and sponsors, with their exact names, and supply each
-  logo with permission to show it? Until then Home's partners band is preview-only
-  (`docs/meetings/2026-11-16-mlp-ux-review.md` Q1).
+- **Q18 — withdrawn 2026-11-23:** Home's preview-only partners band (Auckland Powerlifting
+  Association, SBD New Zealand, New Zealand Powerlifting Federation) was removed with its logo
+  files (`docs/meetings/2026-11-23-visual-polish.md` D11). Ask again only if the gym wants
+  partners or sponsors shown.
 
 ## Changelog
+- 2026-11-23 — Q18 withdrawn: the preview-only partners band was removed.
 - 2026-11-23 — Coach Joe Mundey added under the head coach on Home and About.
 - 2026-11-23 — Q12 resolved: head coach Raynan Mishra, with portrait and biography, now on Home
   and About in production as well as preview.

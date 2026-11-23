@@ -6,7 +6,6 @@ import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Coaches from "@/components/Coaches";
-import Marquee from "@/components/Marquee";
 import MemberRow from "@/components/MemberRow";
 import PriceList from "@/components/PriceList";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
@@ -38,20 +37,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* TODO(confirm): the partner list is per the project lead (2026-11-16); the gym has not confirmed
-          it or supplied logo files, so the band is preview-only. A partner without a logo file shows its name alone. */}
-      {preview && site.partners.length > 0 && (
-        <Marquee label="Partners">
-          {site.partners.map(partner => (
-            <li key={partner.name}>
-              {/* The name follows the logo, so the logo itself needs no alt text. */}
-              {partner.logo && <Image src={partner.logo} alt="" width={64} height={64} className="marquee-logo" />}
-              {partner.name}
-            </li>
-          ))}
-        </Marquee>
-      )}
 
       <section id="the-gym" aria-labelledby="why-heading" className="bg-neutral">
         <div className="page-width section-space section-stack">
