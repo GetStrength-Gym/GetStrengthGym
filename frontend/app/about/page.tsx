@@ -10,9 +10,19 @@ export const metadata: Metadata = {
   description: "Serious strength training. A welcoming community. About GetStrength Gym in Penrose, Auckland.",
 };
 
+// What we offer shows on the live site since 2026-11-23 (visual-polish minutes D13). The coaches come from site.json.
+const OFFERS = [
+  { title: "Gym membership", description: "Explore gym membership and access options through Debit Success." },
+  { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support." },
+  { title: "Competition prep", description: "Discuss your lifting goals and available competition support." },
+];
+
 export default function About() {
   const site = getSite();
   const photos = getPhotos();
+  if (photos.aboutOffers.length !== OFFERS.length) {
+    throw new Error(`content/photos.json: "aboutOffers" needs ${OFFERS.length} photos, one per What we offer card`);
+  }
 
   return (
     <main className="about">
@@ -30,6 +40,23 @@ export default function About() {
       </section>
 
       <Coaches actions={<Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>} />
+
+      <section aria-labelledby="offer-heading">
+        <div className="page-width section-space section-stack">
+          <h2 id="offer-heading" className="section-heading">What we offer</h2>
+          <ul className="benefit-grid">
+            {OFFERS.map((offer, i) => (
+              <li key={offer.title} className="benefit-card">
+                <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
+                <div className="benefit-copy">
+                  <h3>{offer.title}</h3>
+                  <p>{offer.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section aria-labelledby="gallery-heading">
         <div className="page-width section-space section-stack">
