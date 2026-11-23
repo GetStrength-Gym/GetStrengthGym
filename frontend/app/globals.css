@@ -209,7 +209,7 @@ html { scroll-padding-top: 88px; }
 .footer-contact-link { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; font-weight: 600; }
 .footer-contact-link:hover, .footer-socials a:hover, .footer-legal a:hover { text-decoration: underline; }
 .footer-socials { display: flex; gap: 16px; }
-.footer-socials a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; }
+.footer-socials a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; font-size: 15px; }
 .social-icon { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: 50%; transition: background-color 150ms, color 150ms; }
 .social-icon svg { width: 24px; height: 24px; }
 .footer-socials .social-icon:hover { color: var(--color-charcoal); background: var(--color-footer-text); }
