@@ -199,10 +199,13 @@ html { scroll-padding-top: 88px; }
 .membership-grid { display: grid; gap: 12px; }
 /* The day and weekly passes sit side by side from 600px; stacked on phones like the plan cards. */
 .pass-row { display: grid; gap: 12px; }
-.membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 20px; border-radius: 4px; background: var(--color-neutral); }
-.home .membership-card h3, .home .day-pass h3 { margin-bottom: 8px; font-size: 20px; line-height: 26px; }
-.membership-price { margin-bottom: 8px; font-size: 24px; font-weight: 700; line-height: 30px; color: var(--color-red); }
-.membership-card > .text-grey { white-space: normal; }
+/* A red rule across the top, the price large, then one detail per line between hairlines. */
+.membership-card, .day-pass { display: flex; flex-direction: column; align-items: stretch; padding: 20px; border-top: 3px solid var(--color-red); border-radius: 0 0 4px 4px; background: var(--color-neutral); }
+.home .membership-card h3, .home .day-pass h3 { margin-bottom: 4px; font-size: 20px; line-height: 26px; }
+.membership-price { margin-bottom: 12px; font-size: 32px; font-weight: 800; line-height: 38px; letter-spacing: -0.01em; color: var(--color-charcoal); }
+.membership-period { font-size: 16px; font-weight: 500; letter-spacing: 0; white-space: nowrap; color: var(--color-grey); }
+.membership-price.is-unset { font-size: 20px; font-weight: 700; line-height: 28px; }
+.membership-card > .text-grey, .day-pass > .text-grey { padding-block: 8px; border-top: 1px solid var(--color-line); font-size: 15px; line-height: 22px; white-space: normal; }
 .membership-cta { color: var(--color-white); background: var(--color-cta); }
 .membership-cta .gs-button { align-self: stretch; }
 .membership-cta .cta-note { font-size: 13px; color: var(--color-muted-on-dark); }
@@ -425,6 +428,8 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .gym-map { min-height: 340px; }
   .memberships-section { padding-block: 72px; }
   .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  /* Four cards share the row, so the price shrinks a little on narrower desktops to stay inside its card. */
+  .membership-grid .membership-price:not(.is-unset) { font-size: clamp(26px, 2.5vw, 32px); }
   .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }

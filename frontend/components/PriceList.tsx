@@ -1,6 +1,17 @@
 import { getPrices } from "@/lib/content";
 import { formatPrice } from "@/lib/format";
 
+// The amount large and the period small, so prices are easy to compare at a glance.
+// An unset price shows "Contact us for pricing" at a smaller size.
+function Price({ price, text }: { price: number | null; text: string }) {
+  const [amount, period] = text.split(" / ");
+  return (
+    <p className={"membership-price" + (price === null ? " is-unset" : "")}>
+      {amount}{period && <span className="membership-period"> / {period}</span>}
+    </p>
+  );
+}
+
 export default function PriceList() {
   const prices = getPrices();
   return (
@@ -16,7 +27,7 @@ export default function PriceList() {
           {prices.plans.map(plan => (
             <li key={plan.id} className="membership-card">
               <h3>{plan.name}</h3>
-              <p className="membership-price">{formatPrice(plan, prices.currency)}</p>
+              <Price price={plan.price} text={formatPrice(plan, prices.currency)} />
               {plan.details.map(detail => <p key={detail} className="text-grey">{detail}</p>)}
             </li>
           ))}
@@ -28,7 +39,7 @@ export default function PriceList() {
           ].map(({ pass, title, period, name }) => (
             <div key={title} className="day-pass">
               <h3>{title}</h3>
-              <p className="membership-price">{formatPrice({ price: pass.price, period }, prices.currency)}</p>
+              <Price price={pass.price} text={formatPrice({ price: pass.price, period }, prices.currency)} />
               <p className="text-grey">{pass.howToBuy ?? `Ask the gym how to buy ${name}.`}</p>
             </div>
           ))}
