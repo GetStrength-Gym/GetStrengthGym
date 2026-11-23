@@ -29,15 +29,15 @@ Instagram. Follows `2026-11-23-head-coach-profile.md`.
 | D2 | He is shown as **Joe Mundey**, role **Coach**. The docs record Joe as the owner (brief Q1); the site says coach only, as for Raynan. | Kevin ("the other coach") |
 | D3 | Joe's row sits under Raynan's, with the photo on the right and the biography on the left on wide screens. | Kevin |
 | D4 | Biography: a competitive powerlifter in the under-105 kg class who started competing in Australia in 2022, moved to Auckland in 2024, and competed at the New Zealand Nationals in 2025 and 2026, totalling 680 kg. Personal posts (health, family, pets) are left out. | His Instagram captions |
+| D5 | Later the same day: the role line under each coach's name ("Head coach", "Coach") is removed from Home and About. Raynan's biography still names him head coach. Supersedes the role part of D2. | Kevin |
 
 ## Open questions
 
 - **Q1** — Confirm the biography with Joe, in particular that "Nats" is the New Zealand Nationals,
   the under-105 kg class, and the 2024 move to Auckland. (needs: Kevin)
-- **Q2** — Should his role say "Owner & coach" rather than "Coach"? (needs: Kevin)
 
 ## Promoted to
 
-- D1–D4 → `frontend/content/site.json` `coaches` (photo, name, role, biography)
-- D3 → `frontend/components/Coaches.tsx` and `docs/design/five-page-journey.md` §7
-- Q1, Q2 → open; not promoted
+- D1–D4 → `frontend/content/site.json` `coaches` (photo, name, biography)
+- D3, D5 → `frontend/components/Coaches.tsx` and `docs/design/five-page-journey.md` §7
+- Q1 → open; not promoted

@@ -211,7 +211,7 @@ export type Site = {
     togetherIntroduction: string;
   };
   about: { story: string };
-  coaches: { name: string; role: string; bio: string; photo: Photo }[]; // Home and About, in this order; photos alternate sides
+  coaches: { name: string; bio: string; photo: Photo }[]; // Home and About, in this order; photos alternate sides
   partners: { name: string; logo: string | null }[]; // logo is null until its file is supplied; the name shows instead
 };
 
@@ -329,11 +329,10 @@ export function getSite(): Site {
   if (!Array.isArray(data.coaches) || data.coaches.length === 0) fail(file, '"coaches" must be a non-empty list');
   const coaches = data.coaches.map((coach: unknown, i: number) => {
     const where = `coaches[${i}]`;
-    if (!isObject(coach)) fail(file, `"${where}" must be an object with "name", "role", "bio" and "photo"`);
-    rejectUnknownFields(`${file} ${where}`, coach, ["name", "role", "bio", "photo"]);
+    if (!isObject(coach)) fail(file, `"${where}" must be an object with "name", "bio" and "photo"`);
+    rejectUnknownFields(`${file} ${where}`, coach, ["name", "bio", "photo"]);
     return {
       name: requireString(file, coach, "name", `${where}.name`),
-      role: requireString(file, coach, "role", `${where}.role`),
       bio: requireString(file, coach, "bio", `${where}.bio`),
       photo: readPhoto(file, coach.photo, `${where}.photo`),
     };

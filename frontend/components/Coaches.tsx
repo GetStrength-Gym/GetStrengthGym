@@ -14,7 +14,6 @@ export default function Coaches({ actions }: { actions: ReactNode }) {
             <div className="coach-copy">
               {i === 0 && <p className="eyebrow">Meet your {coaches.length > 1 ? "coaches" : "coach"}</p>}
               <h2 id={`coach-${i}`} className="section-heading">{coach.name}</h2>
-              <p className="body-large">{coach.role}</p>
               <p className="text-grey">{coach.bio}</p>
               {i === coaches.length - 1 && actions}
             </div>

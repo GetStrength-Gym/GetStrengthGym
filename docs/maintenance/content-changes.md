@@ -59,7 +59,7 @@ the client sent. Don't fill gaps; ask them.
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
 Join destination, navigation, approved social links, Home's introductory/benefit copy,
-About's `about.story`, and the `coaches` list shown on Home and About: each coach's `name`, `role`,
+About's `about.story`, and the `coaches` list shown on Home and About: each coach's `name`,
 `bio` and `photo` (`src` and `alt`, sized like the other 1600×1067 photos). Coaches appear in list
 order, and on wide screens every second photo sits on the right.
 Each Home benefit has a `photo` path under `public/images/`; the build fails if the photo file is missing.

@@ -73,7 +73,6 @@
   "coaches": [
     {
       "name": "Raynan Mishra",
-      "role": "Head coach",
       "bio": "Raynan is GetStrength Gym's head coach and a competitive powerlifter in the under-93 kg class. He has competed at international powerlifting competitions, including in the UAE in 2023 and Japan in 2025.",
       "photo": {
         "src": "/images/gym/head-coach.jpg",
@@ -82,7 +81,6 @@
     },
     {
       "name": "Joe Mundey",
-      "role": "Coach",
       "bio": "Joe is a competitive powerlifter in the under-105 kg class. He started competing in Australia in 2022, moved to Auckland in 2024, and has competed at the New Zealand Nationals in 2025 and 2026, where he totalled 680 kg.",
       "photo": {
         "src": "/images/gym/joe-mundey.jpg",

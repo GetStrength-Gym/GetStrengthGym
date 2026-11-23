@@ -38,7 +38,7 @@ try {
   assert.equal(getSite().phone, '09 622 2885');
   assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, 'info@getstrengthgym.com');
-  assert.deepEqual(getSite().coaches.map(coach => coach.role), ['Head coach', 'Coach']);
+  assert.deepEqual(getSite().coaches.map(coach => coach.name), ['Raynan Mishra', 'Joe Mundey']);
   assert.equal(getSite().coaches[1].photo.src, '/images/gym/joe-mundey.jpg');
 
   const prices = read('prices.json');
