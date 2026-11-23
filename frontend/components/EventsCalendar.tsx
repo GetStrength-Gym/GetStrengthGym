@@ -102,10 +102,10 @@ export default function EventsCalendar({ events, buildDate, photo, emptyLink, ch
 
   return (
     <>
-      <section className="events-hero">
-        <Image src={photo.src} alt={photo.alt} width={1600} height={800} className="events-hero-photo" preload />
-        <div className="page-width events-hero-inner">
-          <div className="events-hero-copy">{children}</div>
+      <section className="page-hero">
+        <Image src={photo.src} alt={photo.alt} width={1600} height={800} className="page-hero-photo" preload />
+        <div className="page-width page-hero-inner">
+          <div className="page-hero-copy">{children}</div>
           {next && (
             <button type="button" className="next-comp" onClick={() => chooseAndShow(next)}>
               <span className="next-comp-head">

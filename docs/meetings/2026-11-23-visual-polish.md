@@ -41,4 +41,6 @@ Kevin chose to build the other seven, one commit each.
 - D1, D2 → `frontend/app/globals.css`; `docs/design/visual-direction.md` §4
 - D3 → `frontend/app/globals.css` (every border-radius above 4px set to 4px); `docs/design/visual-direction.md` §4
 - D4 → `frontend/components/PriceList.tsx` and `frontend/app/globals.css` (an unset price keeps "Contact us for pricing", at a smaller size)
-- D5–D7 → recorded as each is built
+- D5 → `frontend/components/PageHero.tsx`, `photos.json` `aboutHero` and `contactHero`; the Events
+  header's styles are renamed `page-hero` and shared
+- D6, D7 → recorded as each is built

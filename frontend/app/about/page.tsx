@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Coaches from "@/components/Coaches";
 import JoinCta from "@/components/JoinCta";
+import PageHero from "@/components/PageHero";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -28,12 +29,11 @@ export default function About() {
 
   return (
     <main className="about">
-      <section className="bg-neutral">
-        <div className="page-width section-space section-stack">
-          <h1 className="section-heading page-title">About Us</h1>
-          <p className="body-large">Serious strength training. A welcoming community.</p>
-        </div>
-      </section>
+      <PageHero photo={photos.aboutHero}>
+        <p className="page-hero-kicker">Since 2001 · Penrose</p>
+        <h1>About Us</h1>
+        <p className="body-large">Serious strength training. A welcoming community.</p>
+      </PageHero>
 
       <section aria-labelledby="story-heading" className="together story">
         <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={2880} height={1920} className="together-photo" />

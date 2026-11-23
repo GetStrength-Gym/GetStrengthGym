@@ -75,7 +75,8 @@ production. The map on Home and Contact is a Google Maps embed built from `name`
 `frontend/content/photos.json` says which file each slot uses: the Home hero video and its
 poster, Home's Train together photo, Home's five member-testimonial photos (`homeMembers`), About's
 story photo, About's What we offer cards (`aboutOffers`), the About gallery, the Events hero
-(`eventsHero`). Coach portraits live with each coach in `site.json` `coaches`. Every photo
+(`eventsHero`), and the About and Contact headers (`aboutHero`, `contactHero`, 1600×800, shown
+under a dark overlay). Coach portraits live with each coach in `site.json` `coaches`. Every photo
 needs `alt` text describing what is visible; the hero video is decorative, so it has none.
 The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
 

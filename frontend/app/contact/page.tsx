@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import JoinCta from "@/components/JoinCta";
 import SocialIcon from "@/components/SocialIcon";
 import GymMap from "@/components/GymMap";
-import { getSite, isPreviewBuild } from "@/lib/content";
+import PageHero from "@/components/PageHero";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
 import { directionsUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -23,12 +24,11 @@ export default function Contact() {
 
   return (
     <main className="contact">
-      <section className="bg-neutral">
-        <div className="page-width section-space section-stack">
-          <h1 className="section-heading page-title">Contact</h1>
-          <p className="body-large">Questions about training, coaching or the gym? Get in touch.</p>
-        </div>
-      </section>
+      <PageHero photo={getPhotos().contactHero}>
+        <p className="page-hero-kicker">Penrose, Auckland</p>
+        <h1>Contact</h1>
+        <p className="body-large">Questions about training, coaching or the gym? Get in touch.</p>
+      </PageHero>
 
       <section aria-label="Enquiries and contact details">
         <div className="page-width section-space contact-row">
