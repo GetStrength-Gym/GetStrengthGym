@@ -70,7 +70,7 @@ Use Home (`1:29`) and Home — Mobile (`45:307`) as visual targets, in this orde
 
 1. Full-width photography hero, H1, supporting copy, Join GS Gym and Explore the gym.
 2. Why GS Gym? — three benefit cards and Explore About Us.
-3. Coach slot with approved portrait, role, biography and credentials.
+3. Coach slot with approved portrait, name, biography and credentials.
 4. Gym imagery and Train together. Grow stronger., linking to the gym's story.
 5. Member testimonials as written quotes (2026-11-16), with labelled preview placeholders until the client sends them.
 6. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action

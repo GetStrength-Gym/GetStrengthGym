@@ -30,6 +30,7 @@ Instagram. Follows `2026-11-23-head-coach-profile.md`.
 | D3 | Joe's row sits under Raynan's, with the photo on the right and the biography on the left on wide screens. | Kevin |
 | D4 | Biography: a competitive powerlifter in the under-105 kg class who started competing in Australia in 2022, moved to Auckland in 2024, and competed at the New Zealand Nationals in 2025 and 2026, totalling 680 kg. Personal posts (health, family, pets) are left out. | His Instagram captions |
 | D5 | Later the same day: the role line under each coach's name ("Head coach", "Coach") is removed from Home and About. Raynan's biography still names him head coach. Supersedes the role part of D2. | Kevin |
+| D6 | Self-review the same day: the biography now says the 680 kg total was at the 2026 Nationals; the earlier wording read as both years (his 2025 Nationals total was in the heavier class). Supersedes the wording of D4. | Claude, from his Instagram captions |
 
 ## Open questions
 
@@ -38,6 +39,6 @@ Instagram. Follows `2026-11-23-head-coach-profile.md`.
 
 ## Promoted to
 
-- D1–D4 → `frontend/content/site.json` `coaches` (photo, name, biography)
+- D1–D4, D6 → `frontend/content/site.json` `coaches` (photo, name, biography)
 - D3, D5 → `frontend/components/Coaches.tsx` and `docs/design/five-page-journey.md` §7
 - Q1 → open; not promoted

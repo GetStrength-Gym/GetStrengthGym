@@ -29,7 +29,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
 | Events | `events.sample.json`, labelled "Sample events — preview only" | `events.json` |
-| Unconfirmed content (coach, email, staffed hours) | labelled placeholders | left out |
+| Unconfirmed content (email, staffed hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain

@@ -6,13 +6,13 @@ import { getSite } from "@/lib/content";
 export default function Coaches({ actions }: { actions: ReactNode }) {
   const coaches = getSite().coaches;
   return (
-    <section aria-label="Coaches" className="bg-neutral">
+    <section aria-labelledby="coaches-heading" className="bg-neutral">
       <div className="page-width section-space coach-list">
         {coaches.map((coach, i) => (
           <article key={coach.name} aria-labelledby={`coach-${i}`} className={"coach-row" + (i % 2 ? " is-flipped" : "")}>
             <Image src={coach.photo.src} alt={coach.photo.alt} width={1600} height={1067} className="photo coach-photo" />
             <div className="coach-copy">
-              {i === 0 && <p className="eyebrow">Meet your {coaches.length > 1 ? "coaches" : "coach"}</p>}
+              {i === 0 && <p id="coaches-heading" className="eyebrow">Meet your {coaches.length > 1 ? "coaches" : "coach"}</p>}
               <h2 id={`coach-${i}`} className="section-heading">{coach.name}</h2>
               <p className="text-grey">{coach.bio}</p>
               {i === coaches.length - 1 && actions}
