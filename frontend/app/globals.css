@@ -234,7 +234,20 @@ html { scroll-padding-top: 88px; }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 .section-heading.page-title { font-size: 36px; line-height: 42px; }
 .bg-neutral .placeholder { background: var(--color-white); }
-.gallery-grid { display: grid; gap: 16px; }
+.gallery-grid { display: grid; grid-auto-flow: dense; gap: 16px; }
+/* Mosaic from tablet up: the first photo leads at double width (and double height on desktop) and the
+   last runs double width, so the eight photos fill the grid with no holes. Planned for eight photos;
+   another number still fills in, with dense packing closing most gaps. */
+@media (min-width: 600px) {
+  /* On tablets the spanning photos sit alone on their rows, so they take a 2:1 shape. On desktop they
+     fill whatever height their neighbours give the rows instead. */
+  .gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }
+  .gallery-grid > :is(:first-child, :last-child) .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+}
+@media (min-width: 960px) {
+  .gallery-grid > :first-child, .gallery-grid > :last-child { aspect-ratio: auto; }
+  .gallery-grid > :first-child { grid-row: span 2; }
+}
 /* Markup order is details, form, map: the phone order. Desktop puts the form on the left. */
 .contact-row { display: grid; align-items: start; gap: 32px; }
 .enquiry-form, .contact-map { display: flex; flex-direction: column; gap: 20px; }

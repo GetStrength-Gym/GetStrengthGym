@@ -43,4 +43,5 @@ Kevin chose to build the other seven, one commit each.
 - D4 → `frontend/components/PriceList.tsx` and `frontend/app/globals.css` (an unset price keeps "Contact us for pricing", at a smaller size)
 - D5 → `frontend/components/PageHero.tsx`, `photos.json` `aboutHero` and `contactHero`; the Events
   header's styles are renamed `page-hero` and shared
-- D6, D7 → recorded as each is built
+- D6 → `frontend/app/globals.css` (`.gallery-grid`: first photo double width, and double height on desktop; last photo double width)
+- D7 → recorded when built
