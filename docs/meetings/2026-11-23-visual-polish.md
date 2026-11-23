@@ -46,4 +46,4 @@ Kevin chose to build the other seven, one commit each.
   header's styles are renamed `page-hero` and shared
 - D6 → `frontend/app/globals.css` (`.gallery-grid`: first photo double width, and double height on desktop; last photo double width)
 - D8 → `frontend/app/about/page.tsx`, `frontend/app/globals.css` (`.story h1`); `photos.json` `aboutHero` removed
-- D7 → recorded when built
+- D7 → `frontend/components/SiteFooter.tsx`; `docs/design/five-page-journey.md` §3 and §6

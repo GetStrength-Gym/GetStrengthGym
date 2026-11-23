@@ -46,7 +46,9 @@ page, and retain trailing slashes (ADR-005/007).
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
-  Header/footer and section CTAs use that destination. There are no per-plan buttons.
+  Header and section CTAs use that destination. Since 2026-11-23 the footer has no Join button: the
+  Join band directly above it and the pinned header already carry one
+  (`docs/meetings/2026-11-23-visual-polish.md` D7). There are no per-plan buttons.
 - Instagram: `https://www.instagram.com/getstrengthgym/`, recorded in Figma's current-gym
   source update. Remove Facebook. Publish YouTube links/embeds only after the exact
   current-gym destination and ownership are confirmed; an old-owner channel is not proof.
@@ -118,7 +120,8 @@ Four display-only cards follow Figma order: Standard, Flexible, Coaching,
 Student/sub-junior. Stack on phones; use four columns at the reference desktop width.
 Place the separate casual-day-pass block below. Do not add per-plan buttons, a standalone
 Join button, a How joining works guide or a separate Gym page. The existing bottom CTA
-says Join GS Gym and goes to Debit Success; header/footer Join actions remain.
+says Join GS Gym and goes to Debit Success; the header Join action remains (the footer's was
+removed 2026-11-23, D7).
 
 | Plan | Observed weekly amount (NZD) | Terms needing gym approval |
 |---|---|---|

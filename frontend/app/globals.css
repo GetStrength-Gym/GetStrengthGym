@@ -216,7 +216,6 @@ html { scroll-padding-top: 88px; }
 .footer-inner { display: flex; flex-direction: column; gap: 32px; padding-block: 24px; }
 .footer-brand { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .footer-logo { width: 100px; height: auto; }
-.footer-brand .gs-button { min-width: 152px; }
 .footer-invitation { display: grid; gap: 32px; }
 .footer-statement { font-size: clamp(36px, 12.3vw, 48px); font-weight: 800; line-height: 1.04; }
 .brand-underline { display: block; margin-top: 24px; width: 64px; height: 5px; background: var(--color-red); }
@@ -461,7 +460,6 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }
-  .footer-brand .gs-button { min-width: 210px; }
   .footer-invitation { grid-template-columns: minmax(0, 872fr) minmax(0, 360fr); gap: 48px; }
   .footer-statement { font-size: clamp(48px, 7.22vw, 104px); line-height: 1; }
   .brand-underline { width: 96px; }

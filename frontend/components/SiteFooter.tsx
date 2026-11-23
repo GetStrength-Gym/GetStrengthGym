@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getSite, isPreviewBuild } from "@/lib/content";
-import JoinButton from "./JoinButton";
 import NavLinks from "./NavLinks";
 import SocialIcon from "./SocialIcon";
 
@@ -16,7 +15,6 @@ export default function SiteFooter() {
             <Image src="/images/brand/getstrength-primary.png" width={480} height={343}
               alt={site.name} className="footer-logo" />
           </Link>
-          <JoinButton />
         </div>
         <div className="footer-invitation">
           <div>
