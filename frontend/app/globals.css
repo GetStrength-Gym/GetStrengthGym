@@ -119,7 +119,7 @@ html { scroll-padding-top: 88px; }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
-.gallery-grid li { overflow: hidden; border-radius: 16px; }
+.gallery-grid li { overflow: hidden; border-radius: 4px; }
 /* The band under the hero: a looping row of partners, each a logo (once its file is supplied) and a name. Two copies of the list slide left by one
    list-width, so the loop has no seam. It pauses under the pointer and from its button. */
 /* A white ground, so each partner's own logo colours read as they were drawn. */
@@ -138,7 +138,7 @@ html { scroll-padding-top: 88px; }
   .marquee-track { flex: 1; flex-wrap: wrap; justify-content: center; }
   .marquee-track[aria-hidden], .marquee-pause { display: none; }
 }
-.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 16px; }
+.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
 /* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
 .together { position: relative; overflow: clip; color: var(--color-white); background: var(--color-charcoal); }
 .together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
@@ -156,7 +156,7 @@ html { scroll-padding-top: 88px; }
 /* Benefit card: a small photo beside the title and description on phones, photo on top from 600px.
    The description is always shown; nothing waits for hover. */
 .benefit-card { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: center; gap: 16px; }
-.benefit-photo { width: 88px; height: 112px; object-fit: cover; border-radius: 10px; }
+.benefit-photo { width: 88px; height: 112px; object-fit: cover; border-radius: 4px; }
 .benefit-copy { display: flex; flex-direction: column; gap: 4px; }
 .benefit-copy p { color: var(--color-grey); }
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
@@ -176,7 +176,7 @@ html { scroll-padding-top: 88px; }
 /* No scrollbar: swipe, the arrow keys and the buttons below move the row. */
 .member-row::-webkit-scrollbar { display: none; }
 .member-row > li { scroll-snap-align: start; }
-.member-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-height: 320px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
+.member-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-height: 320px; padding: 28px; overflow: hidden; border-radius: 4px; color: var(--color-white); background: var(--color-charcoal); }
 .member-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .member-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.15) 70%); }
 .member-card p, .member-card h3 { position: relative; z-index: 1; }
@@ -188,7 +188,7 @@ html { scroll-padding-top: 88px; }
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
 /* The map slot: the address shows until the Google embed paints over it. */
-.gym-map { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; width: 100%; min-height: 240px; padding: 24px; overflow: hidden; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-neutral); }
+.gym-map { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; width: 100%; min-height: 240px; padding: 24px; overflow: hidden; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-neutral); }
 .bg-neutral .gym-map { background: var(--color-white); }
 .gym-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .gym-map-address { font-size: 20px; font-weight: 700; line-height: 28px; }
@@ -199,7 +199,7 @@ html { scroll-padding-top: 88px; }
 .membership-grid { display: grid; gap: 12px; }
 /* The day and weekly passes sit side by side from 600px; stacked on phones like the plan cards. */
 .pass-row { display: grid; gap: 12px; }
-.membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 20px; border-radius: 8px; background: var(--color-neutral); }
+.membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 20px; border-radius: 4px; background: var(--color-neutral); }
 .home .membership-card h3, .home .day-pass h3 { margin-bottom: 8px; font-size: 20px; line-height: 26px; }
 .membership-price { margin-bottom: 8px; font-size: 24px; font-weight: 700; line-height: 30px; color: var(--color-red); }
 .membership-card > .text-grey { white-space: normal; }
@@ -243,7 +243,7 @@ html { scroll-padding-top: 88px; }
 .gs-button:disabled { opacity: 0.6; cursor: not-allowed; }
 .form-note { font-size: 13px; color: var(--color-grey); }
 .form-note a, .details-card a:not(.gs-button) { text-decoration: underline; }
-.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; }
+.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 4px; }
 .details-card h2 { font-size: 22px; font-weight: 700; line-height: 33px; }
 .details-card dl { display: flex; flex-direction: column; gap: 12px; }
 .details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
@@ -267,7 +267,7 @@ html { scroll-padding-top: 88px; }
 .events-kicker { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral); }
 .events-kicker::before { content: ""; width: 32px; height: 4px; background: var(--color-red); }
 .events-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; line-height: 18px; text-transform: uppercase; color: var(--color-grey); }
-.next-comp { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 6px; color: var(--color-charcoal); background: var(--color-white); }
+.next-comp { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 4px; color: var(--color-charcoal); background: var(--color-white); }
 .next-comp-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
 .next-comp-count { display: flex; align-items: baseline; gap: 10px; font-weight: 600; color: var(--color-grey); }
 .next-comp-days { font-size: 48px; font-weight: 800; line-height: 1; color: var(--color-red); }
@@ -287,18 +287,18 @@ html { scroll-padding-top: 88px; }
 .event-type { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; line-height: 18px; text-transform: uppercase; color: var(--color-grey); }
 .events-body { display: flex; flex-direction: column; gap: 20px; padding-block: 24px 48px; }
 .events-month { display: flex; flex-direction: column; gap: 12px; }
-.events .calendar-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 48px; padding: 12px 16px; border: 1.5px solid var(--color-charcoal); border-radius: 6px; font-size: 15px; font-weight: 600; }
+.events .calendar-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 48px; padding: 12px 16px; border: 1.5px solid var(--color-charcoal); border-radius: 4px; font-size: 15px; font-weight: 600; }
 .events-count { font-size: 13px; color: var(--color-grey); }
-.events-filter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 6px; background: var(--color-neutral); }
+.events-filter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 4px; background: var(--color-neutral); }
 .events .events-filter button { min-height: 44px; border-radius: 4px; font-size: 14px; font-weight: 600; text-align: center; }
 .events-filter button[aria-pressed="true"] { color: var(--color-white); background: var(--color-charcoal); }
 /* Phones list events first; the month opens from the control above it. */
-.calendar { display: none; padding: 8px; border: 1px solid var(--color-line); border-radius: 6px; }
+.calendar { display: none; padding: 8px; border: 1px solid var(--color-line); border-radius: 4px; }
 .calendar.is-open { display: block; }
 .events-groups { display: flex; flex-direction: column; gap: 24px; }
 .events-group-heading { margin-bottom: 8px; }
 .events-items { display: flex; flex-direction: column; gap: 8px; }
-.event-item { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 14px; width: 100%; padding: 12px; border: 2px solid transparent; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--color-line); transition: background-color 150ms; }
+.event-item { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 14px; width: 100%; padding: 12px; border: 2px solid transparent; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--color-line); transition: background-color 150ms; }
 .event-item:hover { background: var(--color-neutral); }
 .event-item[aria-current="true"] { border-color: var(--color-charcoal); background: var(--color-neutral); box-shadow: none; }
 .event-date { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 0; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; line-height: 1.3; text-transform: uppercase; }
@@ -309,7 +309,7 @@ html { scroll-padding-top: 88px; }
 .event-summary { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .event-title { font-size: 17px; font-weight: 700; line-height: 1.3; }
 .event-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
-.events-empty { padding: 24px; border: 1px dashed var(--color-grey); border-radius: 6px; color: var(--color-grey); }
+.events-empty { padding: 24px; border: 1px dashed var(--color-grey); border-radius: 4px; color: var(--color-grey); }
 .events-empty a { text-decoration: underline; }
 .events-past { padding-top: 8px; border-top: 1px solid var(--color-line); }
 .events-past-toggle { display: flex; width: 100%; min-height: 44px; align-items: center; justify-content: space-between; font-weight: 600; }
@@ -322,7 +322,7 @@ html { scroll-padding-top: 88px; }
 .calendar-nav button:hover { color: var(--color-white); background: var(--color-charcoal); }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; }
 .calendar-weekday { padding-block: 4px; font-size: 11px; font-weight: 700; text-align: center; text-transform: uppercase; color: var(--color-grey); }
-.calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 48px; border-radius: 6px; font-size: 15px; font-weight: 600; }
+.calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 48px; border-radius: 4px; font-size: 15px; font-weight: 600; }
 .events button.calendar-day { text-align: center; }
 button.calendar-day:hover { background: var(--color-neutral); }
 .calendar-day.is-outside { font-weight: 400; color: var(--color-grey); }
@@ -346,7 +346,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .calendar-day-events button[aria-current="true"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 4px; }
 .event-link-status { min-height: 20px; font-size: 13px; color: var(--color-grey); overflow-wrap: anywhere; }
 .event-detail { display: flex; flex-direction: column; gap: 16px; }
-.event-detail-inline { margin-top: 8px; padding: 16px; border-radius: 6px; background: var(--color-neutral); }
+.event-detail-inline { margin-top: 8px; padding: 16px; border-radius: 4px; background: var(--color-neutral); }
 .event-detail-side { display: none; }
 .event-detail-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .event-detail-title { font-size: 24px; font-weight: 800; line-height: 1.2; }
@@ -354,7 +354,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .event-facts dd { font-weight: 600; }
 .event-facts dd + dd, .event-note { font-weight: 400; color: var(--color-grey); }
 .event-note { max-width: 68ch; }
-.entry-window { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 6px; background: var(--color-white); }
+.entry-window { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 4px; background: var(--color-white); }
 .entry-window-title { font-weight: 700; }
 .entry-track { position: relative; height: 8px; margin: 22px 0 4px; border-radius: 4px; background: var(--color-line); }
 .entry-fill { position: absolute; inset-block: 0; left: 0; border-radius: 4px; background: var(--color-red); }
@@ -370,7 +370,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .event-directions { display: inline-flex; min-height: 44px; align-items: center; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 
 @media (min-width: 600px) {
-  .benefit-card { display: flex; flex-direction: column; align-items: stretch; gap: 0; overflow: hidden; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-white); }
+  .benefit-card { display: flex; flex-direction: column; align-items: stretch; gap: 0; overflow: hidden; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-white); }
   .benefit-photo { width: 100%; height: 220px; border-radius: 0; }
   .benefit-copy { gap: 8px; padding: 24px; }
   .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 24px; line-height: 32px; }
@@ -460,7 +460,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .event-detail-side { grid-area: detail; }
   .events .calendar-toggle { display: none; }
   .event-detail-inline { display: none; }
-  .event-detail-side { display: flex; padding: 28px; border-radius: 6px; background: var(--color-neutral); }
+  .event-detail-side { display: flex; padding: 28px; border-radius: 4px; background: var(--color-neutral); }
   .event-detail-title { font-size: 32px; }
   .event-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .event-actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; }

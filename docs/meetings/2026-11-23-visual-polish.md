@@ -39,4 +39,5 @@ Kevin chose to build the other seven, one commit each.
 ## Promoted to
 
 - D1, D2 → `frontend/app/globals.css`; `docs/design/visual-direction.md` §4
-- D3–D7 → recorded as each is built
+- D3 → `frontend/app/globals.css` (every border-radius above 4px set to 4px); `docs/design/visual-direction.md` §4
+- D4–D7 → recorded as each is built

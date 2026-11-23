@@ -106,8 +106,9 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
 - **Grid:** 1440 frame with 80px side gutters and a 1280 content width. Mobile 390 with
   24px gutters. Build at 375 first (`five-page-journey.md` §3).
 - **Section rhythm:** full-width bands that alternate white, neutral and charcoal.
-- **Radius:** small, about 2–4px on buttons, cards and inputs. The blog category chips are
-  the only pill shape.
+- **Radius:** small, about 2–4px on buttons, cards and inputs. Since 2026-11-23
+  (`docs/meetings/2026-11-23-visual-polish.md` D3) the site uses 4px on buttons, cards, panels
+  and photos; only round controls, small calendar marks and the today marker differ.
 - **Borders:** 1px on cards and inputs. Primary buttons are a solid fill with no border.
 - **Shadows:** none. Separation comes from the band grounds.
 - **Motion:** a 150ms ease on hover and focus colour. Since 2026-11-16
