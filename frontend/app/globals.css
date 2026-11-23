@@ -145,6 +145,9 @@ html { scroll-padding-top: 88px; }
 .together-inner { position: relative; z-index: 1; padding-block: 32px 48px; }
 .together-copy .body-large { color: var(--color-muted-on-dark); }
 .together-copy .section-heading { text-wrap: balance; }
+/* About's page title sits in the story band, above a smaller "Our story". */
+.story h1 { font-size: 36px; font-weight: 800; line-height: 42px; }
+.story .story-subheading { margin-top: 8px; font-size: 22px; font-weight: 700; line-height: 28px; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
@@ -435,6 +438,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .together-copy { max-width: 440px; }
   /* Our story: no zoom, and the fade stays dark only behind the text so the rest of the photo shows. */
   .story .together-photo { transform: none; }
+  .story h1 { font-size: 60px; line-height: 1.04; }
   .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.8) 38%, rgb(13 11 9 / 0) 60%); }
   .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
   .location-information { align-items: flex-start; }

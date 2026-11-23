@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Photo } from "@/lib/content";
 
-// The dark photo header on About and Contact, matching the one Events builds in EventsCalendar.
+// The dark photo header on Contact, matching the one Events builds in EventsCalendar.
 export default function PageHero({ photo, children }: { photo: Photo; children: ReactNode }) {
   return (
     <section className="page-hero">

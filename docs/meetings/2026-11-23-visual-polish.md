@@ -30,6 +30,7 @@ Kevin chose to build the other seven, one commit each.
 | D5 | About and Contact open with a dark gym photo header, like Events. | Kevin |
 | D6 | The About gallery becomes a mosaic led by one large photo, using the same eight photos. | Kevin |
 | D7 | The footer's Join button is removed; the Join band above it and the header keep theirs. | Kevin |
+| D8 | Later the same day: About's separate photo header (D5) is removed. Its thin strip cut through two people's faces and sat directly on the dark story photo. The kicker and H1 move into the top of the story band, above a smaller "Our story". Kevin chose this from three browser previews (merge into the story, a banner photo, a light header). Contact keeps its header. | Kevin |
 
 ## Open questions
 
@@ -44,4 +45,5 @@ Kevin chose to build the other seven, one commit each.
 - D5 → `frontend/components/PageHero.tsx`, `photos.json` `aboutHero` and `contactHero`; the Events
   header's styles are renamed `page-hero` and shared
 - D6 → `frontend/app/globals.css` (`.gallery-grid`: first photo double width, and double height on desktop; last photo double width)
+- D8 → `frontend/app/about/page.tsx`, `frontend/app/globals.css` (`.story h1`); `photos.json` `aboutHero` removed
 - D7 → recorded when built
