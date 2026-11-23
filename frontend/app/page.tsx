@@ -6,6 +6,7 @@ import GymMap from "@/components/GymMap";
 import HeroVideo from "@/components/HeroVideo";
 import JoinCta from "@/components/JoinCta";
 import Coaches from "@/components/Coaches";
+import Marquee from "@/components/Marquee";
 import MemberRow from "@/components/MemberRow";
 import PriceList from "@/components/PriceList";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
@@ -37,6 +38,19 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Shown on the live site since 2026-11-23 (visual-polish minutes D12). A partner without a logo file shows its name alone. */}
+      {site.partners.length > 0 && (
+        <Marquee label="Partners">
+          {site.partners.map(partner => (
+            <li key={partner.name}>
+              {/* The name follows the logo, so the logo itself needs no alt text. */}
+              {partner.logo && <Image src={partner.logo} alt="" width={64} height={64} className="marquee-logo" />}
+              {partner.name}
+            </li>
+          ))}
+        </Marquee>
+      )}
 
       <section id="the-gym" aria-labelledby="why-heading" className="bg-neutral">
         <div className="page-width section-space section-stack">

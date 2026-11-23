@@ -8,7 +8,7 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const dir of ['images/gym', 'videos']) {
+for (const dir of ['images/gym', 'images/partners', 'videos']) {
   fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
   for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
     fs.writeFileSync(path.join(fixture, 'public', dir, name), '');
@@ -36,6 +36,7 @@ try {
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Events', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
   assert.equal(getSite().phone, '09 622 2885');
+  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
   assert.equal(getSite().email, 'info@getstrengthgym.com');
   assert.deepEqual(getSite().coaches.map(coach => coach.name), ['Raynan Mishra', 'Joe Mundey']);
   assert.equal(getSite().coaches[1].photo.src, '/images/gym/joe-mundey.jpg');

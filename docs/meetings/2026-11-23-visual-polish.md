@@ -34,11 +34,14 @@ Kevin chose to build the other seven, one commit each.
 | D9 | The map in Home's Find GS Gym is larger and tighter: on desktop the heading moves into the left column, so the map lines up with "Come train with us" at the top and keeps a 16:9 shape (never shorter than the text beside it), across two-thirds of the row (was just over half, below the heading). Phones show it 360px tall (was 240px). Contact's map is unchanged. | Kevin |
 | D10 | About's preview-only "What we offer" placeholder (three unconfirmed service cards) is removed, with its `aboutOffers` photo slot and three photos used only there. A services section comes back only once the gym confirms its services. | Kevin |
 | D11 | Home's preview-only partners band (Auckland Powerlifting Association, SBD New Zealand, New Zealand Powerlifting Federation) is removed, with its `partners` list in `site.json`, the band component and styles, and the three logo files. The gym never confirmed the list or the logo permissions (brief Q18, now withdrawn). | Kevin |
+| D12 | Later the same day: D11 is reversed. Kevin wanted the band kept and only its placeholder status removed, so the partners band, list, component, styles and logos are restored, and the band now shows on the live site as well as in preview. Brief Q18 is reopened: the gym still has to confirm the names and logo permission before launch. | Kevin |
 
 ## Open questions
 
 - **Q1** — D7 changes the footer from the Figma design. Mention it to the client at the next
   review. (needs: Kevin)
+- **Q2** — D12 shows the partner logos on the live site before the gym has confirmed them (brief
+  Q18). Confirm before launch. (needs: Kevin)
 
 ## Promoted to
 
@@ -49,6 +52,7 @@ Kevin chose to build the other seven, one commit each.
   header's styles are renamed `page-hero` and shared
 - D6 → `frontend/app/globals.css` (`.gallery-grid`: first photo double width, and double height on desktop; last photo double width)
 - D8 → `frontend/app/about/page.tsx`, `frontend/app/globals.css` (`.story h1`); `photos.json` `aboutHero` removed
+- D12 → `frontend/app/page.tsx` (band no longer preview-only); D11's removal reverted; brief Q18, `docs/design/five-page-journey.md`
 - D11 → `frontend/app/page.tsx`, `site.json`, `frontend/lib/content.ts`; Marquee component, its styles and `public/images/partners/` deleted; brief Q18, design docs
 - D10 → `frontend/app/about/page.tsx`, `photos.json`, `frontend/lib/content.ts`; `docs/design/five-page-journey.md` §7, runbook
 - D9 → `frontend/app/page.tsx` and `frontend/app/globals.css` (`.location-row`)
