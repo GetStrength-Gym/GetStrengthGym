@@ -74,7 +74,7 @@ production. The map on Home and Contact is a Google Maps embed built from `name`
 
 `frontend/content/photos.json` says which file each slot uses: the Home hero video and its
 poster, Home's Train together photo, Home's five member-testimonial photos (`homeMembers`), About's
-story photo, About's What we offer cards (`aboutOffers`), the About gallery, the Events hero
+story photo, the About gallery, the Events hero
 (`eventsHero`), and the Contact header (`contactHero`, 1600×800, shown under a dark overlay). Coach portraits live with each coach in `site.json` `coaches`. Every photo
 needs `alt` text describing what is visible; the hero video is decorative, so it has none.
 The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
@@ -85,7 +85,7 @@ The build fails if a file is missing, its path's case differs from the file, or 
    - 2880px wide for the full-width Train together and About story photos (about 400–700 KB);
    - 1600×800 for the member photos (`homeMembers`);
    - 1200×800 for the About gallery;
-   - 800×1200 for the Why GS Gym cards and 800×1000 for What we offer (portrait).
+   - 800×1200 for the Why GS Gym cards (portrait).
 3. Remove location data. Keep the photographer's copyright (`qbkl.media` for the
    2026-11-09 album).
 4. Put the file in `frontend/public/images/gym/` and point the slot at it.

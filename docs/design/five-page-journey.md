@@ -157,7 +157,9 @@ The coach section shows head coach Raynan Mishra and coach Joe Mundey, each with
 and biography (no separate role line, 2026-11-23) from `site.json` `coaches` (2026-11-23). Joe's row sits under Raynan's with the photo
 on the right and the biography on the left. Optional team content stays hidden until supplied. Do not reuse John
 Strachan's portrait/credentials or manufacturing history as current-gym facts. Confirm
-services before publishing them.
+services before publishing them: the preview-only "What we offer" placeholder was removed on
+2026-11-23 (`docs/meetings/2026-11-23-visual-polish.md` D10), so a services section is built only
+once the gym confirms its services.
 
 ## 8. Contact — `/contact/`
 

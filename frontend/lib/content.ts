@@ -378,7 +378,6 @@ export type Photos = {
   homeTogether: Photo;
   aboutStory: Photo;
   aboutGallery: Photo[];
-  aboutOffers: Photo[]; // same order as OFFERS in app/about/page.tsx
   homeMembers: Photo[]; // testimonial row, preview-only until testimonials are supplied
   eventsHero: Photo;
   contactHero: Photo; // dark photo header on Contact
@@ -416,8 +415,8 @@ export function getPhotos(): Photos {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "aboutOffers", "homeMembers", "eventsHero", "contactHero"]);
-  for (const list of ["aboutGallery", "aboutOffers", "homeMembers"]) {
+  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "homeMembers", "eventsHero", "contactHero"]);
+  for (const list of ["aboutGallery", "homeMembers"]) {
     if (!Array.isArray(data[list]) || data[list].length === 0) fail(file, `"${list}" must be a non-empty list`);
   }
   if (!isObject(data.homeHero)) fail(file, '"homeHero" must be an object with "video" and "poster"');
@@ -430,7 +429,6 @@ export function getPhotos(): Photos {
     homeTogether: readPhoto(file, data.homeTogether, "homeTogether"),
     aboutStory: readPhoto(file, data.aboutStory, "aboutStory"),
     aboutGallery: (data.aboutGallery as unknown[]).map((photo, i) => readPhoto(file, photo, `aboutGallery[${i}]`)),
-    aboutOffers: (data.aboutOffers as unknown[]).map((photo, i) => readPhoto(file, photo, `aboutOffers[${i}]`)),
     homeMembers: (data.homeMembers as unknown[]).map((photo, i) => readPhoto(file, photo, `homeMembers[${i}]`)),
     eventsHero: readPhoto(file, data.eventsHero, "eventsHero"),
     contactHero: readPhoto(file, data.contactHero, "contactHero"),

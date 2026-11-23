@@ -32,6 +32,7 @@ Kevin chose to build the other seven, one commit each.
 | D7 | The footer's Join button is removed; the Join band above it and the header keep theirs. | Kevin |
 | D8 | Later the same day: About's separate photo header (D5) is removed. Its thin strip cut through two people's faces and sat directly on the dark story photo. The kicker and H1 move into the top of the story band, above a smaller "Our story". Kevin chose this from three browser previews (merge into the story, a banner photo, a light header). Contact keeps its header. | Kevin |
 | D9 | The map in Home's Find GS Gym is larger and tighter: on desktop the heading moves into the left column, so the map lines up with "Come train with us" at the top and keeps a 16:9 shape (never shorter than the text beside it), across two-thirds of the row (was just over half, below the heading). Phones show it 360px tall (was 240px). Contact's map is unchanged. | Kevin |
+| D10 | About's preview-only "What we offer" placeholder (three unconfirmed service cards) is removed, with its `aboutOffers` photo slot and three photos used only there. A services section comes back only once the gym confirms its services. | Kevin |
 
 ## Open questions
 
@@ -47,5 +48,6 @@ Kevin chose to build the other seven, one commit each.
   header's styles are renamed `page-hero` and shared
 - D6 → `frontend/app/globals.css` (`.gallery-grid`: first photo double width, and double height on desktop; last photo double width)
 - D8 → `frontend/app/about/page.tsx`, `frontend/app/globals.css` (`.story h1`); `photos.json` `aboutHero` removed
+- D10 → `frontend/app/about/page.tsx`, `photos.json`, `frontend/lib/content.ts`; `docs/design/five-page-journey.md` §7, runbook
 - D9 → `frontend/app/page.tsx` and `frontend/app/globals.css` (`.location-row`)
 - D7 → `frontend/components/SiteFooter.tsx`; `docs/design/five-page-journey.md` §3 and §6
