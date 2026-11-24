@@ -19,6 +19,8 @@ Kevin asked on 2026-11-25, on PR #33:
 4. After that change was pushed: add a pause button at the top right after all.
 5. Before that was pushed: put the pause button in the section's top-right corner, not the card's;
    then, further into the corner, as level with the heading it looked awkward.
+6. After a design review of the cycle (shown as a before/after mock-up): darker side cards without
+   text, the quote as the loudest line, and progress dots; make the arrows more visible on the sides.
 
 ## Decisions
 
@@ -32,6 +34,7 @@ Kevin asked on 2026-11-25, on PR #33:
 | D6 | The testimonials' pause button is removed. The cycle still waits while the mouse or keyboard focus is on it, a swipe stops it, and it never moves under reduced motion. Supersedes D2. | Kevin (ask 3) |
 | D7 | The pause button is back, in the top-right corner of the middle card. Play moves one card straight away. It is hidden under reduced motion, where nothing moves. Supersedes D6 and answers Q1. | Kevin (ask 4) |
 | D8 | The pause button sits in the testimonial section's own top-right corner (16px in on phones, 24px from 960px), not on the card and not level with the heading, which looked like it was floating. The heading keeps clear of it. Supersedes the position in D7. | Kevin (ask 5) |
+| D9 | Testimonial polish: side cards are darkened instead of faded and show only their photo; the quote is the largest line, under a red opening quote mark, with the member's name as a small uppercase label; one dot per card under the cycle, the current one a red bar that fills over 6 seconds and moves the cycle on when full (it holds while hovered, focused or paused, and does not fill under reduced motion); clicking a dot shows that card. The previous/next arrows are always visible on the sides, larger on desktop, and turn red on hover. Supersedes the hover-only arrows in D3. | Kevin (ask 6) |
 
 ## Open questions
 
@@ -45,5 +48,5 @@ Kevin asked on 2026-11-25, on PR #33:
 
 - D1 → `frontend/app/globals.css` (`.home-hero::after`) and `docs/design/five-page-journey.md` §7
 - Q1 → answered by D7
-- D2–D8 → `frontend/components/MemberRow.tsx`, `frontend/app/globals.css` (`.member-*`) and
+- D2–D9 → `frontend/components/MemberRow.tsx`, `frontend/app/globals.css` (`.member-*`) and
   `docs/design/five-page-journey.md` §7

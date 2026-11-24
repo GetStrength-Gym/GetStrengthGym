@@ -236,11 +236,13 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
 - **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
 - **Testimonials (preview):** since 2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md`
-  D5, D7) a cycle: the current card sits in the middle with its neighbours smaller on either side. It
-  moves on every 6 seconds and loops; clicking a side card, the previous/next arrows, the arrow keys
-  or a swipe move it too. The arrows show only while the mouse or keyboard focus is on it. It waits
-  while the mouse or focus is on it, a swipe stops it for good, a pause button sits in the
-  section's top-right corner (D7, D8), and it never moves by itself under reduced motion.
+  D5, D7–D9) a cycle: the current card sits in the middle with its neighbours smaller and darkened on
+  either side, showing only their photo. Each card leads with the quote under a red quote mark, the
+  member's name a small label below. A row of dots under the cycle shows where it is; the current
+  dot's red bar fills over 6 seconds and then the cycle moves on and loops. Clicking a side card, a
+  dot, the always-visible previous/next arrows, the arrow keys or a swipe move it too. It waits while
+  the mouse or focus is on it, a swipe stops it for good, a pause button sits in the section's
+  top-right corner, and nothing fills or moves by itself under reduced motion.
 - **Map:** the Google embed loads by itself when scrolled near, as before. Until it paints, the
   slot shows the address instead of an empty box.
 - **Contact:** phone, address, hours, Call the gym and Get directions come before the form on
