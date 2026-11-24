@@ -116,8 +116,11 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
   sections rise in as they scroll into view, photos zoom slightly on hover, a looping partners
   band, and a testimonial row that advances by itself. Since 2026-11-23
   (`docs/meetings/2026-11-23-visual-polish.md` D1, D2): buttons press in slightly when clicked, a
-  trailing arrow nudges forward on hover, and cards in a row rise in one after another. Anything that moves for more than 5
-  seconds has a pause button (WCAG 2.2.2). All of it is CSS or a few lines of script, and all of
+  trailing arrow nudges forward on hover, and cards in a row rise in one after another. Since
+  2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md` D5): the testimonials are a cycle
+  with the current card in the middle and its neighbours smaller at the sides. Anything that moves for more than 5
+  seconds has a pause button (WCAG 2.2.2), except the testimonial cycle, which waits while hovered or
+  focused and has no button since 2026-11-25 (D6; open question Q1 in those minutes). All of it is CSS or a few lines of script, and all of
   it is off under `prefers-reduced-motion`. Still no parallax, animation library or count-up
   statistics.
 
