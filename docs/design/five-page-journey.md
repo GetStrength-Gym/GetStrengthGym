@@ -229,7 +229,9 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   memberships" and is an outline on the dark hero at every width. The desktop hero is between
   600 and 800px tall.
 - **Hero video:** phones, reduced motion and data saver show the poster and download nothing
-  until the visitor presses "Play gym video". Desktop plays it as before.
+  until the visitor presses "Play gym video". Desktop plays it as before. Since 2026-11-25
+  (`docs/meetings/2026-11-25-hero-and-testimonials.md` D1) the dark overlay covers only the text
+  side (the lower part on phones, the left on wide screens), so the gym shows through.
 - **Benefit and offer cards (Home, About):** a small photo beside the title and description on
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
 - **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).

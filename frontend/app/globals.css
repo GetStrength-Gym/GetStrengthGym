@@ -114,8 +114,9 @@ html { scroll-padding-top: 88px; }
 .skip-link:focus { top: 8px; left: 8px; z-index: 10; width: auto; height: auto; padding: 12px 20px; color: var(--color-charcoal); background: var(--color-white); clip-path: none; }
 .home-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* Darkens the video so white hero text stays above 4.5:1 wherever it lands. */
-.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.92) 25%, rgb(13 11 9 / 0.5)); }
+/* Darkens the video only behind the text, so white hero text stays above 4.5:1 and the rest of
+   the gym shows through. On phones the text fills the lower half; on wide screens the left side. */
+.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9) 30%, rgb(13 11 9 / 0.45) 65%, rgb(13 11 9 / 0.1)); }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
@@ -416,6 +417,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .home-hero { border-top: 3px solid var(--color-red); }
   .hero-inner { min-height: clamp(600px, calc(100svh - 72px), 800px); padding-block: 80px 96px; }
   .hero-video-toggle { top: 24px; right: 24px; }
+  .home-hero::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.85), rgb(13 11 9 / 0.55) 640px, rgb(13 11 9 / 0) 1080px), linear-gradient(to top, rgb(13 11 9 / 0.6), rgb(13 11 9 / 0) 50%); }
   .hero-copy { gap: 32px; }
   .hero-copy h1 { font-size: 68px; line-height: 1.05; }
   .hero-copy > p { font-size: 18px; line-height: 1.6; color: #d4d4d4; }
