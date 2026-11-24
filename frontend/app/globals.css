@@ -175,9 +175,11 @@ html { scroll-padding-top: 88px; }
 /* Member cycle: every card shares one grid cell and is moved sideways by its place in the cycle
    (--offset, set by MemberRow). The current card sits in the middle; its neighbours peek in smaller
    on either side, and the rest wait out of sight. */
-.members { padding-block: 48px; container-type: inline-size; overflow: hidden; }
-.members .section-heading { margin-bottom: 24px; text-align: center; }
-.member-carousel { position: relative; --member-gap: 16px; }
+.members { position: relative; padding-block: 48px; container-type: inline-size; overflow: hidden; }
+/* Side padding keeps the centred heading clear of the pause button in the top-right corner. */
+.members .section-heading { margin-bottom: 24px; padding-inline: 56px; text-align: center; }
+.member-carousel { --member-gap: 16px; }
+.member-stage { position: relative; }
 .member-row { display: grid; justify-items: center; padding-block: 12px; }
 .member-row > li { grid-area: 1 / 1; width: min(780px, calc(100cqw - 96px)); opacity: 0.6; cursor: pointer;
   /* 92.5% is the width of a card shrunk to 85%, so the gap between cards stays --member-gap */
@@ -196,7 +198,14 @@ html { scroll-padding-top: 88px; }
 .member-arrow.is-next { right: 12px; }
 .member-carousel:has(:focus-visible) .member-arrow { opacity: 1; pointer-events: auto; }
 @media (hover: hover) { .member-carousel:hover .member-arrow { opacity: 1; pointer-events: auto; } }
-@media (prefers-reduced-motion: reduce) { .member-arrow, .member-row > li { transition: none; } }
+/* Pause sits in the section's own top-right corner. */
+.member-auto { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--color-charcoal); border-radius: 50%; color: var(--color-charcoal); background: transparent; cursor: pointer; }
+.member-auto:hover { color: var(--color-white); background: var(--color-charcoal); }
+/* Nothing auto-advances under reduced motion, so the pause button has nothing to do. */
+@media (prefers-reduced-motion: reduce) {
+  .member-auto { display: none; }
+  .member-arrow, .member-row > li { transition: none; }
+}
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
 /* The map slot: the address shows until the Google embed paints over it. */
@@ -434,6 +443,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .members { padding-block: 72px; }
   .members .section-heading { margin-bottom: 32px; }
   .member-carousel { --member-gap: 32px; }
+  .member-auto { top: 24px; right: 24px; }
   .member-arrow.is-previous { left: 24px; }
   .member-arrow.is-next { right: 24px; }
   .member-card { min-height: 400px; padding: 32px 40px; }

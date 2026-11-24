@@ -15,7 +15,7 @@ function offset(i: number, current: number, count: number) {
 // The testimonial cycle. The current card sits in the middle with its neighbours smaller on either
 // side; it moves on every few seconds and loops. Clicking a side card, an arrow, the arrow keys or a
 // swipe moves it too. It waits while the pointer or keyboard focus is on it, a swipe stops it for
-// good, and nothing moves by itself under reduced motion.
+// good, it has a pause button (WCAG 2.2.2), and nothing moves by itself under reduced motion.
 export default function MemberRow({ children }: { children: ReactNode }) {
   const cards = Children.toArray(children) as ReactElement<{ className?: string; style?: CSSProperties; onClick?: () => void }>[];
   const count = cards.length;
@@ -37,6 +37,7 @@ export default function MemberRow({ children }: { children: ReactNode }) {
     <div className="member-carousel"
       onPointerEnter={() => { waiting.current = true; }} onPointerLeave={() => { waiting.current = false; }}
       onFocus={() => { waiting.current = true; }} onBlur={() => { waiting.current = false; }}>
+      <div className="member-stage">
       <ul className="member-row" tabIndex={0} aria-label="Lifter testimonials"
         onKeyDown={(e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); step(e.key === "ArrowLeft" ? -1 : 1); } }}
         onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
@@ -55,6 +56,14 @@ export default function MemberRow({ children }: { children: ReactNode }) {
       </ul>
       <button type="button" className="member-arrow is-previous" aria-label="Previous testimonial" onClick={() => step(-1)}><Arrow d="M15 18l-6-6 6-6" /></button>
       <button type="button" className="member-arrow is-next" aria-label="Next testimonial" onClick={() => step(1)}><Arrow d="M9 18l6-6-6-6" /></button>
+      </div>
+      {/* Play moves one card straight away, so it visibly works without waiting a full turn. */}
+      <button type="button" className="member-auto" aria-label={auto ? "Pause testimonials" : "Play testimonials"}
+        onClick={() => { if (!auto) step(1); setAuto(!auto); }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          {auto ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M8 5v14l11-7z" />}
+        </svg>
+      </button>
     </div>
   );
 }

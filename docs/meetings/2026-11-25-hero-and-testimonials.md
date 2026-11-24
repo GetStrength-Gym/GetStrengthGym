@@ -16,6 +16,9 @@ Kevin asked on 2026-11-25, on PR #33:
 3. Later the same day, before the testimonial change was pushed: show the cards as a cycle with the
    current card in the middle and the others at the sides; clicking the next card moves the focus
    to it. Remove the pause button.
+4. After that change was pushed: add a pause button at the top right after all.
+5. Before that was pushed: put the pause button in the section's top-right corner, not the card's;
+   then, further into the corner, as level with the heading it looked awkward.
 
 ## Decisions
 
@@ -27,6 +30,8 @@ Kevin asked on 2026-11-25, on PR #33:
 | D4 | While the mouse or keyboard focus is on the row, it stops scrolling, the current card grows slightly and the other cards shrink and dim. The current card is the one at the start of the row, or the last card once the row reaches its end. No transition under reduced motion. | Kevin (ask 2) |
 | D5 | The testimonials become a cycle: the current card sits in the middle, its neighbours smaller and dimmed on either side, and it loops. Clicking a side card, an arrow or the arrow keys, or a swipe, makes the next card current. The arrows (D3) and the pause while the mouse or keyboard focus is on it (D4) stay; a swipe still stops it for good. The current card is always the large one, not only while hovered. Supersedes the row layout of D2–D4. | Kevin (ask 3) |
 | D6 | The testimonials' pause button is removed. The cycle still waits while the mouse or keyboard focus is on it, a swipe stops it, and it never moves under reduced motion. Supersedes D2. | Kevin (ask 3) |
+| D7 | The pause button is back, in the top-right corner of the middle card. Play moves one card straight away. It is hidden under reduced motion, where nothing moves. Supersedes D6 and answers Q1. | Kevin (ask 4) |
+| D8 | The pause button sits in the testimonial section's own top-right corner (16px in on phones, 24px from 960px), not on the card and not level with the heading, which looked like it was floating. The heading keeps clear of it. Supersedes the position in D7. | Kevin (ask 5) |
 
 ## Open questions
 
@@ -34,10 +39,11 @@ Kevin asked on 2026-11-25, on PR #33:
   more than 5 seconds. Without a pause button (D6) the cycle relies on pausing while hovered or
   focused, a swipe stopping it, and reduced motion. An accessibility check may count that short;
   revisit before launch, while the testimonials are still preview-only. (needs: Kevin)
+  **Answered the same day by D7:** the pause button is back.
 
 ## Promoted to
 
 - D1 → `frontend/app/globals.css` (`.home-hero::after`) and `docs/design/five-page-journey.md` §7
-- Q1 → open; not promoted
-- D2–D6 → `frontend/components/MemberRow.tsx`, `frontend/app/globals.css` (`.member-*`) and
+- Q1 → answered by D7
+- D2–D8 → `frontend/components/MemberRow.tsx`, `frontend/app/globals.css` (`.member-*`) and
   `docs/design/five-page-journey.md` §7
