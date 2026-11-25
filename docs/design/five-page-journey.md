@@ -41,11 +41,14 @@ page, and retain trailing slashes (ADR-005/007).
 
 ## 3. Global shell, layout and accessibility
 
-- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym. Charcoal ground
+- Header: supplied logo, Home · About Us · Events · Contact, Join GS Gym (see §13 for the
+  2026-11-16 header and layout refinements). Charcoal ground
   and red rule. Footer repeats that nav, the SEE YOU AT THE GYM statement, practical visit
   information and privacy link.
 - Join GS Gym keeps its label and opens the recorded Debit Success form in the same tab.
-  Header/footer and section CTAs use that destination. There are no per-plan buttons.
+  Header and section CTAs use that destination. Since 2026-11-23 the footer has no Join button: the
+  Join band directly above it and the pinned header already carry one
+  (`docs/meetings/2026-11-23-visual-polish.md` D7). There are no per-plan buttons.
 - Instagram: `https://www.instagram.com/getstrengthgym/`, recorded in Figma's current-gym
   source update. Remove Facebook. Publish YouTube links/embeds only after the exact
   current-gym destination and ownership are confirmed; an old-owner channel is not proof.
@@ -53,8 +56,8 @@ page, and retain trailing slashes (ADR-005/007).
   confirmation by Kevin and the current gym's Instagram. Use it in site data, directions,
   Contact, footer and metadata; do not reuse the Onehunga or factory address.
 - Member access and staffed/viewing hours remain separate fields. Member access is 24/7
-  (confirmed 2026-11-11) and the phone is 09 622 2885; staffed/viewing hours, inbox and privacy wording remain
-  unconfirmed.
+  (confirmed 2026-11-11) and the phone is 09 622 2885; viewing is by appointment (2026-11-16). The
+  enquiry email is info@getstrengthgym.com (2026-11-16); the privacy wording remains unconfirmed.
 - Match the 1280px desktop content width and 24px mobile gutters. Check 320, 375, 390 and
   430px plus desktop. Three mobile nav links sit below logo/Join and wrap if needed; no
   menu system is required by this design. Keep H1 and hero Join visible at the target
@@ -69,9 +72,9 @@ Use Home (`1:29`) and Home — Mobile (`45:307`) as visual targets, in this orde
 
 1. Full-width photography hero, H1, supporting copy, Join GS Gym and Explore the gym.
 2. Why GS Gym? — three benefit cards and Explore About Us.
-3. Coach slot with approved portrait, role, biography and credentials.
+3. Coach slot with approved portrait, name, biography and credentials.
 4. Gym imagery and Train together. Grow stronger., linking to the gym's story.
-5. Video testimonials, with labelled preview placeholders until approved footage arrives.
+5. Member testimonials as written quotes (2026-11-16), with labelled preview placeholders until the client sends them.
 6. Find GS Gym — address, separate access/viewing-hours lines, directions, enquiry action
    and static map placeholder.
 7. Membership options and casual day pass (§6).
@@ -115,9 +118,12 @@ and location. Gym photos run through Home and About separately (GS-23).
 
 Four display-only cards follow Figma order: Standard, Flexible, Coaching,
 Student/sub-junior. Stack on phones; use four columns at the reference desktop width.
-Place the separate casual-day-pass block below. Do not add per-plan buttons, a standalone
-Join button, a How joining works guide or a separate Gym page. The existing bottom CTA
-says Join GS Gym and goes to Debit Success; header/footer Join actions remain.
+Place the separate casual-day-pass block below. Do not add per-plan buttons, a How joining
+works guide or a separate Gym page. Since 2026-11-25 (`docs/meetings/2026-11-25-join-under-pricing.md`
+D1) the section ends with one "Ready to join?" panel: a line on signing up online through Debit
+Success, Join GS Gym, and "Questions first? Contact us". The existing bottom CTA
+says Join GS Gym and goes to Debit Success; the header Join action remains (the footer's was
+removed 2026-11-23, D7).
 
 | Plan | Observed weekly amount (NZD) | Terms needing gym approval |
 |---|---|---|
@@ -131,7 +137,7 @@ Label unconfirmed observations in preview. Production still requires client-conf
 values under ADR-006; do not set `confirmedWithClient` from a Figma observation.
 
 The day pass is absent from the observed form. Its price is $30 a visit (agreed with the
-client, reported 2026-11-10); the purchase method remains `TODO(confirm)`. Do not send a one-off visitor to a direct-debit form without confirmation.
+client, reported 2026-11-10), and a weekly pass is $45. Both are bought by walking in, or contacting the gym online first (2026-11-16 client meeting, D6, D7), so a one-off visitor is never sent to the direct-debit form.
 
 Extend **`frontend/content/prices.json`**, not `data/membership.json`, with confirmed
 billing, minimum term, one-off payment, inclusions and day-pass details. Reuse existing
@@ -144,10 +150,18 @@ Follow About Us (`1:58`) and mobile (`45:508`): hero, current gym story, coach p
 confirmed services, Inside the gym gallery and Join CTA. The gallery remains here, as
 Figma shows, rather than moving to another Gym page.
 
-Keep a generic coach slot until name, role, biography, portrait consent and credentials
-are approved. Optional team content stays hidden until supplied. Do not reuse John
-Strachan's portrait/credentials or manufacturing history as current-gym facts. Confirm
-services before publishing them.
+Since 2026-11-23 the Contact hero is a dark photo header like Events: kicker "Penrose, Auckland",
+the H1 and one line of copy. About's H1 and kicker "Since 2001 · Penrose" sit at the top of the
+story photo band instead, above "Our story", so the page opens with one dark band
+(`docs/meetings/2026-11-23-visual-polish.md` D5, D8).
+
+The coach section shows head coach Raynan Mishra and coach Joe Mundey, each with portrait, name
+and biography (no separate role line, 2026-11-23) from `site.json` `coaches` (2026-11-23). Joe's row sits under Raynan's with the photo
+on the right and the biography on the left. Optional team content stays hidden until supplied. Do not reuse John
+Strachan's portrait/credentials or manufacturing history as current-gym facts. The three "What
+we offer" cards (gym membership, personal training and coaching, competition prep) show on the
+live site since 2026-11-23 without the preview-only label (`docs/meetings/2026-11-23-visual-polish.md`
+D13); the gym still has to confirm them before launch.
 
 ## 8. Contact — `/contact/`
 
@@ -201,3 +215,51 @@ Implementation acceptance: check the shell and priority pages at phone/desktop w
 remove dead Gym links; verify Penrose directions and all Join destinations; exercise
 membership display/build-mode behavior; test contact delivery when chosen; run lint,
 TypeScript, static build and CloudFront tests. Check no link points at `/blog/`.
+
+## 13. MLP refinements — 2026-11-16
+
+Decided in `docs/meetings/2026-11-16-mlp-ux-review.md`. Where this section differs from §3–§8,
+this section is current. Brand colours, Inter and the page list are unchanged.
+
+- **Header:** sticky on every page. Phones get one 64px bar (logo, Join GS Gym, a Menu button
+  that drops the links below it; Escape closes it). Desktop keeps the links in the bar. The nav
+  items are unchanged; the hero's "See memberships" button is the route to the prices.
+- **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
+  bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
+- **Home order:** hero → Why GS Gym → **Memberships** → coach → Train together →
+  testimonials (preview) → Find GS Gym → Join band. The hero's second button is "See
+  memberships" and is an outline on the dark hero at every width. The desktop hero is between
+  600 and 800px tall.
+- **Hero video:** phones, reduced motion and data saver show the poster and download nothing
+  until the visitor presses "Play gym video". Desktop plays it as before. Since 2026-11-25
+  (`docs/meetings/2026-11-25-hero-and-testimonials.md` D1) the dark overlay covers only the text
+  side (the lower part on phones, the left on wide screens), so the gym shows through.
+- **Benefit and offer cards (Home, About):** a small photo beside the title and description on
+  phones; photo on top from 600px. The description is always visible; nothing waits for hover.
+- **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons; one "Ready to
+  join?" panel closes the section (§6). On phones each plan is a compact row (name and price on one line) and the
+  passes sit side by side; whole-dollar prices drop the cents (`2026-11-25-site-review.md` D1).
+- **Testimonials (preview):** since 2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md`
+  D5, D7–D9) a cycle: the current card sits in the middle with its neighbours smaller and darkened on
+  either side, showing only their photo. Each card leads with the quote under a red quote mark, the
+  member's name a small label below. A row of dots under the cycle shows where it is; the current
+  dot's red bar fills over 6 seconds and then the cycle moves on and loops. Clicking a side card, a
+  dot, the always-visible previous/next arrows, the arrow keys or a swipe move it too. It waits while
+  the mouse or focus is on it, a swipe stops it for good, a pause button sits in the section's
+  top-right corner, and nothing fills or moves by itself under reduced motion.
+- **Map:** the Google embed loads by itself when scrolled near, as before. Until it paints, the
+  slot shows the address instead of an empty box.
+- **Contact:** phone, address, hours, Call the gym and Get directions come before the form on
+  phones. Desktop keeps the form on the left.
+- **Events:** phones list events first; the month sits behind "Show month calendar". Picking a
+  day lists that day's events with full titles under the grid. Each event has its own address
+  (`/events/#<id>`) and a "Copy event link" button, so a shared link opens straight to it.
+- **Motion:** four additions, all switched off under reduced motion. (1) Each section's content
+  rises in as it scrolls into view (browsers without scroll-driven animations just show it).
+  (2) A looping "Partners" band under Home's hero (Auckland Powerlifting Association, SBD New Zealand,
+  New Zealand Powerlifting Federation, from `partners` in `site.json`), each a logo and a name on a
+  white ground; it pauses under the pointer and has a pause button. Preview-only at first; since
+  2026-11-23 it also shows on the live site (`docs/meetings/2026-11-23-visual-polish.md` D12). (3) Card and gallery photos zoom slightly on hover.
+  (4) The hero heading, text and buttons rise in once on load, on Home and Events.
+- **Images:** the logo file is 480px wide. The full-width band photos stay at their original
+  size and quality.

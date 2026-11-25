@@ -11,6 +11,10 @@ amounts and payment terms are unchanged.
 blog. See `docs/meetings/2026-10-18-website-launch-feature-review.md`. Quote amounts and
 payment terms are unchanged.
 
+**Updated 16 November 2026:** member testimonials will be written quotes from you rather than
+videos; viewings are by appointment; a weekly pass ($45) sits beside the day pass. See
+`docs/meetings/2026-11-16-client-meeting.md`. Quote amounts and payment terms are unchanged.
+
 **Blog replacement, updated 15 November 2026:** as you asked, an **events calendar page**
 replaces the blog, at the same price: upcoming competitions with their entry dates, and
 events at the gym. We keep it up to date from the Auckland Powerlifting Association
@@ -46,21 +50,25 @@ Three main pages, in this order, plus the events calendar that replaces the blog
 
 | Page | What's on it |
 |---|---|
-| **Home** | The Penrose gym, video testimonials, location/map, access and viewing hours once confirmed, four membership cards and a casual-day-pass block, and a clear way to join |
+| **Home** | The Penrose gym, member testimonials (written quotes), location/map, access hours and how to arrange a viewing, four membership cards, the casual day and weekly passes, and a clear way to join |
 | **About Us** | The current gym's story, confirmed coaches/services and gym gallery |
 | **Contact** | Address, email, and a form people can fill in |
 | **Events** | A calendar of upcoming competitions (with when entries open and close) and events at the gym |
 
 The address is **20/10 Olive Road, Penrose, Auckland 1061**, recorded as confirmed in
 GetStrength MVP's current-gym notes. Member access is **24/7** (confirmed 2026-11-11, and
-Google Maps lists the gym as open 24 hours); staffed/viewing hours are still to be confirmed.
+Google Maps lists the gym as open 24 hours). There are no set staffed hours: visitors contact
+the gym to arrange a viewing (agreed 16 November 2026).
 
 Membership options appear on Home before its existing bottom **Join GS Gym** CTA. Cards
-have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
+have no per-plan Join buttons; since 2026-11-25 the section ends with one "Ready to join?" panel
+that explains signing up online and links to the same Debit Success form. Header/footer Join actions still go directly to Debit
 Success in the same tab. Prices, fees, inclusions and terms need current-gym approval;
 Figma's observed figures are not approval. The casual day pass is $30 a visit, agreed with
-the client (see `docs/meetings/2026-11-11-gs23-content-decisions.md` D1); how to buy one is
-unconfirmed. Keep video testimonial placeholders until approved footage arrives.
+the client (see `docs/meetings/2026-11-11-gs23-content-decisions.md` D1), and a weekly pass
+is $45; both are bought by walking in, or contacting the gym online first
+(`docs/meetings/2026-11-16-client-meeting.md` D6, D7). Member testimonials are written quotes
+you will send us, not videos (same minutes, D3); placeholders stay in the preview until they arrive.
 
 External links are Debit Success, the current gym's Instagram
 (<https://www.instagram.com/getstrengthgym/>), and YouTube only after the current gym's

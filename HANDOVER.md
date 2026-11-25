@@ -3,12 +3,12 @@
 **Design reconciliation as at 2026-10-28.** Use the user's GetStrength MVP and
 `docs/design/five-page-journey.md`. Decisions and evidence are in
 `docs/meetings/2026-10-28-design-reconciliation.md`. Home serves as The Gym; nav is Home,
-About Us, Events, Contact. Keep video testimonial placeholders and no Facebook. **The blog was
+About Us, Events, Contact. Keep testimonial placeholders (written quotes are coming from the client, 2026-11-16) and no Facebook. **The blog was
 removed on 2026-11-01** per `docs/meetings/2026-10-18-website-launch-feature-review.md`;
 its replacement is the events calendar page at `/events/` (brief Q14, built 2026-11-14), which
 the client asked for. The maintenance team fills `frontend/content/events.json` by hand from
 the APA calendar (brief Q17); preview builds show sample events. **The client's Google Doc copy
-of `docs/requirements.md` needs re-uploading** with the 2026-11-15 events wording. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
+of `docs/requirements.md` needs re-uploading** with the 2026-11-15 events wording and the 2026-11-16 client-meeting changes. Joe/gym-only is confirmed by Johnson's 2026-10-26 approval on PR #7.
 
 **Status at 2026-11-12:** Home, About Us and Contact are built (GS-15, GS-19), and the preview
 deploys itself on merge to `main` (ADR-008). What's left is on the
@@ -35,7 +35,7 @@ operational-status check.
 Three primary pages: Home, About Us, Contact. Home includes gym/location information,
 four membership cards and a day-pass block, followed by the existing Join CTA; no separate
 Gym page or per-plan buttons. Header/footer Join actions remain. Prices and terms still
-need client confirmation. Video testimonials retain preview placeholders until supplied.
+need client confirmation. Testimonials will be written quotes from the client; preview placeholders stay until supplied.
 There is no blog; the events calendar page at `/events/` replaces it (brief Q14). Interim photos
 and a drone video from the client's 2026-11-09 album run through Home and About (GS-23).
 
@@ -58,7 +58,8 @@ No store, checkout, member login, payments, booking or timetable is built here.
    (owned by a third party, "anyone with the link" — keep the link out of the public repo).
    **Recent photos received 2026-11-09** — a shared Google Photos album (37 photos, one drone
    video, link held by Kevin, not in the public repo), approved for use per the latest client
-   meeting. Coach portraits are still outstanding. Professional photos may follow (D4).
+   meeting. Head coach portraits were added to the album on 2026-11-16; one (seated, in a
+   GetStrength shirt) is now the coach photo on Home and About. Professional photos may follow (D4).
 4. **Confirm who signs** on the client side, and get the sign-off page signed.
 
 ## The stack — decided

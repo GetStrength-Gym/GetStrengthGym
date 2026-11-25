@@ -42,87 +42,253 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Motion. Everything here is decoration: with reduced motion, or in a browser without
+   scroll-driven animations, the page simply appears. */
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: no-preference) {
+  /* The hero's heading, text and buttons rise in once on load, one after another. */
+  .hero-copy > *, .page-hero-copy > *, .next-comp { animation: rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-copy > :nth-child(2), .page-hero-copy > :nth-child(2) { animation-delay: 100ms; }
+  .hero-copy > :nth-child(3), .page-hero-copy > :nth-child(3) { animation-delay: 200ms; }
+  .page-hero-copy > :nth-child(4), .next-comp { animation-delay: 300ms; }
+  /* Each section's content rises in as it scrolls into view. The hero is left out: it is on
+     screen from the start. */
+  @supports (animation-timeline: view()) {
+    main section:not(.home-hero, .page-hero) > .page-width:not(:has(> .gallery-grid)) { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    /* Cards in a row arrive one after another: each starts a little further into the scroll.
+       On phones the cards stack, so each simply rises as it arrives. */
+    :is(.benefit-grid, .membership-grid, .pass-row) > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
+    @media (min-width: 600px) {
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 2) { animation-range: entry 20% entry 70%; }
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 3) { animation-range: entry 30% entry 80%; }
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 4) { animation-range: entry 40% entry 90%; }
+    }
+    /* The gallery moves once, not with its section as well: the heading rises, then each photo rises
+       over the same short scroll (a fixed length, so the tall first photo is not slower), row by row
+       and left to right across the mosaic. shortcut: column offsets are planned for the 8-photo
+       mosaic; another count still rises, at most a little out of order. */
+    .page-width:has(> .gallery-grid) > .section-heading { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    .gallery-grid > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0px entry 160px; }
+    @media (max-width: 959px) {
+      .gallery-grid > :nth-child(odd):not(:first-child) { animation-range: entry 40px entry 200px; }
+    }
+    @media (min-width: 960px) {
+      .gallery-grid > :is(:nth-child(2), :nth-child(4), :nth-child(7)) { animation-range: entry 40px entry 200px; }
+      .gallery-grid > :is(:nth-child(3), :nth-child(5), :nth-child(8)) { animation-range: entry 80px entry 240px; }
+    }
+  }
+  /* Photos ease in a little closer under the pointer. */
+  .benefit-photo, .gallery-grid .photo, .member-photo { transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @media (hover: hover) and (min-width: 600px) {
+    .benefit-card:hover .benefit-photo, .gallery-grid li:hover .photo, .member-card:hover .member-photo { transform: scale(1.05); }
   }
 }
 
 body { font-size: 16px; line-height: 1.625; }
+/* Anchors, shared event links and scrollIntoView stop below the sticky header. */
+html { scroll-padding-top: 88px; }
 .page-width { width: calc(100% - 48px); max-width: 1280px; margin-inline: auto; }
 .section-space { padding-block: 48px; }
 .section-stack { display: flex; flex-direction: column; gap: 24px; }
-.section-heading { font-size: 36px; font-weight: 800; line-height: 42px; }
+.section-heading { font-size: 32px; font-weight: 800; line-height: 38px; letter-spacing: -0.01em; }
 .body-large { color: var(--color-grey); font-size: 18px; line-height: 28px; }
-.eyebrow { color: var(--color-red); font-size: 30px; font-weight: 800; line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; }
-.gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 15px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms; }
+/* A small kicker above a section heading, the same pattern as the Events hero. The heading stays the loudest line. */
+.eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: -12px; color: var(--color-red); font-size: 13px; font-weight: 700; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+.eyebrow::before { content: ""; flex: none; width: 24px; height: 3px; background: var(--color-red); }
+.gs-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border: 1px solid transparent; border-radius: 4px; font-size: 16px; font-weight: 600; line-height: 22px; text-align: center; transition: background-color 150ms, color 150ms, transform 120ms ease-out; }
+.gs-button > [aria-hidden="true"] { display: inline-block; transition: transform 200ms ease-out; }
+/* Buttons press in slightly when clicked, and a trailing arrow nudges forward on hover. */
+@media (prefers-reduced-motion: no-preference) {
+  .gs-button:active:not(:disabled) { transform: scale(0.97); }
+  .gs-button:hover > [aria-hidden="true"] { transform: translateX(3px); }
+}
 .gs-button-primary { color: var(--color-white); background: var(--color-red); }
 .gs-button-primary:hover { background: var(--color-red-dark); }
 .gs-button-secondary { color: var(--color-charcoal); border-color: currentColor; background: var(--color-white); }
 .gs-button-secondary:hover { color: var(--color-white); background: var(--color-charcoal); }
 .section-action { align-self: stretch; }
-.site-header { color: var(--color-white); background: var(--color-charcoal); }
-.header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; padding-block: 12px; }
-.header-logo { width: 100px; height: 47px; object-fit: contain; }
-.header-inner nav { grid-column: 1 / -1; }
-.header-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 16px; }
+/* Sticky and opaque. Phones get one 64px bar: logo, Join and a Menu button that drops the links below it. */
+.site-header { position: sticky; top: 0; z-index: 20; color: var(--color-white); background: var(--color-charcoal); }
+.header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px; padding-block: 10px; }
+.header-logo { width: 94px; height: 44px; object-fit: contain; }
+.header-join { min-height: 44px; padding: 10px 16px; }
+.header-menu-button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 12px; border: 1.5px solid currentColor; border-radius: 4px; font-size: 15px; font-weight: 600; line-height: 22px; cursor: pointer; }
+.header-links { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: 4px 24px 12px; border-bottom: 3px solid var(--color-red); background: var(--color-charcoal); }
+.header-menu.is-open .header-links { display: block; }
+.header-nav { display: flex; flex-direction: column; }
 .header-nav a { display: flex; min-height: 44px; align-items: center; font-size: 15px; font-weight: 600; line-height: 22px; }
 .header-nav a:hover, .header-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 8px; }
 .skip-link { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
 .skip-link:focus { top: 8px; left: 8px; z-index: 10; width: auto; height: auto; padding: 12px 20px; color: var(--color-charcoal); background: var(--color-white); clip-path: none; }
 .home-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* Darkens the video so white hero text stays above 4.5:1 wherever it lands. */
-.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.92) 25%, rgb(13 11 9 / 0.5)); }
+/* Darkens the video only behind the text, so white hero text stays above 4.5:1 and the rest of
+   the gym shows through. On phones the text fills the lower half; on wide screens the left side. */
+.home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9) 30%, rgb(13 11 9 / 0.45) 65%, rgb(13 11 9 / 0.1)); }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; min-height: 600px; padding-block: 72px 48px; }
 .hero-video-toggle { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; background: rgb(13 11 9 / 0.6); }
 .hero-video-toggle:hover { color: var(--color-charcoal); background: var(--color-white); }
-.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 16px; }
+.gallery-grid li { overflow: hidden; border-radius: 4px; }
+/* The band under the hero: a looping row of partners, each a logo (once its file is supplied) and a name. Two copies of the list slide left by one
+   list-width, so the loop has no seam. It pauses under the pointer and from its button. */
+/* A white ground, so each partner's own logo colours read as they were drawn. */
+.marquee { position: relative; color: var(--color-charcoal); background: var(--color-white); border-bottom: 1px solid var(--color-line); }
+.marquee { display: flex; align-items: stretch; }
+.marquee-label { display: flex; flex: none; align-items: center; padding-inline: 24px 16px; border-right: 1px solid var(--color-line); color: var(--color-grey); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.marquee-window { display: flex; flex: 1; min-width: 0; overflow: hidden; margin-right: 48px; }
+.marquee-logo { width: auto; height: 40px; }
+.marquee-track { display: flex; flex: none; align-items: center; min-width: 100%; justify-content: space-around; animation: marquee 32s linear infinite; }
+.marquee-track li { display: flex; align-items: center; gap: 12px; padding: 12px 0 12px 28px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; line-height: 20px; text-transform: uppercase; white-space: nowrap; }
+.marquee-track li::after { content: ""; margin-left: 16px; width: 6px; height: 6px; border-radius: 50%; background: var(--color-red); }
+.marquee:hover .marquee-track, .marquee.is-paused .marquee-track { animation-play-state: paused; }
+.marquee-pause { position: absolute; inset-block: 0; right: 0; display: grid; place-items: center; width: 48px; cursor: pointer; background: var(--color-white); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-window { margin-right: 0; }
+  .marquee-track { flex: 1; flex-wrap: wrap; justify-content: center; }
+  .marquee-track[aria-hidden], .marquee-pause { display: none; }
+}
+.photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
 /* Cinematic: white text on a dark fade over the photo on desktop; on phones the photo sits above the text. */
-.together { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.together { position: relative; overflow: clip; color: var(--color-white); background: var(--color-charcoal); }
 .together-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; }
 .together-inner { position: relative; z-index: 1; padding-block: 32px 48px; }
 .together-copy .body-large { color: var(--color-muted-on-dark); }
 .together-copy .section-heading { text-wrap: balance; }
+/* About's page title sits in the story band, above a smaller "Our story". */
+.story h1 { font-size: 36px; font-weight: 800; line-height: 42px; }
+.story .story-subheading { margin-top: 8px; font-size: 22px; font-weight: 700; line-height: 28px; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero-copy h1 { max-width: 700px; font-size: 36px; font-weight: 800; line-height: 42px; }
 .hero-copy > p { max-width: 560px; }
 .hero-actions, .coach-actions { display: flex; flex-direction: column; gap: 12px; }
-.benefit-grid { display: grid; gap: 24px; }
-/* Photo card: title sits on the photo; icon and description slide down on hover, and are always shown on touch screens. */
-.benefit-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; overflow: hidden; border-radius: 16px; color: var(--color-white); background: var(--color-charcoal); }
-.benefit-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.benefit-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0) 55%); transition: background-color 300ms; }
-.benefit-card:hover::after, .benefit-card:focus-visible::after { background-color: rgb(13 11 9 / 0.72); }
-.benefit-reveal, .benefit-card h3 { position: relative; z-index: 1; }
-.benefit-reveal { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; opacity: 0; transform: translateY(-24px); transition: opacity 300ms, transform 300ms; }
-.benefit-card:hover .benefit-reveal, .benefit-card:focus-visible .benefit-reveal { opacity: 1; transform: none; }
-.benefit-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: var(--color-red); background: var(--color-white); }
-@media (hover: none) {
-  .benefit-card::after { background-color: rgb(13 11 9 / 0.72); }
-  .benefit-reveal { opacity: 1; transform: none; }
-}
+/* On the dark hero the second button is an outline, so the red Join stays the loudest action. */
+.hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
+.hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }
+.benefit-grid { display: grid; gap: 20px; }
+/* Benefit card: a small photo beside the title and description on phones, photo on top from 600px.
+   The description is always shown; nothing waits for hover. */
+.benefit-card { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: center; gap: 16px; }
+.benefit-photo { width: 88px; height: 112px; object-fit: cover; border-radius: 4px; }
+.benefit-copy { display: flex; flex-direction: column; gap: 4px; }
+.benefit-copy p { color: var(--color-grey); }
+/* A linked card: the title's link covers the whole card, so the card is one tap target named by its title. */
+.benefit-card.is-link { position: relative; }
+.benefit-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.benefit-card.is-link:hover .benefit-link { text-decoration: underline; text-underline-offset: 3px; }
+.benefit-card.is-link:has(.benefit-link:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.benefit-link:focus-visible { outline: none; }
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
+.home .benefit-copy h3, .about .benefit-copy h3 { font-size: 20px; line-height: 26px; }
 .coach-row, .location-row { display: grid; align-items: center; gap: 24px; }
+.coach-list { display: grid; gap: 48px; }
 .coach-copy { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; color: var(--color-charcoal); background: var(--color-neutral); text-align: center; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-/* Member row: native scroll-snap, so the browser handles swipe and keyboard scrolling. Side padding
-   of half the leftover width lets the first and last cards centre. */
-.members { padding-block: 48px; container-type: inline-size; }
-.members .section-heading { margin-bottom: 24px; }
-.member-row { display: grid; grid-auto-flow: column; grid-auto-columns: min(780px, 82cqw); gap: 16px; padding-inline: calc((100cqw - min(780px, 82cqw)) / 2); padding-bottom: 12px; overflow-x: auto; scroll-snap-type: x mandatory; }
-.member-row > li { scroll-snap-align: center; }
-.benefit-card.member-card { min-height: 320px; }
+/* Member cycle: every card shares one grid cell and is moved sideways by its place in the cycle
+   (--offset, set by MemberRow). The current card sits in the middle; its neighbours peek in smaller
+   on either side, and the rest wait out of sight. */
+.members { position: relative; padding-block: 48px; container-type: inline-size; overflow: hidden; }
+/* Side padding keeps the centred heading clear of the pause button in the top-right corner. */
+.members .section-heading { margin-bottom: 24px; padding-inline: 56px; text-align: center; }
+.member-carousel { --member-gap: 16px; }
+.member-stage { position: relative; }
+.member-row { display: grid; justify-items: center; padding-block: 12px; }
+.member-row > li { grid-area: 1 / 1; width: min(780px, calc(100cqw - 96px)); cursor: pointer; filter: brightness(0.45) saturate(0.5);
+  /* 92.5% is the width of a card shrunk to 85%, so the gap between cards stays --member-gap */
+  transform: translateX(calc(var(--offset, 0) * (92.5% + var(--member-gap)))) scale(0.85);
+  transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 500ms ease, filter 500ms ease; }
+/* Side cards are darkened, not faded, and only their photo shows. */
+.member-row > li > :is(p, h3) { transition: opacity 300ms ease; }
+.member-row > li:not(.is-current) > :is(p, h3) { opacity: 0; }
+.member-row > li.is-current { z-index: 1; cursor: auto; filter: none; transform: none; }
+.member-row > li.is-far { opacity: 0; pointer-events: none; }
+.member-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; min-height: 320px; padding: 28px; overflow: hidden; border-radius: 4px; color: var(--color-white); background: var(--color-charcoal); }
+.member-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.member-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.15) 70%); }
+.member-card p, .member-card h3 { position: relative; z-index: 1; }
+/* The quote is the loudest line, under a red opening mark; the member's name is a small label. */
+.member-card > p { max-width: 32ch; font-size: 20px; font-weight: 600; line-height: 1.4; }
+.member-card > p::before { content: "\201C"; display: block; height: 32px; font-family: Georgia, serif; font-size: 64px; font-weight: 700; line-height: 1; color: var(--color-red); }
+.member-card > h3 { font-size: 13px; font-weight: 700; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted-on-dark); }
+/* Previous/next sit on either side, always visible. */
+.member-arrow { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: var(--color-charcoal); background: var(--color-white); box-shadow: 0 4px 16px rgb(13 11 9 / 0.35); cursor: pointer; translate: 0 -50%; transition: color 150ms ease, background-color 150ms ease; }
+.member-arrow:hover { color: var(--color-white); background: var(--color-red); }
+.member-arrow.is-previous { left: 8px; }
+.member-arrow.is-next { right: 8px; }
+/* One dot per card. The current one is a bar that fills over --member-advance; when it is full the
+   cycle moves on (MemberRow). It holds while the pointer or keyboard focus is on the cycle, or paused. */
+.member-dots { display: flex; justify-content: center; margin-top: 12px; }
+.member-dot { display: grid; place-items: center; min-width: 24px; height: 24px; padding-inline: 4px; cursor: pointer; }
+.member-dot::before { grid-area: 1 / 1; }
+.member-dot::before { content: ""; width: 8px; height: 8px; border-radius: 4px; background: #b5aea7; transition: width 300ms ease; }
+.member-dot[aria-current]::before { width: 32px; }
+.member-dot-fill { grid-area: 1 / 1; justify-self: start; width: 32px; height: 8px; border-radius: 4px; background: var(--color-red); transform-origin: left; animation: member-fill var(--member-advance) linear both; }
+@keyframes member-fill { from { transform: scaleX(0); } }
+.member-carousel.is-paused .member-dot-fill, .member-carousel:has(:focus-visible) .member-dot-fill { animation-play-state: paused; }
+@media (hover: hover) { .member-carousel:hover .member-dot-fill { animation-play-state: paused; } }
+/* Pause sits in the section's own top-right corner. */
+.member-auto { position: absolute; top: 16px; right: 16px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--color-charcoal); border-radius: 50%; color: var(--color-charcoal); background: transparent; cursor: pointer; }
+.member-auto:hover { color: var(--color-white); background: var(--color-charcoal); }
+/* Nothing auto-advances under reduced motion: no bar fills, so the pause button has nothing to do. */
+@media (prefers-reduced-motion: reduce) {
+  .member-auto, .member-dot-fill { display: none; }
+  .member-dot[aria-current]::before { background: var(--color-red); }
+  .member-arrow, .member-dot::before, .member-row > li, .member-row > li > :is(p, h3) { transition: none; }
+}
 .location-information { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
 .location-information address { font-size: 24px; font-weight: 700; line-height: 32px; font-style: normal; }
-.gym-map { display: block; width: 100%; min-height: 220px; border: 0; border-radius: 16px; }
-.memberships-section { display: flex; flex-direction: column; gap: 24px; padding-block: 48px 24px; }
+/* The map slot: the address shows until the Google embed paints over it. */
+.gym-map { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; width: 100%; min-height: 240px; padding: 24px; overflow: hidden; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-neutral); }
+.bg-neutral .gym-map { background: var(--color-white); }
+/* Home gives the map more room than Contact: it is the main thing in Find GS Gym. */
+.location-row .gym-map { min-height: 360px; }
+.gym-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.gym-map-address { font-size: 20px; font-weight: 700; line-height: 28px; }
+.gym-map-note { font-size: 13px; color: var(--color-grey); }
+.memberships-section { display: flex; flex-direction: column; gap: 24px; padding-block: 48px; }
 .membership-intro { display: flex; flex-direction: column; gap: 8px; }
-.membership-grid { display: grid; gap: 24px; }
-.membership-card, .day-pass { display: flex; flex-direction: column; align-items: flex-start; padding: 24px; border: 1px solid var(--color-line); background: var(--color-white); }
-.membership-card h3, .day-pass h3 { margin-bottom: 16px; }
-.membership-price { margin-bottom: 16px; font-size: 24px; font-weight: 700; line-height: 32px; color: var(--color-red); }
-.membership-card > .text-grey { white-space: normal; }
+.membership-intro .eyebrow { margin-bottom: 4px; }
+.membership-grid { display: grid; gap: 12px; }
+/* The day and weekly passes sit side by side from 600px; stacked on phones like the plan cards. */
+.pass-row { display: grid; gap: 12px; }
+/* A red rule across the top, the price large, then one detail per line between hairlines. */
+.membership-card, .day-pass { display: flex; flex-direction: column; align-items: stretch; padding: 20px; border-top: 3px solid var(--color-red); border-radius: 0 0 4px 4px; background: var(--color-neutral); }
+.home .membership-card h3, .home .day-pass h3 { margin-bottom: 4px; font-size: 20px; line-height: 26px; }
+.membership-price { margin-bottom: 12px; font-size: 32px; font-weight: 800; line-height: 38px; letter-spacing: -0.01em; color: var(--color-charcoal); }
+.membership-period { font-size: 16px; font-weight: 500; letter-spacing: 0; white-space: nowrap; color: var(--color-grey); }
+.membership-price.is-unset { font-size: 20px; font-weight: 700; line-height: 28px; }
+.membership-card > .text-grey, .day-pass > .text-grey { padding-block: 8px; border-top: 1px solid var(--color-line); font-size: 15px; line-height: 22px; white-space: normal; }
+/* Phones: each plan is a compact row, name and price on one line, and the two passes sit side by side,
+   so the prices take about a quarter less scrolling. */
+@media (max-width: 599px) {
+  .membership-grid { gap: 8px; }
+  .membership-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; padding: 16px; }
+  .home .membership-card h3 { grid-column: 1; align-self: center; margin-bottom: 0; }
+  .membership-card .membership-price { grid-column: 2; grid-row: 1; margin-bottom: 8px; font-size: 24px; line-height: 30px; text-align: right; }
+  .membership-card .membership-price.is-unset { max-width: 10ch; font-size: 15px; line-height: 20px; }
+  .membership-card > .text-grey { grid-column: 1 / -1; padding-block: 6px; font-size: 14px; line-height: 20px; }
+  .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .day-pass { padding: 14px; }
+  .home .day-pass h3 { font-size: 16px; line-height: 22px; }
+  .day-pass .membership-price { margin-bottom: 6px; font-size: 24px; line-height: 30px; }
+  .day-pass > .text-grey { font-size: 13px; line-height: 18px; }
+}
+/* "Ready to join?" closes the memberships section: a dark panel with the red rule the price cards use. */
+.join-panel { display: flex; flex-direction: column; gap: 20px; padding: 28px 24px; border-top: 3px solid var(--color-red); border-radius: 0 0 4px 4px; color: var(--color-white); background: var(--color-charcoal); }
+.join-panel-copy { display: flex; flex-direction: column; gap: 8px; }
+.join-panel h3 { font-size: 26px; font-weight: 800; line-height: 32px; }
+.join-panel p { color: var(--color-muted-on-dark); }
+.join-panel-actions { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
+.join-panel-link { align-self: center; color: var(--color-white); text-decoration: underline; text-underline-offset: 3px; }
+.join-panel-link:hover { color: var(--color-muted-on-dark); }
+@media (min-width: 600px) { .join-panel-actions { flex-direction: row; align-items: center; gap: 24px; } }
 .membership-cta { color: var(--color-white); background: var(--color-cta); }
 .membership-cta .gs-button { align-self: stretch; }
 .membership-cta .cta-note { font-size: 13px; color: var(--color-muted-on-dark); }
@@ -130,7 +296,6 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-inner { display: flex; flex-direction: column; gap: 32px; padding-block: 24px; }
 .footer-brand { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .footer-logo { width: 100px; height: auto; }
-.footer-brand .gs-button { min-width: 152px; }
 .footer-invitation { display: grid; gap: 32px; }
 .footer-statement { font-size: clamp(36px, 12.3vw, 48px); font-weight: 800; line-height: 1.04; }
 .brand-underline { display: block; margin-top: 24px; width: 64px; height: 5px; background: var(--color-red); }
@@ -143,18 +308,32 @@ body { font-size: 16px; line-height: 1.625; }
 .footer-contact-link { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; font-weight: 600; }
 .footer-contact-link:hover, .footer-socials a:hover, .footer-legal a:hover { text-decoration: underline; }
 .footer-socials { display: flex; gap: 16px; }
-.footer-socials a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; }
+.footer-socials a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; font-size: 15px; }
 .social-icon { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; border-radius: 50%; transition: background-color 150ms, color 150ms; }
 .social-icon svg { width: 24px; height: 24px; }
 .footer-socials .social-icon:hover { color: var(--color-charcoal); background: var(--color-footer-text); }
 .footer-legal { display: flex; flex-direction: column; gap: 16px; font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-footer-muted); }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
-#the-gym, #memberships { scroll-margin-top: 24px; }
-.section-heading.page-title { font-weight: 800; line-height: 42px; }
+.section-heading.page-title { font-size: 36px; line-height: 42px; }
 .bg-neutral .placeholder { background: var(--color-white); }
-.gallery-grid { display: grid; gap: 16px; }
-.contact-row { display: grid; align-items: start; gap: 48px; }
-.enquiry-form, .contact-details { display: flex; flex-direction: column; gap: 20px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: dense; gap: 8px; }
+/* Mosaic at every width: the first photo leads at double width (and double height on desktop) and the
+   last runs double width, so the eight photos fill the grid with no holes. Planned for eight photos;
+   another number still fills in, with dense packing closing most gaps. On phones and tablets the
+   spanning photos sit alone on their rows, so they take a 2:1 shape; phones show the pairs square.
+   On desktop they fill whatever height their neighbours give the rows instead. */
+.gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }
+.gallery-grid > :is(:first-child, :last-child) .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+@media (max-width: 599px) { .gallery-grid > li:not(:first-child, :last-child) .photo { aspect-ratio: 1; } }
+@media (min-width: 600px) { .gallery-grid { gap: 16px; } }
+@media (min-width: 960px) {
+  .gallery-grid > :first-child, .gallery-grid > :last-child { aspect-ratio: auto; }
+  .gallery-grid > :first-child { grid-row: span 2; }
+}
+/* Markup order is details, form, map: the phone order. Desktop puts the form on the left. */
+.contact-row { display: grid; align-items: start; gap: 32px; }
+.enquiry-form, .contact-map { display: flex; flex-direction: column; gap: 20px; }
+.details-actions { display: flex; flex-direction: column; gap: 12px; }
 .field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; line-height: 21px; }
 /* Grey, not --color-line: an input's only boundary needs 3:1 (visual-direction.md §2). */
 .field input, .field select, .field textarea { min-height: 48px; padding: 12px 14px; border: 1px solid var(--color-grey); border-radius: 4px; background: var(--color-white); font-size: 16px; font-weight: 400; }
@@ -162,31 +341,34 @@ body { font-size: 16px; line-height: 1.625; }
 .gs-button:disabled { opacity: 0.6; cursor: not-allowed; }
 .form-note { font-size: 13px; color: var(--color-grey); }
 .form-note a, .details-card a:not(.gs-button) { text-decoration: underline; }
-.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 6px; }
+.details-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 24px; border: 1px solid var(--color-line); border-radius: 4px; }
 .details-card h2 { font-size: 22px; font-weight: 700; line-height: 33px; }
 .details-card dl { display: flex; flex-direction: column; gap: 12px; }
 .details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
+/* The phone and email are full-height tap targets, not 19px lines of text. */
+.details-card dd a { display: inline-flex; min-height: 44px; align-items: center; }
 .details-card address { font-style: normal; }
 .social-links { display: flex; gap: 12px; }
-.social-links .social-icon { width: 52px; height: 52px; border: 1px solid currentColor; }
-.social-links .social-icon svg { width: 26px; height: 26px; }
-.social-links .social-icon:hover { color: var(--color-white); background: var(--color-charcoal); }
+/* Contact's social links name themselves ("Instagram"), so the icon is not left on its own under the map. */
+.social-link { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px 0 14px; border: 1px solid currentColor; border-radius: 999px; font-weight: 600; transition: background-color 150ms, color 150ms; }
+.social-link svg { width: 24px; height: 24px; }
+.social-link:hover { color: var(--color-white); background: var(--color-charcoal); }
 
 /* Events (/events/): list, month calendar and event details. On phones the list and calendar
    columns dissolve (display: contents) so filter → calendar → list stack in that order, and the
    selected event's details open under its list item. Tailwind's reset leaves buttons unstyled. */
 .events button { cursor: pointer; text-align: left; }
-.events-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
-.events-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
-.events-hero::after { content: ""; position: absolute; inset: 0; background: rgb(13 11 9 / 0.86); }
-.events-hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 28px; padding-block: 40px; }
-.events-hero-copy { display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
-.events-hero-copy h1 { font-size: 36px; font-weight: 800; line-height: 42px; }
-.events-hero-copy .body-large, .events-sample-note { color: var(--color-muted-on-dark); }
-.events-kicker { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral); }
-.events-kicker::before { content: ""; width: 32px; height: 4px; background: var(--color-red); }
+.page-hero { position: relative; overflow: hidden; color: var(--color-white); background: var(--color-charcoal); }
+.page-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.page-hero::after { content: ""; position: absolute; inset: 0; background: rgb(13 11 9 / 0.86); }
+.page-hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 28px; padding-block: 40px; }
+.page-hero-copy { display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
+.page-hero-copy h1 { font-size: 36px; font-weight: 800; line-height: 42px; }
+.page-hero-copy .body-large, .events-sample-note { color: var(--color-muted-on-dark); }
+.page-hero-kicker { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral); }
+.page-hero-kicker::before { content: ""; width: 32px; height: 4px; background: var(--color-red); }
 .events-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; line-height: 18px; text-transform: uppercase; color: var(--color-grey); }
-.next-comp { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 6px; color: var(--color-charcoal); background: var(--color-white); }
+.next-comp { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 4px; color: var(--color-charcoal); background: var(--color-white); }
 .next-comp-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
 .next-comp-count { display: flex; align-items: baseline; gap: 10px; font-weight: 600; color: var(--color-grey); }
 .next-comp-days { font-size: 48px; font-weight: 800; line-height: 1; color: var(--color-red); }
@@ -205,15 +387,19 @@ body { font-size: 16px; line-height: 1.625; }
 .type-mark-gym { border: 2px solid var(--color-charcoal); border-radius: 50%; }
 .event-type { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; line-height: 18px; text-transform: uppercase; color: var(--color-grey); }
 .events-body { display: flex; flex-direction: column; gap: 20px; padding-block: 24px 48px; }
-.events-list, .events-side { display: contents; }
-.events-filter { order: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 6px; background: var(--color-neutral); }
+.events-month { display: flex; flex-direction: column; gap: 12px; }
+.events .calendar-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 48px; padding: 12px 16px; border: 1.5px solid var(--color-charcoal); border-radius: 4px; font-size: 15px; font-weight: 600; }
+.events-count { font-size: 13px; color: var(--color-grey); }
+.events-filter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 4px; background: var(--color-neutral); }
 .events .events-filter button { min-height: 44px; border-radius: 4px; font-size: 14px; font-weight: 600; text-align: center; }
 .events-filter button[aria-pressed="true"] { color: var(--color-white); background: var(--color-charcoal); }
-.calendar { order: 2; padding: 8px; border: 1px solid var(--color-line); border-radius: 6px; }
-.events-groups { order: 3; display: flex; flex-direction: column; gap: 24px; }
+/* Phones list events first; the month opens from the control above it. */
+.calendar { display: none; padding: 8px; border: 1px solid var(--color-line); border-radius: 4px; }
+.calendar.is-open { display: block; }
+.events-groups { display: flex; flex-direction: column; gap: 24px; }
 .events-group-heading { margin-bottom: 8px; }
 .events-items { display: flex; flex-direction: column; gap: 8px; }
-.event-item { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 14px; width: 100%; padding: 12px; border: 2px solid transparent; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--color-line); transition: background-color 150ms; }
+.event-item { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 14px; width: 100%; padding: 12px; border: 2px solid transparent; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--color-line); transition: background-color 150ms; }
 .event-item:hover { background: var(--color-neutral); }
 .event-item[aria-current="true"] { border-color: var(--color-charcoal); background: var(--color-neutral); box-shadow: none; }
 .event-date { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 0; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; line-height: 1.3; text-transform: uppercase; }
@@ -224,7 +410,7 @@ body { font-size: 16px; line-height: 1.625; }
 .event-summary { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .event-title { font-size: 17px; font-weight: 700; line-height: 1.3; }
 .event-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
-.events-empty { padding: 24px; border: 1px dashed var(--color-grey); border-radius: 6px; color: var(--color-grey); }
+.events-empty { padding: 24px; border: 1px dashed var(--color-grey); border-radius: 4px; color: var(--color-grey); }
 .events-empty a { text-decoration: underline; }
 .events-past { padding-top: 8px; border-top: 1px solid var(--color-line); }
 .events-past-toggle { display: flex; width: 100%; min-height: 44px; align-items: center; justify-content: space-between; font-weight: 600; }
@@ -237,7 +423,7 @@ body { font-size: 16px; line-height: 1.625; }
 .calendar-nav button:hover { color: var(--color-white); background: var(--color-charcoal); }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; }
 .calendar-weekday { padding-block: 4px; font-size: 11px; font-weight: 700; text-align: center; text-transform: uppercase; color: var(--color-grey); }
-.calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 48px; border-radius: 6px; font-size: 15px; font-weight: 600; }
+.calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 48px; border-radius: 4px; font-size: 15px; font-weight: 600; }
 .events button.calendar-day { text-align: center; }
 button.calendar-day:hover { background: var(--color-neutral); }
 .calendar-day.is-outside { font-weight: 400; color: var(--color-grey); }
@@ -254,8 +440,14 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 4px 4px; font-size: 13px; color: var(--color-grey); }
 .calendar-legend li { display: flex; align-items: center; gap: 8px; }
 .legend-today { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--color-red); }
+/* The events on the day last picked, with full titles (the grid's chips are short). */
+.calendar-day-events { margin: 8px 4px 0; padding-top: 12px; border-top: 1px solid var(--color-line); }
+.calendar-day-events h3 { margin-bottom: 4px; font-size: 14px; font-weight: 700; }
+.events .calendar-day-events button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; font-weight: 600; }
+.calendar-day-events button[aria-current="true"] { text-decoration: underline; text-decoration-color: var(--color-red); text-underline-offset: 4px; }
+.event-link-status { min-height: 20px; font-size: 13px; color: var(--color-grey); overflow-wrap: anywhere; }
 .event-detail { display: flex; flex-direction: column; gap: 16px; }
-.event-detail-inline { margin-top: 8px; padding: 16px; border-radius: 6px; background: var(--color-neutral); }
+.event-detail-inline { margin-top: 8px; padding: 16px; border-radius: 4px; background: var(--color-neutral); }
 .event-detail-side { display: none; }
 .event-detail-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .event-detail-title { font-size: 24px; font-weight: 800; line-height: 1.2; }
@@ -263,7 +455,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .event-facts dd { font-weight: 600; }
 .event-facts dd + dd, .event-note { font-weight: 400; color: var(--color-grey); }
 .event-note { max-width: 68ch; }
-.entry-window { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 6px; background: var(--color-white); }
+.entry-window { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 4px; background: var(--color-white); }
 .entry-window-title { font-weight: 700; }
 .entry-track { position: relative; height: 8px; margin: 22px 0 4px; border-radius: 4px; background: var(--color-line); }
 .entry-fill { position: absolute; inset-block: 0; left: 0; border-radius: 4px; background: var(--color-red); }
@@ -278,38 +470,52 @@ button.calendar-day:hover { background: var(--color-neutral); }
 .event-actions { display: flex; flex-direction: column; gap: 8px; }
 .event-directions { display: inline-flex; min-height: 44px; align-items: center; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 
+@media (min-width: 600px) {
+  .benefit-card { display: flex; flex-direction: column; align-items: stretch; gap: 0; overflow: hidden; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-white); }
+  .benefit-photo { width: 100%; height: 220px; border-radius: 0; }
+  .benefit-copy { gap: 8px; padding: 24px; }
+  .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 24px; line-height: 32px; }
+}
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .membership-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .membership-grid, .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
   .section-space { padding-block: 72px; }
-  .section-heading { font-weight: 700; line-height: 44px; }
-  .eyebrow { font-size: 36px; }
+  .section-heading { font-size: 40px; line-height: 46px; }
+  .section-heading.page-title { font-size: 48px; line-height: 54px; }
   .section-action { align-self: flex-start; }
   .site-header { border-bottom: 2px solid var(--color-red); }
   .header-inner { display: flex; justify-content: space-between; gap: 32px; padding-block: 7px; }
   .header-logo { width: 120px; height: 56px; }
-  .header-inner nav { order: 1; }
+  .header-menu { order: 1; }
+  .header-menu-button { display: none; }
+  .header-links { display: block; position: static; padding: 0; border: 0; }
   .header-join { order: 2; min-height: 48px; padding-block: 12px; }
-  .header-nav { display: flex; gap: 36px; }
+  .header-nav { flex-direction: row; gap: 36px; }
   .header-nav a { font-weight: 500; }
   .home-hero { border-top: 3px solid var(--color-red); }
-  .hero-inner { min-height: 897px; padding-block: 80px 96px; }
+  .hero-inner { min-height: clamp(600px, calc(100svh - 72px), 800px); padding-block: 80px 96px; }
   .hero-video-toggle { top: 24px; right: 24px; }
+  .home-hero::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.85), rgb(13 11 9 / 0.55) 640px, rgb(13 11 9 / 0) 1080px), linear-gradient(to top, rgb(13 11 9 / 0.6), rgb(13 11 9 / 0) 50%); }
   .hero-copy { gap: 32px; }
   .hero-copy h1 { font-size: 68px; line-height: 1.05; }
   .hero-copy > p { font-size: 18px; line-height: 1.6; color: #d4d4d4; }
   .hero-actions, .coach-actions { flex-direction: row; flex-wrap: wrap; }
-  .hero-actions .gs-button-secondary { color: var(--color-white); background: transparent; }
-  .hero-actions .gs-button-secondary:hover { color: var(--color-charcoal); background: var(--color-white); }
   .benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .members { padding-block: 72px; }
   .members .section-heading { margin-bottom: 32px; }
-  .member-row { gap: 32px; }
-  .benefit-card.member-card { min-height: 400px; padding: 32px 40px; }
-  .member-card h3 { font-size: 32px; line-height: 40px; }
+  .member-carousel { --member-gap: 32px; }
+  .member-auto { top: 24px; right: 24px; }
+  .member-arrow { width: 56px; height: 56px; }
+  .member-arrow.is-previous { left: 24px; }
+  .member-arrow.is-next { right: 24px; }
+  .member-card { min-height: 400px; padding: 32px 40px; }
+  .member-card > p { font-size: 26px; }
   .coach-row { grid-template-columns: 3fr 4.5fr; gap: 80px; }
+  .coach-row.is-flipped { grid-template-columns: 4.5fr 3fr; }
+  .coach-row.is-flipped .coach-photo { order: 1; }
+  .coach-list { gap: 72px; }
   .coach-copy { align-items: flex-start; }
   .coach-photo { min-height: 430px; }
   /* Zoom from the left edge: crops the empty wall on the right and moves the people clear of the text. */
@@ -319,22 +525,32 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .together-copy { max-width: 440px; }
   /* Our story: no zoom, and the fade stays dark only behind the text so the rest of the photo shows. */
   .story .together-photo { transform: none; }
+  .story h1 { font-size: 60px; line-height: 1.04; }
   .story::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.9), rgb(13 11 9 / 0.8) 38%, rgb(13 11 9 / 0) 60%); }
-  .location-row { grid-template-columns: minmax(0, 520fr) minmax(0, 696fr); gap: 64px; }
+  /* The map lines up with "Come train with us" and keeps a 16:9 shape, never shorter than the text beside it. */
+  .location-row { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: stretch; gap: 64px; }
   .location-information { align-items: flex-start; }
   .gym-map { min-height: 340px; }
-  .memberships-section { padding-block: 72px 32px; }
-  .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .membership-card { min-height: 276px; }
+  .location-row .gym-map { aspect-ratio: 16 / 9; }
+  .memberships-section { padding-block: 72px; }
+  .membership-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  /* Four cards share the row, so the price shrinks a little on narrower desktops to stay inside its card. */
+  .membership-grid .membership-price:not(.is-unset) { font-size: clamp(26px, 2.5vw, 32px); }
+  .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .join-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: 32px 40px; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); gap: 80px; }
+  .contact-row { grid-template-columns: minmax(0, 640fr) minmax(0, 560fr); grid-template-rows: auto 1fr; grid-template-areas: "form details" "form map"; gap: 32px 80px; }
+  .contact-row:not(:has(.enquiry-form)) { grid-template-rows: auto; grid-template-areas: "details map"; }
+  .enquiry-form { grid-area: form; }
+  .details-card { grid-area: details; }
+  .contact-map { grid-area: map; }
+  .details-actions { flex-direction: row; flex-wrap: wrap; }
   .enquiry-form .gs-button, .details-card .gs-button { align-self: flex-start; }
   .site-footer { border-top: 2px solid var(--color-red); }
   .footer-inner { gap: 48px; padding-block: 48px 32px; }
   .footer-logo { width: 120px; }
-  .footer-brand .gs-button { min-width: 210px; }
   .footer-invitation { grid-template-columns: minmax(0, 872fr) minmax(0, 360fr); gap: 48px; }
   .footer-statement { font-size: clamp(48px, 7.22vw, 104px); line-height: 1; }
   .brand-underline { width: 96px; }
@@ -343,20 +559,23 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .footer-nav a { justify-content: flex-start; min-height: 48px; padding: 0; font-size: 28px; line-height: 36px; }
   .footer-details { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; padding-block: 48px; }
   .footer-legal { flex-direction: row; align-items: center; justify-content: space-between; }
-  .events-hero::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.94), rgb(13 11 9 / 0.86) 45%, rgb(13 11 9 / 0.55)); }
-  .events-hero-inner { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 48px; padding-block: 72px 56px; }
-  .events-hero-copy h1 { font-size: 60px; line-height: 1.04; }
+  .page-hero::after { background: linear-gradient(90deg, rgb(13 11 9 / 0.94), rgb(13 11 9 / 0.86) 45%, rgb(13 11 9 / 0.55)); }
+  .page-hero-inner { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 48px; padding-block: 72px 56px; }
+  .page-hero-copy h1 { font-size: 60px; line-height: 1.04; }
   .next-comp { flex: 0 0 380px; padding: 24px; }
   .next-comp-days { font-size: 56px; }
-  .events-body { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); align-items: start; gap: 40px; padding-block: 48px 72px; }
-  .events-list, .events-side { display: flex; flex-direction: column; gap: 24px; }
-  .events-filter, .calendar, .events-groups { order: 0; }
+  .events-body { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); grid-template-rows: auto auto 1fr; grid-template-areas: "filter month" "list month" "list detail"; align-items: start; gap: 24px 40px; padding-block: 48px 72px; }
+  .events-filter { grid-area: filter; }
+  .events-month { grid-area: month; }
+  .events-groups { grid-area: list; }
+  .event-detail-side { grid-area: detail; }
+  .events .calendar-toggle { display: none; }
   .event-detail-inline { display: none; }
-  .event-detail-side { display: flex; padding: 28px; border-radius: 6px; background: var(--color-neutral); }
+  .event-detail-side { display: flex; padding: 28px; border-radius: 4px; background: var(--color-neutral); }
   .event-detail-title { font-size: 32px; }
   .event-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .event-actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; }
-  .calendar { padding: 0; overflow: hidden; }
+  .calendar { display: block; padding: 0; overflow: hidden; }
   .calendar-head { padding: 16px 20px; border-bottom: 1px solid var(--color-line); }
   .calendar-head h2 { font-size: 26px; }
   .calendar-grid { gap: 0; }
@@ -370,11 +589,12 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .calendar-day.is-today .calendar-num { color: var(--color-red); box-shadow: inset 0 0 0 2px var(--color-red); }
   .calendar-num { align-self: flex-start; }
   .calendar-chips { flex-direction: column; gap: 4px; height: auto; }
-  .calendar-chip { width: auto; height: auto; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; line-height: 18px; white-space: nowrap; text-overflow: ellipsis; }
+  .calendar-chip { display: -webkit-box; width: auto; height: auto; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; line-height: 18px; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .calendar-chip-competition, .calendar-day.is-selected .calendar-chip-competition { color: var(--color-white); background: var(--color-red); }
   .calendar-chip-gym { border-color: var(--color-charcoal); color: var(--color-charcoal); background: var(--color-white); }
   .calendar-chip.is-selected { outline: 2px solid var(--color-charcoal); outline-offset: 1px; }
   .calendar-legend { padding: 12px 20px; border-top: 1px solid var(--color-line); }
+  .calendar-day-events { margin: 0; padding: 12px 20px; }
 }
 @media (min-width: 1200px) {
   .events-body { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); }

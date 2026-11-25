@@ -23,7 +23,8 @@ fourth in the navigation, and its homepage has no title tag and no H1.
 Three primary pages in order: Home, About Us, Contact. Home serves as The Gym and
 contains location and four membership cards plus the day-pass block; cards have no
 per-plan buttons. One shared bottom Join CTA and header/footer Join actions use Debit
-Success. Video testimonials retain placeholders until approved footage arrives. There is
+Success. Member testimonials are written quotes the client will send (2026-11-16); placeholders
+stay in preview until then. There is
 no blog (removed per the 2026-10-18 meeting); its replacement is the events calendar page at
 `/events/` (Q14), filled by hand from the APA calendar (Q17).
 
@@ -92,8 +93,12 @@ contacts or account ownership without current-owner confirmation.
   (a scope change)? Raised 2026-10-11; not decided.
 - **Q11** Privacy policy — the client was asked to supply one. Writing it is outside scope.
   It must mention the Google Maps embed on Home and Contact (third-party; may set cookies).
-- **Q12** Owner identity is settled as Joe; the current coach's exact name, role, biography
-  and credentials remain unconfirmed. Keep the generic coach slot.
+  The client said on 2026-11-16 they will send it (`docs/meetings/2026-11-16-client-meeting.md` D1).
+- **Q12 — resolved 2026-11-23:** owner identity is settled as Joe. The head coach is Raynan
+  Mishra; his portrait (from the client's album) and biography (from his Instagram, confirmed by
+  Kevin) are on Home and About (`docs/meetings/2026-11-23-head-coach-profile.md`).
+  Coach Joe Mundey (portrait from the album, biography from his Instagram) sits under him
+  (`docs/meetings/2026-11-23-coach-joe-profile.md`).
 - **Q13 — resolved 2026-10-28:** Home serves as The Gym. Follow Figma's four-page nav;
   memberships live on Home, with no per-plan buttons or separate Gym page.
 - **Q14** What replaces the blog section: an on-site photo album page, or a link to a shared
@@ -114,8 +119,34 @@ contacts or account ownership without current-owner confirmation.
   `frontend/content/events.json` by hand from the APA calendar until an automatic feed exists
   (`docs/meetings/2026-11-15-events-review-follow-up.md` D2). Feeding it from APA automatically
   is a follow-up, waiting on whether APA's calendar has a public iCal link (same minutes, D3, Q1).
+- **Q18** Does the gym confirm Auckland Powerlifting Association, SBD New Zealand and New Zealand
+  Powerlifting Federation as its partners and sponsors, with their exact names, and permission to
+  show each logo? Since 2026-11-23 Home's partners band shows on the live site, not only in
+  preview (`docs/meetings/2026-11-23-visual-polish.md` D12), so confirm before launch.
+- **Q19** Since 2026-11-25 the preview's sample prices carry no "Unconfirmed … preview only"
+  label (`docs/meetings/2026-11-25-join-under-pricing.md` D3), which departs from ADR-006. Anyone
+  viewing the preview, the client included, may read them as real. Accept it in a superseding ADR,
+  or bring back a quieter label.
+- **Q20** About's three "What we offer" services (gym membership, personal training and coaching,
+  competition prep) show on the live site since 2026-11-23 but the gym has not confirmed them;
+  `requirements.md` says About shows confirmed services. Confirm before launch
+  (`docs/meetings/2026-11-23-visual-polish.md` D13, Q3).
+- **Q21** Raynan Mishra and Joe Mundey to confirm their biographies, and Raynan the spelling of
+  "Mishra", before launch (`docs/meetings/2026-11-23-head-coach-profile.md` Q1, Q2;
+  `docs/meetings/2026-11-23-coach-joe-profile.md` Q1).
 
 ## Changelog
+- 2026-11-25 — Q20, Q21 added from the 2026-11-23 minutes: unconfirmed services on About, and the coaches' biographies.
+- 2026-11-25 — Q19 added: the preview's sample prices are no longer labelled.
+- 2026-11-23 — Q18 reopened: the partners band is back and shows on the live site; confirm names and logo permission before launch.
+- 2026-11-23 — Q18 withdrawn: the preview-only partners band was removed.
+- 2026-11-23 — Coach Joe Mundey added under the head coach on Home and About.
+- 2026-11-23 — Q12 resolved: head coach Raynan Mishra, with portrait and biography, now on Home
+  and About in production as well as preview.
+- 2026-11-16 — Client meeting: testimonials become written quotes; viewing by appointment; casual
+  passes bought by walking in or contacting online; weekly pass $45; privacy policy, coach
+  portrait and biography to come from the client. Enquiry email info@getstrengthgym.com.
+- 2026-11-16 — Q18 added: the gym to confirm the partners shown in Home's preview-only band.
 - 2026-11-15 — PR #32 review: the client asked for the events page in place of the blog, so
   `requirements.md` no longer says "to be agreed"; Q17 resolved (events filled by hand from APA).
 - 2026-11-14 — Events calendar page built at `/events/` (Q14) and added to the nav. Status is

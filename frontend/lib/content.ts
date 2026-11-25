@@ -81,8 +81,22 @@ export type Prices = {
   confirmedWithClient: string | null; // YYYY-MM-DD the client confirmed, or null
   sample: boolean;
   plans: Plan[];
-  dayPass: { price: number | null; howToBuy: string | null };
+  dayPass: Pass;
+  weeklyPass: Pass;
 };
+
+export type Pass = { price: number | null; howToBuy: string | null };
+
+function readPass(file: string, data: Record<string, unknown>, field: "dayPass" | "weeklyPass"): Pass {
+  const pass = data[field];
+  if (!isObject(pass)) fail(file, `"${field}" must be an object`);
+  rejectUnknownFields(`${file} ${field}`, pass, ["price", "howToBuy"]);
+  const price = pass.price;
+  if (!(price === null || (typeof price === "number" && Number.isFinite(price) && price > 0))) {
+    fail(file, `"${field}.price" must be null or a positive number`);
+  }
+  return { price, howToBuy: optionalString(`${file} ${field}`, pass, "howToBuy") };
+}
 
 function readPricesFile(filename: string): Prices {
   const file = `content/${filename}`;
@@ -93,7 +107,7 @@ function readPricesFile(filename: string): Prices {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans", "dayPass"]);
+  rejectUnknownFields(file, data, ["sample", "currency", "confirmedWithClient", "plans", "dayPass", "weeklyPass"]);
 
   const currency = requireString(file, data, "currency");
 
@@ -137,14 +151,10 @@ function readPricesFile(filename: string): Prices {
     return { id, name, price, period, details };
   });
 
-  if (!isObject(data.dayPass)) fail(file, '"dayPass" must be an object');
-  rejectUnknownFields(file + " dayPass", data.dayPass, ["price", "howToBuy"]);
-  const dayPassPrice = data.dayPass.price;
-  if (!(dayPassPrice === null || (typeof dayPassPrice === "number" && Number.isFinite(dayPassPrice) && dayPassPrice > 0))) {
-    fail(file, '"dayPass.price" must be null or a positive number');
-  }
-  const dayPass = { price: dayPassPrice, howToBuy: optionalString(file + " dayPass", data.dayPass, "howToBuy") };
-  return { currency, confirmedWithClient: confirmed, sample: data.sample === true, plans, dayPass };
+  return {
+    currency, confirmedWithClient: confirmed, sample: data.sample === true, plans,
+    dayPass: readPass(file, data, "dayPass"), weeklyPass: readPass(file, data, "weeklyPass"),
+  };
 }
 
 /**
@@ -201,6 +211,8 @@ export type Site = {
     togetherIntroduction: string;
   };
   about: { story: string };
+  coaches: { name: string; bio: string; photo: Photo }[]; // Home and About, in this order; photos alternate sides
+  partners: { name: string; logo: string | null }[]; // logo is null until its file is supplied; the name shows instead
 };
 
 const SITE_FIELDS = [
@@ -216,6 +228,8 @@ const SITE_FIELDS = [
   "outboundLinks",
   "home",
   "about",
+  "coaches",
+  "partners",
 ];
 
 function optionalString(file: string, data: Record<string, unknown>, field: string): string | null {
@@ -312,6 +326,29 @@ export function getSite(): Site {
   rejectUnknownFields(file + " about", data.about, ["story"]);
   const about = { story: requireString(file, data.about, "story", "about.story") };
 
+  if (!Array.isArray(data.coaches) || data.coaches.length === 0) fail(file, '"coaches" must be a non-empty list');
+  const coaches = data.coaches.map((coach: unknown, i: number) => {
+    const where = `coaches[${i}]`;
+    if (!isObject(coach)) fail(file, `"${where}" must be an object with "name", "bio" and "photo"`);
+    rejectUnknownFields(`${file} ${where}`, coach, ["name", "bio", "photo"]);
+    return {
+      name: requireString(file, coach, "name", `${where}.name`),
+      bio: requireString(file, coach, "bio", `${where}.bio`),
+      photo: readPhoto(file, coach.photo, `${where}.photo`),
+    };
+  });
+
+  if (!Array.isArray(data.partners)) fail(file, `"partners" must be a list (it may be empty)`);
+  const partners = data.partners.map((partner: unknown, i: number) => {
+    const where = `partners[${i}]`;
+    if (!isObject(partner)) fail(file, `"${where}" must be an object`);
+    rejectUnknownFields(`${file} ${where}`, partner, ["name", "logo"]);
+    return {
+      name: requireString(file, partner, "name", `${where}.name`),
+      logo: partner.logo === null ? null : requirePublicFile(file, partner, "logo", `${where}.logo`),
+    };
+  });
+
   return {
     name,
     address,
@@ -325,6 +362,8 @@ export function getSite(): Site {
     outboundLinks,
     home,
     about,
+    coaches,
+    partners,
   };
 }
 
@@ -342,6 +381,7 @@ export type Photos = {
   aboutOffers: Photo[]; // same order as OFFERS in app/about/page.tsx
   homeMembers: Photo[]; // testimonial row, preview-only until testimonials are supplied
   eventsHero: Photo;
+  contactHero: Photo; // dark photo header on Contact
 };
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
@@ -376,7 +416,7 @@ export function getPhotos(): Photos {
     fail(file, `could not read as JSON (${(err as Error).message})`);
   }
   if (!isObject(data)) fail(file, "must be a JSON object");
-  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "aboutOffers", "homeMembers", "eventsHero"]);
+  rejectUnknownFields(file, data, ["homeHero", "homeTogether", "aboutStory", "aboutGallery", "aboutOffers", "homeMembers", "eventsHero", "contactHero"]);
   for (const list of ["aboutGallery", "aboutOffers", "homeMembers"]) {
     if (!Array.isArray(data[list]) || data[list].length === 0) fail(file, `"${list}" must be a non-empty list`);
   }
@@ -393,6 +433,7 @@ export function getPhotos(): Photos {
     aboutOffers: (data.aboutOffers as unknown[]).map((photo, i) => readPhoto(file, photo, `aboutOffers[${i}]`)),
     homeMembers: (data.homeMembers as unknown[]).map((photo, i) => readPhoto(file, photo, `homeMembers[${i}]`)),
     eventsHero: readPhoto(file, data.eventsHero, "eventsHero"),
+    contactHero: readPhoto(file, data.contactHero, "contactHero"),
   };
 }
 

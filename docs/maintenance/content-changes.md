@@ -29,7 +29,7 @@ The build mode comes from the `SITE_ENV` environment variable.
 |---|---|---|
 | Prices | `prices.sample.json`, labelled "Unconfirmed prices and terms — preview only" | `prices.json` |
 | Events | `events.sample.json`, labelled "Sample events — preview only" | `events.json` |
-| Unconfirmed content (coach, email, staffed hours) | labelled placeholders | left out |
+| Unconfirmed content (email, staffed hours) | labelled placeholders | left out |
 | Launch check | — | build **fails** if `confirmedWithClient` is `null` |
 
 **Anything other than `SITE_ENV=production` counts as preview**, including a plain
@@ -48,8 +48,8 @@ the client sent. Don't fill gaps; ask them.
    change a `name` only if the client has changed it there too.
 4. Update `confirmedWithClient` to the date the client confirmed the new price (next section).
 5. Each plan's `details` is a list of display lines for billing, minimum term, fees and
-   inclusions. Keep facts in this file rather than in the card component. `dayPass` holds
-   a positive `price` (or `null`) and `howToBuy` text (or `null`).
+   inclusions. Keep facts in this file rather than in the card component. `dayPass` and
+   `weeklyPass` each hold a positive `price` (or `null`) and `howToBuy` text (or `null`).
 6. Keep `prices.sample.json` in the same shape. Its current numbers are the unconfirmed
    observations recorded in Figma on 2026-10-12, displayed only in labelled previews.
    They are not client approval and must not be copied into production without confirmation.
@@ -58,13 +58,15 @@ the client sent. Don't fill gaps; ask them.
 
 Edit `frontend/content/site.json` for the address, separate access/viewing hours, the
 Contact page's phone and enquiry email (null until confirmed; hidden in production), shared
-Join destination, navigation, approved social links, Home's introductory/benefit copy and
-About's `about.story`.
+Join destination, navigation, approved social links, Home's introductory/benefit copy,
+About's `about.story`, and the `coaches` list shown on Home and About: each coach's `name`,
+`bio` and `photo` (`src` and `alt`, sized like the other 1600×1067 photos). Coaches appear in list
+order, and on wide screens every second photo sits on the right.
 Each Home benefit has a `photo` path under `public/images/`; the build fails if the photo file is missing.
 Use only the current gym's confirmed external destinations; a null social URL is omitted.
 Instagram shows as its logo (`frontend/components/SocialIcon.tsx`); a service without a logo there
 shows its name instead.
-Missing coach and video-testimonial content stays labelled in preview and is hidden in
+Missing testimonial (written quote) content stays labelled in preview and is hidden in
 production. The map on Home and Contact is a Google Maps embed built from `name` and `address`. The supplied Figma logo is stored locally in
 `frontend/public/images/brand/`; confirm current-owner usage rights before launch.
 
@@ -72,7 +74,8 @@ production. The map on Home and Contact is a Google Maps embed built from `name`
 
 `frontend/content/photos.json` says which file each slot uses: the Home hero video and its
 poster, Home's Train together photo, Home's five member-testimonial photos (`homeMembers`), About's
-story photo, About's What we offer cards (`aboutOffers`) and the About gallery. Every photo
+story photo, About's What we offer cards (`aboutOffers`), the About gallery, the Events hero
+(`eventsHero`), and the Contact header (`contactHero`, 1600×800, shown under a dark overlay). Coach portraits live with each coach in `site.json` `coaches`. Every photo
 needs `alt` text describing what is visible; the hero video is decorative, so it has none.
 The build fails if a file is missing, its path's case differs from the file, or alt text is empty.
 

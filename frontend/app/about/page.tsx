@@ -1,81 +1,64 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Coaches from "@/components/Coaches";
 import JoinCta from "@/components/JoinCta";
-import Placeholder from "@/components/Placeholder";
-import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
+import { getPhotos, getSite } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: { absolute: "About GetStrength Gym — Our Story and Coaching" },
   description: "Serious strength training. A welcoming community. About GetStrength Gym in Penrose, Auckland.",
 };
 
-// Story, coach and services are TODO(confirm) with the gym (docs/design/five-page-journey.md §7),
-// so they show as labelled placeholders in preview and are left out of production.
+// What we offer shows on the live site since 2026-11-23 (visual-polish minutes D13). The coaches come from site.json.
+// Each card links to where that offer continues (site-review minutes 2026-11-25 D7).
 const OFFERS = [
-  { title: "Gym membership", description: "Explore gym membership and access options through Debit Success." },
-  { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support." },
-  { title: "Competition prep", description: "Discuss your lifting goals and available competition support." },
+  { title: "Gym membership", description: "Explore gym membership and access options through Debit Success.", href: "/#memberships" },
+  { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support.", href: "/contact/" },
+  { title: "Competition prep", description: "Discuss your lifting goals and available competition support.", href: "/events/" },
 ];
 
 export default function About() {
   const site = getSite();
   const photos = getPhotos();
-  const preview = isPreviewBuild();
   if (photos.aboutOffers.length !== OFFERS.length) {
     throw new Error(`content/photos.json: "aboutOffers" needs ${OFFERS.length} photos, one per What we offer card`);
   }
 
   return (
     <main className="about">
-      <section className="bg-neutral">
-        <div className="page-width section-space section-stack">
-          <h1 className="section-heading page-title">About Us</h1>
-          <p className="body-large">Serious strength training. A welcoming community.</p>
-        </div>
-      </section>
-
-      <section aria-labelledby="story-heading" className="together story">
+      {/* The story photo doubles as the page header, so About opens with one dark band, not two. */}
+      <section aria-labelledby="about-heading" className="together story">
         <Image src={photos.aboutStory.src} alt={photos.aboutStory.alt} width={2880} height={1920} className="together-photo" />
         <div className="page-width together-inner">
           <div className="together-copy section-stack">
-            <h2 id="story-heading" className="section-heading">Our story</h2>
+            <p className="page-hero-kicker">Since 2001 · Penrose</p>
+            <h1 id="about-heading">About Us</h1>
+            <h2 className="story-subheading">Our story</h2>
             <p className="body-large">{site.about.story}</p>
           </div>
         </div>
       </section>
 
-      {preview && (
-        <section aria-labelledby="coach-heading" className="bg-neutral">
-          <div className="page-width section-space coach-row">
-            <Placeholder label="Portrait: head coach" detail="PLACEHOLDER · APPROVED PHOTOGRAPHY NEEDED" className="coach-photo" />
-            <div className="coach-copy">
-              <p className="eyebrow">Coach profile · details to confirm</p>
-              <h2 id="coach-heading" className="section-heading">Coach profile</h2>
-              <p className="body-large">Current coach name, role and biography awaiting confirmation with the gym.</p>
-              <Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>
-            </div>
-          </div>
-        </section>
-      )}
+      <Coaches actions={<Link href="/contact/" className="gs-button gs-button-secondary">Get in touch</Link>} />
 
-      {preview && (
-        <section aria-labelledby="offer-heading">
-          <div className="page-width section-space section-stack">
-            <h2 id="offer-heading" className="section-heading">What we offer</h2>
-            <p className="text-grey">Services to confirm with the gym — preview only.</p>
-            <ul className="benefit-grid">
-              {OFFERS.map((offer, i) => (
-                <li key={offer.title} className="benefit-card" tabIndex={0}>
-                  <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
-                  <div className="benefit-reveal"><p>{offer.description}</p></div>
-                  <h3>{offer.title}</h3>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+      <section aria-labelledby="offer-heading">
+        <div className="page-width section-space section-stack">
+          <h2 id="offer-heading" className="section-heading">What we offer</h2>
+          <ul className="benefit-grid">
+            {OFFERS.map((offer, i) => (
+              <li key={offer.title} className="benefit-card is-link">
+                <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
+                <div className="benefit-copy">
+                  {/* The title is the link; it stretches over the whole card (globals.css). */}
+                  <h3><Link href={offer.href} className="benefit-link">{offer.title}<span aria-hidden="true">&nbsp;→</span></Link></h3>
+                  <p>{offer.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section aria-labelledby="gallery-heading">
         <div className="page-width section-space section-stack">

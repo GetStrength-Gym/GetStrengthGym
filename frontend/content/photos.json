@@ -84,5 +84,9 @@
   "eventsHero": {
     "src": "/images/gym/deadlift-lockout-wide.jpg",
     "alt": "Lifter locking out a deadlift while a member watches"
+  },
+  "contactHero": {
+    "src": "/images/gym/lifter-gripping-bar-wide.jpg",
+    "alt": "Lifter gripping a loaded barbell before a deadlift"
   }
 }

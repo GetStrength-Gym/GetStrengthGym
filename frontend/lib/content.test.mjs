@@ -8,7 +8,7 @@ const originalMode = process.env.SITE_ENV;
 const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'gs15-content-'));
 const content = path.join(fixture, 'content');
 fs.mkdirSync(content);
-for (const dir of ['images/gym', 'videos']) {
+for (const dir of ['images/gym', 'images/partners', 'videos']) {
   fs.mkdirSync(path.join(fixture, 'public', dir), { recursive: true });
   for (const name of fs.readdirSync(path.join(originalDirectory, 'public', dir))) {
     fs.writeFileSync(path.join(fixture, 'public', dir, name), '');
@@ -23,25 +23,33 @@ const write = (name, value) => fs.writeFileSync(path.join(content, name), JSON.s
 try {
   process.chdir(fixture);
   const { getPhotos, getPrices, getSite } = await import('./content.ts');
-  const { formatPrice } = await import('./format.ts');
+  const { formatPrice, telUrl } = await import('./format.ts');
+  assert.equal(telUrl('09 622 2885'), 'tel:+6496222885');
   assert.equal(formatPrice({ price: 27.99, period: 'week' }, 'NZD'), '$27.99 / week');
   assert.equal(formatPrice({ price: null, period: null }, 'NZD'), 'Contact us for pricing');
+  assert.equal(formatPrice({ price: 30, period: 'visit' }, 'NZD'), '$30 / visit');
   process.env.SITE_ENV = 'preview';
   const preview = getPrices();
   assert.equal(preview.sample, true);
   assert.deepEqual(preview.plans.map(plan => plan.price), [27.99, 35.99, 54.99, 18.99]);
   assert.equal(preview.dayPass.price, 30);
+  assert.equal(preview.weeklyPass.price, 45);
   assert.equal(getSite().address.locality, 'Penrose, Auckland 1061');
   assert.deepEqual(getSite().nav.map(link => link.label), ['Home', 'About Us', 'Events', 'Contact']);
   assert.deepEqual(getSite().outboundLinks.map(link => link.service), ['Instagram']);
   assert.equal(getSite().phone, '09 622 2885');
-  assert.equal(getSite().email, null);
+  assert.deepEqual(getSite().partners.map(partner => partner.name), ['Auckland Powerlifting Association', 'SBD New Zealand', 'New Zealand Powerlifting Federation']);
+  assert.equal(getSite().email, 'info@getstrengthgym.com');
+  assert.deepEqual(getSite().coaches.map(coach => coach.name), ['Raynan Mishra', 'Joe Mundey']);
+  assert.equal(getSite().coaches[1].photo.src, '/images/gym/joe-mundey.jpg');
 
   const prices = read('prices.json');
   write('prices.json', { ...prices, plans: [{ ...prices.plans[0], details: [42] }] });
   assert.throws(getPrices, /plans\[0\].details/);
   write('prices.json', { ...prices, dayPass: { price: -1, howToBuy: null } });
   assert.throws(getPrices, /dayPass.price/);
+  write('prices.json', { ...prices, weeklyPass: { price: 45, howToBuy: '' } });
+  assert.throws(getPrices, /howToBuy/);
   write('prices.json', prices);
 
   const site = read('site.json');
@@ -49,6 +57,10 @@ try {
   assert.throws(getSite, /home.benefits\[0\].description/);
   write('site.json', { ...site, about: { story: '' } });
   assert.throws(getSite, /about.story/);
+  write('site.json', { ...site, coaches: [{ ...site.coaches[0], bio: '' }] });
+  assert.throws(getSite, /coaches\[0\]\.bio/);
+  write('site.json', { ...site, coaches: [{ ...site.coaches[0], photo: { ...site.coaches[0].photo, src: '/images/gym/missing.jpg' } }] });
+  assert.throws(getSite, /coaches\[0\]\.photo\.src/);
   write('site.json', { ...site, home: { ...site.home, benefits: [{ ...site.home.benefits[0], photo: '/images/gym/missing.jpg' }] } });
   assert.throws(getSite, /home.benefits\[0\].photo/);
 

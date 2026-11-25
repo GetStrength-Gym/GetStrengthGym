@@ -5,9 +5,9 @@
     "locality": "Penrose, Auckland 1061"
   },
   "memberAccessHours": "24/7",
-  "staffedHours": null,
+  "staffedHours": "Contact us to arrange",
   "phone": "09 622 2885",
-  "email": null,
+  "email": "info@getstrengthgym.com",
   "joinUrl": "https://oc.debitsuccess.com/DirectEntry/DirectDebitRequest/Form?brandtemplateid=9adb8b79-828d-4c8b-af23-7b7d6b5cabde",
   "privacyPolicyUrl": null,
   "nav": [
@@ -41,7 +41,7 @@
     }
   ],
   "home": {
-    "introduction": "Train for powerlifting, weightlifting, strongman or the enjoyment of getting stronger, in a supportive gym community.",
+    "introduction": "Train for powerlifting, weightlifting, strongman or the enjoyment of getting stronger, in a supportive gym community in Penrose, Auckland.",
     "whyIntroduction": "Experienced coaching. Specialist equipment. People who share your goals.",
     "benefits": [
       {
@@ -62,7 +62,30 @@
     ],
     "togetherIntroduction": "Powerlifting, weightlifting, strongman and strength training for the enjoyment of getting stronger. Discover the gym and the people who make it a community."
   },
+  "partners": [
+    { "name": "Auckland Powerlifting Association", "logo": "/images/partners/apa.png" },
+    { "name": "SBD New Zealand", "logo": "/images/partners/sbd.svg" },
+    { "name": "New Zealand Powerlifting Federation", "logo": "/images/partners/nzpf.png" }
+  ],
   "about": {
     "story": "Since 2001, GetStrength Gym has been a home for people who love getting stronger, and today it's home to the #1 ranked powerlifting team in Auckland. In May 2026 we moved to our new home at 20/10 Olive Road, Penrose, where powerlifters, weightlifters, strongman athletes and anyone chasing their next personal best train side by side."
-  }
+  },
+  "coaches": [
+    {
+      "name": "Raynan Mishra",
+      "bio": "Raynan is GetStrength Gym's head coach and a competitive powerlifter in the under-93 kg class. He has competed at international powerlifting competitions, including in the UAE in 2023 and Japan in 2025.",
+      "photo": {
+        "src": "/images/gym/head-coach.jpg",
+        "alt": "Head coach Raynan Mishra, smiling, seated in front of the squat racks in a GetStrength T-shirt"
+      }
+    },
+    {
+      "name": "Joe Mundey",
+      "bio": "Joe is a competitive powerlifter in the under-105 kg class. He started competing in Australia in 2022, moved to Auckland in 2024, and has competed at the New Zealand Nationals in 2025 and 2026, totalling 680 kg at the 2026 Nationals.",
+      "photo": {
+        "src": "/images/gym/joe-mundey.jpg",
+        "alt": "Coach Joe Mundey, smiling, leaning on a squat rack in an SBD T-shirt"
+      }
+    }
+  ]
 }

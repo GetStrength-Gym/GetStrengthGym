@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import JoinCta from "@/components/JoinCta";
 import SocialIcon from "@/components/SocialIcon";
 import GymMap from "@/components/GymMap";
-import { getSite, isPreviewBuild } from "@/lib/content";
-import { directionsUrl } from "@/lib/format";
+import PageHero from "@/components/PageHero";
+import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
+import { directionsUrl, telUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact GetStrength Gym — Penrose, Auckland" },
-  description: "Questions about training, coaching or GetStrength Gym in Penrose, Auckland? Get in touch.",
+  description: "Questions about training, coaching or GetStrength Gym in Penrose, Auckland?",
 };
 
 export default function Contact() {
@@ -16,21 +17,42 @@ export default function Contact() {
   const directions = directionsUrl(site.address);
   // Unconfirmed details are labelled in preview and left out of production.
   const details = [
-    { term: "Phone", value: site.phone, href: site.phone && "tel:+64" + site.phone.replace(/\D/g, "").replace(/^0/, "") }, // NZ number
+    { term: "Phone", value: site.phone, href: site.phone && telUrl(site.phone) },
     { term: "Email", value: site.email, href: site.email && "mailto:" + site.email },
   ].filter(detail => detail.value || preview);
+  const phoneHref = details.find(detail => detail.term === "Phone")?.href;
 
   return (
     <main className="contact">
-      <section className="bg-neutral">
-        <div className="page-width section-space section-stack">
-          <h1 className="section-heading page-title">Contact</h1>
-          <p className="body-large">Questions about training, coaching or the gym? Get in touch.</p>
-        </div>
-      </section>
+      <PageHero photo={getPhotos().contactHero}>
+        <p className="page-hero-kicker">Penrose, Auckland</p>
+        <h1>Contact</h1>
+        <p className="body-large">Questions about training, coaching or the gym?</p>
+      </PageHero>
 
       <section aria-label="Enquiries and contact details">
         <div className="page-width section-space contact-row">
+          {/* Phone, address and directions come first, so on a phone nobody scrolls past the form
+              to find them. Desktop places the form on the left (globals.css). */}
+          <section aria-labelledby="details-heading" className="details-card">
+            <h2 id="details-heading">Get in touch</h2>
+            <dl>
+              {details.map(({ term, value, href }) => (
+                <div key={term}><dt>{term}</dt><dd>{value && href ? <a href={href}>{value}</a> : "Awaiting confirmation"}</dd></div>
+              ))}
+              <div><dt>Address</dt><dd><address>{site.address.street}<br />{site.address.locality}</address></dd></div>
+              {(site.memberAccessHours || site.staffedHours || preview) && (
+                <div><dt>Hours</dt><dd>
+                  {(site.memberAccessHours || preview) && <p>Member access: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
+                  {(site.staffedHours || preview) && <p>Viewings: {site.staffedHours ?? "awaiting confirmation"}</p>}
+                </dd></div>
+              )}
+            </dl>
+            <div className="details-actions">
+              {phoneHref && <a href={phoneHref} className="gs-button gs-button-primary">Call the gym</a>}
+              <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
+            </div>
+          </section>
           {/* The form's delivery mechanism is undecided (GS-13/GS-26) and a static export cannot
               receive it, so it is a preview-only layout with sending switched off. */}
           {preview && (
@@ -64,32 +86,16 @@ export default function Contact() {
             </form>
           )}
 
-          <div className="contact-details">
-            <section aria-labelledby="details-heading" className="details-card">
-              <h2 id="details-heading">Get in touch</h2>
-              <dl>
-                {details.map(({ term, value, href }) => (
-                  <div key={term}><dt>{term}</dt><dd>{value && href ? <a href={href}>{value}</a> : "Awaiting confirmation"}</dd></div>
-                ))}
-                <div><dt>Address</dt><dd><address>{site.address.street}<br />{site.address.locality}</address></dd></div>
-                {(site.memberAccessHours || site.staffedHours || preview) && (
-                  <div><dt>Hours</dt><dd>
-                    {(site.memberAccessHours || preview) && <p>Member access: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
-                    {(site.staffedHours || preview) && <p>Staffed / viewing hours: {site.staffedHours ?? "awaiting confirmation"}</p>}
-                  </dd></div>
-                )}
-              </dl>
-              <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
-            </section>
-            <GymMap name={site.name} address={site.address} />
-            {site.outboundLinks.length > 0 && (
-              <ul className="social-links" aria-label="Social media">
-                {site.outboundLinks.map(link => (
-                  <li key={link.url}><a href={link.url} aria-label={link.label} className="social-icon"><SocialIcon service={link.service} /></a></li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <div className="contact-map">
+          <GymMap name={site.name} address={site.address} />
+          {site.outboundLinks.length > 0 && (
+            <ul className="social-links" aria-label="Social media">
+              {site.outboundLinks.map(link => (
+                <li key={link.url}><a href={link.url} className="social-link"><SocialIcon service={link.service} />{link.label}</a></li>
+              ))}
+            </ul>
+          )}
+        </div>
         </div>
       </section>
 

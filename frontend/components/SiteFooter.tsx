@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getSite, isPreviewBuild } from "@/lib/content";
-import JoinButton from "./JoinButton";
+import { telUrl } from "@/lib/format";
 import NavLinks from "./NavLinks";
 import SocialIcon from "./SocialIcon";
 
@@ -13,10 +13,9 @@ export default function SiteFooter() {
       <div className="page-width footer-inner">
         <div className="footer-brand">
           <Link href="/" aria-label={site.name + ", home"}>
-            <Image src="/images/brand/getstrength-primary.png" width={2858} height={2042}
+            <Image src="/images/brand/getstrength-primary.png" width={480} height={343}
               alt={site.name} className="footer-logo" />
           </Link>
-          <JoinButton />
         </div>
         <div className="footer-invitation">
           <div>
@@ -34,13 +33,15 @@ export default function SiteFooter() {
             <section aria-labelledby="footer-hours">
               <h2 id="footer-hours">Access &amp; viewing</h2>
               {(site.memberAccessHours || preview) && <p>Member access: {site.memberAccessHours ?? "[confirm]"}</p>}
-              {(site.staffedHours || preview) && <p>Staffed / viewing: {site.staffedHours ?? "[confirm]"}</p>}
+              {(site.staffedHours || preview) && <p>Viewings: {site.staffedHours ?? "[confirm]"}</p>}
             </section>
           )}
           <section aria-labelledby="footer-contact">
             <h2 id="footer-contact">Get in touch</h2>
-            <p>Training, memberships &amp; enquiries</p>
-            <Link href="/contact/" className="footer-contact-link">Contact the team</Link>
+            {site.phone && <p><a href={telUrl(site.phone)} className="footer-contact-link">{site.phone}</a></p>}
+            {site.email && <p><a href={"mailto:" + site.email} className="footer-contact-link">{site.email}</a></p>}
+            {/* In a <p> like the phone and email, so it reads as a link, not as a heading over the icons. */}
+            <p><Link href="/contact/" className="footer-contact-link">Contact the team<span aria-hidden="true">&nbsp;→</span></Link></p>
             {site.outboundLinks.length > 0 && (
               <ul className="footer-socials">
                 {site.outboundLinks.map(link => <li key={link.url}><a href={link.url} aria-label={link.label} className="social-icon"><SocialIcon service={link.service} /></a></li>)}

@@ -18,7 +18,7 @@ export default function Events() {
     <main className="events">
       <EventsCalendar events={events} buildDate={todayInAuckland()} photo={getPhotos().eventsHero}
         emptyLink={instagram ? { label: instagram.label, url: instagram.url } : null}>
-        <p className="events-kicker">What&apos;s on</p>
+        <p className="page-hero-kicker">What&apos;s on</p>
         <h1>Events &amp; competitions</h1>
         <p className="body-large">Competitions our lifters are entering, when entries open and close, and what&apos;s on at the gym.</p>
         {sample && <p className="events-sample-note">Sample events — preview only. Real dates are still to come.</p>}
