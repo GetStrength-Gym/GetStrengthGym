@@ -185,19 +185,6 @@ html { scroll-padding-top: 88px; }
 .placeholder > p:first-child { font-size: 24px; font-weight: 700; line-height: 32px; }
 .placeholder .placeholder-detail { font-size: 12px; font-weight: 600; line-height: 18px; color: var(--color-grey); }
 .coach-photo { min-height: 300px; }
-/* Home's coach cards: side by side at every width. Phones show a portrait crop and the first four lines
-   of each biography; About has them in full. */
-.coach-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.coach-card { display: flex; flex-direction: column; gap: 8px; }
-.coach-card-photo { aspect-ratio: 4 / 5; object-position: center 30%; margin-bottom: 4px; }
-.coach-card h3 { font-size: 20px; font-weight: 700; line-height: 26px; }
-.coach-card .text-grey { display: -webkit-box; overflow: hidden; font-size: 14px; line-height: 20px; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
-@media (min-width: 600px) {
-  .coach-cards { gap: 32px; }
-  .coach-card-photo { aspect-ratio: 3 / 2; }
-  .coach-card h3 { font-size: 26px; line-height: 32px; }
-  .coach-card .text-grey { display: block; font-size: 16px; line-height: 1.625; }
-}
 /* Member cycle: every card shares one grid cell and is moved sideways by its place in the cycle
    (--offset, set by MemberRow). The current card sits in the middle; its neighbours peek in smaller
    on either side, and the rest wait out of sight. */
