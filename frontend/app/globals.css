@@ -59,14 +59,27 @@ body {
   /* Each section's content rises in as it scrolls into view. The hero is left out: it is on
      screen from the start. */
   @supports (animation-timeline: view()) {
-    main section:not(.home-hero, .page-hero) > .page-width { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    main section:not(.home-hero, .page-hero) > .page-width:not(:has(> .gallery-grid)) { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
     /* Cards in a row arrive one after another: each starts a little further into the scroll.
        On phones the cards stack, so each simply rises as it arrives. */
-    :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
+    :is(.benefit-grid, .membership-grid, .pass-row) > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
     @media (min-width: 600px) {
-      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 2) { animation-range: entry 20% entry 70%; }
-      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 3) { animation-range: entry 30% entry 80%; }
-      :is(.benefit-grid, .membership-grid, .gallery-grid, .pass-row) > :nth-child(4n + 4) { animation-range: entry 40% entry 90%; }
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 2) { animation-range: entry 20% entry 70%; }
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 3) { animation-range: entry 30% entry 80%; }
+      :is(.benefit-grid, .membership-grid, .pass-row) > :nth-child(4n + 4) { animation-range: entry 40% entry 90%; }
+    }
+    /* The gallery moves once, not with its section as well: the heading rises, then each photo rises
+       over the same short scroll (a fixed length, so the tall first photo is not slower), row by row
+       and left to right across the mosaic. shortcut: column offsets are planned for the 8-photo
+       mosaic; another count still rises, at most a little out of order. */
+    .page-width:has(> .gallery-grid) > .section-heading { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    .gallery-grid > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0px entry 160px; }
+    @media (min-width: 600px) and (max-width: 959px) {
+      .gallery-grid > :nth-child(odd):not(:first-child) { animation-range: entry 40px entry 200px; }
+    }
+    @media (min-width: 960px) {
+      .gallery-grid > :is(:nth-child(2), :nth-child(4), :nth-child(7)) { animation-range: entry 40px entry 200px; }
+      .gallery-grid > :is(:nth-child(3), :nth-child(5), :nth-child(8)) { animation-range: entry 80px entry 240px; }
     }
   }
   /* Photos ease in a little closer under the pointer. */
@@ -254,6 +267,7 @@ html { scroll-padding-top: 88px; }
 .join-panel-actions { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
 .join-panel-link { align-self: center; color: var(--color-white); text-decoration: underline; text-underline-offset: 3px; }
 .join-panel-link:hover { color: var(--color-muted-on-dark); }
+@media (min-width: 600px) { .join-panel-actions { flex-direction: row; align-items: center; gap: 24px; } }
 .membership-cta { color: var(--color-white); background: var(--color-cta); }
 .membership-cta .gs-button { align-self: stretch; }
 .membership-cta .cta-note { font-size: 13px; color: var(--color-muted-on-dark); }
@@ -286,7 +300,6 @@ html { scroll-padding-top: 88px; }
    last runs double width, so the eight photos fill the grid with no holes. Planned for eight photos;
    another number still fills in, with dense packing closing most gaps. */
 @media (min-width: 600px) {
-  .join-panel-actions { flex-direction: row; align-items: center; gap: 24px; }
   /* On tablets the spanning photos sit alone on their rows, so they take a 2:1 shape. On desktop they
      fill whatever height their neighbours give the rows instead. */
   .gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }

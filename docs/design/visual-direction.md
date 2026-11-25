@@ -116,7 +116,8 @@ The sizes are read off the Figma frames. Take exact values from the file when bu
   sections rise in as they scroll into view, photos zoom slightly on hover, a looping partners
   band, and a testimonial row that advances by itself. Since 2026-11-23
   (`docs/meetings/2026-11-23-visual-polish.md` D1, D2): buttons press in slightly when clicked, a
-  trailing arrow nudges forward on hover, and cards in a row rise in one after another. Since
+  trailing arrow nudges forward on hover, and cards in a row rise in one after another (the About
+  gallery's photos row by row since 2026-11-25, `docs/meetings/2026-11-25-gallery-animation.md`). Since
   2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md` D5, D9): the testimonials are a cycle
   with the current card in the middle and its neighbours smaller at the sides, and a progress bar
   that fills while each card shows. Anything that moves for more than 5
