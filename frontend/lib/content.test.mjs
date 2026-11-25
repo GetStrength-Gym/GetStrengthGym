@@ -23,7 +23,8 @@ const write = (name, value) => fs.writeFileSync(path.join(content, name), JSON.s
 try {
   process.chdir(fixture);
   const { getPhotos, getPrices, getSite } = await import('./content.ts');
-  const { formatPrice } = await import('./format.ts');
+  const { formatPrice, telUrl } = await import('./format.ts');
+  assert.equal(telUrl('09 622 2885'), 'tel:+6496222885');
   assert.equal(formatPrice({ price: 27.99, period: 'week' }, 'NZD'), '$27.99 / week');
   assert.equal(formatPrice({ price: null, period: null }, 'NZD'), 'Contact us for pricing');
   assert.equal(formatPrice({ price: 30, period: 'visit' }, 'NZD'), '$30 / visit');

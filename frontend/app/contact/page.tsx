@@ -4,7 +4,7 @@ import SocialIcon from "@/components/SocialIcon";
 import GymMap from "@/components/GymMap";
 import PageHero from "@/components/PageHero";
 import { getPhotos, getSite, isPreviewBuild } from "@/lib/content";
-import { directionsUrl } from "@/lib/format";
+import { directionsUrl, telUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact GetStrength Gym — Penrose, Auckland" },
@@ -17,7 +17,7 @@ export default function Contact() {
   const directions = directionsUrl(site.address);
   // Unconfirmed details are labelled in preview and left out of production.
   const details = [
-    { term: "Phone", value: site.phone, href: site.phone && "tel:+64" + site.phone.replace(/\D/g, "").replace(/^0/, "") }, // NZ number
+    { term: "Phone", value: site.phone, href: site.phone && telUrl(site.phone) },
     { term: "Email", value: site.email, href: site.email && "mailto:" + site.email },
   ].filter(detail => detail.value || preview);
   const phoneHref = details.find(detail => detail.term === "Phone")?.href;
@@ -44,7 +44,7 @@ export default function Contact() {
               {(site.memberAccessHours || site.staffedHours || preview) && (
                 <div><dt>Hours</dt><dd>
                   {(site.memberAccessHours || preview) && <p>Member access: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
-                  {(site.staffedHours || preview) && <p>Staffed / viewing hours: {site.staffedHours ?? "awaiting confirmation"}</p>}
+                  {(site.staffedHours || preview) && <p>Viewings: {site.staffedHours ?? "awaiting confirmation"}</p>}
                 </dd></div>
               )}
             </dl>

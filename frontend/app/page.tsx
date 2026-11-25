@@ -116,7 +116,7 @@ export default function Home() {
             <address>{site.address.street}<br />{site.address.locality}</address>
             <div className="text-grey">
               {(site.memberAccessHours || preview) && <p>Member access hours: {site.memberAccessHours ?? "awaiting confirmation"}</p>}
-              {(site.staffedHours || preview) && <p>Staffed / viewing hours: {site.staffedHours ?? "awaiting confirmation"}</p>}
+              {(site.staffedHours || preview) && <p>Viewings: {site.staffedHours ?? "awaiting confirmation"}</p>}
             </div>
             <a href={directions} className="gs-button gs-button-secondary">Get directions<span className="sr-only"> (Google Maps)</span></a>
             <Link href="/contact/" className="gs-button gs-button-primary">Ask about visiting</Link>
@@ -125,7 +125,7 @@ export default function Home() {
         </div>
       </section>
 
-      <JoinCta heading="Find your membership." text="Check Debit Success for membership options, prices and terms."
+      <JoinCta heading="Find your membership." text="Compare the plans above, then sign up online through our Debit Success form."
         note="Opens Debit Success." />
     </main>
   );
