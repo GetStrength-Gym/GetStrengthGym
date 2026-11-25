@@ -1,3 +1,5 @@
+import Link from "next/link";
+import JoinButton from "./JoinButton";
 import { getPrices } from "@/lib/content";
 import { formatPrice } from "@/lib/format";
 
@@ -20,8 +22,7 @@ export default function PriceList() {
         <div className="membership-intro">
           <p className="eyebrow">Memberships</p>
           <h2 id="memberships-heading" className="section-heading">Choose how you train.</h2>
-          <p className="body-large">Compare the plans below. Sign-up, billing and terms are handled on Debit Success.</p>
-          {prices.sample && <p className="text-grey">Unconfirmed prices and terms — preview only. Confirm current details with the gym.</p>}
+          <p className="body-large">Compare the plans below, then sign up online through the Join GS Gym link at the end.</p>
         </div>
         <ul className="membership-grid">
           {prices.plans.map(plan => (
@@ -43,6 +44,17 @@ export default function PriceList() {
               <p className="text-grey">{pass.howToBuy ?? `Ask the gym how to buy ${name}.`}</p>
             </div>
           ))}
+        </div>
+        {/* The one Join action in the section, after the visitor has compared every plan and pass. */}
+        <div className="join-panel">
+          <div className="join-panel-copy">
+            <h3>Ready to join?</h3>
+            <p>Sign up online through our Debit Success form, which also sets up your billing and terms.</p>
+          </div>
+          <div className="join-panel-actions">
+            <JoinButton />
+            <Link href="/contact/" className="join-panel-link">Questions first? Contact us</Link>
+          </div>
         </div>
       </div>
     </section>

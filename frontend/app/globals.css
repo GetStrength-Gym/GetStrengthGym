@@ -246,6 +246,14 @@ html { scroll-padding-top: 88px; }
 .membership-period { font-size: 16px; font-weight: 500; letter-spacing: 0; white-space: nowrap; color: var(--color-grey); }
 .membership-price.is-unset { font-size: 20px; font-weight: 700; line-height: 28px; }
 .membership-card > .text-grey, .day-pass > .text-grey { padding-block: 8px; border-top: 1px solid var(--color-line); font-size: 15px; line-height: 22px; white-space: normal; }
+/* "Ready to join?" closes the memberships section: a dark panel with the red rule the price cards use. */
+.join-panel { display: flex; flex-direction: column; gap: 20px; padding: 28px 24px; border-top: 3px solid var(--color-red); border-radius: 0 0 4px 4px; color: var(--color-white); background: var(--color-charcoal); }
+.join-panel-copy { display: flex; flex-direction: column; gap: 8px; }
+.join-panel h3 { font-size: 26px; font-weight: 800; line-height: 32px; }
+.join-panel p { color: var(--color-muted-on-dark); }
+.join-panel-actions { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
+.join-panel-link { align-self: center; color: var(--color-white); text-decoration: underline; text-underline-offset: 3px; }
+.join-panel-link:hover { color: var(--color-muted-on-dark); }
 .membership-cta { color: var(--color-white); background: var(--color-cta); }
 .membership-cta .gs-button { align-self: stretch; }
 .membership-cta .cta-note { font-size: 13px; color: var(--color-muted-on-dark); }
@@ -278,6 +286,7 @@ html { scroll-padding-top: 88px; }
    last runs double width, so the eight photos fill the grid with no holes. Planned for eight photos;
    another number still fills in, with dense packing closing most gaps. */
 @media (min-width: 600px) {
+  .join-panel-actions { flex-direction: row; align-items: center; gap: 24px; }
   /* On tablets the spanning photos sit alone on their rows, so they take a 2:1 shape. On desktop they
      fill whatever height their neighbours give the rows instead. */
   .gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }
@@ -491,6 +500,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   /* Four cards share the row, so the price shrinks a little on narrower desktops to stay inside its card. */
   .membership-grid .membership-price:not(.is-unset) { font-size: clamp(26px, 2.5vw, 32px); }
   .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .join-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: 32px 40px; }
   .membership-cta .section-stack { align-items: center; text-align: center; }
   .membership-cta .gs-button { align-self: center; }
   .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }

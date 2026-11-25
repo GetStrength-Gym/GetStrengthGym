@@ -61,7 +61,8 @@ Google Maps lists the gym as open 24 hours). There are no set staffed hours: vis
 the gym to arrange a viewing (agreed 16 November 2026).
 
 Membership options appear on Home before its existing bottom **Join GS Gym** CTA. Cards
-have no per-plan Join buttons. Header/footer Join actions still go directly to Debit
+have no per-plan Join buttons; since 2026-11-25 the section ends with one "Ready to join?" panel
+that explains signing up online and links to the same Debit Success form. Header/footer Join actions still go directly to Debit
 Success in the same tab. Prices, fees, inclusions and terms need current-gym approval;
 Figma's observed figures are not approval. The casual day pass is $30 a visit, agreed with
 the client (see `docs/meetings/2026-11-11-gs23-content-decisions.md` D1), and a weekly pass

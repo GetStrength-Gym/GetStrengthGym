@@ -118,8 +118,10 @@ and location. Gym photos run through Home and About separately (GS-23).
 
 Four display-only cards follow Figma order: Standard, Flexible, Coaching,
 Student/sub-junior. Stack on phones; use four columns at the reference desktop width.
-Place the separate casual-day-pass block below. Do not add per-plan buttons, a standalone
-Join button, a How joining works guide or a separate Gym page. The existing bottom CTA
+Place the separate casual-day-pass block below. Do not add per-plan buttons, a How joining
+works guide or a separate Gym page. Since 2026-11-25 (`docs/meetings/2026-11-25-join-under-pricing.md`
+D1) the section ends with one "Ready to join?" panel: a line on signing up online through Debit
+Success, Join GS Gym, and "Questions first? Contact us". The existing bottom CTA
 says Join GS Gym and goes to Debit Success; the header Join action remains (the footer's was
 removed 2026-11-23, D7).
 
@@ -234,7 +236,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   side (the lower part on phones, the left on wide screens), so the gym shows through.
 - **Benefit and offer cards (Home, About):** a small photo beside the title and description on
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
-- **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons (§6).
+- **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons; one "Ready to
+  join?" panel closes the section (§6).
 - **Testimonials (preview):** since 2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md`
   D5, D7–D9) a cycle: the current card sits in the middle with its neighbours smaller and darkened on
   either side, showing only their photo. Each card leads with the quote under a red quote mark, the
