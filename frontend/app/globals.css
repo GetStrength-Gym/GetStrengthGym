@@ -339,11 +339,14 @@ html { scroll-padding-top: 88px; }
 .details-card h2 { font-size: 22px; font-weight: 700; line-height: 33px; }
 .details-card dl { display: flex; flex-direction: column; gap: 12px; }
 .details-card dt { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-grey); }
+/* The phone and email are full-height tap targets, not 19px lines of text. */
+.details-card dd a { display: inline-flex; min-height: 44px; align-items: center; }
 .details-card address { font-style: normal; }
 .social-links { display: flex; gap: 12px; }
-.social-links .social-icon { width: 52px; height: 52px; border: 1px solid currentColor; }
-.social-links .social-icon svg { width: 26px; height: 26px; }
-.social-links .social-icon:hover { color: var(--color-white); background: var(--color-charcoal); }
+/* Contact's social links name themselves ("Instagram"), so the icon is not left on its own under the map. */
+.social-link { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px 0 14px; border: 1px solid currentColor; border-radius: 999px; font-weight: 600; transition: background-color 150ms, color 150ms; }
+.social-link svg { width: 24px; height: 24px; }
+.social-link:hover { color: var(--color-white); background: var(--color-charcoal); }
 
 /* Events (/events/): list, month calendar and event details. On phones the list and calendar
    columns dissolve (display: contents) so filter → calendar → list stack in that order, and the
