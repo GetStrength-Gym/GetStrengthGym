@@ -8,7 +8,7 @@ import { directionsUrl } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact GetStrength Gym — Penrose, Auckland" },
-  description: "Questions about training, coaching or GetStrength Gym in Penrose, Auckland? Get in touch.",
+  description: "Questions about training, coaching or GetStrength Gym in Penrose, Auckland?",
 };
 
 export default function Contact() {
@@ -27,7 +27,7 @@ export default function Contact() {
       <PageHero photo={getPhotos().contactHero}>
         <p className="page-hero-kicker">Penrose, Auckland</p>
         <h1>Contact</h1>
-        <p className="body-large">Questions about training, coaching or the gym? Get in touch.</p>
+        <p className="body-large">Questions about training, coaching or the gym?</p>
       </PageHero>
 
       <section aria-label="Enquiries and contact details">
