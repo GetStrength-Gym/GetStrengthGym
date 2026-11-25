@@ -123,8 +123,13 @@ contacts or account ownership without current-owner confirmation.
   Powerlifting Federation as its partners and sponsors, with their exact names, and permission to
   show each logo? Since 2026-11-23 Home's partners band shows on the live site, not only in
   preview (`docs/meetings/2026-11-23-visual-polish.md` D12), so confirm before launch.
+- **Q19** Since 2026-11-25 the preview's sample prices carry no "Unconfirmed … preview only"
+  label (`docs/meetings/2026-11-25-join-under-pricing.md` D3), which departs from ADR-006. Anyone
+  viewing the preview, the client included, may read them as real. Accept it in a superseding ADR,
+  or bring back a quieter label.
 
 ## Changelog
+- 2026-11-25 — Q19 added: the preview's sample prices are no longer labelled.
 - 2026-11-23 — Q18 reopened: the partners band is back and shows on the live site; confirm names and logo permission before launch.
 - 2026-11-23 — Q18 withdrawn: the preview-only partners band was removed.
 - 2026-11-23 — Coach Joe Mundey added under the head coach on Home and About.
