@@ -74,10 +74,10 @@ export default function Home() {
 
       <PriceList />
 
-      <Coaches actions={
+      <Coaches compact actions={
         <div className="coach-actions">
           <Link href="/contact/" className="gs-button gs-button-primary">Enquire about coaching</Link>
-          <Link href="/about/" className="gs-button gs-button-secondary">About the gym</Link>
+          <Link href="/about/" className="gs-button gs-button-secondary">More about our coaches</Link>
         </div>
       } />
 

@@ -226,6 +226,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
   items are unchanged; the hero's "See memberships" button is the route to the prices.
 - **Section headings:** the large red eyebrow becomes a 13px uppercase kicker with a short red
   bar, the pattern the Events hero already uses. Headings are 32px on phones and 40px on desktop.
+- **Coaches on Home:** side by side as cards under "Meet your coaches", with the biography cut to
+  four lines on phones; About keeps the full rows (`2026-11-25-site-review.md` D2).
 - **Home order:** hero → Why GS Gym → **Memberships** → coach → Train together →
   testimonials (preview) → Find GS Gym → Join band. The hero's second button is "See
   memberships" and is an outline on the dark hero at every width. The desktop hero is between
