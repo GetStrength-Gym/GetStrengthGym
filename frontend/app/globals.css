@@ -74,7 +74,7 @@ body {
        mosaic; another count still rises, at most a little out of order. */
     .page-width:has(> .gallery-grid) > .section-heading { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
     .gallery-grid > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0px entry 160px; }
-    @media (min-width: 600px) and (max-width: 959px) {
+    @media (max-width: 959px) {
       .gallery-grid > :nth-child(odd):not(:first-child) { animation-range: entry 40px entry 200px; }
     }
     @media (min-width: 960px) {
@@ -323,16 +323,16 @@ html { scroll-padding-top: 88px; }
 .footer-legal a { display: inline-flex; min-height: 44px; align-items: center; }
 .section-heading.page-title { font-size: 36px; line-height: 42px; }
 .bg-neutral .placeholder { background: var(--color-white); }
-.gallery-grid { display: grid; grid-auto-flow: dense; gap: 16px; }
-/* Mosaic from tablet up: the first photo leads at double width (and double height on desktop) and the
+.gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: dense; gap: 8px; }
+/* Mosaic at every width: the first photo leads at double width (and double height on desktop) and the
    last runs double width, so the eight photos fill the grid with no holes. Planned for eight photos;
-   another number still fills in, with dense packing closing most gaps. */
-@media (min-width: 600px) {
-  /* On tablets the spanning photos sit alone on their rows, so they take a 2:1 shape. On desktop they
-     fill whatever height their neighbours give the rows instead. */
-  .gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }
-  .gallery-grid > :is(:first-child, :last-child) .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
-}
+   another number still fills in, with dense packing closing most gaps. On phones and tablets the
+   spanning photos sit alone on their rows, so they take a 2:1 shape; phones show the pairs square.
+   On desktop they fill whatever height their neighbours give the rows instead. */
+.gallery-grid > :first-child, .gallery-grid > :last-child { position: relative; grid-column: span 2; aspect-ratio: 2 / 1; }
+.gallery-grid > :is(:first-child, :last-child) .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+@media (max-width: 599px) { .gallery-grid > li:not(:first-child, :last-child) .photo { aspect-ratio: 1; } }
+@media (min-width: 600px) { .gallery-grid { gap: 16px; } }
 @media (min-width: 960px) {
   .gallery-grid > :first-child, .gallery-grid > :last-child { aspect-ratio: auto; }
   .gallery-grid > :first-child { grid-row: span 2; }
@@ -481,7 +481,7 @@ button.calendar-day:hover { background: var(--color-neutral); }
   .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 24px; line-height: 32px; }
 }
 @media (min-width: 600px) and (max-width: 959px) {
-  .benefit-grid, .membership-grid, .gallery-grid, .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-grid, .membership-grid, .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 960px) {
   .page-width { width: calc(100% - 160px); }
