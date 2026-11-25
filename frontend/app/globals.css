@@ -259,6 +259,21 @@ html { scroll-padding-top: 88px; }
 .membership-period { font-size: 16px; font-weight: 500; letter-spacing: 0; white-space: nowrap; color: var(--color-grey); }
 .membership-price.is-unset { font-size: 20px; font-weight: 700; line-height: 28px; }
 .membership-card > .text-grey, .day-pass > .text-grey { padding-block: 8px; border-top: 1px solid var(--color-line); font-size: 15px; line-height: 22px; white-space: normal; }
+/* Phones: each plan is a compact row, name and price on one line, and the two passes sit side by side,
+   so the prices take about a quarter less scrolling. */
+@media (max-width: 599px) {
+  .membership-grid { gap: 8px; }
+  .membership-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; padding: 16px; }
+  .home .membership-card h3 { grid-column: 1; align-self: center; margin-bottom: 0; }
+  .membership-card .membership-price { grid-column: 2; grid-row: 1; margin-bottom: 8px; font-size: 24px; line-height: 30px; text-align: right; }
+  .membership-card .membership-price.is-unset { max-width: 10ch; font-size: 15px; line-height: 20px; }
+  .membership-card > .text-grey { grid-column: 1 / -1; padding-block: 6px; font-size: 14px; line-height: 20px; }
+  .pass-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .day-pass { padding: 14px; }
+  .home .day-pass h3 { font-size: 16px; line-height: 22px; }
+  .day-pass .membership-price { margin-bottom: 6px; font-size: 24px; line-height: 30px; }
+  .day-pass > .text-grey { font-size: 13px; line-height: 18px; }
+}
 /* "Ready to join?" closes the memberships section: a dark panel with the red rule the price cards use. */
 .join-panel { display: flex; flex-direction: column; gap: 20px; padding: 28px 24px; border-top: 3px solid var(--color-red); border-radius: 0 0 4px 4px; color: var(--color-white); background: var(--color-charcoal); }
 .join-panel-copy { display: flex; flex-direction: column; gap: 8px; }

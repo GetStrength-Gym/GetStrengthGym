@@ -26,6 +26,7 @@ try {
   const { formatPrice } = await import('./format.ts');
   assert.equal(formatPrice({ price: 27.99, period: 'week' }, 'NZD'), '$27.99 / week');
   assert.equal(formatPrice({ price: null, period: null }, 'NZD'), 'Contact us for pricing');
+  assert.equal(formatPrice({ price: 30, period: 'visit' }, 'NZD'), '$30 / visit');
   process.env.SITE_ENV = 'preview';
   const preview = getPrices();
   assert.equal(preview.sample, true);

@@ -237,7 +237,8 @@ this section is current. Brand colours, Inter and the page list are unchanged.
 - **Benefit and offer cards (Home, About):** a small photo beside the title and description on
   phones; photo on top from 600px. The description is always visible; nothing waits for hover.
 - **Memberships:** tighter cards on a white ground. Still no per-plan Join buttons; one "Ready to
-  join?" panel closes the section (§6).
+  join?" panel closes the section (§6). On phones each plan is a compact row (name and price on one line) and the
+  passes sit side by side; whole-dollar prices drop the cents (`2026-11-25-site-review.md` D1).
 - **Testimonials (preview):** since 2026-11-25 (`docs/meetings/2026-11-25-hero-and-testimonials.md`
   D5, D7–D9) a cycle: the current card sits in the middle with its neighbours smaller and darkened on
   either side, showing only their photo. Each card leads with the quote under a red quote mark, the
