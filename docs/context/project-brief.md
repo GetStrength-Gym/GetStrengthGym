@@ -127,8 +127,16 @@ contacts or account ownership without current-owner confirmation.
   label (`docs/meetings/2026-11-25-join-under-pricing.md` D3), which departs from ADR-006. Anyone
   viewing the preview, the client included, may read them as real. Accept it in a superseding ADR,
   or bring back a quieter label.
+- **Q20** About's three "What we offer" services (gym membership, personal training and coaching,
+  competition prep) show on the live site since 2026-11-23 but the gym has not confirmed them;
+  `requirements.md` says About shows confirmed services. Confirm before launch
+  (`docs/meetings/2026-11-23-visual-polish.md` D13, Q3).
+- **Q21** Raynan Mishra and Joe Mundey to confirm their biographies, and Raynan the spelling of
+  "Mishra", before launch (`docs/meetings/2026-11-23-head-coach-profile.md` Q1, Q2;
+  `docs/meetings/2026-11-23-coach-joe-profile.md` Q1).
 
 ## Changelog
+- 2026-11-25 — Q20, Q21 added from the 2026-11-23 minutes: unconfirmed services on About, and the coaches' biographies.
 - 2026-11-25 — Q19 added: the preview's sample prices are no longer labelled.
 - 2026-11-23 — Q18 reopened: the partners band is back and shows on the live site; confirm names and logo permission before launch.
 - 2026-11-23 — Q18 withdrawn: the preview-only partners band was removed.
