@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 };
 
 // What we offer shows on the live site since 2026-11-23 (visual-polish minutes D13). The coaches come from site.json.
+// Each card links to where that offer continues (site-review minutes 2026-11-25 D7).
 const OFFERS = [
-  { title: "Gym membership", description: "Explore gym membership and access options through Debit Success." },
-  { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support." },
-  { title: "Competition prep", description: "Discuss your lifting goals and available competition support." },
+  { title: "Gym membership", description: "Explore gym membership and access options through Debit Success.", href: "/#memberships" },
+  { title: "Personal training & coaching", description: "Enquire about coaching, programming and technique support.", href: "/contact/" },
+  { title: "Competition prep", description: "Discuss your lifting goals and available competition support.", href: "/events/" },
 ];
 
 export default function About() {
@@ -46,10 +47,11 @@ export default function About() {
           <h2 id="offer-heading" className="section-heading">What we offer</h2>
           <ul className="benefit-grid">
             {OFFERS.map((offer, i) => (
-              <li key={offer.title} className="benefit-card">
+              <li key={offer.title} className="benefit-card is-link">
                 <Image src={photos.aboutOffers[i].src} alt={photos.aboutOffers[i].alt} width={800} height={1000} className="benefit-photo" />
                 <div className="benefit-copy">
-                  <h3>{offer.title}</h3>
+                  {/* The title is the link; it stretches over the whole card (globals.css). */}
+                  <h3><Link href={offer.href} className="benefit-link">{offer.title}<span aria-hidden="true">&nbsp;→</span></Link></h3>
                   <p>{offer.description}</p>
                 </div>
               </li>

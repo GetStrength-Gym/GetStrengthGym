@@ -27,6 +27,7 @@ icon; (10) lighter About and "Train together" photos.
 | D4 | D2 is reverted the same day at Kevin's request: Home shows the coaches as full rows again (photo and complete biography, every second photo on the right on wide screens), with "Enquire about coaching" and "About the gym". Supersedes D2. | Kevin |
 | D5 | Wording: Home's closing Join band reads "Compare the plans above, then sign up online through our Debit Success form." (was "Check Debit Success for membership options, prices and terms."). "Staffed / viewing hours" on Home and Contact, and "Staffed / viewing" in the footer, become "Viewings", showing the same `site.json` value ("Contact us to arrange"). The footer's Get in touch adds the phone number as a tap-to-call link. "Contact the team" in the footer was a link that looked like a heading over the Instagram icon; it now matches the phone and email links, with an arrow. The review's "Follow us" suggestion is dropped: it misread that link as a label. | Kevin ("Build all", items 4, 5, 6) |
 | D6 | Contact: the phone and email links in the details card are 44px-tall tap targets (were 19px). The Instagram icon under the map becomes a labelled "Instagram" pill link, so it no longer floats on its own; the footer keeps the icon. | Kevin ("Build all", items 7, 9) |
+| D7 | About's "What we offer" cards are links, each the whole card, named by its title with an arrow: Gym membership → Home's prices (`/#memberships`), Personal training & coaching → Contact, Competition prep → Events. The card descriptions are unchanged. | Kevin ("Build all", item 8) |
 
 ## Open questions
 
@@ -44,3 +45,4 @@ icon; (10) lighter About and "Train together" photos.
 - D5 → `frontend/app/page.tsx`, `frontend/app/contact/page.tsx`, `frontend/components/SiteFooter.tsx` and
   `frontend/lib/format.ts` (`telUrl`, shared by Contact and the footer)
 - D6 → `frontend/app/contact/page.tsx` and `frontend/app/globals.css` (`.details-card dd a`, `.social-link`)
+- D7 → `frontend/app/about/page.tsx` (`OFFERS`) and `frontend/app/globals.css` (`.benefit-card.is-link`)

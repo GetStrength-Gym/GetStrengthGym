@@ -176,6 +176,12 @@ html { scroll-padding-top: 88px; }
 .benefit-photo { width: 88px; height: 112px; object-fit: cover; border-radius: 4px; }
 .benefit-copy { display: flex; flex-direction: column; gap: 4px; }
 .benefit-copy p { color: var(--color-grey); }
+/* A linked card: the title's link covers the whole card, so the card is one tap target named by its title. */
+.benefit-card.is-link { position: relative; }
+.benefit-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.benefit-card.is-link:hover .benefit-link { text-decoration: underline; text-underline-offset: 3px; }
+.benefit-card.is-link:has(.benefit-link:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.benefit-link:focus-visible { outline: none; }
 .home h3, .about h3 { font-size: 24px; font-weight: 700; line-height: 32px; }
 .home .benefit-copy h3, .about .benefit-copy h3 { font-size: 20px; line-height: 26px; }
 .coach-row, .location-row { display: grid; align-items: center; gap: 24px; }
